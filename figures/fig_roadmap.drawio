@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" modified="2026-09-24T10:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="d-roadmap" name="总体建模流程">
+    <mxGraphModel dx="1400" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1160" pageHeight="380" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="n1" value="输入附件&lt;br&gt;节点、货箱、机型、电池、DEM、链路" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FA;strokeColor=#4477AA;fontSize=15;fontFamily=PingFang SC;" vertex="1" parent="1"><mxGeometry x="30" y="40" width="240" height="75" as="geometry"/></mxCell>
+        <mxCell id="n2" value="统一物理规则&lt;br&gt;航段时间、能耗、充电与双向链路" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FA;strokeColor=#4477AA;fontSize=15;fontFamily=PingFang SC;" vertex="1" parent="1"><mxGeometry x="315" y="40" width="240" height="75" as="geometry"/></mxCell>
+        <mxCell id="n3" value="问题一：单点组批&lt;br&gt;安全载荷与计数状态动态规划" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4ED;strokeColor=#449966;fontSize=15;fontFamily=PingFang SC;" vertex="1" parent="1"><mxGeometry x="600" y="40" width="240" height="75" as="geometry"/></mxCell>
+        <mxCell id="n4" value="问题二：多点运输&lt;br&gt;路线候选、机与电池资源排程" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4ED;strokeColor=#449966;fontSize=15;fontFamily=PingFang SC;" vertex="1" parent="1"><mxGeometry x="885" y="40" width="240" height="75" as="geometry"/></mxCell>
+        <mxCell id="n5" value="问题三：通信协同&lt;br&gt;中继点与窗口搜索、连续轨迹回代" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF0E7;strokeColor=#D37B42;fontSize=15;fontFamily=PingFang SC;" vertex="1" parent="1"><mxGeometry x="885" y="225" width="240" height="75" as="geometry"/></mxCell>
+        <mxCell id="n6" value="问题四：独立分区&lt;br&gt;不可拆组件枚举、资源峰值与缺口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF0E7;strokeColor=#D37B42;fontSize=15;fontFamily=PingFang SC;" vertex="1" parent="1"><mxGeometry x="600" y="225" width="240" height="75" as="geometry"/></mxCell>
+        <mxCell id="n7" value="逐项验证&lt;br&gt;唯一覆盖、SOC、时限、通信、敏感性" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2ECF9;strokeColor=#8064A2;fontSize=15;fontFamily=PingFang SC;" vertex="1" parent="1"><mxGeometry x="315" y="225" width="240" height="75" as="geometry"/></mxCell>
+        <mxCell id="n8" value="统一交付&lt;br&gt;结果表、图表、论文与复现清单" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2ECF9;strokeColor=#8064A2;fontSize=15;fontFamily=PingFang SC;" vertex="1" parent="1"><mxGeometry x="30" y="225" width="240" height="75" as="geometry"/></mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="n1" target="n2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="n2" target="n3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="n3" target="n4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="n4" target="n5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="n5" target="n6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="n6" target="n7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="n7" target="n8"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

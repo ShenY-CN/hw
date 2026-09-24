@@ -1,0 +1,29 @@
+\section{问题二：异构运输机与电池联合调度}
+
+\subsection{多点航次和时间窗}
+
+一个候选航次$p$用装载箱集$B_p$、机型$g_p$和服务区访问序列$(i_1,\ldots,i_k)$描述。从O01出发并返回O01，在第$h$站交接后，下一航段剩余质量减少该站所卸箱重。采用式~\eqref{eq:energy}逐段求能耗，要求$\sum E^g_{ij}(q_{ij})\le(1-\rho_g)E_g^{\rm use}$；初始装载质量和体积不得超过额定上限。货箱交付时刻为
+\begin{equation}
+T_b^{\rm arr}=s_p+t_g^{\rm prep}+|B_p|t_g^{\rm load}
++\sum_{h=1}^{\operatorname{stop}(b)}\left(t^g_{i_{h-1},i_h}+t_g^{\rm hand}+n_h t_g^{\rm box}\right).
+\end{equation}
+对医疗箱以及标为首批的箱，直接约束$T_b^{\rm arr}\le D_b$；其余箱按$w_b\max(0,T_b^{\rm arr}-T_b)$累计优先系数加权迟到。全部任务完成时间是所有运输机最后一次返航的最大时刻。
+
+\subsection{实体机与电池分配}
+
+同一实体机执行的两个任务区间不得相交。同一共享电池从架次准备开始到返航结束被占用；其后以剩余SOC计算充至100\%的时间，充电未完成前不可再次装机。A、B、C型电池池相互独立。我们先以24个固定随机种子构造单点直送和最多三个服务区的多点候选，检查载荷、能量和硬时间窗；再尝试跨航次转移整箱，并对迟到货箱增加单箱直送候选。对每组固定路线，用CP-SAT分两阶段严格按加权迟到、运输完工时刻的顺序求解；开始时刻取整数秒，加权迟到按0.001~s计量，最后按连续时间回代值比较候选。当前方案的加权迟到为零，达到非负指标的全局下界；完工时刻阶段仅找到可行排程，不证明整个字典序目标全局最优。运输车辆路径问题中的多架次结构可参见Dorling等\cite{dorling}。
+
+\begin{table}[H]\centering\small\caption{问题二与单点直送基线对比}\label{tab:q2}
+\begin{tabular}{lrr}\toprule
+指标 & 单点直送基线 & 多点方案\\\midrule
+架次数 & 32 & 24\\
+运输能耗/kWh & 81.4552 & 75.5418\\
+最后返航时刻/s & 9379.52 & 8683.25\\
+优先系数加权迟到 & 17334.47 & 0\\
+硬时限违约箱数 & 0 & 0\\
+\bottomrule\end{tabular}\end{table}
+
+多点方案减少8个架次、5.9134~kWh能耗，并提前696.27~s完成；相较前一版23架次方案，增加一个单箱直送架次使加权迟到由155.67降为零，但能耗增加2.6184~kWh。图~\ref{fig:routes}给出访问路径，图~\ref{fig:gantt}展示8架运输机的任务区间。全部80箱唯一交付，最紧医疗或首批截止余量为257.26~s，最小返航SOC为20.1676\%；8架运输机和14组共享电池的占用与充电区间均无重叠。逐架次、逐箱交付明细另列于结果提交表。
+
+\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/routes.pdf}\caption{问题二多点运输航线与服务区位置}\label{fig:routes}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/transport_gantt.pdf}\caption{问题二运输机架次时间表}\label{fig:gantt}\end{figure}

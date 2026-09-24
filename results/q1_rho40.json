@@ -1,0 +1,109 @@
+{
+  "routes": [],
+  "capacities": [
+    {
+      "node": 1,
+      "g": "A",
+      "rho": 0.4,
+      "maxload": 25.0
+    },
+    {
+      "node": 1,
+      "g": "B",
+      "rho": 0.4,
+      "maxload": 30.0
+    },
+    {
+      "node": 1,
+      "g": "C",
+      "rho": 0.4,
+      "maxload": 80.0
+    },
+    {
+      "node": 2,
+      "g": "A",
+      "rho": 0.4,
+      "maxload": 0.0
+    },
+    {
+      "node": 2,
+      "g": "B",
+      "rho": 0.4,
+      "maxload": 15.70246895314884
+    },
+    {
+      "node": 2,
+      "g": "C",
+      "rho": 0.4,
+      "maxload": 19.220367161666125
+    },
+    {
+      "node": 3,
+      "g": "A",
+      "rho": 0.4,
+      "maxload": 0.0
+    },
+    {
+      "node": 3,
+      "g": "B",
+      "rho": 0.4,
+      "maxload": 12.863966938653068
+    },
+    {
+      "node": 3,
+      "g": "C",
+      "rho": 0.4,
+      "maxload": 17.30510864974222
+    },
+    {
+      "node": 4,
+      "g": "A",
+      "rho": 0.4,
+      "maxload": 0.0
+    },
+    {
+      "node": 4,
+      "g": "B",
+      "rho": 0.4,
+      "maxload": 8.666543726614224
+    },
+    {
+      "node": 4,
+      "g": "C",
+      "rho": 0.4,
+      "maxload": 0.0
+    }
+  ],
+  "certificates": [
+    {
+      "node": 1,
+      "status": 0,
+      "gap": 0.0,
+      "candidates": 201,
+      "states": 165,
+      "method": "exact_count_state_DP"
+    },
+    {
+      "node": 2,
+      "status": 0,
+      "gap": 0.0,
+      "candidates": 18,
+      "states": 27,
+      "method": "exact_count_state_DP"
+    },
+    {
+      "node": 3,
+      "status": 0,
+      "gap": 0.0,
+      "candidates": 15,
+      "states": 23,
+      "method": "exact_count_state_DP"
+    }
+  ],
+  "summary": {
+    "feasible": false,
+    "failed_node": 4,
+    "status": 2,
+    "message": "Exact count-state dynamic program infeasible"
+  }
+}

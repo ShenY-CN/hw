@@ -1,0 +1,56 @@
+{
+  "q1": {
+    "route_count": 18,
+    "total_horizontal_kwh": 56.57555704298699,
+    "total_climb_kwh": 2.5557389790676543,
+    "tightest": {
+      "id": "Q1-07",
+      "model": "C",
+      "horizontal_kwh": 5.9759915382988655,
+      "climb_kwh": 0.17694048060819836,
+      "actual_kwh": 6.152932018907064,
+      "limit_kwh": 6.4,
+      "slack_kwh": 0.24706798109293615,
+      "horizontal_increase_percent": 4.134342887026032,
+      "climb_increase_percent": 139.63338419997987,
+      "all_energy_increase_percent": 4.015451175695306
+    },
+    "violations_if_horizontal_plus_1pct": 0
+  },
+  "q2": {
+    "route_count": 24,
+    "total_horizontal_kwh": 71.89461283839952,
+    "total_climb_kwh": 3.647139214677069,
+    "tightest": {
+      "id": "T006",
+      "model": "C",
+      "horizontal_kwh": 6.162024048750952,
+      "climb_kwh": 0.2245678634119034,
+      "actual_kwh": 6.3865919121628565,
+      "limit_kwh": 6.4,
+      "slack_kwh": 0.013408087837143867,
+      "horizontal_increase_percent": 0.21759226726585368,
+      "climb_increase_percent": 5.9706173596849155,
+      "all_energy_increase_percent": 0.20994120215522827
+    },
+    "violations_if_horizontal_plus_1pct": 1
+  },
+  "q3": {
+    "route_count": 25,
+    "total_horizontal_kwh": 73.60279597558194,
+    "total_climb_kwh": 3.7063925848540205,
+    "tightest": {
+      "id": "T006",
+      "model": "C",
+      "horizontal_kwh": 6.162024048750952,
+      "climb_kwh": 0.2245678634119034,
+      "actual_kwh": 6.3865919121628565,
+      "limit_kwh": 6.4,
+      "slack_kwh": 0.013408087837143867,
+      "horizontal_increase_percent": 0.21759226726585368,
+      "climb_increase_percent": 5.9706173596849155,
+      "all_energy_increase_percent": 0.20994120215522827
+    },
+    "violations_if_horizontal_plus_1pct": 1
+  }
+}
