@@ -4,8 +4,10 @@
     "errors": [],
     "checks": {
       "boxes": 80,
-      "min_hard_slack": 257.26008732194555,
-      "min_transport_SOC": 0.20167601097964294,
+      "min_hard_slack": 221.03196955698172,
+      "min_due_slack": 221.03196955698172,
+      "late_boxes": 0,
+      "min_transport_SOC": 0.20406515078253173,
       "machines_used": 8,
       "batteries_used": 14,
       "max_machine_overlap": 1,
@@ -17,15 +19,17 @@
     "errors": [],
     "checks": {
       "boxes": 80,
-      "min_hard_slack": 112.8629318119597,
-      "min_transport_SOC": 0.20167601097964294,
+      "min_hard_slack": 84.6479577296318,
+      "min_due_slack": 84.6479577296318,
+      "late_boxes": 0,
+      "min_transport_SOC": 0.20406515078253173,
       "machines_used": 8,
       "batteries_used": 14,
       "max_machine_overlap": 1,
       "max_battery_overlap": 1,
-      "communication_intervals": 4173,
-      "min_comm_margin": 0.006064211252294172,
-      "min_relay_SOC": 0.23651006844127853
+      "communication_intervals": 4061,
+      "min_comm_margin": 0.09378043058285357,
+      "min_relay_SOC": 0.38608482158634994
     }
   }
 }

@@ -1,0 +1,161 @@
+{
+  "created_at": "2026-09-24T14:40:14.479697+00:00",
+  "python": "3.12.13",
+  "packages": {
+    "numpy": "2.5.3",
+    "openpyxl": "3.1.5",
+    "scipy": "1.18.1",
+    "rasterio": "1.5.1",
+    "pyproj": "3.8.0",
+    "ortools": "9.15.6755",
+    "matplotlib": "3.11.2",
+    "affine": "3.0.1"
+  },
+  "requirements_sha256": "7a7c73d2785cbb084b17c8f41f04c608233b9481f7d5538ab123ae7d8795ac03",
+  "random_seeds": {
+    "route_construction": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "cp_sat": 42
+  },
+  "commands": [
+    {
+      "script": "common.py",
+      "exit_code": 0
+    },
+    {
+      "script": "solve_transport.py",
+      "exit_code": 0
+    },
+    {
+      "script": "solve_joint.py",
+      "exit_code": 0
+    },
+    {
+      "script": "partition_validate.py",
+      "exit_code": 0
+    },
+    {
+      "script": "energy_sensitivity.py",
+      "exit_code": 0
+    },
+    {
+      "script": "export_submission.py",
+      "exit_code": 0
+    },
+    {
+      "script": "figures.py",
+      "exit_code": 0
+    },
+    {
+      "script": "render_roadmap.py",
+      "exit_code": 0
+    }
+  ],
+  "input_sha256": {
+    "中继无人机数据.xlsx": "be52643ff29419233e6a141dca03a04160a8af551cab36d8c49b51bb836bea04",
+    "物资需求与配送时限.xlsx": "5a3346159ceddcf585859d270b8f62114b388a1f737fbe64ffde0ee1fdc8170a",
+    "结果提交模板.xlsx": "16f521f29a7103c4ff7c3709ce1696bb9fffa18ce741895e45b7bc7afaf3320a",
+    "调度中心与服务区.xlsx": "541a7af1ded08c9a3ff448480332cb5f6a54902f0afa6e9bcd50c1d2b2b34e38",
+    "运输无人机数据.xlsx": "9296a657c07e042afba6aeea7999665d9cd24e00b592fd6c269de6e338480dcb",
+    "通信链路参数.xlsx": "1860d153199e7ae460ba36e83b673374e640e19de91ea167f2877271001f5f81",
+    "镇龙乡及周边30米DEM.tif": "741fe6de0b2bcaffd0f4007f574ee698d46197094f52cc954b532c4f90fc7c03"
+  },
+  "code_sha256": {
+    "common.py": "be673521ac7ed48339f9eed28da79819d5a708febb76d5cdf3e13f4b606f0209",
+    "communication.py": "b32ef1a4ea8462ca12a3c13889bf0edbf5d65883ca1d20a4da0266958a6fa4d6",
+    "energy_sensitivity.py": "40bd0c57ce8bc9cefbf84cf4b1ae9dcd59ef9effa8048306381ce7380bc4a2c2",
+    "export_submission.py": "5e549319b5a92a0c2b95ef7f8e38f2ab7859c751fe8e6b40c9cca9bda1e6d659",
+    "figures.py": "fe2869ba3b0047901b91207930d5448863b491c55894a537a4ce3c696b6215d7",
+    "joint_schedule.py": "6c1c893754356fa48cd062644f21299b78d6fc711fab9f771fcc1503d4ef8089",
+    "partition_validate.py": "717cf85f822287408e53a2f0aa3836078e1ea4a1db71104257430566df01541f",
+    "render_roadmap.py": "c6fbca1cfdc1a3842cfa5a2abb2b0c37839a428f725c11a8893903b71f345b1f",
+    "reproduce.py": "c8bae3ed7b5db6dcb4b4699e6f284b3415dc15ac03eeb787a8ce782ae080e688",
+    "solve_joint.py": "8e9438ffd6a4ec9d2973aa6883c4b9a1b1987cf6699b255b40bebcf159acc83d",
+    "solve_transport.py": "b7d5e66ae9e3ee4e1d58cb927c7fe951b4288a746dd06b6d510ed8aba4486913"
+  },
+  "roadmap_source_sha256": "9416072879c72ca8e60d081206ab181600b2db2a38ce5ece24aa887a3843e799",
+  "q2": {
+    "count": 24,
+    "energy": 75.54175205307656,
+    "makespan": 8683.252099219379,
+    "weighted_tardiness": 0,
+    "weighted_arrival": 3245503.2335039116,
+    "hard_violations": 0,
+    "delivered": 80,
+    "last_delivery": 8194.810866544398
+  },
+  "q3": {
+    "count": 25,
+    "energy": 83.15240383927873,
+    "makespan": 10801.628694964862,
+    "weighted_tardiness": 1935.4458005903798,
+    "weighted_arrival": 3532224.6269694995,
+    "hard_violations": 0,
+    "delivered": 80,
+    "last_delivery": 9612.026157444732,
+    "transport_energy": 77.30918856043597,
+    "relay_energy": 5.8432152788427665,
+    "relay_count": 5,
+    "transport_makespan": 10208.433307493931,
+    "comm_intervals": 4173,
+    "comm_min_margin": 0.006064211252294172
+  },
+  "q4": {
+    "2": [
+      4,
+      3,
+      2,
+      6,
+      5,
+      4,
+      4,
+      6
+    ],
+    "3": [
+      5,
+      4,
+      4,
+      6,
+      7,
+      4,
+      5,
+      7
+    ]
+  },
+  "workbook_sha256": "085d6a41a2996514563b37a9cbe68562e5f058245e048ea261f9990635d9d23f",
+  "figure_files": [
+    "battery_gantt.pdf",
+    "capacity.pdf",
+    "fig_roadmap.pdf",
+    "joint_gantt.pdf",
+    "partitions.pdf",
+    "relay_map.pdf",
+    "routes.pdf",
+    "sensitivity.pdf",
+    "transport_gantt.pdf"
+  ]
+}

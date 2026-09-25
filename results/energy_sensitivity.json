@@ -19,37 +19,37 @@
   },
   "q2": {
     "route_count": 24,
-    "total_horizontal_kwh": 71.89461283839952,
-    "total_climb_kwh": 3.647139214677069,
+    "total_horizontal_kwh": 68.38498357478288,
+    "total_climb_kwh": 3.5318734796710967,
     "tightest": {
-      "id": "T006",
-      "model": "C",
-      "horizontal_kwh": 6.162024048750952,
-      "climb_kwh": 0.2245678634119034,
-      "actual_kwh": 6.3865919121628565,
-      "limit_kwh": 6.4,
-      "slack_kwh": 0.013408087837143867,
-      "horizontal_increase_percent": 0.21759226726585368,
-      "climb_increase_percent": 5.9706173596849155,
-      "all_energy_increase_percent": 0.20994120215522827
+      "id": "T010",
+      "model": "A",
+      "horizontal_kwh": 3.361847587613293,
+      "climb_kwh": 0.21985923386531409,
+      "actual_kwh": 3.5817068214786074,
+      "limit_kwh": 3.6,
+      "slack_kwh": 0.018293178521392672,
+      "horizontal_increase_percent": 0.5441406263863247,
+      "climb_increase_percent": 8.320404924452362,
+      "all_energy_increase_percent": 0.5107391373211589
     },
     "violations_if_horizontal_plus_1pct": 1
   },
   "q3": {
-    "route_count": 25,
-    "total_horizontal_kwh": 73.60279597558194,
-    "total_climb_kwh": 3.7063925848540205,
+    "route_count": 26,
+    "total_horizontal_kwh": 71.75725129164134,
+    "total_climb_kwh": 3.6415609168048864,
     "tightest": {
-      "id": "T006",
-      "model": "C",
-      "horizontal_kwh": 6.162024048750952,
-      "climb_kwh": 0.2245678634119034,
-      "actual_kwh": 6.3865919121628565,
-      "limit_kwh": 6.4,
-      "slack_kwh": 0.013408087837143867,
-      "horizontal_increase_percent": 0.21759226726585368,
-      "climb_increase_percent": 5.9706173596849155,
-      "all_energy_increase_percent": 0.20994120215522827
+      "id": "T010",
+      "model": "A",
+      "horizontal_kwh": 3.361847587613293,
+      "climb_kwh": 0.21985923386531409,
+      "actual_kwh": 3.5817068214786074,
+      "limit_kwh": 3.6,
+      "slack_kwh": 0.018293178521392672,
+      "horizontal_increase_percent": 0.5441406263863247,
+      "climb_increase_percent": 8.320404924452362,
+      "all_energy_increase_percent": 0.5107391373211589
     },
     "violations_if_horizontal_plus_1pct": 1
   }

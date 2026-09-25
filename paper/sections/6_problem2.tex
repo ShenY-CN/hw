@@ -1,29 +1,58 @@
-\section{问题二：异构运输机与电池联合调度}
+\section{问题二：逐箱硬时限下的多算法运输调度}
 
-\subsection{多点航次和时间窗}
+\subsection{多点航次与目标}
 
-一个候选航次$p$用装载箱集$B_p$、机型$g_p$和服务区访问序列$(i_1,\ldots,i_k)$描述。从O01出发并返回O01，在第$h$站交接后，下一航段剩余质量减少该站所卸箱重。采用式~\eqref{eq:energy}逐段求能耗，要求$\sum E^g_{ij}(q_{ij})\le(1-\rho_g)E_g^{\rm use}$；初始装载质量和体积不得超过额定上限。货箱交付时刻为
+一个航次$p$由箱集$B_p$、机型$g_p$和服务区访问序列描述，从O01出发并返回。每个货箱只在原始需求表指定的服务区交接一次；交接结束才算送达。记货箱$b$的交付时刻为$D_b$、期望送达时刻为$d_b$、首批截止为$f_b$，其有效截止为
 \begin{equation}
-T_b^{\rm arr}=s_p+t_g^{\rm prep}+|B_p|t_g^{\rm load}
-+\sum_{h=1}^{\operatorname{stop}(b)}\left(t^g_{i_{h-1},i_h}+t_g^{\rm hand}+n_h t_g^{\rm box}\right).
+h_b=\begin{cases}\min(d_b,f_b),&b\text{ 属于首批},\\d_b,&\text{其他货箱},\end{cases}
+\qquad D_b\le h_b\quad(\forall b).
+\label{eq:hard_delivery}
 \end{equation}
-对医疗箱以及标为首批的箱，直接约束$T_b^{\rm arr}\le D_b$；其余箱按$w_b\max(0,T_b^{\rm arr}-T_b)$累计优先系数加权迟到。全部任务完成时间是所有运输机最后一次返航的最大时刻。
+医疗物资与普通物资均须按时。箱重在所属站交接后扣除，逐段重算能耗；每架次同时受载重、容积和20\%返航电量储备约束。同一机体不得执行重叠航次，电池占用延长至按返航SOC充满。
 
-\subsection{实体机与电池分配}
+只有上述条件全部通过的候选才参加排序。洪涝应急先比较最后一架运输机返航时刻$C_T=\max_p f_p$，再比较优先加权平均交付
+\begin{equation}
+\bar D_\pi=\frac{\sum_b\pi_bD_b}{\sum_b\pi_b},
+\end{equation}
+并列报告运输耗电$E_T$与架次数。$\pi_b$为原始附件的优先系数；它影响合格方案之间的早送偏好，不允许以其他箱提前来抵消某箱逾期。
 
-同一实体机执行的两个任务区间不得相交。同一共享电池从架次准备开始到返航结束被占用；其后以剩余SOC计算充至100\%的时间，充电未完成前不可再次装机。A、B、C型电池池相互独立。我们先以24个固定随机种子构造单点直送和最多三个服务区的多点候选，检查载荷、能量和硬时间窗；再尝试跨航次转移整箱，并对迟到货箱增加单箱直送候选。对每组固定路线，用CP-SAT分两阶段严格按加权迟到、运输完工时刻的顺序求解；开始时刻取整数秒，加权迟到按0.001~s计量，最后按连续时间回代值比较候选。当前方案的加权迟到为零，达到非负指标的全局下界；完工时刻阶段仅找到可行排程，不证明整个字典序目标全局最优。运输车辆路径问题中的多架次结构可参见Dorling等\cite{dorling}。
+\subsection{同预算算法对照}
 
-\begin{table}[H]\centering\small\caption{问题二与单点直送基线对比}\label{tab:q2}
+公开项目启发了多算法同口径比较的实验设计\cite{akun}；本项目独立实现随机化构造、局部爬山、模拟退火与禁忌搜索，四法共享航次物理模型、五类邻域和资源解码器。每法用种子0、1、2各搜索6~s；每组得到的固定箱组再交给同一CP-SAT排程器，以8~s预算先压低$C_T$、再压低$\bar D_\pi$。排程以整数秒决策，最终回代连续秒交付、充电和能耗。表~\ref{tab:method_compare}列各法三次中返航最早的合格方案，并给出三次返航时间的中位数。各法均有3/3次通过80箱按时与完整物理校验；排序只代表这些实现、种子与预算。
+
+\begin{table}[H]\centering\small\caption{四种路线算法的同预算比较；所有列示方案均为80箱按时}\label{tab:method_compare}
+\begin{tabular}{lrrrrrr}\toprule
+方法 & 达标次数 & 最早返航/min & 加权交付/min & 能耗/kWh & 架次 & 返航中位数/min\\\midrule
+随机化构造 & 3/3 & 117.41 & 46.78 & \textbf{70.08} & 23 & 127.23\\
+局部爬山 & 3/3 & \textbf{104.61} & \textbf{45.69} & 71.92 & 24 & \textbf{107.95}\\
+模拟退火 & 3/3 & 117.41 & 46.55 & 70.09 & 23 & 126.94\\
+禁忌搜索 & 3/3 & 120.16 & 48.41 & 74.20 & 26 & 125.84\\
+既有本地方案 & 1/1 & 121.05 & 46.12 & 75.16 & 24 & ---\\\bottomrule
+\end{tabular}\end{table}
+
+按“逐箱按时、最后返航、加权交付、能耗”的顺序，局部爬山种子1是本次有限搜索的相对最优运输候选；随机化构造的23架次方案则比它少耗约1.83~kWh，但最后返航晚约12.80~min。入选路线的固定排程只达到\texttt{FEASIBLE}，没有闭合最优界；不能将此表解释成全局最优性或算法类别的普遍排名。图~\ref{fig:method_tradeoff}展示全部合格见证的时间与能耗分布。公开项目报告的21架次节能点提供组批思路；对其已归档的另一个21架次及26架次逐箱路线核对发现目的地不一致，故其数字未并入本表同口径性能排名。
+
+\begin{figure}[H]\centering
+\includegraphics[width=.96\textwidth]{../figures/method_tradeoff.pdf}
+\caption{同预算算法的运输耗电、加权交付与最后返航；黑圈为入选候选}
+\label{fig:method_tradeoff}
+\end{figure}
+
+\subsection{运输主方案}
+
+表~\ref{tab:q2}比较本地既有方案与入选方案。两者均完整交付80箱并按时；新方案同为24架次，最后返航提前986.23~s（13.58\%），任务耗电降低3.2412~kWh（4.31\%）。其最紧货箱仍提前221.03~s，最低返航SOC为20.4065\%；8架实体机和14组电池的占用及充电区间均无重叠。优先加权交付45.69~min是平均量，不能代替全部完成所需的104.61~min。
+
+\begin{table}[H]\centering\small\caption{问题二主方案与既有本地方案}\label{tab:q2}
 \begin{tabular}{lrr}\toprule
-指标 & 单点直送基线 & 多点方案\\\midrule
-架次数 & 32 & 24\\
-运输能耗/kWh & 81.4552 & 75.5418\\
-最后返航时刻/s & 9379.52 & 8683.25\\
-优先系数加权迟到 & 17334.47 & 0\\
-硬时限违约箱数 & 0 & 0\\
-\bottomrule\end{tabular}\end{table}
+指标 & 既有本地方案 & 时间优先主方案\\\midrule
+运输架次 & 24 & 24\\
+总能耗/kWh & 75.1581 & \textbf{71.9169}\\
+优先加权平均交付/min & 46.12 & \textbf{45.69}\\
+最后返航/s & 7263.06 & \textbf{6276.83}\\
+逾期货箱数 & 0 & 0\\
+最紧货箱提前/s & 15.50 & \textbf{221.03}\\\bottomrule
+\end{tabular}\end{table}
 
-多点方案减少8个架次、5.9134~kWh能耗，并提前696.27~s完成；相较前一版23架次方案，增加一个单箱直送架次使加权迟到由155.67降为零，但能耗增加2.6184~kWh。图~\ref{fig:routes}给出访问路径，图~\ref{fig:gantt}展示8架运输机的任务区间。全部80箱唯一交付，最紧医疗或首批截止余量为257.26~s，最小返航SOC为20.1676\%；8架运输机和14组共享电池的占用与充电区间均无重叠。逐架次、逐箱交付明细另列于结果提交表。
-
-\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/routes.pdf}\caption{问题二多点运输航线与服务区位置}\label{fig:routes}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/transport_gantt.pdf}\caption{问题二运输机架次时间表}\label{fig:gantt}\end{figure}
+图~\ref{fig:routes}为运输航线，图~\ref{fig:gantt}为机体排程；逐箱目的地、实际交付和电池编号见结果提交表。
+\begin{figure}[H]\centering\includegraphics[width=.86\textwidth]{../figures/routes.pdf}\caption{问题二多点运输航线与服务区位置}\label{fig:routes}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.86\textwidth]{../figures/transport_gantt.pdf}\caption{问题二运输机架次时间表}\label{fig:gantt}\end{figure}

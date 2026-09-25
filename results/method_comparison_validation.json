@@ -1,0 +1,75 @@
+{
+  "pass_": true,
+  "count": 13,
+  "selected": [
+    "hill",
+    1
+  ],
+  "rows": [
+    {
+      "method": "grasp",
+      "seed": 0,
+      "verified": true
+    },
+    {
+      "method": "hill",
+      "seed": 0,
+      "verified": true
+    },
+    {
+      "method": "anneal",
+      "seed": 0,
+      "verified": true
+    },
+    {
+      "method": "tabu",
+      "seed": 0,
+      "verified": true
+    },
+    {
+      "method": "grasp",
+      "seed": 1,
+      "verified": true
+    },
+    {
+      "method": "hill",
+      "seed": 1,
+      "verified": true
+    },
+    {
+      "method": "anneal",
+      "seed": 1,
+      "verified": true
+    },
+    {
+      "method": "tabu",
+      "seed": 1,
+      "verified": true
+    },
+    {
+      "method": "grasp",
+      "seed": 2,
+      "verified": true
+    },
+    {
+      "method": "hill",
+      "seed": 2,
+      "verified": true
+    },
+    {
+      "method": "anneal",
+      "seed": 2,
+      "verified": true
+    },
+    {
+      "method": "tabu",
+      "seed": 2,
+      "verified": true
+    },
+    {
+      "method": "existing_baseline",
+      "seed": null,
+      "verified": true
+    }
+  ]
+}

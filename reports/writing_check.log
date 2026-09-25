@@ -1,0 +1,39 @@
+INFO: paper dir: paper
+INFO: root dir: .
+INFO: main file: paper/main.tex
+INFO: sections dir: paper/sections
+INFO: figures dir: figures
+INFO: results file: reports/RESULTS_REPORT.md
+INFO: detected engine: LaTeX (main suffix: .tex)
+INFO: section file count: 11
+INFO: main include count: 12
+INFO: problem analysis file not supplied/found; skip subproblem count check
+INFO: section length: 1_restatement.tex 616 chars
+WARN: section is short: 1_restatement.tex (616 chars)
+INFO: section length: 2_analysis.tex 2500 chars
+INFO: section length: 3_assumptions.tex 622 chars
+WARN: section is short: 3_assumptions.tex (622 chars)
+INFO: section length: 4_symbols.tex 593 chars
+WARN: section is short: 4_symbols.tex (593 chars)
+INFO: section length: 5_problem1.tex 1435 chars
+INFO: section length: 6_problem2.tex 2809 chars
+INFO: section length: 7_problem3.tex 2528 chars
+INFO: section length: 8_problem4.tex 1775 chars
+INFO: section length: 9_sensitivity.tex 1289 chars
+INFO: section length: 10_evaluation.tex 695 chars
+WARN: section is short: 10_evaluation.tex (695 chars)
+INFO: section length: A_code.tex 381 chars
+INFO: section title order:
+INFO:   1. 1_restatement.tex -> 问题重述与研究思路
+INFO:   2. 2_analysis.tex -> 数据处理与统一物理规则
+INFO:   3. 3_assumptions.tex -> 模型假设及适用范围
+INFO:   4. 4_symbols.tex -> 符号说明
+INFO:   5. 5_problem1.tex -> 问题一：单点组批与安全载荷
+INFO:   6. 6_problem2.tex -> 问题二：时效优先的多点运输与算法比较
+INFO:   7. 7_problem3.tex -> 问题三：连续通信下的救援时间与能源取舍
+INFO:   8. 8_problem4.tex -> 问题四：固定联合任务的独立分区
+INFO:   9. 9_sensitivity.tex -> 敏感性与可行性检验
+INFO:   10. 10_evaluation.tex -> 模型评价与结论
+INFO: citation markers detected
+INFO: all-results JSON not supplied/found; skip JSON numeric scan
+PASS: writing text gate passed

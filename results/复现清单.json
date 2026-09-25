@@ -1,6 +1,6 @@
 {
-  "created_at": "2026-09-24T01:14:22.618179+00:00",
-  "python": "3.12.14",
+  "created_at": "2026-09-25T04:26:00.912579+00:00",
+  "python": "3.12.13",
   "packages": {
     "numpy": "2.5.3",
     "openpyxl": "3.1.5",
@@ -39,23 +39,77 @@
       22,
       23
     ],
+    "method_comparison": [
+      0,
+      1,
+      2
+    ],
     "cp_sat": 42
   },
+  "archived_selected_plans_sha256": {
+    "q2_time_energy_candidate.json": "83a3607f0815e0562df3c59ac35e28e190154a1c42dc0990629fa82d8460e4b1",
+    "q3_hard_hill1_e3900_margin.json": "57d019e88c4a87fdd9fd1b8ce8ec4651a70649cb30677451948d3cc5bbcbf83a",
+    "method_comparison.json": "ae34a01fed0a5db62d2bc9f8bf5cec9adfcc9416c899a77038e527775155f50e",
+    "q3_hard_hill1_e2900_trim.json": "7b61cfdcc7907eade9f65637a6b873e4102ce4cb3bf0c8588b0fa479132d6465",
+    "q3_hard_hill1_e3100_trim.json": "586f07e2e5c90fae8ae633005c9a3abd7c120392acdb9ce40928d0b09b168edc",
+    "q3_hard_hill1_e3300_trim.json": "864ff12e498b10f68fbfde8d784b3aa90b018762eddf1e6c4ea6a052eba16196",
+    "q3_hard_hill1_e3500_trim.json": "21974c133111626ff67e20a97659c51f7de59ec6f43d044355e69d3f90538dae",
+    "q3_hard_hill1_e3700_trim.json": "9397d365507067f3d63c0fc1353781d7c6ecd79a0124684339adec40e2a02e26",
+    "q3_hard_hill1_e3900_trim.json": "22f827a8cbeeafa896522ac17e23e17856a7cc8aaa1687f75d41d234cf8129eb",
+    "q3_hard_hill1_e4100_trim.json": "fc03de6bfdaa29c2636ca4a3366e9b8413a57dbd6f904a438ec16007b0c504f0",
+    "q3_hard_hill1_e4300_trim.json": "3612bb231ab04e9529a4d764a13d1b3026fe9408f15add51169187bbe2a6fcbb",
+    "q3_hard_hill1_e4500_trim.json": "f3a841c9c32be0e9419e28d9b39098ba6298a756c7f88e8609fddb8e06af2c44",
+    "q3_hard_hill1_e4700_trim.json": "a495f599c0bc5207ce58e38b00f771040a7911442e097cfe7f35624d484c9de3",
+    "q3_hard_newq2_e3500_trim.json": "6692f3055e93a4dba53a11a897e335e42732e70b96f03d50f07e26dddd2beae2",
+    "q3_hard_newq2_e3700_trim.json": "fa8bcf771751b4f0e00306034b2f0a103b9f977c91c07734a3ffd4148ec6373a",
+    "q3_hard_newq2_e3900_trim.json": "57b1bdf67b114a8f14ed36d851f6397a69166d50beb337ba5dd923be79f2f5c0",
+    "q3_hard_newq2_e4100_trim.json": "29b069dbcf157cf916a25f456d40d00dd9635cad7716a47ef512e79f004b478a",
+    "q3_hard_newq2_e4300_trim.json": "2483c85013a7e0535d88246e2d8485d436c694ab32ac1905cce3e026ddc694b9",
+    "q3_hard_newq2_e4500_trim.json": "1281570f8de0947c72d8962c6b43fc426542461e9ac0868424116bc765e3e9a2",
+    "q3_hard_newq2_e4700_trim.json": "21190d60ec8c12d3479962d2e1d24a9c3367205cc401e29e4bd7288f1e3cbbdc",
+    "q3_hard_newq2_e4900_trim.json": "93adc18079b451011fd24fd57f27e08df081a263204ebbe5b346e257a803a0f8",
+    "q3_hard_q2_e2900_completion_trim.json": "ee83d5aebc902ab91aa8902c171b06b78f1b3ab0115229db8ee63406f4c99a6e",
+    "q3_hard_q2_e3500_completion_trim.json": "49589a193c008b889fa08ba36d8f812e030f9df6ec81d4cf2f07d9ce386fc49e",
+    "q3_hard_q2_e3700_completion_trim.json": "127150560d6e37f8533f9b776c7b82a6cccbeed35cc6362572ef3321e8c57ecd",
+    "q3_hard_q2_e3900_completion_trim.json": "59a2f3cfafe493faa55f38730e4c5b9f3b61b7cbfcf019f1f6f4e6cfadf68f0a",
+    "q3_hard_q2_e4100_completion_trim.json": "ed480299bab3020c4b4e7acbecf328648d86e1bb8db7757e577e851213bcd1cd",
+    "q3_hard_q2_e4300_completion_trim.json": "d32aadfc623af8dabe817c7b1bd3ffa9d7ccc009394d3f09fa1df0be4e49c9ec",
+    "q3_hard_q2_e4500_completion_trim.json": "c1824096648bb5a3371d70ceb3a6814015932a0b1c88869b98eb423fd4593192",
+    "q3_hard_q2_e4700_completion_trim.json": "ed71715e113a835829c84b7bdf0127fd45d7cf6402c267ae3e3fd6da022a7f7a",
+    "q3_hard_q2_e4900_completion_trim.json": "3f3df4cb3714d6ef0e6090e92b75879ac36f0c40b1e7cb73a2277fbcb9f757dd",
+    "q3_hard_q2_e4700_buffer15_trim.json": "cb2ab51346c127ec80a6f4421c608e53893f64bf3758e4dab0d10ca59496b6c4",
+    "q3_hard_hill1_e3100_margin.json": "3ef6cc730263fd954d2fe223fbb85b59b4565068c8dd7ad5c4e5995010a256ed",
+    "q3_hard_hill1_e3500_margin.json": "6f0e00501f80d451fe0a537363bc4e76bc65bce2adeca1027b9dd1abfeebecab",
+    "q3_hard_hill1_e4100_margin.json": "19d587f8434adb719b3732f063aa7eb44e4ad6413bf6697cd10415e821ec63ab"
+  },
+  "archive_note": "Q1 is recalculated; the common-budget stochastic search and finite joint search are archived as route witnesses, each independently recalculated and validated. This replay does not repeat wall-clock discovery.",
   "commands": [
     {
       "script": "common.py",
       "exit_code": 0
     },
     {
-      "script": "solve_transport.py",
+      "script": "recompute_q1.py",
       "exit_code": 0
     },
     {
-      "script": "solve_joint.py",
+      "script": "verify_methods_archive.py",
+      "exit_code": 0
+    },
+    {
+      "script": "compare_joint_candidates.py",
+      "exit_code": 0
+    },
+    {
+      "script": "promote_fusion.py",
       "exit_code": 0
     },
     {
       "script": "partition_validate.py",
+      "exit_code": 0
+    },
+    {
+      "script": "energy_sensitivity.py",
       "exit_code": 0
     },
     {
@@ -64,6 +118,14 @@
     },
     {
       "script": "figures.py",
+      "exit_code": 0
+    },
+    {
+      "script": "compare_figures.py",
+      "exit_code": 0
+    },
+    {
+      "script": "render_roadmap.py",
       "exit_code": 0
     }
   ],
@@ -77,41 +139,56 @@
     "镇龙乡及周边30米DEM.tif": "741fe6de0b2bcaffd0f4007f574ee698d46197094f52cc954b532c4f90fc7c03"
   },
   "code_sha256": {
-    "common.py": "566db13a4b4a95477217e2ce8c34d64d01311504c9d45c5f9e5dfeab8d382a57",
-    "communication.py": "bb301f43f99db088add499d2b83780f93054bf8458f49e2156775c1583f2da1d",
-    "export_submission.py": "fe034cadcfc01021808edc141c217a6642f4050bd322df104dff99453d35cde2",
-    "figures.py": "4f81174941f8f20e990d394c0159ce257494d1506643cd953cff0eddbd4c625a",
-    "joint_schedule.py": "8f25bd4ad2fa86a6e7f05008966b8f4ca6c06741040101803199d7ec5f7dbfc7",
-    "partition_validate.py": "647d93c37fb7240f0375998a7b189ebeb82e83e41cfe00bbc9d5c835b60929cd",
-    "reproduce.py": "bbfc48deaaa3d60d673fd47e27406b326ecb3ca0eeb9f67bb8ad0b2a92b0ca21",
-    "solve_joint.py": "c360f5071036869e9350ec7d80fa92a64dedd19f040f140b2f7669de42f1ae0b",
-    "solve_transport.py": "248caca4028d25a7ce3f60484c226c65733d60a9999fe99b6347ce2771033dcf"
+    "audit_public_reference.py": "9547b4456b86b3065db13e60e11345407454e7ddd70a75a7b68895fe036a1bf1",
+    "common.py": "3fcd62bd7363502ceaeff6e85a0365a70253b82fce3fec0d5980761fda062e5a",
+    "communication.py": "2274cab82b9ee1e3dc8aeb418d0172aef11c098e43b527a6ccad8da068f59ac8",
+    "compare_figures.py": "94c664fc1d026369ccb8edce85cd78effe0d32bfff5cb67b75a034bd9e91fdd1",
+    "compare_joint_candidates.py": "66ef9a4cdfb90c2e42cea034f7de26f5ff0521c79f3aea83c61e49fdd81301df",
+    "compare_methods.py": "6f85e257e0073f1259f3e5f5f2cc867e4a2425c8be10479b30dd21493094c74a",
+    "energy_sensitivity.py": "40bd0c57ce8bc9cefbf84cf4b1ae9dcd59ef9effa8048306381ce7380bc4a2c2",
+    "export_submission.py": "5e549319b5a92a0c2b95ef7f8e38f2ab7859c751fe8e6b40c9cca9bda1e6d659",
+    "figures.py": "fe2869ba3b0047901b91207930d5448863b491c55894a537a4ce3c696b6215d7",
+    "hard_deadline_joint.py": "e4cae4732c2796003e6867e87a56bf3380dd8c17ac7206653f82fee30e35b2e5",
+    "joint_schedule.py": "9327ae7159957d26a218d632e509d03a7b1bffb0e00b4035e14ec5224020eb1d",
+    "partition_validate.py": "008cbbf069b50a4485ff8d545a4f91de6092ee9f7c9ffd9e398c0ad25c63af40",
+    "probe_joint_fusion.py": "b10add889566979129b5e1594d679b238332281c0098df136a82bc4599aedd0f",
+    "promote_fusion.py": "f5cdeed31eec9bdeca654af315cfa62d8d704e46d3e61bec26d5b4fdb4ec561a",
+    "recompute_q1.py": "5283968cca46ef7e4c66e56b0d06860ceca190f3d2bdca4e182dfc5aec13d8cc",
+    "refine_joint_fusion.py": "3d7fab7abf1af694e7870fd1c9050460c61d6c02f65bcdc67f6c0cf7e17a05c9",
+    "render_roadmap.py": "c6fbca1cfdc1a3842cfa5a2abb2b0c37839a428f725c11a8893903b71f345b1f",
+    "reproduce.py": "3b9e09be09f2565fabbd726fef23c28ef73ab7bbb8aa675c76c57d9d0508766f",
+    "reschedule_methods.py": "74a7386895849705ce0cce0c0661b5e78168319c9df214172455629818b42386",
+    "solve_joint.py": "8e9438ffd6a4ec9d2973aa6883c4b9a1b1987cf6699b255b40bebcf159acc83d",
+    "solve_transport.py": "b7d5e66ae9e3ee4e1d58cb927c7fe951b4288a746dd06b6d510ed8aba4486913",
+    "trim_relays.py": "cd28a17dc3c2146b3524e6c4d0ebde2c3f664278ba07631db24e09e6d89f88b3",
+    "verify_methods_archive.py": "60f550a7a5ac12dd9e0de4659e1c09ca9a1f12367519107db4a4baf46d8ea463"
   },
+  "roadmap_source_sha256": "469e1fb77979687120521dbe1e3b5a61387696a50179caf53f2ef1dabc0e14fd",
   "q2": {
     "count": 24,
-    "energy": 75.54175205307656,
-    "makespan": 8683.252099219379,
+    "energy": 71.916857054454,
+    "makespan": 6276.8314356603205,
     "weighted_tardiness": 0,
-    "weighted_arrival": 3245503.2335039116,
+    "weighted_arrival": 2620881.820855962,
     "hard_violations": 0,
     "delivered": 80,
-    "last_delivery": 8194.810866544398
+    "last_delivery": 5734.230262262905
   },
   "q3": {
-    "count": 25,
-    "energy": 83.15240383927873,
-    "makespan": 10801.628694964862,
-    "weighted_tardiness": 1935.4458005903798,
-    "weighted_arrival": 3532224.6269694995,
+    "count": 26,
+    "energy": 78.87319924399829,
+    "makespan": 6769.22155442542,
+    "weighted_tardiness": 0,
+    "weighted_arrival": 2890126.287706867,
     "hard_violations": 0,
     "delivered": 80,
-    "last_delivery": 9612.026157444732,
-    "transport_energy": 77.30918856043597,
-    "relay_energy": 5.8432152788427665,
-    "relay_count": 5,
-    "transport_makespan": 10208.433307493931,
-    "comm_intervals": 4173,
-    "comm_min_margin": 0.006064211252294172
+    "last_delivery": 6317.396902784204,
+    "transport_energy": 75.39881220844622,
+    "relay_energy": 3.474387035552063,
+    "relay_count": 3,
+    "transport_makespan": 6625.61323183137,
+    "comm_intervals": 4061,
+    "comm_min_margin": 0.09378043058285357
   },
   "q4": {
     "2": [
@@ -121,25 +198,27 @@
       6,
       5,
       4,
-      4,
-      6
+      3,
+      4
     ],
     "3": [
-      5,
-      4,
-      4,
       6,
-      7,
+      2,
+      3,
+      8,
       4,
-      5,
-      7
+      4,
+      4,
+      5
     ]
   },
-  "workbook_sha256": "37754afa0d40fc10454834a13fa74f3b4bf8a34f1a213d79404130c3b5d2afc7",
+  "workbook_sha256": "a5e2bc4fe252249b2633b5d3b46c60400d07af3aca655ca1ce4fe08ec9edf900",
   "figure_files": [
     "battery_gantt.pdf",
     "capacity.pdf",
+    "fig_roadmap.pdf",
     "joint_gantt.pdf",
+    "method_tradeoff.pdf",
     "partitions.pdf",
     "relay_map.pdf",
     "routes.pdf",

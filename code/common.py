@@ -33,7 +33,9 @@ class Model:
         for r in tr[19:22]: self.types[r[0]].update(batteries=r[1],charge=r[2])
         self.boxes=[]
         for r in rows('物资需求与配送时限','逐箱货箱清单')[1:]:
-            hard=min(r[6] if r[5]=='是' else 1e9,r[7] if r[2]=='医疗物资' else 1e9)
+            # Every box must arrive by its stated delivery time. The first-batch
+            # cutoff may impose an earlier additional deadline.
+            hard=min(r[7],r[6] if r[5]=='是' else 1e9)
             self.boxes.append(dict(id=r[0],node=self.idx[r[1]],kind=r[2],w=r[3],v=r[4],first=r[5]=='是',deadline=hard,due=r[7],priority=r[8]))
         self.xy=np.array([self.local(n['lon'],n['lat']) for n in self.nodes])
         self.op=np.array([n['z']+(30 if i else 0) for i,n in enumerate(self.nodes)])
@@ -86,6 +88,7 @@ class Model:
         w=sum(b['w'] for b in bs);v=sum(b['v'] for b in bs)
         if w>t['Q']+1e-9 or v>t['V']+1e-9:return None
         order=list(order or sorted(set(b['node'] for b in bs)))
+        if len(set(order))!=len(order) or set(order)!={b['node'] for b in bs}:return None
         clock=t['prep']+t['load']*len(ids);takeoff=clock;prev=0;e=0.;deliver={};segments=[]
         for node in order+[0]:
             h=self.H[prev,node];a=self.nodes[prev];b=self.nodes[node]

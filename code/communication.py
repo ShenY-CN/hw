@@ -98,10 +98,16 @@ def certify_routes(m,rs,relays,verbose=True):
                 t0=r['start']+s['start']+(s['end']-s['start'])*f0
                 t1=r['start']+s['start']+(s['end']-s['start'])*f1
                 options=[('G01',gw,122,None)]+[(v['unit'],v['pos'],116,v['id']) for v in relays if t0>=v['ready']-1e-7 and t1<=v['service_end']+1e-7]
+                best=None
                 for provider,fixed,threshold,mission in options:
                     margin,method=certificate(m,p,q,fixed,threshold)
                     if margin>=0:
-                        records.append(dict(route=r['id'],phase=s['phase'],start=t0,end=t1,provider=provider,relay_task=mission,margin=margin,method=method));return
+                        if best is None or margin>best[0]:best=(margin,method,provider,mission)
+                        # A direct path with at least 1 dB margin needs no relay.
+                        if provider=='G01' and margin>=1:break
+                if best is not None:
+                    margin,method,provider,mission=best
+                    records.append(dict(route=r['id'],phase=s['phase'],start=t0,end=t1,provider=provider,relay_task=mission,margin=margin,method=method));return
                 if depth<6:
                     mid=(f0+f1)/2;split(f0,mid,depth+1);split(mid,f1,depth+1)
                 else:fails.append(dict(route=r['id'],phase=s['phase'],time=[t0,t1],pos=((p+q)/2).tolist()))

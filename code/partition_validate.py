@@ -10,7 +10,7 @@ def peak(intervals):
     for _,d in events:count+=d;maximum=max(maximum,count)
     return maximum
 
-def partition(m,data):
+def partition(m,data,output='q4.json'):
     rs=data['routes'];rel=data['relays'];com=data['communication']
     parent=list(range(16))
     def find(x):
@@ -60,13 +60,16 @@ def partition(m,data):
         if best is None:raise RuntimeError('Too few indivisible components for requested groups')
         answer[str(K)]=dict(selected=best,balanced=balanced,evaluated=count,frontier=list(pareto.values()))
         print('Q4',K,'evaluated',count,'resources',best['total'],'deficit',best['deficit'],'cv',best['cv'],flush=True)
-    save('q4.json',dict(components=components,inventory=inventory,schemes=answer))
+    save(output,dict(components=components,inventory=inventory,schemes=answer))
 
 def validate(m,data,q):
     errors=[];routes=data['routes'];cover=Counter(b for r in routes for b in r['boxes'])
     if cover!=Counter(range(80)):errors.append('box coverage')
-    hard=[];soc=[];occupy=defaultdict(list);bat=defaultdict(list)
+    hard=[];due_slacks=[];soc=[];occupy=defaultdict(list);bat=defaultdict(list)
     for r in routes:
+        for b in r['boxes']:
+            if m.boxes[b]['node'] not in r['order']:
+                errors.append(m.boxes[b]['id']+' wrong delivery service area')
         fresh=m.route(r['g'],r['boxes'],r['order'])
         if fresh is None:errors.append(r['id']+' physical infeasible');continue
         if abs(fresh['energy']-r['energy'])>1e-8:errors.append(r['id']+' energy mismatch')
@@ -79,16 +82,26 @@ def validate(m,data,q):
             slack=m.boxes[b]['deadline']-r['start']-t
             if slack< -1e-7:errors.append(m.boxes[b]['id']+' deadline')
             if m.boxes[b]['deadline']<1e8:hard.append(slack)
+            due_slack=m.boxes[b]['due']-r['start']-t
+            due_slacks.append(due_slack)
+            if due_slack< -1e-7:errors.append(m.boxes[b]['id']+' expected delivery time')
         soc.append(r['soc']);occupy[r['unit']].append((r['start'],r['end']))
         bat[r['battery']].append((r['start'],r['end']+charge(r['soc'],m.types[r['g']]['charge'])))
     for id,ints in list(occupy.items())+list(bat.items()):
         if peak(ints)>1:errors.append(id+' overlaps')
-    checks=dict(boxes=80,min_hard_slack=min(hard),min_transport_SOC=min(soc),machines_used=len(occupy),batteries_used=len(bat),max_machine_overlap=max(peak(v) for v in occupy.values()),max_battery_overlap=max(peak(v) for v in bat.values()))
+    checks=dict(boxes=80,min_hard_slack=min(hard),min_due_slack=min(due_slacks),late_boxes=sum(x < -1e-7 for x in due_slacks),min_transport_SOC=min(soc),machines_used=len(occupy),batteries_used=len(bat),max_machine_overlap=max(peak(v) for v in occupy.values()),max_battery_overlap=max(peak(v) for v in bat.values()))
     if q==3:
+        from communication import relay_flight
         gw=[m.nodes[0]['lon'],m.nodes[0]['lat'],m.nodes[0]['z']+20]
         rt={r['id']:r for r in data['relays']}
         relay_units=defaultdict(list);relay_components=defaultdict(list)
         for r in data['relays']:
+            physical=relay_flight(m,*r['pos'])
+            if abs(r['ready']-r['start']-physical['ready'])>1e-6:errors.append(r['id']+' ready mismatch')
+            if abs(r['end']-r['service_end']-physical['ret'])>1e-6:errors.append(r['id']+' return mismatch')
+            expected_energy=physical['fly_energy']+(r['service_end']-r['ready']+30)*1.1/3600
+            if abs(r['energy']-expected_energy)>1e-6:errors.append(r['id']+' energy mismatch')
+            if r['service_end']<r['ready']-1e-7:errors.append(r['id']+' negative service')
             if r['energy']>2.56+1e-8:errors.append(r['id']+' SOC')
             if abs(r['soc']-(1-r['energy']/3.2))>1e-8:errors.append(r['id']+' SOC mismatch')
             if r['pos'][2]-float(m.ground(*r['pos'][:2]))>300+1e-7:errors.append(r['id']+' altitude')

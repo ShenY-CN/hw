@@ -1,0 +1,213 @@
+% !TEX program = xelatex
+% =============================================================================
+%  华为杯（中国研究生数学建模竞赛）LaTeX 模板
+%  对应 Typst 模板 zh/huaweibei/main.typ 的全部功能。
+%
+%  字体依赖（正文宋体 / 标题黑体 / 强调楷体）：
+%    - 规范字体：SimSun（宋体）、SimHei（黑体）、KaiTi（楷体）。
+%    - 本文件显式使用 macOS 的 Songti SC / Heiti SC / Kaiti SC，
+%      以避免不同 ctex 版本对旧字体名的解析差异。
+%    - 西文正文：Times New Roman；代码等宽：Menlo（缺失时回退到默认字体）。
+%  编译方式：xelatex main.tex （需运行两遍以生成目录）
+% =============================================================================
+\documentclass[fontset=none, 12pt, a4paper]{ctexart}
+
+% ---------- 页面：A4，上 30mm，下 25mm，左右 22.5mm ----------
+\usepackage[a4paper, top=30mm, bottom=25mm, left=22.5mm, right=22.5mm]{geometry}
+
+% ---------- 数学 ----------
+\usepackage{amsmath}
+
+% ---------- 图片 ----------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+
+% ---------- 多行表格合并 ----------
+\usepackage{multirow}
+
+% ---------- 字体（fontspec + ctex，xelatex 编译） ----------
+% 显式采用当前 macOS 字体，避免 ctex 旧字体集对 STHeiti 的解析差异。
+\setCJKmainfont{Songti SC}
+\setCJKsansfont{Heiti SC}
+\setCJKmonofont{Songti SC}
+\setCJKfamilyfont{zhsong}{Songti SC}
+\setCJKfamilyfont{zhhei}{Heiti SC}
+\setCJKfamilyfont{zhkai}{Kaiti SC}
+\providecommand\songti{\CJKfamily{zhsong}}
+\providecommand\heiti{\CJKfamily{zhhei}}
+\providecommand\kaishu{\CJKfamily{zhkai}}
+% 西文正文与代码等宽字体：
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{}
+\setmonofont{Menlo}
+
+% ---------- 正文：12pt，首行缩进 2em，两端对齐 ----------
+% 2026 年官方格式规范要求正文单倍行距。
+\linespread{1}
+\setlength{\parindent}{2em}
+
+% ---------- 标题编号（\ctexset 配置） ----------
+% 一级标题用阿拉伯数字"1."，二级及以下用 1.1 / 1.1.1
+\ctexset{
+  section/number       = \arabic{section},
+  subsection/number    = \arabic{section}.\arabic{subsection},
+  subsubsection/number = \arabic{section}.\arabic{subsection}.\arabic{subsubsection},
+}
+
+% ---------- 标题格式（titlesec 配置） ----------
+\usepackage{titlesec}
+\titleformat{\section}
+  {\centering\fontsize{14pt}{16.8pt}\heiti\bfseries}
+  {\arabic{section}.}{1em}{}
+\titleformat{\subsection}
+  {\fontsize{12pt}{14.4pt}\heiti\bfseries}
+  {\arabic{section}.\arabic{subsection}}{1em}{}
+\titleformat{\subsubsection}
+  {\fontsize{12pt}{14.4pt}\heiti\bfseries}
+  {\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{1em}{}
+\titlespacing{\section}       {0pt}{1.15em}{1.0em}
+\titlespacing{\subsection}    {0pt}{0.85em}{0.55em}
+\titlespacing{\subsubsection} {0pt}{0.75em}{0.45em}
+
+% ---------- 目录（tocloft 点线引导） ----------
+\usepackage{tocloft}
+\renewcommand{\cftsecfont}{\heiti\bfseries}
+\renewcommand{\cftsecpagefont}{\heiti\bfseries}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
+
+% ---------- 表格与代码 ----------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{black!3},
+  frame=single,
+  framesep=6pt,
+  rulecolor=\color{black!30},
+  framerule=0.8pt,
+  breaklines=true,
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+% ---------- 页码：底部居中 ----------
+\pagestyle{plain}
+
+% ---------- 自定义命令（对应 Typst 函数） ----------
+% \coverpage：本届官方封面四标识和参赛信息栏。
+\newcommand{\coverpage}{%
+  \thispagestyle{empty}%
+  \setcounter{page}{0}%
+  \begin{center}
+    \includegraphics[height=1.35cm]{logo_cpipc.png}\hspace{0.3cm}%
+    \includegraphics[height=1.35cm]{logo_cgmm.png}\hspace{0.3cm}%
+    \includegraphics[height=1.35cm]{logo_huawei.jpeg}\hspace{0.3cm}%
+    \includegraphics[height=1.35cm]{logo_xjtu.png}\\[2.3cm]
+    {\fontsize{18pt}{23pt}\heiti\bfseries 中国研究生创新实践系列大赛\par}
+    \vspace{0.25cm}
+    {\fontsize{18pt}{23pt}\heiti\bfseries “华为杯”第二十三届中国研究生\par}
+    \vspace{0.25cm}
+    {\fontsize{18pt}{23pt}\heiti\bfseries 数学建模竞赛\par}
+    \vspace{2.2cm}
+    \begin{tabular}{@{}r@{\quad}l@{}}
+      学\quad 校 & \rule{9cm}{0.4pt}\\[0.85cm]
+      参赛队号 & \rule{9cm}{0.4pt}\\[0.85cm]
+      队员姓名 & 1.\ \rule{8.5cm}{0.4pt}\\[0.45cm]
+                 & 2.\ \rule{8.5cm}{0.4pt}\\[0.45cm]
+                 & 3.\ \rule{8.5cm}{0.4pt}
+    \end{tabular}
+  \end{center}
+  \newpage
+}
+% \abstractpage：摘要页，title 图 + 题目 + 摘要 + 关键词
+\newcommand{\abstractpage}{%
+  \setcounter{page}{1}%
+  \begin{center}
+    {\fontsize{18pt}{23pt}\heiti\bfseries 中国研究生创新实践系列大赛\par}
+    {\fontsize{18pt}{23pt}\heiti\bfseries “华为杯”第二十三届中国研究生数学建模竞赛\par}
+    \vspace{0.65cm}
+    {\fontsize{14pt}{16.8pt} 题\quad 目\quad}%
+    \parbox{10cm}{%
+      \centering{\fontsize{16pt}{19.2pt}\heiti\bfseries 山区洪涝灾害下无人机运输与通信协同优化}%
+      \par\vspace{2pt}%
+      \rule{10cm}{0.5pt}%
+    }\\[0.45cm]
+    {\fontsize{14pt}{16.8pt}\heiti\bfseries 摘\quad\quad 要：}\\[0.45cm]
+  \end{center}
+  本文针对15个服务区、80个不可拆货箱以及有限运输和通信资源，建立统一的地形航段、能量、电池周转和双向链路模型。问题一按服务区对同规格货箱采用精确动态规划组批，在20\%返航余量下获得18架次、59.1313~kWh的方案；余量升至30\%需20架次，40\%时S004的14~kg整箱水无法安全直送。问题二用多点候选构造、跨航次整箱转移、迟到箱直送及资源约束调度，在8架运输机和14组电池条件下完成24架次，能耗75.5418~kWh，全部返回时刻8683.25~s，加权迟到为零且80箱的硬时限全部满足。问题三将中继候选和服务窗口纳入运输排程，两架中继机在西、东、北三个悬停点执行5个架次，25个运输架次与中继合计能耗83.1524~kWh，联合完成时刻10801.63~s，加权迟到1935.45；4173个连续通信区间通过双向预算与地形扫掠检验。问题四在保持联合任务不变的前提下，求得两组与三组独立配置，两组缺B型运输机1架、B型电池1组及中继机2架；三组均衡性稍好但资源缺口扩大。第二问加权迟到达到全局下界零，其余字典序指标及第三问有限候选搜索不构成全局最优证明；通信最小裕量仅0.0061~dB，最紧运输架次的水平能耗增幅容限仅0.2176\%。\par
+  \vspace{0.65em}
+  {\heiti\bfseries 关键词：}无人机应急配送 \quad 地形约束 \quad 电池调度 \quad 空中中继 \quad 任务分区\par
+  \newpage
+}
+% \tocpage：目录页，标题"目录"居中 16pt 黑体加粗，点线引导
+\makeatletter
+\newcommand{\tocpage}{%
+  \begin{center}
+    {\fontsize{16pt}{19.2pt}\heiti\bfseries 目录}
+  \end{center}
+  \vspace{1.0cm}
+  \@starttoc{toc}%
+  \newpage
+}
+\makeatother
+% \referencescn：参考文献节，标题"参考文献"居中 14pt 黑体加粗（不带编号但进目录）
+\newcommand{\referencescn}{%
+  \phantomsection%
+  \addcontentsline{toc}{section}{参考文献}%
+  \input{references}%
+}
+% \appendixcn：附录节，标题"附录 A  复现说明"居中 14pt 黑体加粗
+\newcommand{\appendixcn}{%
+  \section*{附录 A\quad 复现说明}%
+  \addcontentsline{toc}{section}{附录 A\quad 复现说明}%
+  \input{sections/A_code}%
+}
+% \threelinetable{标题}{列定义}{表头}{表格内容}：三线表，标题在表格上方居中 10.5pt 黑体加粗
+% 调用示例：\threelinetable{表 1 示例}{ccc}{A & B & C}{1 & 2 & 3 \\ 4 & 5 & 6}
+\newcommand{\threelinetable}[4]{%
+  \begin{center}
+    {\fontsize{10.5pt}{12.6pt}\heiti\bfseries #1}\par
+    \vspace{0.6em}
+    \begin{tabular}{#2}
+      \toprule
+      #3 \\
+      \midrule
+      #4 \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+}
+
+\begin{document}
+
+% 封面（不编号）
+\coverpage
+
+% 摘要页（页码从 1 开始）
+\abstractpage
+
+% 目录页
+\tocpage
+
+\input{sections/1_restatement}
+\input{sections/2_analysis}
+\input{sections/3_assumptions}
+\input{sections/4_symbols}
+\input{sections/5_problem1}
+\input{sections/6_problem2}
+\input{sections/7_problem3}
+\input{sections/8_problem4}
+\input{sections/9_sensitivity}
+\input{sections/10_evaluation}
+
+\newpage
+\referencescn
+\newpage
+\appendixcn
+
+\end{document}

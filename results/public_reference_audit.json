@@ -1,0 +1,224 @@
+{
+  "source": "https://github.com/Akun-python/mountain-flood-uav-optimization",
+  "audited_witnesses": [
+    {
+      "name": "21-flight archived Tabu seed 7",
+      "flights": 21,
+      "boxes_listed": 80,
+      "unique_boxes": 80,
+      "destination_errors": 19,
+      "affected_flights": 11,
+      "mismatches": [
+        {
+          "flight": 4,
+          "box": "S001-MED-01",
+          "listed_stop": "S004",
+          "required_stop": "S001"
+        },
+        {
+          "flight": 5,
+          "box": "S015-FOD-01",
+          "listed_stop": "S005",
+          "required_stop": "S015"
+        },
+        {
+          "flight": 5,
+          "box": "S011-FOD-01",
+          "listed_stop": "S005",
+          "required_stop": "S011"
+        },
+        {
+          "flight": 7,
+          "box": "S012-MED-01",
+          "listed_stop": "S007",
+          "required_stop": "S012"
+        },
+        {
+          "flight": 8,
+          "box": "S003-WAT-02",
+          "listed_stop": "S008",
+          "required_stop": "S003"
+        },
+        {
+          "flight": 8,
+          "box": "S015-WAT-01",
+          "listed_stop": "S008",
+          "required_stop": "S015"
+        },
+        {
+          "flight": 8,
+          "box": "S015-MED-01",
+          "listed_stop": "S008",
+          "required_stop": "S015"
+        },
+        {
+          "flight": 11,
+          "box": "S011-MED-01",
+          "listed_stop": "S006",
+          "required_stop": "S011"
+        },
+        {
+          "flight": 11,
+          "box": "S010-FOD-01",
+          "listed_stop": "S011",
+          "required_stop": "S010"
+        },
+        {
+          "flight": 13,
+          "box": "S007-HYG-01",
+          "listed_stop": "S013",
+          "required_stop": "S007"
+        },
+        {
+          "flight": 17,
+          "box": "S002-MED-01",
+          "listed_stop": "S001",
+          "required_stop": "S002"
+        },
+        {
+          "flight": 17,
+          "box": "S014-FOD-01",
+          "listed_stop": "S001",
+          "required_stop": "S014"
+        },
+        {
+          "flight": 22,
+          "box": "S007-FOD-01",
+          "listed_stop": "S004",
+          "required_stop": "S007"
+        },
+        {
+          "flight": 22,
+          "box": "S005-MED-01",
+          "listed_stop": "S004",
+          "required_stop": "S005"
+        },
+        {
+          "flight": 22,
+          "box": "S008-WAT-01",
+          "listed_stop": "S004",
+          "required_stop": "S008"
+        },
+        {
+          "flight": 30,
+          "box": "S002-WAT-01",
+          "listed_stop": "S012",
+          "required_stop": "S002"
+        },
+        {
+          "flight": 31,
+          "box": "S004-HYG-01",
+          "listed_stop": "S006",
+          "required_stop": "S004"
+        },
+        {
+          "flight": 31,
+          "box": "S013-MED-01",
+          "listed_stop": "S006",
+          "required_stop": "S013"
+        },
+        {
+          "flight": 33,
+          "box": "S006-WAT-01",
+          "listed_stop": "S008",
+          "required_stop": "S006"
+        }
+      ]
+    },
+    {
+      "name": "26-flight archived balanced",
+      "flights": 26,
+      "boxes_listed": 80,
+      "unique_boxes": 80,
+      "destination_errors": 14,
+      "affected_flights": 11,
+      "mismatches": [
+        {
+          "flight": 3,
+          "box": "S013-MED-01",
+          "listed_stop": "S003",
+          "required_stop": "S013"
+        },
+        {
+          "flight": 5,
+          "box": "S004-FOD-01",
+          "listed_stop": "S011",
+          "required_stop": "S004"
+        },
+        {
+          "flight": 10,
+          "box": "S002-MED-01",
+          "listed_stop": "S010",
+          "required_stop": "S002"
+        },
+        {
+          "flight": 14,
+          "box": "S010-MED-01",
+          "listed_stop": "S014",
+          "required_stop": "S010"
+        },
+        {
+          "flight": 18,
+          "box": "S012-MED-01",
+          "listed_stop": "S002",
+          "required_stop": "S012"
+        },
+        {
+          "flight": 20,
+          "box": "S004-HYG-01",
+          "listed_stop": "S003",
+          "required_stop": "S004"
+        },
+        {
+          "flight": 23,
+          "box": "S007-HYG-01",
+          "listed_stop": "S005",
+          "required_stop": "S007"
+        },
+        {
+          "flight": 23,
+          "box": "S010-FOD-01",
+          "listed_stop": "S005",
+          "required_stop": "S010"
+        },
+        {
+          "flight": 23,
+          "box": "S002-FOD-02",
+          "listed_stop": "S005",
+          "required_stop": "S002"
+        },
+        {
+          "flight": 24,
+          "box": "S013-WAT-01",
+          "listed_stop": "S006",
+          "required_stop": "S013"
+        },
+        {
+          "flight": 24,
+          "box": "S008-MED-01",
+          "listed_stop": "S006",
+          "required_stop": "S008"
+        },
+        {
+          "flight": 31,
+          "box": "S002-FOD-01",
+          "listed_stop": "S013",
+          "required_stop": "S002"
+        },
+        {
+          "flight": 32,
+          "box": "S012-FOD-01",
+          "listed_stop": "S014",
+          "required_stop": "S012"
+        },
+        {
+          "flight": 35,
+          "box": "S008-FOD-01",
+          "listed_stop": "S007",
+          "required_stop": "S008"
+        }
+      ]
+    }
+  ],
+  "note": "The separate 21-flight 62.46 kWh Pareto entry has metrics but no flight witness in p2_pareto.json."
+}

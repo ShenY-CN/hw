@@ -1,0 +1,24 @@
+\contentsline {section}{\numberline {1}问题重述与研究思路}{3}{section.1}%
+\contentsline {section}{\numberline {2}数据处理与统一物理规则}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}数据核对与空间计算}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}飞行时间和能耗}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}电池与通信状态}{6}{subsection.2.3}%
+\contentsline {section}{\numberline {3}模型假设及适用范围}{6}{section.3}%
+\contentsline {section}{\numberline {4}符号说明}{6}{section.4}%
+\contentsline {section}{\numberline {5}问题一：单点组批与安全载荷}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}最大安全载荷}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}不可拆货箱组批}{7}{subsection.5.2}%
+\contentsline {section}{\numberline {6}问题二：逐箱硬时限下的多算法运输调度}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}多点航次与目标}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}同预算算法对照}{8}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}运输主方案}{9}{subsection.6.3}%
+\contentsline {section}{\numberline {7}问题三：连续通信与逐箱按时的联合调度}{11}{section.7}%
+\contentsline {subsection}{\numberline {7.1}双向链路与连续覆盖}{11}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}机型、时刻与中继时窗联合选择}{11}{subsection.7.2}%
+\contentsline {section}{\numberline {8}问题四：固定联合任务的独立分区}{13}{section.8}%
+\contentsline {subsection}{\numberline {8.1}不可拆任务组件与配置规则}{13}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}两组与三组结果}{13}{subsection.8.2}%
+\contentsline {section}{\numberline {9}敏感性与可行性检验}{14}{section.9}%
+\contentsline {section}{\numberline {10}模型评价与结论}{15}{section.10}%
+\contentsline {section}{参考文献}{17}{section*.1}%
+\contentsline {section}{附录 A\hskip 1em\relax 复现说明}{18}{section*.1}%

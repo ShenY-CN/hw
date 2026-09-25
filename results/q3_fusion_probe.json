@@ -1,0 +1,71 @@
+{
+  "q2_source": {
+    "method": "hill",
+    "seed": 0,
+    "algorithm_comparison": "method_comparison.json"
+  },
+  "split": {
+    "split_route": null,
+    "extra_energy": 0.0,
+    "components": [
+      [
+        1,
+        10,
+        13,
+        14
+      ],
+      [
+        2,
+        4,
+        9
+      ],
+      [
+        3
+      ],
+      [
+        5,
+        6,
+        7,
+        8,
+        11,
+        15
+      ],
+      [
+        12
+      ]
+    ]
+  },
+  "additional_splits": [
+    {
+      "route": "T004",
+      "parts": [
+        "T004a",
+        "T004b"
+      ]
+    },
+    {
+      "route": "T005",
+      "parts": [
+        "T005a",
+        "T005b"
+      ]
+    }
+  ],
+  "baseline": {
+    "count": 26,
+    "energy": 81.64964136111354,
+    "makespan": 8256.245291179437,
+    "weighted_tardiness": 14206.205984299435,
+    "weighted_arrival": 3161944.034703242,
+    "hard_violations": 0,
+    "delivered": 80,
+    "last_delivery": 7406.28981072067,
+    "transport_energy": 77.73559407116207,
+    "relay_energy": 3.9140472899514744,
+    "relay_count": 3,
+    "transport_makespan": 8076.978861884163,
+    "comm_intervals": 4237,
+    "comm_min_margin": 0.0018629910481138268
+  },
+  "status": "no_verified_solution_under_fixed_relay_windows"
+}

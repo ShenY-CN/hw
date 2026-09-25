@@ -1,0 +1,40 @@
+INFO: paper dir: paper
+INFO: root dir: /Users/sheny/A/华为杯建模/D题解答
+INFO: main file: paper/main.tex
+INFO: sections dir: paper/sections
+INFO: figures dir: figures
+INFO: results file: reports/RESULTS_REPORT.md
+INFO: detected engine: LaTeX (main suffix: .tex)
+INFO: section file count: 11
+INFO: main include count: 12
+INFO: section length: 1_restatement.tex 616 chars
+WARN: section is short: 1_restatement.tex (616 chars)
+INFO: section length: 2_analysis.tex 2500 chars
+INFO: section length: 3_assumptions.tex 573 chars
+WARN: section is short: 3_assumptions.tex (573 chars)
+INFO: section length: 4_symbols.tex 539 chars
+WARN: section is short: 4_symbols.tex (539 chars)
+INFO: section length: 5_problem1.tex 1435 chars
+INFO: section length: 6_problem2.tex 1727 chars
+WARN: many figures but little surrounding prose: 6_problem2.tex
+INFO: section length: 7_problem3.tex 1875 chars
+WARN: many figures but little surrounding prose: 7_problem3.tex
+INFO: section length: 8_problem4.tex 1468 chars
+INFO: section length: 9_sensitivity.tex 1320 chars
+INFO: section length: 10_evaluation.tex 544 chars
+WARN: section is short: 10_evaluation.tex (544 chars)
+INFO: section length: A_code.tex 292 chars
+INFO: section title order:
+INFO:   1. 1_restatement.tex -> 问题重述与研究思路
+INFO:   2. 2_analysis.tex -> 数据处理与统一物理规则
+INFO:   3. 3_assumptions.tex -> 模型假设及适用范围
+INFO:   4. 4_symbols.tex -> 符号说明
+INFO:   5. 5_problem1.tex -> 问题一：单点组批与安全载荷
+INFO:   6. 6_problem2.tex -> 问题二：异构运输机与电池联合调度
+INFO:   7. 7_problem3.tex -> 问题三：通信约束下的运输与中继调度
+INFO:   8. 8_problem4.tex -> 问题四：分区与独立资源配置
+INFO:   9. 9_sensitivity.tex -> 敏感性与可行性检验
+INFO:   10. 10_evaluation.tex -> 模型评价与结论
+WARN: figure PDF not referenced in paper: battery_gantt.pdf
+INFO: citation markers detected
+PASS: writing text gate passed

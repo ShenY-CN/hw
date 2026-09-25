@@ -42,8 +42,8 @@ def allowed_starts(m,r,relays,step=10,horizon=13000):
         if deadline<1e8:allowed=intersect(allowed,[(0,math.floor(deadline-t+1e-7))])
     return allowed
 
-def solve(m,rs,relays,seconds=15,verbose=False):
-    model=cp_model.CpModel();starts=[];ends=[];iv=[];biv=[];lates=[]
+def solve(m,rs,relays,seconds=15,verbose=False,priority_arrival=False):
+    model=cp_model.CpModel();starts=[];ends=[];iv=[];biv=[];lates=[];arrivals=[]
     for j,r in enumerate(rs):
         domains=allowed_starts(m,r,relays)
         if not domains:raise RuntimeError('no feasible start for '+r['id'])
@@ -61,6 +61,7 @@ def solve(m,rs,relays,seconds=15,verbose=False):
             late=model.new_int_var(0,30000000,f'l{j}_{b}')
             model.add_max_equality(late,[0,1000*start+round(t*1000)-round(box['due']*1000)])
             lates.append(box['priority']*late)
+            arrivals.append(box['priority']*(1000*start+round(t*1000)))
     for g in m.types:
         js=[j for j,r in enumerate(rs) if r['g']==g]
         model.add_cumulative([iv[j] for j in js],[1]*len(js),len(m.units[g]))
@@ -73,7 +74,16 @@ def solve(m,rs,relays,seconds=15,verbose=False):
     if status not in (cp_model.OPTIMAL,cp_model.FEASIBLE):return None
     first_status=solver.status_name(status);first_objective=solver.objective_value;first_bound=solver.best_objective_bound
     target=round(solver.objective_value)
-    model.add(obj<=target);model.minimize(cmax)
+    model.add(obj<=target)
+    arrival_stage=None
+    if priority_arrival:
+        arrival_obj=sum(arrivals);model.minimize(arrival_obj)
+        status=solver.solve(model)
+        if verbose:print('arrival stage',solver.status_name(status),solver.objective_value,solver.best_objective_bound,flush=True)
+        if status not in (cp_model.OPTIMAL,cp_model.FEASIBLE):return None
+        arrival_stage=dict(status=solver.status_name(status),objective=solver.objective_value,bound=solver.best_objective_bound)
+        model.add(arrival_obj<=round(solver.objective_value))
+    model.minimize(cmax)
     status=solver.solve(model)
     if verbose:print('stage2',solver.status_name(status),solver.objective_value,solver.best_objective_bound,flush=True)
     if status not in (cp_model.OPTIMAL,cp_model.FEASIBLE):return None
@@ -95,4 +105,6 @@ def solve(m,rs,relays,seconds=15,verbose=False):
     summary=metrics(m,out)
     summary.update(transport_energy=summary['energy'],relay_energy=sum(r['energy'] for r in relays),relay_count=len(relays),transport_makespan=summary['makespan'],makespan=max(summary['makespan'],max(r['end'] for r in relays)),comm_intervals=len(records),comm_min_margin=min(r['margin'] for r in records))
     summary['energy']+=summary['relay_energy']
-    return dict(routes=out,relays=relays,communication=records,summary=summary,solver=dict(stage1_status=first_status,stage1_objective=first_objective,stage1_bound=first_bound,stage2_status=second_status,stage2_objective=second_objective,stage2_bound=second_bound))
+    cert=dict(stage1_status=first_status,stage1_objective=first_objective,stage1_bound=first_bound,stage2_status=second_status,stage2_objective=second_objective,stage2_bound=second_bound)
+    if arrival_stage is not None:cert['arrival_stage']=arrival_stage
+    return dict(routes=out,relays=relays,communication=records,summary=summary,solver=cert)
