@@ -778,6 +778,10 @@ File: ../figures/fig_roadmap.pdf Graphic file (type pdf)
 File: ../figures/capacity.pdf Graphic file (type pdf)
 <use ../figures/capacity.pdf>
  [7]) (sections/6_problem2
+Overfull \hbox (5.68727pt too wide) in paragraph at lines 24--31
+ [][] 
+ []
+
 
 Package fontspec Warning: Font "Songti SC" does not contain requested Script
 (fontspec)                "CJK".
@@ -871,4 +875,4 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: BA9E50DEE5D545F1A3B27C6B8DA5289B;2999.
  )
-Output written on main.xdv (19 pages, 233436 bytes).
+Output written on main.xdv (19 pages, 233064 bytes).
