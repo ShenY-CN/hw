@@ -331,7 +331,8 @@ def _draw_spatial_layers(ax, model, bounds, label_township=True):
                 ax.annotate(item[0], point, xytext=(4, 3), textcoords="offset points", fontsize=7)
 
 
-def draw_region(ax, model, annotate=True, view="local", show_services=True):
+def draw_region(ax, model, annotate=True, view="local", show_services=True,
+                terrain_alpha=None, service_label_size=8, service_marker_size=32):
     """绘制 DEM 和镇龙乡矢量图层；可选择任务区放大图或全幅地理概览。"""
     ax.set_aspect("equal")
     ax.set_xlabel("东向距离 / km")
@@ -347,7 +348,8 @@ def draw_region(ax, model, annotate=True, view="local", show_services=True):
         extent_xy = _local_coordinates(model, corners)
         extent = (extent_xy[:, 0].min(), extent_xy[:, 0].max(),
                   extent_xy[:, 1].min(), extent_xy[:, 1].max())
-        ax.imshow(model.dem, origin="upper", extent=extent, cmap=TERRAIN_CMAP, alpha=0.9,
+        ax.imshow(model.dem, origin="upper", extent=extent, cmap=TERRAIN_CMAP,
+                  alpha=0.9 if terrain_alpha is None else terrain_alpha,
                   aspect="equal", zorder=0)
         ax.set_xlim(extent[0], extent[1])
         ax.set_ylim(extent[2], extent[3])
@@ -364,7 +366,8 @@ def draw_region(ax, model, annotate=True, view="local", show_services=True):
             model.local(origin["lon"], latitude[-1])[1] / 1000,
         ]
         geographic_bounds = (longitude[0], longitude[-1], latitude[0], latitude[-1])
-        ax.imshow(elevation, origin="lower", extent=extent, cmap=TERRAIN_CMAP, alpha=0.82,
+        ax.imshow(elevation, origin="lower", extent=extent, cmap=TERRAIN_CMAP,
+                  alpha=0.82 if terrain_alpha is None else terrain_alpha,
                   aspect="equal", zorder=0)
         ax.set_xlim(-8, 8)
         ax.set_ylim(-1, 10)
@@ -375,11 +378,12 @@ def draw_region(ax, model, annotate=True, view="local", show_services=True):
         ax.text(0.13, -0.4, "O01", fontsize=9, zorder=8)
     if show_services:
         for index, (x, y) in enumerate(model.xy[1:], 1):
-            ax.scatter(x / 1000, y / 1000, s=32, facecolor="white",
+            ax.scatter(x / 1000, y / 1000, s=service_marker_size, facecolor="white",
                        edgecolor=NEUTRAL, linewidth=0.8, zorder=6)
             if annotate:
                 label = ax.annotate(f"S{index:03}", (x / 1000, y / 1000), xytext=(4, 5),
-                                    textcoords="offset points", fontsize=8, zorder=8)
+                                    textcoords="offset points",
+                                    fontsize=service_label_size, zorder=8)
                 label.set_path_effects([patheffects.withStroke(
                     linewidth=1.5, foreground="white")])
 
