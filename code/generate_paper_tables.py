@@ -243,7 +243,7 @@ def main() -> None:
             f"{fmt(selected['deficit'])} & {sum(selected['deficit'])} & {selected['cv']:.4f}"
         )
     write("q4_compare", table(
-        "问题四最小缺口分区的综合比较",
+        "问题四限定空间内字典序最优分区的综合比较",
         "q4_compare", "lrrrrr",
         r"方案 & 穷举划分数 & 库存缺口/件 & 配置总数/件 & 工作量变异系数 & 闲置组件/组",
         compare4, r"\scriptsize"))
