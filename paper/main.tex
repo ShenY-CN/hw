@@ -44,9 +44,18 @@
 \setCJKfamilyfont{zhsong}{Songti SC}
 \setCJKfamilyfont{zhhei}{Heiti SC}
 \setCJKfamilyfont{zhkai}{Kaiti SC}
+% Word 模板标题字体为“华文新魏”；系统未安装时回退至黑体。
+\IfFontExistsTF{STXinwei}{
+  \setCJKfamilyfont{zhtitle}{STXinwei}
+}{
+  \IfFontExistsTF{华文新魏}
+    {\setCJKfamilyfont{zhtitle}{华文新魏}}
+    {\setCJKfamilyfont{zhtitle}{Heiti SC}}
+}
 \providecommand\songti{\CJKfamily{zhsong}}
 \providecommand\heiti{\CJKfamily{zhhei}}
 \providecommand\kaishu{\CJKfamily{zhkai}}
+\providecommand\zhtitle{\CJKfamily{zhtitle}}
 % 西文正文与代码等宽字体：
 \IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{}
 \setmonofont{Menlo}
@@ -102,6 +111,7 @@
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{xcolor}
+\usepackage{shadowtext}
 \usepackage{listings}
 \lstset{
   basicstyle=\ttfamily\small,
@@ -120,6 +130,12 @@
 \pagestyle{plain}
 
 % ---------- 自定义命令（对应 Typst 函数） ----------
+% 竞赛名称按 Word 模板统一排版：首行为 18pt，后两行为 22pt，居中加粗并带阴影。
+\newcommand{\contesttitle}{%
+  {\fontsize{18pt}{23pt}\zhtitle\bfseries\shadowtext{中国研究生创新实践系列大赛}\par}
+  {\fontsize{22pt}{26.4pt}\zhtitle\bfseries\shadowtext{~“华为杯”第二十三届中国研究生}\par}
+  {\fontsize{22pt}{26.4pt}\zhtitle\bfseries\shadowtext{数学建模竞赛}\par}
+}
 % \coverpage：本届官方封面四标识和参赛信息栏。
 \newcommand{\coverpage}{%
   \thispagestyle{empty}%
@@ -129,18 +145,14 @@
     \includegraphics[height=1.35cm]{logo_cgmm.png}\hspace{0.3cm}%
     \includegraphics[height=1.35cm]{logo_huawei.jpeg}\hspace{0.3cm}%
     \includegraphics[height=1.35cm]{logo_xjtu.png}\\[2.3cm]
-    {\fontsize{18pt}{23pt}\heiti\bfseries 中国研究生创新实践系列大赛\par}
-    \vspace{0.25cm}
-    {\fontsize{18pt}{23pt}\heiti\bfseries “华为杯”第二十三届中国研究生\par}
-    \vspace{0.25cm}
-    {\fontsize{18pt}{23pt}\heiti\bfseries 数学建模竞赛\par}
+    \contesttitle
     \vspace{2.2cm}
     \begin{tabular}{@{}r@{\quad}l@{}}
-      学\quad 校 & \rule{9cm}{0.4pt}\\[0.85cm]
-      参赛队号 & \rule{9cm}{0.4pt}\\[0.85cm]
-      队员姓名 & 1.\ \rule{8.5cm}{0.4pt}\\[0.45cm]
-                 & 2.\ \rule{8.5cm}{0.4pt}\\[0.45cm]
-                 & 3.\ \rule{8.5cm}{0.4pt}
+      学\quad 校 & \underline{\makebox[9cm][c]{华中科技大学}}\\[0.85cm]
+      参赛队号 & \underline{\makebox[9cm][c]{26104870308}}\\[0.85cm]
+      队员姓名 & 1.\ \underline{\makebox[9cm][c]{刘雨航}}\\[0.45cm]
+                 & 2.\ \underline{\makebox[9cm][c]{廖伟雯}}\\[0.45cm]
+                 & 3.\ \underline{\makebox[9cm][c]{沈懿}}\\[0.45cm]
     \end{tabular}
   \end{center}
   \newpage
@@ -149,8 +161,7 @@
 \newcommand{\abstractpage}{%
   \setcounter{page}{1}%
   \begin{center}
-    {\fontsize{18pt}{23pt}\heiti\bfseries 中国研究生创新实践系列大赛\par}
-    {\fontsize{18pt}{23pt}\heiti\bfseries “华为杯”第二十三届中国研究生数学建模竞赛\par}
+    \contesttitle
     \vspace{0.65cm}
     {\fontsize{14pt}{16.8pt} 题\quad 目\quad}%
     \parbox{10cm}{%
