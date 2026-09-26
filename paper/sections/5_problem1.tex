@@ -13,11 +13,13 @@ E_{ig}^{RT}(q)=E_{0i}^g(q)+E_{i0}^g(0)
 +\frac{9.81\left[(m_g+q)h_{0i}^++m_g h_{i0}^-\right]}{3.6\times10^6\eta_g}.
 \label{eq:rt_energy}
 \end{equation}
+
 其中第一项为去、返两个水平航段，第二项为两次爬升，下降附加能耗按题面参数不计。返航安全余量取$\rho_g=20\%$时，单点往返的安全载荷是如下一维单调约束的最大可行$q$：
 \begin{equation}
 q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E_{ig}^{RT}(q)\le(1-\rho_g)E_g^{use}\right\}.
 \label{eq:q1_safe}
 \end{equation}
+
 由于等效航程随载荷增加而缩短、爬升质量也随载荷增加，式~\eqref{eq:rt_energy}在允许区间内单调不减，故式~\eqref{eq:q1_safe}可用二分法求解，并再受额定载重与装载体积约束。若空载往返已经超出能量上限，则定义该机型对该服务区不可用。
 
 \subsubsection{载荷计算结果}
@@ -42,16 +44,19 @@ q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E_{ig}^{RT}(q)\le(1-\rho_g)E_g^{use}\right\
 E_{ig}^{RT}\left(\sum_{b\in B_p}M_b\right)\leq(1-\rho_g)E_g^{use}
 \label{eq:batch_feasible}
 \end{equation}
+
 的可行架次，其中$V_g$为机型$g$的可用装载体积。设$t^{prep},t^{load},t^{hand},t^{box}$分别为固定准备、每箱装载、基础交接与每箱增加交接时间，则装载$|B_p|$箱的往返作业时间为
 \begin{equation}
 t_p^{RT}=t^{prep}+|B_p|t^{load}+t_{0i}^{g}+t_{i0}^{g}+t^{hand}+|B_p|t^{box}.
 \label{eq:batch_time}
 \end{equation}
+
 令局部状态$\mathbf{v}$表示本站尚未交付的四类箱数，$F_i(\mathbf{v})$为其最优的（架次数、能耗、累计时间）三元组，边界$F_i(\mathbf{0})=(0,0,0)$，则按指定目标优先级递推：
 \begin{equation}
 F_i(\mathbf{v})=\min_{p:c_p\leq\mathbf{v}}\left\{F_i(\mathbf{v}-c_p)+\left(1,\,E_p^T,\,t_p^{RT}\right)\right\}.
 \label{eq:dp}
 \end{equation}
+
 每次转移至少交付一箱，且式~\eqref{eq:batch_feasible}已对所有可装载模式完整枚举，因此式~\eqref{eq:dp}的记忆化递推覆盖本站全部分批方案。同类货箱在同一服务区、同一方向上质量与体积等价，求解时可按类型计数压缩状态；输出时仍恢复具体箱号并校验一次性分配。各服务区之间没有资源耦合，分别求解再求和即得全题在相同字典序下的最优结果。
 
 \subsubsection{最少架次下界与组批结果}
