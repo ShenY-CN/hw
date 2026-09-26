@@ -103,28 +103,29 @@ def plot_typical_elevation_profile(model, data):
 
 
 def plot_payload_energy(model, data):
-    """用共享能耗函数展示最远服务区的载荷—返程能耗关系。"""
+    """最远服务区的载荷—往返能耗关系（终稿版：加大图高与字号，临界线更醒目）。"""
     farthest = int(np.argmax(model.D[0, 1:]) + 1)
     capacities = {(row["g"], row["node"]): row["maxload"]
                   for row in data["capacities"]}
-    fig, axes = plt.subplots(1, 3, figsize=(9.2, 3.2), sharey=True)
+    figure, axes = plt.subplots(1, 3, figsize=(9.4, 3.9), sharey=True)
     for ax, (drone_type, spec) in zip(axes, model.types.items()):
         payloads = np.linspace(0, spec["Q"], 80)
         energies = [model.energy(drone_type, 0, farthest, payload)
                     + model.energy(drone_type, farthest, 0, 0)
                     for payload in payloads]
         cap = capacities[(drone_type, farthest)]
-        ax.plot(payloads, energies, color=COLORS[drone_type])
-        ax.axhline(0.8 * spec["E"], color=NEUTRAL, linestyle="--", linewidth=1,
-                   label="20%返航储备下的可用能量")
-        ax.axvline(cap, color=COLORS["C"], linestyle=":", linewidth=1.2,
-                   label=f"最大安全载荷 {cap:.1f} kg")
-        ax.set_title(f"{drone_type}型")
-        ax.set_xlabel("载荷 / kg")
-        ax.grid(alpha=0.2)
-    axes[0].set_ylabel(f"往返飞行能耗 / kWh（服务区 {farthest:03}）")
-    axes[-1].legend(fontsize=7, loc="best")
-    save_figure(fig, "q1_payload_energy")
+        ax.plot(payloads, energies, color=COLORS[drone_type], linewidth=1.7)
+        ax.axhline(0.8 * spec["E"], color=NEUTRAL, linestyle="--", linewidth=1.4,
+                   alpha=0.95, label="20%返航储备下的可用能量")
+        ax.axvline(cap, color=COLORS["C"], linestyle=":", linewidth=1.6,
+                   alpha=0.95, label=f"最大安全载荷 {cap:.1f} kg")
+        ax.set_title(f"{drone_type}型", fontsize=11)
+        ax.set_xlabel("载荷 / kg", fontsize=10)
+        ax.tick_params(labelsize=9.5)
+        ax.grid(alpha=0.22)
+    axes[0].set_ylabel(f"往返飞行能耗 / kWh（服务区 S{farthest:03}）", fontsize=10)
+    axes[0].legend(fontsize=7.5, loc="upper left")
+    save_figure(figure, "q1_payload_energy")
 
 
 def plot_objective_solutions():
@@ -144,39 +145,109 @@ def plot_objective_solutions():
     save_figure(fig, "q1_objective_solutions")
 
 
+RHO_FEASIBLE_LIMIT = 35.2678
+# 25%/35% 两点取自论文表 5-6 的定稿数值：仓库 results/ 仅有 rho10/20/30/40 正式结果文件，
+# 无 q1_rho25.json / q1_rho35.json，故此处只引用已定稿数值，不重新求解、不插值。
+SENSITIVITY_TABLE_POINTS = {25: {"count": 19, "energy": 61.0734},
+                            35: {"count": 25, "energy": 75.6076}}
+
+
+def _sensitivity_series():
+    reserves = (10, 20, 25, 30, 35)
+    counts, energies = [], []
+    for reserve in reserves:
+        if reserve in SENSITIVITY_TABLE_POINTS:
+            point = SENSITIVITY_TABLE_POINTS[reserve]
+            counts.append(point["count"])
+            energies.append(point["energy"])
+        else:
+            summary = load_result(f"q1_rho{reserve}.json")["summary"]
+            counts.append(summary["count"])
+            energies.append(summary["energy"])
+    return reserves, counts, energies
+
+
 def plot_sensitivity():
+    """图9-1：返航安全余量对最少架次与总能耗的影响（终稿版，含 25%/35% 与可行边界）。"""
+    reserves, counts, energies = _sensitivity_series()
+    figure, axes = plt.subplots(1, 2, figsize=(7.6, 3.5))
+    axes[0].plot(reserves, counts, marker="o", markersize=5.5, linewidth=1.5,
+                 color=COLORS["A"])
+    axes[1].plot(reserves, energies, marker="s", markersize=5.5, linewidth=1.5,
+                 color=COLORS["B"])
+    for ax, values in zip(axes, (counts, energies)):
+        ax.axvspan(RHO_FEASIBLE_LIMIT, max(reserves) + 2, color="#D9A0A0", alpha=0.18,
+                   zorder=0)
+        ax.axvline(RHO_FEASIBLE_LIMIT, color="#8C3B3B", linestyle="--", linewidth=1.2,
+                   zorder=1)
+        ax.annotate("整体可行边界 ≈35.27%", xy=(RHO_FEASIBLE_LIMIT, ax.get_ylim()[1]),
+                    xytext=(-6, -12), textcoords="offset points", ha="right",
+                    fontsize=8, color="#8C3B3B")
+        ax.set_xlabel("返航安全余量 / %", fontsize=10)
+        ax.set_xticks(reserves)
+        ax.tick_params(labelsize=9.5)
+        ax.grid(alpha=0.22)
+    for xvalue, value in zip(reserves, counts):
+        axes[0].annotate(f"{value}", (xvalue, value), xytext=(0, 6),
+                         textcoords="offset points", ha="center", fontsize=8)
+    for xvalue, value in zip(reserves, energies):
+        axes[1].annotate(f"{value:.2f}", (xvalue, value), xytext=(0, 6),
+                         textcoords="offset points", ha="center", fontsize=8)
+    axes[0].set_ylabel("最少架次", fontsize=10)
+    axes[1].set_ylabel("总能耗 / kWh", fontsize=10)
+    save_figure(figure, "q1_sensitivity")
+
+
+def plot_sensitivity_compact():
+    """图9-1 备选版：仅使用 results/ 中 10%/20%/30% 正式结果文件。"""
     reserves = (10, 20, 30)
     summaries = [load_result(f"q1_rho{reserve}.json")["summary"] for reserve in reserves]
-    fig, axes = plt.subplots(1, 2, figsize=(6.6, 3.0))
+    figure, axes = plt.subplots(1, 2, figsize=(7.0, 3.3))
     axes[0].plot(reserves, [summary["count"] for summary in summaries],
-                 marker="o", color=COLORS["A"])
-    axes[0].set_ylabel("最少架次")
+                 marker="o", markersize=5.5, linewidth=1.5, color=COLORS["A"])
     axes[1].plot(reserves, [summary["energy"] for summary in summaries],
-                 marker="s", color=COLORS["B"])
-    axes[1].set_ylabel("总能耗 / kWh")
+                 marker="s", markersize=5.5, linewidth=1.5, color=COLORS["B"])
     for ax in axes:
-        ax.set_xlabel("返航安全余量 / %")
+        ax.set_xlabel("返航安全余量 / %", fontsize=10)
         ax.set_xticks(reserves)
-        ax.grid(alpha=0.2)
-    save_figure(fig, "q1_sensitivity")
+        ax.tick_params(labelsize=9.5)
+        ax.grid(alpha=0.22)
+    axes[0].set_ylabel("最少架次", fontsize=10)
+    axes[1].set_ylabel("总能耗 / kWh", fontsize=10)
+    save_figure(figure, "q1_sensitivity_compact")
 
 
 def plot_return_soc(data, model):
+    """问题一 18 个架次的返航剩余电量（终稿版：突出 20% 安全线与最紧架次）。"""
     routes = sorted(data["routes"], key=lambda row: (row["g"], row["order"][0]))
-    fig, ax = plt.subplots(figsize=(7.2, 3.6))
+    figure, ax = plt.subplots(figsize=(7.4, 3.9))
+    positions = np.arange(1, len(routes) + 1)
+    socs = np.array([route["soc"] * 100 for route in routes])
+    tight = int(np.argmin(socs))
     for drone_type, color in COLORS.items():
-        selected = [(index, route["soc"] * 100) for index, route in enumerate(routes, 1)
-                    if route["g"] == drone_type]
+        selected = [(positions[index], socs[index])
+                    for index, route in enumerate(routes) if route["g"] == drone_type]
         if selected:
             ax.scatter([item[0] for item in selected], [item[1] for item in selected],
-                       color=color, label=f"{drone_type}型", s=30)
-    ax.axhline(20, color=COLORS["C"], linestyle="--", label="最低返航储备 20%")
-    ax.set_xlabel("问题一组批架次（按机型排序）")
-    ax.set_ylabel("返航剩余电量 / %")
+                       color=color, label=f"{drone_type}型", s=42, zorder=3)
+    ax.axhline(20, color=COLORS["C"], linestyle="--", linewidth=1.6,
+               label="返航安全线 20%")
+    ax.scatter([positions[tight]], [socs[tight]], s=170, facecolor="none",
+               edgecolor="black", linewidth=1.2, zorder=4,
+               label=f"最紧架次 {socs[tight]:.4f}%")
+    ax.annotate(f"最低返航 SOC {socs[tight]:.4f}%",
+                (positions[tight], socs[tight]), xytext=(10, 16),
+                textcoords="offset points", fontsize=8.5,
+                arrowprops=dict(arrowstyle="->", color="black", linewidth=0.8))
+    ax.set_xticks(positions, [f"S{route['order'][0]:03}" for route in routes],
+                  rotation=45, ha="right", fontsize=8)
+    ax.set_xlabel("问题一运输架次（按机型、服务区排序）", fontsize=10)
+    ax.set_ylabel("返航剩余电量 / %", fontsize=10)
     ax.set_ylim(bottom=0)
-    ax.grid(axis="y", alpha=0.2)
-    ax.legend(ncol=2)
-    save_figure(fig, "q1_return_soc")
+    ax.tick_params(axis="y", labelsize=9.5)
+    ax.grid(axis="y", alpha=0.22)
+    ax.legend(ncol=2, fontsize=8)
+    save_figure(figure, "q1_return_soc")
 
 
 def run():

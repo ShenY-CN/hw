@@ -9,6 +9,7 @@ sys.path[:0] = [str(PROJECT_ROOT / "code"), str(PROJECT_ROOT)]
 from mountain_flood.figure.common import (
     COLORS, RELAY_COLORS, Model, NEUTRAL, draw_region, load_result, save_figure,
 )
+from matplotlib import patheffects
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
@@ -49,7 +50,7 @@ def plot_relay_map(model, data):
 
 
 def plot_relay_coverage_points(model, data):
-    """把通信证书中的中继服务区间映射回航线上，展示直连盲区的中继覆盖。"""
+    """通信证书覆盖采样（终稿版：W/E/N 悬停点更醒目，DEM 与普通标签降权）。"""
     routes = {route["id"]: route for route in data["routes"]}
     points = {}
     relay_provider_color = {"R01": "#69549A", "R02": "#258A91"}
@@ -73,16 +74,17 @@ def plot_relay_coverage_points(model, data):
         points.setdefault(color, [[], []])[0].append(x / 1000)
         points[color][1].append(y / 1000)
 
-    fig, ax = plt.subplots(figsize=(6.4, 4.5))
-    draw_region(ax, model)
+    figure, ax = plt.subplots(figsize=(6.8, 4.8))
+    draw_region(ax, model, terrain_alpha=0.6, service_label_size=7.5,
+                service_marker_size=26)
     for route in data["routes"]:
         path = model.xy[[0] + route["order"] + [0]] / 1000
         ax.plot(path[:, 0], path[:, 1], color=NEUTRAL, linewidth=0.5, alpha=0.25)
-    relay_labels = {"#69549A": "R01中继覆盖采样", "#258A91": "R02中继覆盖采样",
+    relay_labels = {"#69549A": "R01中继接入轨迹采样", "#258A91": "R02中继接入轨迹采样",
                     COLORS["C"]: "其他中继覆盖采样"}
     for color, (x_values, y_values) in points.items():
         if x_values:
-            ax.scatter(x_values, y_values, s=7, color=color, alpha=0.55,
+            ax.scatter(x_values, y_values, s=9, color=color, alpha=0.6,
                        label=relay_labels.get(color, "中继覆盖采样"), zorder=4)
     shown = set()
     for relay in data["relays"]:
@@ -90,11 +92,15 @@ def plot_relay_coverage_points(model, data):
             continue
         shown.add(relay["site"])
         x, y = model.local(*relay["pos"][:2])
-        ax.scatter(x / 1000, y / 1000, marker="D", s=75,
-                   color=RELAY_COLORS[relay["site"]], edgecolor="black", linewidth=0.4,
-                   label=f"{relay['site']}中继站", zorder=6)
-    ax.legend(fontsize=7, loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=2)
-    save_figure(fig, "q3_relay_coverage_points")
+        ax.scatter(x / 1000, y / 1000, marker="D", s=150,
+                   color=RELAY_COLORS[relay["site"]], edgecolor="black", linewidth=0.7,
+                   label=f"{relay['site']}中继站（{relay['id'][:3]}）", zorder=6)
+        label = ax.annotate(relay["site"], (x / 1000, y / 1000), xytext=(7, 5),
+                            textcoords="offset points", fontsize=10, fontweight="bold",
+                            color=RELAY_COLORS[relay["site"]], zorder=7)
+        label.set_path_effects([patheffects.withStroke(linewidth=2.0, foreground="white")])
+    ax.legend(fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.11), ncol=2)
+    save_figure(figure, "q3_relay_coverage_points")
 
 
 def _merge_status_intervals(communication):
