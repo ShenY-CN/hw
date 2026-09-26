@@ -38,7 +38,7 @@ $B_{ab}(t)=1$表示按第\ref{sec:dem}节的DEM栅格规则，该连线被判为
 
 双向门限不分别仿真上、下行两套随机衰落，而由附件的发射功率、天线增益、灵敏度、衰落裕量和系统损耗合成。记两端功率为$P_a,P_b$（dBm），增益为$G_a,G_b$（dBi），则
 \begin{equation}
-L^{\max}_{a\leftrightarrow b}
+L_{ab}^{\max}
 =\min(P_a,P_b)+G_a+G_b-P_{\rm sens}-M-L_{\rm sys}.
 \label{eq:threshold}
 \end{equation}
@@ -50,7 +50,7 @@ L^{\max}_{a\leftrightarrow b}
 
 中继回传端（19~dBm，8~dBi）与网关的回传门限为126~dB。
 
-可用性为$A_{ab}(t)=\mathbf{1}\{L_{ab}(t)\le L^{\max}_{a\leftrightarrow b}\}$。
+可用性为$A_{ab}(t)=\mathbf{1}\{L_{ab}(t)\le L_{ab}^{\max}\}$。
 
 \subsubsection{直接通信与中继通信条件}
 
