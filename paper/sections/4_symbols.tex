@@ -1,36 +1,98 @@
 \section{符号说明}
 
-\begin{table}[H]\centering\normalsize\setlength{\tabcolsep}{5.5pt}
-\caption{集合、参数与状态量}\label{tab:symbols-a}
-\begin{tabular}{clc}\toprule
-符号 & 含义 & 单位\\\midrule
-$\mathcal B,\mathcal N,\mathcal G$ & 货箱、服务区与运输机型集合 & ---\\
-$\mathcal M,\mathcal H$ & 医疗箱与适用硬时限货箱集合 & ---\\
-$n(b),m_b,V_b$ & 货箱目的地、质量与体积 & ---、kg、m$^3$\\
-$d_b,f_b,h_b,D_b$ & 期望、首批、适用硬截止与交付完成时刻 & s\\
-$\pi_b,T_b,T_\pi,\bar D_\pi$ & 优先系数、迟到量、加权迟到与加权平均交付 & ---、s、系数$\cdot$s、s\\
-$Q_g,\bar V_g,E_g^{\rm use},\rho_g$ & 载重、容积、可用电量与返航储备率 & kg、m$^3$、kWh、---\\
-$\boldsymbol n_i,\boldsymbol a,\mathcal A_i$ & 箱型计数、批次模式与可行模式集合 & 箱、箱、---\\
-$F_i(\boldsymbol r)$ & 完成剩余计数的最优（架次，能耗） & 架次、kWh\\
-$D_{ab}(t),L_{ab}(t),L^{\max}_{a\leftrightarrow b}$ & 三维距离、路径损耗与双向允许损耗 & km、dB、dB\\
-$\bar L_I,\mu_I,\gamma_L$ & 区间损耗上界、证书裕度与最小链路裕度 & dB\\
-\bottomrule\end{tabular}\end{table}
+表~\ref{tab:symbols}列出全文使用的主要符号及其适用范围；各问特有的辅助量在首次出现处另行说明，与表内定义保持一致。
 
-\begin{table}[H]\centering\normalsize\setlength{\tabcolsep}{5.5pt}
-\caption{决策变量与评价指标}\label{tab:symbols-b}
-\begin{tabular}{clc}\toprule
-符号 & 含义 & 单位\\\midrule
-$a_k,x_{bk},h_{ki},v_{kij}$ & 概念航次启用、箱分配、站点访问与路径弧 & 0--1\\
-$y_{kg},z_{ku},w_{kr}$ & 航次的机型、实体机与电池分配 & 0--1\\
-$s_k,C_k,E_k$ & 起飞、返航时刻与航次能耗 & s、s、kWh\\
-$r\in\mathcal R,\lambda_r$ & 实际路线列及未来列选择变量 & ---、0--1\\
-$C_T,E_T,N_T,\gamma_E$ & 运输收尾、能耗、架次与最小能源裕度 & s、kWh、架次、---\\
-$\varepsilon_T,\mathcal P^\star,S^{\rm arc}$ & 容忍量、非支配集与共享历史初值 & 系数$\cdot$s、---、---\\
-$e_\ell,q_{\ell h},z^R_{\ell u},w^R_{\ell r}$ & 中继启用、站点、实体机与组件分配 & 0--1\\
-$[a_\ell,b_\ell],d_{km},c_{km\ell}$ & 中继服务窗、直连和中继覆盖分配 & s、0--1、0--1\\
-$\kappa^{\rm dir},\kappa^{\rm acc},\kappa^{\rm back}$ & 连续直连、接入与回程证书 & 0--1\\
-$C_J,E_R,N_R$ & 联合收尾、中继能耗与中继架次 & s、kWh、架次\\
-$a_{ch},r_{hk},r_k^{\rm pool},A_k$ & 组件分组、组需求、统一池需求与库存 & 0--1、件\\
-$R_k^{\rm dup},I_k^{\rm idle},G_k^{\rm short}$ & 重复配置、库存闲置与库存缺口 & 件\\
-$W_h,\operatorname{CV}_W$ & 组工作量及其变异系数 & s、---\\
-\bottomrule\end{tabular}\end{table}
+\begin{longtable}{p{3.9cm}p{4.2cm}p{3.4cm}p{2.0cm}}
+\caption{主要符号及其含义}\label{tab:symbols}\\
+\toprule
+{\heiti 符号} & {\heiti 含义} & {\heiti 单位或取值} & {\heiti 适用范围} \\
+\midrule
+\endfirsthead
+\caption[]{主要符号及其含义（续）}\\
+\toprule
+{\heiti 符号} & {\heiti 含义} & {\heiti 单位或取值} & {\heiti 适用范围} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\multicolumn{4}{l}{{\heiti 集合与索引}}\\
+\midrule
+$N,\ S$ & 任务节点集合与服务区集合 & $N=\{0,\dots,15\}$；$S=\{1,\dots,15\}$ & 全题 \\
+$G,\ \mathcal{U}_g$ & 机型集合与机型$g$的实体机集合 & $G=\{A,B,C\}$ & 问题一至四 \\
+$\mathcal{Q}_g$ & 机型$g$的共享电池集合 & 集合 & 问题二至四 \\
+$B,\ B_i$ & 全部货箱集合与服务区$i$的货箱集合 & 80个货箱 & 全题 \\
+$\mathcal{M},\ \mathcal{H}$ & 医疗箱集合与硬时限货箱集合 & $\mathcal{M}\subset B$ & 问题二至四 \\
+$P,\ R$ & 运输架次集合与中继架次集合 & 离散集合 & 问题二至四 \\
+$i,j,g,u,b,p,r$ & 节点/机型/实体机/货箱/架次索引 & 整数或类别 & 全题 \\
+\midrule
+
+\multicolumn{4}{l}{{\heiti 空间与航段}}\\
+\midrule
+$(\lambda_i,\varphi_i)$ & 节点$i$的经度与纬度 & $^\circ$ & 全题 \\
+$z_i,\ z_i^{op}$ & 地面海拔与作业海拔 & m & 全题 \\
+$d_{ij},\ H_{ij}$ & 航段水平距离与计划巡航海拔 & m & 全题 \\
+$h_{ij}^{+},\ h_{ij}^{-}$ & 航段爬升与下降高度 & m & 全题 \\
+\midrule
+
+\multicolumn{4}{l}{{\heiti 运输参数与物理量}}\\
+\midrule
+$M_b,\ V_b$ & 货箱$b$的质量与体积 & kg；m$^3$ & 全题 \\
+$m_g,\ Q_g,\ V_g$ & 空载质量/最大载货量/可用容积 & kg；kg；m$^3$ & 全题 \\
+$v_g^{\uparrow},\ v_g^{0},\ v_g^{\downarrow}$ & 爬升/巡航/下降速度 & m/s & 全题 \\
+$L_g^{0},\ L_g^{F},\ L_g(q)$ & 空载/满载/等效航程 & m & 全题 \\
+$E_g^{use},\ \rho_g,\ \eta_g$ & 电池可用能量/返航余量/爬升效率 & kWh；[0,1]；[0,1] & 全题 \\
+$t^{prep},\ t^{load},$ & 准备/装载/交接/逐箱交接时间 & s & 问题一至三 \\
+$t^{hand},\ t^{box}$ & 同上（续行） & s & 问题一至三 \\
+$t_{ij}^{g},\ E_{ij}^{g}(q)$ & 航段飞行时间与航段能耗 & s；kWh & 全题 \\
+$q_{ig}^{\max}$ & 单点往返最大安全载荷 & kg & 问题一 \\
+$a(b)$ & 货箱$b$的目的地服务区编号 & $\{1,\dots,15\}$ & 全题 \\
+$f_b$ & 首批保障截止时刻 & s & 问题二、三 \\
+\midrule
+
+\multicolumn{4}{l}{{\heiti 运输调度与能源周转}}\\
+\midrule
+$B_p,\ \pi_p$ & 架次$p$的货箱集合与访问序列 & 集合；有序序列 & 问题二至四 \\
+$q_p^{k}$ & 架次$p$第$k$段的剩余有效载荷 & kg & 问题二、三 \\
+$s_p,\ e_p$ & 架次开始与返航结束时刻 & s & 问题二至四 \\
+$\Delta_p$ & 架次$p$的总耗时 & s & 问题二、三 \\
+$\tau_{pb}$ & 货箱$b$自起飞至交接完成的用时 & s & 问题二 \\
+$E_p$ & 架次$p$的运输能耗 & kWh & 问题二、三 \\
+$T_b^{arr},\ D_b,\ T_b$ & 送达时刻/硬截止/期望送达时刻 & s & 问题二、三 \\
+$L_b,\ \bar{L}_\pi$ & 迟到量与加权平均迟到 & s & 问题二、三 \\
+$\bar{T}^{arr}_{\omega}$ & 优先加权平均送达时刻 & s & 问题二、三 \\
+$\omega_b$ & 应急优先系数 & 无量纲 & 问题二、三 \\
+$SOC_p,\ t_g^{chg}(s)$ & 返航荷电状态与充满时间 & [0,1]；s & 问题二至四 \\
+$a_p,\ x_{bp},$ & 航次启用/箱分配/站点访问/路径弧 & 0--1 & 问题二 \\
+$h_{pi},\ v_{pij}$ & 同上（续行） & 0--1 & 问题二 \\
+$y_{pg},\ z_{pu},\ w_{pr}$ & 机型/实体机/电池分配 & 0--1 & 问题二 \\
+$o_{pi}$ & 航次$p$中站点$i$的访问次序 & 无量纲 & 问题二 \\
+$C_T,\ E_T,\ N_T,\ \gamma_E$ & 收尾时刻/总能耗/架次/最小裕度 & s；kWh；架次 & 问题二 \\
+$\varepsilon_T$ & 目标级联容忍量 & s & 问题二 \\
+\midrule
+
+\multicolumn{4}{l}{{\heiti 通信与中继}}\\
+\midrule
+$D_{ab}(t),\ \beta_{ab}(t)$ & 三维距离与地形遮挡指示 & km；$\{0,1\}$ & 问题三、四 \\
+$L_{ab}^{\max},$ & 允许损耗门限与实际传播损耗 & dB & 问题三、四 \\
+$L_{ab}^{path}(t)$ & 同上（续行） & dB & 问题三、四 \\
+$A_{ab}(t)$ & 双向链路可用性 & $\{0,1\}$ & 问题三、四 \\
+$\bar{L}_I,\ \mu_I$ & 区间损耗上界与证书裕度 & dB & 问题三 \\
+$d_{pm},\ c_{pm\ell}$ & 直连选择与中继覆盖分配 & 0--1 & 问题三 \\
+$r_{pm}^{dir},\ r_{pm}^{acc},$ & 直连/接入/回程证书 & 0--1 & 问题三 \\
+$r_{pm}^{back}$ & 同上（续行） & 0--1 & 问题三 \\
+$x_r^R,\ [\tau_r^{on},$ & 悬停位置与服务时间区间 & $(^\circ,\mathrm{m})$；s & 问题三、四 \\
+$\tau_r^{off}]$ & 同上（续行） & s & 问题三、四 \\
+$E_r^R$ & 中继架次总能耗 & kWh & 问题三、四 \\
+$C_J,\ N_R$ & 联合收尾时刻与中继架次数 & s；架次 & 问题三 \\
+\midrule
+
+\multicolumn{4}{l}{{\heiti 分区与资源配置}}\\
+\midrule
+$K,\ S_K$ & 任务组数与第$k$组服务区集合 & $K\in\{2,3\}$ & 问题四 \\
+$n_{kc},\ N_c$ & 第$k$组资源需求与现有库存 & 架或组 & 问题四 \\
+$\Delta_c$ & 库存缺口 & 架或组 & 问题四 \\
+$R_k^{dup},\ I_k^{idle}$ & 重复配置量与库存闲置量 & 件 & 问题四 \\
+$W_k,\ CV^{W}$ & 第$k$组工作量与变异系数 & s；无量纲 & 问题四 \\
+
+\end{longtable}
