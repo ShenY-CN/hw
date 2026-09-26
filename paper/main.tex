@@ -38,27 +38,48 @@
 
 % ---------- 字体（fontspec + ctex，xelatex 编译） ----------
 % 显式采用当前 macOS 字体，避免 ctex 旧字体集对 STHeiti 的解析差异。
-\setCJKmainfont{Songti SC}
-\setCJKsansfont{Heiti SC}
-\setCJKmonofont{Songti SC}
-\setCJKfamilyfont{zhsong}{Songti SC}
-\setCJKfamilyfont{zhhei}{Heiti SC}
-\setCJKfamilyfont{zhkai}{Kaiti SC}
-% Word 模板标题字体为“华文新魏”；系统未安装时回退至黑体。
-\IfFontExistsTF{STXinwei}{
-  \setCJKfamilyfont{zhtitle}{STXinwei}
-}{
-  \IfFontExistsTF{华文新魏}
-    {\setCJKfamilyfont{zhtitle}{华文新魏}}
-    {\setCJKfamilyfont{zhtitle}{Heiti SC}}
+\IfFontExistsTF{Songti SC}{%
+  \setCJKmainfont{Songti SC}%
+  \setCJKmonofont{Songti SC}%
+  \setCJKfamilyfont{zhsong}{Songti SC}%
+}{%
+  \setCJKmainfont{SimSun}%
+  \setCJKmonofont{SimSun}%
+  \setCJKfamilyfont{zhsong}{SimSun}%
+}
+\IfFontExistsTF{Heiti SC}{%
+  \setCJKsansfont{Heiti SC}%
+  \setCJKfamilyfont{zhhei}{Heiti SC}%
+}{%
+  \setCJKsansfont{SimHei}%
+  \setCJKfamilyfont{zhhei}{SimHei}%
+}
+\IfFontExistsTF{Kaiti SC}{%
+  \setCJKfamilyfont{zhkai}{Kaiti SC}%
+}{%
+  \setCJKfamilyfont{zhkai}{KaiTi}%
 }
 \providecommand\songti{\CJKfamily{zhsong}}
 \providecommand\heiti{\CJKfamily{zhhei}}
 \providecommand\kaishu{\CJKfamily{zhkai}}
+% 标题字体：Word 模板用华文新魏（STXinwei），缺失时依次回退黑体
+\IfFontExistsTF{STXinwei}{%
+  \setCJKfamilyfont{zhtitle}{STXinwei}%
+}{%
+  \IfFontExistsTF{华文新魏}{%
+    \setCJKfamilyfont{zhtitle}{华文新魏}%
+  }{%
+    \IfFontExistsTF{Heiti SC}{%
+      \setCJKfamilyfont{zhtitle}{Heiti SC}%
+    }{%
+      \setCJKfamilyfont{zhtitle}{SimHei}%
+    }%
+  }%
+}
 \providecommand\zhtitle{\CJKfamily{zhtitle}}
 % 西文正文与代码等宽字体：
 \IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{}
-\setmonofont{Menlo}
+\IfFontExistsTF{Menlo}{\setmonofont{Menlo}}{\setmonofont{Consolas}}
 
 % ---------- 正文：12pt，首行缩进 2em，两端对齐 ----------
 % 2026 年官方格式规范要求正文单倍行距。
