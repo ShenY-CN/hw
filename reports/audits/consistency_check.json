@@ -1,7 +1,34 @@
 {
-  "status": "PASS",
-  "errors": [],
-  "notes": [],
+  "status": "FAIL",
+  "errors": [
+    "代码/输入/配置版本与元数据不符: check_consistency.py",
+    "代码/输入/配置版本与元数据不符: code/mountain_flood/figure/q2.py",
+    "代码/输入/配置版本与元数据不符: paper/main.tex",
+    "代码/输入/配置版本与元数据不符: paper/references.tex",
+    "代码/输入/配置版本与元数据不符: paper/sections/10_evaluation.tex",
+    "代码/输入/配置版本与元数据不符: paper/sections/2_analysis.tex",
+    "代码/输入/配置版本与元数据不符: paper/sections/5_problem1.tex",
+    "代码/输入/配置版本与元数据不符: paper/sections/6_problem2.tex",
+    "代码/输入/配置版本与元数据不符: paper/sections/7_problem3.tex",
+    "代码/输入/配置版本与元数据不符: paper/sections/8_problem4.tex",
+    "代码/输入/配置版本与元数据不符: paper/sections/9_sensitivity.tex",
+    "代码/输入/配置版本与元数据不符: paper/sections/A_code.tex",
+    "代码/输入/配置版本与元数据不符: paper/tables/energy_multiplier.tex",
+    "论文图版本与元数据不符: figures/rigor_pool_20260926/flow_overall_model.pdf",
+    "论文图版本与元数据不符: paper/tables/energy_multiplier.tex",
+    "论文图版本与元数据不符: paper/sections/9_sensitivity.tex",
+    "论文图版本与元数据不符: paper/sections/10_evaluation.tex",
+    "论文图版本与元数据不符: paper/sections/6_problem2.tex",
+    "论文图版本与元数据不符: paper/sections/A_code.tex",
+    "论文图版本与元数据不符: paper/sections/5_problem1.tex",
+    "论文图版本与元数据不符: paper/sections/2_analysis.tex",
+    "论文图版本与元数据不符: paper/sections/8_problem4.tex",
+    "PDF版本与元数据不符: paper/main.pdf",
+    "PDF版本与元数据不符: D题论文.pdf"
+  ],
+  "notes": [
+    "论文PDF早于LaTeX源文件，尚未重新编译"
+  ],
   "metrics": {
     "Q1": {
       "count": 18,
@@ -55,5 +82,5 @@
       0
     ]
   },
-  "figures": 40
+  "figures": 66
 }

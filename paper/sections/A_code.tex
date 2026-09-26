@@ -1,28 +1,38 @@
-本文随附\path{code/}目录中的完整Python源代码和\path{requirements.lock}依赖锁定文件。固定参数单独保存在
-\begin{center}\path{config/optimization_parameters.json}\end{center}
-唯一总复现命令为
-\begin{lstlisting}[language=bash]
-python code/reproduce.py
-\end{lstlisting}
-该命令从原始附件读取节点、货箱、机型、DEM与通信参数，重算问题一，回放问题二、三的正式方案，核验逐箱目的地、硬时限、能耗、机体/电池占用及连续通信，生成问题四分区、论文数值表、图片与提交表。墙钟型启发式不承诺在另一机器再次找到相同候选；归档方案回放与重新搜索在输出中分开标识。
+\subsection*{A.1 问题一：组批模式枚举与计数状态动态规划}
+\addcontentsline{toc}{subsection}{A.1 问题一：组批模式枚举与计数状态动态规划}
+以下为项目实际运行的 Python 源码节选，直接从对应模块载入并保留源文件行号。此段包含返航储备下的安全载荷搜索、可行组批模式枚举、带缓存的计数状态动态规划及路线恢复。
+\lstinputlisting[language=Python,firstline=12,lastline=58,firstnumber=12,numbers=left,numberstyle=\tiny\color{black!55},basicstyle=\ttfamily\scriptsize]{../code/mountain_flood/problem1/packing.py}
 
-\begin{table}[H]\centering\normalsize
-\caption{正式复现入口、证据与核验文件}\label{tab:reproduction-files}
-\begin{tabular}{>{\raggedright\arraybackslash}p{4.7cm}>{\raggedright\arraybackslash}p{9.1cm}}\toprule
-路径 & 作用\\\midrule
-\path{code/reproduce.py} & 唯一总入口；调用数据、求解、回放、图表和提交表流程\\
-\path{code/mountain_flood/problem1/packing.py} & Q1可行模式枚举与计数状态动态规划\\
-\path{code/mountain_flood/problem2/search.py} & Q2随机构造、五类邻域、爬山、退火和禁忌搜索\\
-\path{code/mountain_flood/experiments/formal_q2_protocol.py} & 四法$\times$10种子$\times$固定3评估的小协议\\
-\path{code/mountain_flood/experiments/formal_q3_protocol.py} & 三运输族、32候选的有限协调审计\\
-\path{code/mountain_flood/validation/} & 独立回放、资源占用、通信和正式见证核验器\\
-\path{code/generate_paper_tables.py} & 从正式JSON确定性生成论文数值表\\
-\path{results/q1_rho20.json}, \path{q2.json}, \path{q3.json}, \path{q4.json} & 四问正式结果\\
-\path{results/q2_formal_protocol.json} & Q2小协议的40次运行、目标配置与去重Pareto输出\\
-\path{results/q3_formal_coordination_audit.json} & Q3候选、连续证书裕度、非支配点和能力边界\\
-\path{results/solution_certificate.json} & 独立逐箱、逐资源、逐区间复核证书\\
-\path{results/}目录中的“复现清单.json” & 输入、程序、结果和产物哈希清单\\\bottomrule
-\end{tabular}\end{table}
+\clearpage
+\subsection*{A.2 问题二：路线搜索与固定路线排程核心代码}
+\addcontentsline{toc}{subsection}{A.2 问题二：路线搜索与固定路线排程核心代码}
+以下节选展示项目实际使用的资源解码、多策略搜索和固定路线 CP-SAT 排程实现。完整函数依赖同一模块中的路线变换、指标计算和验证函数。
 
-问题二完整24架次如下；逐箱编号、交付时刻和资源编号同时保存在\path{results/q2.json}与结果提交表中。
-\input{tables/q2_flights}
+\subsubsection*{A.2.1 资源解码与实体资源分配}
+\lstinputlisting[language=Python,firstline=32,lastline=48,firstnumber=32,numbers=left,numberstyle=\tiny\color{black!55},basicstyle=\ttfamily\scriptsize]{../code/mountain_flood/problem2/search.py}
+
+\clearpage
+\subsubsection*{A.2.2 四类方法共用的路线搜索框架}
+\lstinputlisting[language=Python,firstline=136,lastline=196,firstnumber=136,numbers=left,numberstyle=\tiny\color{black!55},basicstyle=\ttfamily\fontsize{6.5pt}{7.3pt}\selectfont]{../code/mountain_flood/problem2/search.py}
+
+\clearpage
+\subsubsection*{A.2.3 固定路线的分阶段 CP-SAT 排程}
+\lstinputlisting[language=Python,firstline=207,lastline=262,firstnumber=207,numbers=left,numberstyle=\tiny\color{black!55},basicstyle=\ttfamily\scriptsize]{../code/mountain_flood/problem2/search.py}
+
+\clearpage
+\subsection*{A.3 问题三：连续通信链路认证核心代码}
+\addcontentsline{toc}{subsection}{A.3 问题三：连续通信链路认证核心代码}
+以下节选来自通信认证模块，展示单区间保守链路证明，以及认证失败时递归二分路线区间的实际实现。
+
+\subsubsection*{A.3.1 基于 DEM 扫掠视线的区间证书}
+\lstinputlisting[language=Python,firstline=19,lastline=54,firstnumber=19,numbers=left,numberstyle=\tiny\color{black!55},basicstyle=\ttfamily\scriptsize]{../code/mountain_flood/problem3/communication.py}
+
+\clearpage
+\subsubsection*{A.3.2 中继时窗筛选与递归区间认证}
+\lstinputlisting[language=Python,firstline=103,lastline=134,firstnumber=103,numbers=left,numberstyle=\tiny\color{black!55},basicstyle=\ttfamily\scriptsize]{../code/mountain_flood/problem3/communication.py}
+
+\clearpage
+\subsection*{A.4 问题四：不可拆组件分区与资源评价核心代码}
+\addcontentsline{toc}{subsection}{A.4 问题四：不可拆组件分区与资源评价核心代码}
+以下为项目实际分区函数的完整源码。它先合并多服务区航线形成不可拆组件，再统计各组运输机、电池和中继资源峰值，最后穷举两组与三组划分并按词典序目标筛选。
+\lstinputlisting[language=Python,firstline=14,lastline=188,firstnumber=14,numbers=left,numberstyle=\tiny\color{black!55},basicstyle=\ttfamily\scriptsize]{../code/mountain_flood/problem4/partition.py}

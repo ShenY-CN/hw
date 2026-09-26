@@ -1,54 +1,132 @@
-<mxfile host="Electron" agent="Codex">
-  <diagram id="d-roadmap" name="总体建模流程">
-    <mxGraphModel dx="1157" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="650" pageHeight="770" math="0" shadow="0">
+<mxfile host="Electron" agent="Codex" version="24.7.17">
+  <diagram id="d-roadmap" name="递进建模与验收链">
+    <mxGraphModel dx="1800" dy="1380" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1380" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="n1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FA;strokeColor=#4477AA;fontSize=17;fontFamily=PingFang SC;" value="输入附件&lt;br&gt;节点、货箱、机型、电池&lt;br&gt;DEM、链路" vertex="1">
-          <mxGeometry height="105" width="265" x="30" y="25" as="geometry" />
+        <mxCell id="title" parent="1" value="山区无人机运输—通信协同的递进建模与验收链" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#1E293B;fontSize=28;fontStyle=1;fontFamily=PingFang SC;" vertex="1">
+          <mxGeometry x="180" y="20" width="1440" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="n2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FA;strokeColor=#4477AA;fontSize=17;fontFamily=PingFang SC;" value="统一物理规则&lt;br&gt;航段时间、能耗、充电与双向链路" vertex="1">
-          <mxGeometry height="105" width="265" x="355" y="25" as="geometry" />
+        <mxCell id="subtitle" parent="1" value="先统一计算口径，再逐问传递方案；每一步都对应明确的中间产出与可核验依据" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#64748B;fontSize=16;fontFamily=PingFang SC;" vertex="1">
+          <mxGeometry x="240" y="68" width="1320" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="n3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4ED;strokeColor=#449966;fontSize=17;fontFamily=PingFang SC;" value="问题一：单点组批&lt;br&gt;安全载荷与计数状态动态规划" vertex="1">
-          <mxGeometry height="105" width="265" x="355" y="225" as="geometry" />
+        <mxCell id="base" parent="1" value="&lt;b&gt;统一数据与公共物理规则&lt;/b&gt;&lt;br&gt;输入：DEM、80箱与15个服务区、运输机和电池、中继设备、配送时限、通信参数&lt;br&gt;共享口径：统一节点与单位；航段净空、飞行时间和载荷能耗；SOC与充电周转；双向链路预算" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=2;fontColor=#243447;fontSize=17;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=12;" vertex="1">
+          <mxGeometry x="200" y="110" width="1540" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="n4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4ED;strokeColor=#449966;fontSize=17;fontFamily=PingFang SC;" value="问题二：多点运输&lt;br&gt;四种算法同预算比较&lt;br&gt;车辆与电池排程" vertex="1">
-          <mxGeometry height="105" width="265" x="30" y="225" as="geometry" />
+
+        <mxCell id="constraint_title" parent="1" value="约束逐层增加" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#475569;fontSize=15;fontStyle=1;fontFamily=PingFang SC;" vertex="1">
+          <mxGeometry x="20" y="260" width="160" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="n5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF0E7;strokeColor=#D37B42;fontSize=17;fontFamily=PingFang SC;" value="问题三：通信协同&lt;br&gt;救援时间—能源权衡&lt;br&gt;连续轨迹通信核验" vertex="1">
-          <mxGeometry height="105" width="265" x="30" y="425" as="geometry" />
+        <mxCell id="c1" parent="1" value="载荷&lt;br&gt;+ 能量" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#94A3B8;strokeWidth=1.5;fontColor=#334155;fontSize=15;fontFamily=PingFang SC;align=center;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="25" y="337" width="150" height="82" as="geometry" />
         </mxCell>
-        <mxCell id="n6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF0E7;strokeColor=#D37B42;fontSize=17;fontFamily=PingFang SC;" value="问题四：独立分区&lt;br&gt;不可拆组件枚举、资源峰值与缺口" vertex="1">
-          <mxGeometry height="105" width="265" x="355" y="425" as="geometry" />
+        <mxCell id="c2" parent="1" value="+ 硬时限&lt;br&gt;+ 共享设备" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#94A3B8;strokeWidth=1.5;fontColor=#334155;fontSize=15;fontFamily=PingFang SC;align=center;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="25" y="562" width="150" height="82" as="geometry" />
         </mxCell>
-        <mxCell id="n7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2ECF9;strokeColor=#8064A2;fontSize=17;fontFamily=PingFang SC;" value="逐项验证&lt;br&gt;唯一覆盖、SOC、时限&lt;br&gt;通信、敏感性" vertex="1">
-          <mxGeometry height="105" width="265" x="355" y="625" as="geometry" />
+        <mxCell id="c3" parent="1" value="+ 连续通信&lt;br&gt;+ 中继资源" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#94A3B8;strokeWidth=1.5;fontColor=#334155;fontSize=15;fontFamily=PingFang SC;align=center;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="25" y="787" width="150" height="82" as="geometry" />
         </mxCell>
-        <mxCell id="n8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2ECF9;strokeColor=#8064A2;fontSize=17;fontFamily=PingFang SC;" value="统一交付&lt;br&gt;结果表、图表、论文与复现清单" vertex="1">
-          <mxGeometry height="105" width="265" x="30" y="625" as="geometry" />
+        <mxCell id="c4" parent="1" value="+ 独立执行&lt;br&gt;+ 禁止跨组共享" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#94A3B8;strokeWidth=1.5;fontColor=#334155;fontSize=15;fontFamily=PingFang SC;align=center;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="25" y="1012" width="150" height="82" as="geometry" />
         </mxCell>
-        <mxCell id="e1" edge="1" parent="1" source="n1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" target="n2">
+
+        <mxCell id="q1_task" parent="1" value="&lt;b&gt;Q1｜基础能力&lt;/b&gt;&lt;br&gt;回答：单点任务能否安全完成？&lt;br&gt;如何形成可行货箱组批？" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FA;strokeColor=#4477AA;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="200" y="300" width="350" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="q1_method" parent="1" value="&lt;b&gt;求解过程&lt;/b&gt;&lt;br&gt;DEM净空 → 最大安全载荷二分&lt;br&gt;可行批次模式枚举 → 计数状态动态规划&lt;br&gt;目标：先少架次，再少飞行能耗" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7FAFE;strokeColor=#4477AA;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="590" y="300" width="760" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="q1_output" parent="1" value="&lt;b&gt;本问输出&lt;/b&gt;&lt;br&gt;逐服务区安全载荷边界&lt;br&gt;单点直送的可行组批基准" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FA;strokeColor=#4477AA;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="1390" y="300" width="350" height="155" as="geometry" />
+        </mxCell>
+
+        <mxCell id="q2_task" parent="1" value="&lt;b&gt;Q2｜运输调度&lt;/b&gt;&lt;br&gt;多服务区、多架次配送&lt;br&gt;纳入硬时限及共享机体、电池" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5F4;strokeColor=#228B8D;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="200" y="525" width="350" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="q2_method" parent="1" value="&lt;b&gt;求解过程&lt;/b&gt;&lt;br&gt;完整路线列候选 → 四种搜索方法同预算比较&lt;br&gt;固定路线 CP-SAT 排机体与电池时序&lt;br&gt;逐箱核对服务区、时限和物理可行性" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3FAF9;strokeColor=#228B8D;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="590" y="525" width="760" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="q2_output" parent="1" value="&lt;b&gt;本问输出&lt;/b&gt;&lt;br&gt;运输路线与逐架次安排&lt;br&gt;机体、电池时序及逐箱送达时刻" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5F4;strokeColor=#228B8D;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="1390" y="525" width="350" height="155" as="geometry" />
+        </mxCell>
+
+        <mxCell id="q3_task" parent="1" value="&lt;b&gt;Q3｜运输—通信协同&lt;/b&gt;&lt;br&gt;在运输任务上补足通信保障&lt;br&gt;同时安排中继机与能源组件" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF1E7;strokeColor=#D9813D;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="200" y="750" width="350" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="q3_method" parent="1" value="&lt;b&gt;求解过程&lt;/b&gt;&lt;br&gt;运输候选族 + 中继窗口 → 有限候选协调&lt;br&gt;直连/中继覆盖判定 → 连续区间链路证书&lt;br&gt;对归档候选逐一进行硬约束回放" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9F4;strokeColor=#D9813D;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="590" y="750" width="760" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="q3_output" parent="1" value="&lt;b&gt;本问输出&lt;/b&gt;&lt;br&gt;运输—中继联合可行候选&lt;br&gt;全过程连续通信认证结果" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF1E7;strokeColor=#D9813D;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="1390" y="750" width="350" height="155" as="geometry" />
+        </mxCell>
+
+        <mxCell id="q4_task" parent="1" value="&lt;b&gt;Q4｜独立资源配置&lt;/b&gt;&lt;br&gt;固定 Q3 联合任务与通信关系&lt;br&gt;评估任务分组后的配置代价" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1ECF8;strokeColor=#8064A2;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="200" y="975" width="350" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="q4_method" parent="1" value="&lt;b&gt;求解过程&lt;/b&gt;&lt;br&gt;不可拆任务组件 → 两组/三组分区穷举&lt;br&gt;按事件时刻核算各类资源并发峰值&lt;br&gt;比较配置总量、重复配置与库存缺口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9F7FC;strokeColor=#8064A2;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="590" y="975" width="760" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="q4_output" parent="1" value="&lt;b&gt;本问输出&lt;/b&gt;&lt;br&gt;两组/三组任务划分&lt;br&gt;独立配置需求与库存缺口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1ECF8;strokeColor=#8064A2;strokeWidth=2;fontColor=#243447;fontSize=16;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=10;" vertex="1">
+          <mxGeometry x="1390" y="975" width="350" height="155" as="geometry" />
+        </mxCell>
+
+        <mxCell id="verify" parent="1" value="&lt;b&gt;全流程回放验收与成果交付&lt;/b&gt;&lt;br&gt;逐箱目的地与时限 → 逐航次载荷、能耗和返航储备 → 机体/电池/中继资源周转 → 每个通信区间连续覆盖&lt;br&gt;形成可执行方案、配置缺口、结果表图与复现材料" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF0F6;strokeColor=#355F8A;strokeWidth=2.5;fontColor=#243447;fontSize=17;fontFamily=PingFang SC;align=center;verticalAlign=middle;spacing=12;" vertex="1">
+          <mxGeometry x="200" y="1180" width="1540" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="scope" parent="1" value="范围说明：Q1 仅对单点直送模型给出精确解；Q2/Q3 结论限于实际搜索或归档的候选；Q4 固定 Q3 任务后核算分区资源。" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=none;fillColor=none;fontColor=#64748B;fontSize=14;fontFamily=PingFang SC;" vertex="1">
+          <mxGeometry x="200" y="1320" width="1540" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_base_q1" edge="1" parent="1" source="base" target="q1_method" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e2" edge="1" parent="1" source="n2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" target="n3">
+        <mxCell id="e_q1a" edge="1" parent="1" source="q1_task" target="q1_method" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e3" edge="1" parent="1" source="n3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" target="n4">
+        <mxCell id="e_q1b" edge="1" parent="1" source="q1_method" target="q1_output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e4" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" target="n5">
+        <mxCell id="e_q1_q2" edge="1" parent="1" source="q1_output" target="q2_task" value="继承：安全载荷边界、航段时间与能耗口径、可行组批能力" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;fontColor=#475569;fontSize=15;fontFamily=PingFang SC;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e5" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" target="n6">
+        <mxCell id="e_q2a" edge="1" parent="1" source="q2_task" target="q2_method" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e6" edge="1" parent="1" source="n6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" target="n7">
+        <mxCell id="e_q2b" edge="1" parent="1" source="q2_method" target="q2_output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e7" edge="1" parent="1" source="n7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#555555;strokeWidth=2;" target="n8">
+        <mxCell id="e_q2_q3" edge="1" parent="1" source="q2_output" target="q3_task" value="继承运输候选与服务时窗；增加全过程连续通信约束" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;fontColor=#475569;fontSize=15;fontFamily=PingFang SC;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="e_q3a" edge="1" parent="1" source="q3_task" target="q3_method" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_q3b" edge="1" parent="1" source="q3_method" target="q3_output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_q3_q4" edge="1" parent="1" source="q3_output" target="q4_task" value="固定 Q3 箱组、站序、运输与中继任务及通信关系" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;fontColor=#475569;fontSize=15;fontFamily=PingFang SC;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_q4a" edge="1" parent="1" source="q4_task" target="q4_method" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_q4b" edge="1" parent="1" source="q4_method" target="q4_output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_q4_verify" edge="1" parent="1" source="q4_output" target="verify" value="逐层产出进入统一回放验收" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748B;strokeWidth=2;fontColor=#475569;fontSize=14;fontFamily=PingFang SC;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.886;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_c1_c2" edge="1" parent="1" source="c1" target="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c2_c3" edge="1" parent="1" source="c2" target="c3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_c3_c4" edge="1" parent="1" source="c3" target="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>

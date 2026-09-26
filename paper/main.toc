@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {5.2}不可拆货箱组批}{13}{subsection.5.2}%
 \contentsline {section}{\numberline {6}问题二：异构多航次运输与共享资源调度}{15}{section.6}%
 \contentsline {subsection}{\numberline {6.1}时限、目标与概念槽模型}{15}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}路线列启发式与固定路线CP-SAT}{15}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.2}路线列启发式与固定路线CP-SAT}{16}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}固定预算下的算法对比与证据边界}{16}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}当前可执行运输方案}{17}{subsection.6.4}%
 \contentsline {section}{\numberline {7}问题三：连续通信修复与有限候选分解协调}{21}{section.7}%
@@ -48,5 +48,9 @@
 \contentsline {subsection}{\numberline {10.3}四问结果汇总与结论边界}{46}{subsection.10.3}%
 \contentsline {subsection}{\numberline {10.4}模型的局限性}{47}{subsection.10.4}%
 \contentsline {subsection}{\numberline {10.5}工程启示与最终结论}{47}{subsection.10.5}%
-\contentsline {section}{参考文献}{49}{section*.1}%
-\contentsline {section}{附录 A 复现说明}{50}{section*.1}%
+\contentsline {section}{参考文献}{49}{section*.61}%
+\contentsline {section}{附录 A 核心代码与复现说明}{51}{section*.61}%
+\contentsline {subsection}{A.1 问题一：组批模式枚举与计数状态动态规划}{51}{section*.62}%
+\contentsline {subsection}{A.2 问题二：路线搜索与固定路线排程核心代码}{52}{lstnumber.-1.58}%
+\contentsline {subsection}{A.3 问题三：连续通信链路认证核心代码}{55}{lstnumber.-4.262}%
+\contentsline {subsection}{A.4 问题四：不可拆组件分区与资源评价核心代码}{57}{lstnumber.-6.134}%
