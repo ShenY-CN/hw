@@ -107,6 +107,7 @@ h_{pi}\le\sum_{b:\,a(b)=i}x_{bp}.
 &o_{pi}-o_{pj}+|N|v_{pij}\le|N|-1+|N|\bigl(2-h_{pi}-h_{pj}\bigr).
 \label{eq:q2-route}
 \end{align}
+
 第一行要求每个航次以 O01 为起点与终点、每个被访问站入弧数等于出弧数等于 1，即为一条简单回路；第二行是 Miller--Tucker--Zemlin 型次序约束，当弧 $i\to j$ 被使用且两站均被访问时强制 $o_{pj}\ge o_{pi}+1$，排除与 O01 脱离的小回路。由于本题允许一架次访问多站，若不显式消除子回路，求解器极易把多条互不相连的短回路误判为可行。
 
 {\heiti（3）机型、机体与电池的三层指派。}
@@ -116,6 +117,7 @@ h_{pi}\le\sum_{b:\,a(b)=i}x_{bp}.
 \sum_{r\in\mathcal{Q}_g}w_{pr}=y_{pg},
 \label{eq:q2-resource}
 \end{equation}
+
 即每个启用航次恰选一种机型，所用实体机与电池都必须属于该机型（$\mathcal{U}_g$、$\mathcal{Q}_g$ 分别为机型 $g$ 的实体机集合与共享电池集合）。这使得题面“同一机型电池可跨机调度、不同机型不可混用”被写成下标约束，是离散资源在模型中的唯一入口。
 
 {\heiti（4）载重、容积与逐段载荷。}
@@ -125,6 +127,7 @@ h_{pi}\le\sum_{b:\,a(b)=i}x_{bp}.
 E_p\le\sum_g(1-\rho_g)E_g^{\rm use}y_{pg}.
 \label{eq:q2-capacity}
 \end{equation}
+
 前两式作用于整个航次的箱集而非单站箱集，因为多站架次的载重峰值出现在尚未交付任何箱的起飞时刻；第三式把“同一路线换用不同机型是否仍安全”直接写进约束。与之配套，逐段剩余载荷按尚未交付箱重之和更新：
 \begin{equation}
 q_p^{k}=\sum_{\substack{b:\,x_{bp}=1,\ a(b)\in\pi_p\ \text{中第}\ k\ \text{段及之后}}}\!\!M_b,
@@ -169,6 +172,7 @@ T_b^{\rm arr}=s_p+\tau_{pb},\qquad
 \sum_{r\in\mathcal{Q}_{g_p}}w_{pr}=1,
 \label{eq:q2-schedule}
 \end{equation}
+
 即每条路线列恰占一架同型机体与一组同型电池。配合式~\eqref{eq:q2-turnover}的区间不重叠与式~\eqref{eq:q2-deadline}的硬截止，下层成为含资源日历与时间窗的排序问题，其决策变量只有开始时刻与两类资源编号，故可由 CP-SAT 精确求解或证明不可行。这也是本文能够对每个候选路线给出确定结论的原因：路线层是启发式的，排程层不是。
 
 \subsection{固定评估小协议与证据边界}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.9.26)  26 SEP 2026 22:56
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex 2026.9.26)  26 SEP 2026 23:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -937,48 +937,48 @@ File: ../figures/fig_roadmap_merged.pdf Graphic file (type pdf)
 ) (./sections/2_analysis.tex [5]
 File: ../figures/paper_full_20260926/q1_dem_nodes.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q1_dem_nodes.pdf>
- [6]
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
 []|\TU/SongtiSC(0)/m/n/12 调 度 中 心 与 服 务
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--16
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 []|\TU/SongtiSC(0)/m/n/12 物 资 需 求 与 配 送
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 16--16
 []|\TU/SongtiSC(0)/m/n/12 运 输 无 人 机 数
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18--18
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 []|\TU/SongtiSC(0)/m/n/12 中 继 无 人 机 数
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
+Underfull \hbox (badness 10000) in paragraph at lines 18--18
 []|\TU/SongtiSC(0)/m/n/12 通 信 链 路 参
  []
 
-[7]
+[6]
 File: ../figures/rigor_pool_20260926/raw_q2_box_deadline_mix.pdf Graphic file (type pdf)
 <use ../figures/rigor_pool_20260926/raw_q2_box_deadline_mix.pdf>
 File: ../figures/rigor_pool_20260926/raw_q4_initial_inventory.pdf Graphic file (type pdf)
 <use ../figures/rigor_pool_20260926/raw_q4_initial_inventory.pdf>
- [8]
+ [7]
 File: ../figures/paper_full_20260926/q1_typical_elevation_profile.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q1_typical_elevation_profile.pdf>
 File: ../figures/paper_full_20260926/service_area_elevation_envelope.png Graphic file (type bmp)
 <../figures/paper_full_20260926/service_area_elevation_envelope.png>
- [9] [10]
+ [8] [9]
 File: ../figures/rigor_pool_20260926/raw_q3_link_budgets.pdf Graphic file (type pdf)
 <use ../figures/rigor_pool_20260926/raw_q3_link_budgets.pdf>
 ) (./sections/3_assumptions.tex
 File: ../figures/fig_assumption_scope.pdf Graphic file (type pdf)
 <use ../figures/fig_assumption_scope.pdf>
- [11] [12]) (./sections/4_symbols.tex
+ [10] [11]) (./sections/4_symbols.tex
 Underfull \hbox (badness 6141) in paragraph at lines 21--21
 []|\TU/SongtiSC(0)/m/n/12 任 务 节 点 集 合 与 服 务
  []
@@ -1144,25 +1144,25 @@ Underfull \hbox (badness 6141) in paragraph at lines 95--95
  []
 
 
-ignored: Infinite glue shrinkage found in box being split [13]
-ignored: Infinite glue shrinkage found in box being split [14]) (./sections/5_problem1.tex [15]
+ignored: Infinite glue shrinkage found in box being split [12]
+ignored: Infinite glue shrinkage found in box being split [13]) (./sections/5_problem1.tex [14]
 File: ../figures/paper_full_20260926/q1_safe_capacity.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q1_safe_capacity.pdf>
 File: ../figures/paper_full_20260926/q1_capacity_heatmap.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q1_capacity_heatmap.pdf>
- [16]
+ [15]
 File: ../figures/paper_full_20260926/q1_payload_energy.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q1_payload_energy.pdf>
- (./tables/q1_capacity_batches.tex [17]) [18]
+ (./tables/q1_capacity_batches.tex [16]) [17]
 File: ../figures/paper_full_20260926/q1_objective_solutions.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q1_objective_solutions.pdf>
- [19]
+ [18]
 File: ../figures/paper_full_20260926/q1_return_soc.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q1_return_soc.pdf>
- [20]
+ [19]
 File: ../figures/paper_full_20260926/q1_change.png Graphic file (type bmp)
 <../figures/paper_full_20260926/q1_change.png>
- [21]) (./sections/6_problem2.tex [22]
+ [20]) (./sections/6_problem2.tex [21]
 Underfull \hbox (badness 2608) in paragraph at lines 47--48
 []|\TU/HeitiSC(0)/m/n/10.95 是 否 受 硬
  []
@@ -1177,22 +1177,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 []|\TU/SongtiSC(0)/m/n/10.95 是  |（首 批
  []
 
-[23] [24] [25] (./tables/q2_formal_protocol.tex) [26] (./tables/q2_service_delivery.tex) [27]
+[22] [23] [24]
+Overfull \hbox (12.06857pt too wide) in paragraph at lines 176--177
+[]\TU/SongtiSC(0)/m/n/12 即 每 条 路 线 列 恰 占 一 架 同 型 机 体 与 一 组 同 型 电 池。|  配 合 式 []的 区 间 不 重 叠 与 式 []的
+ []
+
+(./tables/q2_formal_protocol.tex) [25] (./tables/q2_service_delivery.tex) [26]
 File: ../figures/paper_full_20260926/q2_transport_routes.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q2_transport_routes.pdf>
 File: ../figures/paper_full_20260926/q2_drone_timeline.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q2_drone_timeline.pdf>
 File: ../figures/paper_full_20260926/q2_battery_timeline.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q2_battery_timeline.pdf>
- [28]
+ [27]
 File: ../figures/paper_full_20260926/q2_route_energy.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q2_route_energy.pdf>
 File: ../figures/paper_full_20260926/q2_delivery_deadlines.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q2_delivery_deadlines.pdf>
- [29]
+ [28]
 File: ../figures/paper_full_20260926/q2_return_soc.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q2_return_soc.pdf>
- [30]) (./sections/7_problem3.tex [31] [32] [33]
+ [29]) (./sections/7_problem3.tex [30] [31] [32]
 
 Package fontspec Info: 
 (fontspec)             Script 'CJK' not explicitly supported within font
@@ -1200,37 +1205,37 @@ Package fontspec Info:
 (fontspec)             okay then ignore this warning. Otherwise a different
 (fontspec)             font should be chosen.
 
- [34] [35]
+ [33] [34]
 File: ../figures/paper_full_20260926/q3_relay_coverage_points.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q3_relay_coverage_points.pdf>
- [36]
+ [35]
 File: ../figures/paper_full_20260926/q3_joint_timeline.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q3_joint_timeline.pdf>
 File: ../figures/paper_full_20260926/q3_communication_timeline.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q3_communication_timeline.pdf>
- [37]
+ [36]
 File: ../figures/audit_verified_20260925/q3_margin_envelope.pdf Graphic file (type pdf)
 <use ../figures/audit_verified_20260925/q3_margin_envelope.pdf>
- [38]
+ [37]
 File: ../figures/audit_verified_20260925/q3_tight_los_profile.pdf Graphic file (type pdf)
 <use ../figures/audit_verified_20260925/q3_tight_los_profile.pdf>
- [39]) (./sections/8_problem4.tex [40]
+ [38]) (./sections/8_problem4.tex [39]
 File: ../figures/paper_full_20260926/q4_task_network.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q4_task_network.pdf>
- [41] [42] [43]
+ [40] [41] [42]
 File: ../figures/paper_full_20260926/q4_partition_2groups.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q4_partition_2groups.pdf>
 File: ../figures/paper_full_20260926/q4_partition_3groups.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q4_partition_3groups.pdf>
- [44]
+ [43]
 File: ../figures/paper_full_20260926/q4_workload.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q4_workload.pdf>
 File: ../figures/paper_full_20260926/q4_resource_demand.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q4_resource_demand.pdf>
- [45]) (./sections/9_sensitivity.tex [46]
+ [44]) (./sections/9_sensitivity.tex [45]
 File: ../figures/paper_full_20260926/q1_sensitivity.pdf Graphic file (type pdf)
 <use ../figures/paper_full_20260926/q1_sensitivity.pdf>
- [47] (./tables/energy_multiplier.tex) [48] (./tables/communication_loss.tex) [49] [50]) (./sections/10_evaluation.tex [51] [52] [53] [54]) [55] (./references.tex [56]) [57] (./sections/A_code.tex
+ [46] (./tables/energy_multiplier.tex) [47] (./tables/communication_loss.tex) [48] [49]) (./sections/10_evaluation.tex [50] [51] [52] [53]) [54] (./references.tex [55]) [56] (./sections/A_code.tex
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 2.
@@ -1239,24 +1244,24 @@ Package hyperref Warning: The anchor of a bookmark and its parent's must not
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 4.
- (../code/mountain_flood/problem1/packing.py) [58] (../code/mountain_flood/problem2/search.py) [59
+ (../code/mountain_flood/problem1/packing.py) [57] (../code/mountain_flood/problem2/search.py) [58
 
 ] (../code/mountain_flood/problem2/search.py
 
 LaTeX Font Warning: Font shape `TU/SongtiSC(0)/m/it' undefined
 (Font)              using `TU/SongtiSC(0)/m/n' instead on input line 148.
 
-) [60
+) [59
 
-] [61] (../code/mountain_flood/problem2/search.py) [62
+] [60] (../code/mountain_flood/problem2/search.py) [61
+
+] (../code/mountain_flood/problem3/communication.py) [62
 
 ] (../code/mountain_flood/problem3/communication.py) [63
 
-] (../code/mountain_flood/problem3/communication.py) [64
+] (../code/mountain_flood/problem4/partition.py [64
 
-] (../code/mountain_flood/problem4/partition.py [65
-
-] [66])) [67] (./main.aux)
+] [65])) [66] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2022/08/05>
@@ -1271,10 +1276,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  21521 strings out of 468168
  473886 string characters out of 5432815
- 1938538 words of memory out of 5000000
+ 1938534 words of memory out of 5000000
  49811 multiletter control sequences out of 15000+600000
  637073 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  93i,12n,96p,708b,1894s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (68 pages).
+Output written on main.pdf (67 pages).

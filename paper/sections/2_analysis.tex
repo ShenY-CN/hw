@@ -5,8 +5,7 @@
 \subsection{数据核对与空间基准}
 
 附件的逐箱清单共80行，逐箱编号均不重复，总载质量758~kg、总体积2.011~m$^3$；各服务区四类货箱的类别构成与硬截止分布见图~\ref{fig:box_deadline_mix}。调度中心记为O01，服务区记为S001至S015；实体运输机为A型4架、B型2架、C型2架，共享电池库存为6、4、4组，另有R型中继机2架与共享能源组件6组，三类机型的核心参数与题给库存见表~\ref{tab:aircraft_parameters}，全部资源的初始数量见图~\ref{fig:initial_inventory}。DEM为EPSG:4326坐标系下1309$\times$1486个30~m名义分辨率像元，其地理范围覆盖全部任务节点，与调度中心、服务区及道路、水系的相对位置见图~\ref{fig:node_map}；坐标按WGS84椭球计算测地距离，路线规划不使用道路数据。附件各文件在模型中的取用位置见表~\ref{tab:data_files}。
-
-\begin{figure}[H]\centering\includegraphics[width=.92\textwidth]{../figures/paper_full_20260926/q1_dem_nodes.pdf}\caption{DEM地形、地理要素与任务服务点分布}\label{fig:node_map}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.8\textwidth]{../figures/paper_full_20260926/q1_dem_nodes.pdf}\caption{DEM地形、地理要素与任务服务点分布}\label{fig:node_map}\end{figure}
 
 \begin{table}[H]\centering\normalsize
 \caption{原始附件的用途及进入模型的位置}\label{tab:data_files}
@@ -50,12 +49,14 @@ C & 2 & 4 & 80 & 0.250 & 15 & 8.0\\\bottomrule
 L_g(q)=L_g^0-(L_g^0-L_g^F)\left(\frac{q}{Q_g}\right)^{3/2}.
 \label{eq:range}
 \end{equation}
+
 记航段$i\to j$的水平长度为$d_{ij}$，计划巡航海拔为$H_{ij}$，两端作业海拔为$z_i,z_j$，则爬升和下降高度分别为$h_{ij}^+=H_{ij}-z_i$与$h_{ij}^-=H_{ij}-z_j$。题面只写出水平与爬升能耗之和而未展开两项，本文明确采用标准航程标定的单位距离耗电和重力势能折算：
 \begin{align}
 t^g_{ij}&=\frac{h_{ij}^+}{v_g^\uparrow}+\frac{d_{ij}}{v_g^c}+\frac{h_{ij}^-}{v_g^\downarrow},\\
 E^g_{ij}(q)&=E_g^{\rm use}\frac{d_{ij}}{L_g(q)}+\frac{(m_g+q)\times9.81\,h_{ij}^+}{3.6\times10^6\eta_g}.
 \label{eq:energy}
 \end{align}
+
 其中$E_g^{\rm use}$是单组电池可用能量，$m_g$为含电池空载质量，$\eta_g$为爬升能耗效率，下降不另计附加能耗。每个架次的航段能量之和须不超过$(1-\rho_g)E_g^{\rm use}$；多点架次在某站交接后立即扣去该站箱重，再以更轻的载荷计算下一航段。按此口径，准备与逐箱装载时间计入起飞前占用，站点交接时间为“基础交接时间＋逐箱增加时间”，本站全部货箱的交付时刻统一记为交接结束时刻；这一处理对时间窗偏保守。题设没有给出运输机交接悬停功率和准备工位数量，故不增设未经给定的能耗或工位容量参数。
 
 载荷对能耗的影响有明确的物理依据。Dorling等由多旋翼悬停诱导功率推得
@@ -63,6 +64,7 @@ E^g_{ij}(q)&=E_g^{\rm use}\frac{d_{ij}}{L_g(q)}+\frac{(m_g+q)\times9.81\,h_{ij}^
 P_{\rm hov}(m)=(W+m)^{3/2}\sqrt{\frac{g^3}{2\rho_a\varsigma n}}\approx\alpha m+\beta,
 \label{eq:dorling}
 \end{equation}
+
 其中$W$为机架质量，$m$为电池与载荷质量，$n$为旋翼数，$\varsigma$为单个旋翼盘面积。该文对其Hexa-B样机在$m=0$--$3$~kg范围内拟合得$\alpha=46.7$~W/kg、$\beta=26.9$~W，并用飞行测试检验了悬停功率对飞行功率的近似，说明式~\eqref{eq:dorling}中的载荷项不可忽略。Zhang等的综述进一步用无风稳态平飞升阻比模型给出单位距离能耗，并指出爬升、下降、悬停、风与航电都会显著改变整次任务的能量需求\cite{dorling,zhang}。这些结果支持“载荷影响能耗、且需按飞行阶段分别核算”的建模方向，但其样机系数、旋翼几何与巡航参数无法直接移植到题给三种机型。因此本文的水平能耗仍按题给各机型的载荷—等效航程曲线计算，爬升另按重力势能折算，参考公式不作为未标定参数的替代来源。
 
 \subsection{电池周转与通信状态}
