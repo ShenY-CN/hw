@@ -196,6 +196,23 @@
   \renewcommand{\theHequation}{appendixA.\arabic{equation}}%
   \input{sections/A_code}%
 }
+
+% \appendixbn：附录 B 人工智能工具使用说明
+\newcommand{\appendixbn}{%
+  \section*{\texorpdfstring{附录 B\quad 人工智能工具使用说明}{附录 B 人工智能工具使用说明}}%
+  \addcontentsline{toc}{section}{附录 B 人工智能工具使用说明}%
+  \setcounter{figure}{0}%
+  \setcounter{table}{0}%
+  \setcounter{equation}{0}%
+  \renewcommand{\thefigure}{B-\arabic{figure}}%
+  \renewcommand{\thetable}{B-\arabic{table}}%
+  \renewcommand{\theequation}{B.\arabic{equation}}%
+  \renewcommand{\theHfigure}{appendixB.\arabic{figure}}%
+  \renewcommand{\theHtable}{appendixB.\arabic{table}}%
+  \renewcommand{\theHequation}{appendixB.\arabic{equation}}%
+  \input{sections/B_ai_usage}%
+}
+
 % \threelinetable{标题}{列定义}{表头}{表格内容}：三线表，标题在表格上方居中 10.5pt 黑体加粗
 % 调用示例：\threelinetable{表 1 示例}{ccc}{A & B & C}{1 & 2 & 3 \\ 4 & 5 & 6}
 \newcommand{\threelinetable}[4]{%
@@ -238,5 +255,7 @@
 \referencescn
 \newpage
 \appendixcn
+\newpage
+\appendixbn
 
 \end{document}
