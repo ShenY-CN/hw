@@ -6,17 +6,17 @@
 
 \subsubsection{安全载荷的定义与求解}
 
-以节点0（O01）与服务区节点$i\in S$的经纬度直线为水平航段，按WGS84局部椭球度量计算单程水平距离$d_{0i}$；巡航海拔、作业海拔与净空按第2章的航段构造规则确定，去程与返程的爬升高度分别记为$h_{0i}^{+}$与$h_{i0}^{-}$。沿用同一套能耗口径，机型$g$带载$q$去程、空载返程的总能耗由第2章航段能耗式~\eqref{eq:energy}展开为
+以节点0（O01）与服务区节点$i\in S$的经纬度直线为水平航段，按WGS84局部椭球度量计算单程水平距离$d_{0i}$；巡航海拔、作业海拔与净空按第2章的航段构造规则确定，去程与返程的爬升高度分别记为$h_{0i}^{+}$与$h_{i0}^{+}$。沿用同一套能耗口径，机型$g$带载$q$去程、空载返程的总能耗由第2章航段能耗式~\eqref{eq:energy}展开为
 \begin{equation}
 E_{ig}^{RT}(q)=E_{0i}^g(q)+E_{i0}^g(0)
-=E_g^{use}d_{0i}\left[\frac{1}{L_g(q)}+\frac{1}{L_g^0}\right]
-+\frac{9.81\left[(m_g+q)h_{0i}^++m_g h_{i0}^-\right]}{3.6\times10^6\eta_g}.
+=E_g^{\mathrm{use}}d_{0i}\left[\frac{1}{L_g(q)}+\frac{1}{L_g^0}\right]
++\frac{9.81\left[(m_g+q)h_{0i}^++m_g h_{i0}^+\right]}{3.6\times10^6\eta_g}.
 \label{eq:rt_energy}
 \end{equation}
 
 其中第一项为去、返两个水平航段，第二项为两次爬升，下降附加能耗按题面参数不计。返航安全余量取$\rho_g=20\%$时，单点往返的安全载荷是如下一维单调约束的最大可行$q$：
 \begin{equation}
-q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E_{ig}^{RT}(q)\le(1-\rho_g)E_g^{use}\right\}.
+q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E_{ig}^{RT}(q)\le(1-\rho_g)E_g^{\mathrm{use}}\right\}.
 \label{eq:q1_safe}
 \end{equation}
 
@@ -41,7 +41,7 @@ q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E_{ig}^{RT}(q)\le(1-\rho_g)E_g^{use}\right\
 \begin{equation}
 \sum_{b\in B_p}M_b\leq Q_g,\quad
 \sum_{b\in B_p}V_b\leq V_g,\quad
-E_{ig}^{RT}\left(\sum_{b\in B_p}M_b\right)\leq(1-\rho_g)E_g^{use}
+E_{ig}^{RT}\left(\sum_{b\in B_p}M_b\right)\leq(1-\rho_g)E_g^{\mathrm{use}}
 \label{eq:batch_feasible}
 \end{equation}
 
