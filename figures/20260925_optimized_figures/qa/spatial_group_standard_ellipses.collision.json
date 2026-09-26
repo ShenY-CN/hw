@@ -1,0 +1,74 @@
+{
+  "pdf": "figures/20260925_optimized_figures/spatial_group_standard_ellipses.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 36,
+  "text_trace_count": 64,
+  "stroke_path_count": 194,
+  "filled_region_count": 117,
+  "image_region_count": 2,
+  "summary": {
+    "fail": 2,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        184.5440673828125,
+        287.89556884765625,
+        235.8095245361328,
+        296.89556884765625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        191.97959899902344,
+        198.0298309326172,
+        220.77609252929688,
+        312.8920593261719
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        18,
+        54
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        569.2540893554688,
+        287.89556884765625,
+        620.51953125,
+        296.89556884765625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        576.6895751953125,
+        198.0298309326172,
+        605.486083984375,
+        312.8920593261719
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        115,
+        151
+      ]
+    }
+  ]
+}

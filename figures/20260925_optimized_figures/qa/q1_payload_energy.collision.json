@@ -1,0 +1,74 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q1_payload_energy.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 33,
+  "text_trace_count": 45,
+  "stroke_path_count": 89,
+  "filled_region_count": 40,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 2,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 3 stroked path(s)",
+      "text": "20%返航储备下的可用能量",
+      "text_bbox": [
+        478.7862548828125,
+        29.507999420166016,
+        556.99658203125,
+        36.507999420166016
+      ],
+      "other_text": null,
+      "other_bbox": [
+        452.8862609863281,
+        22.487991333007812,
+        649.8062744140625,
+        188.5074920654297
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        66,
+        68,
+        84
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "最大安全载荷 58.9 kg",
+      "text_bbox": [
+        478.7862548828125,
+        40.007999420166016,
+        543.598876953125,
+        47.007999420166016
+      ],
+      "other_text": null,
+      "other_bbox": [
+        506.5917053222656,
+        22.487991333007812,
+        506.5917053222656,
+        188.5074920654297
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        66
+      ]
+    }
+  ]
+}

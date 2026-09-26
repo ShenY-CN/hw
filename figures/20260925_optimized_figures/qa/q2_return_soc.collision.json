@@ -1,0 +1,48 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q2_return_soc.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 35,
+  "text_trace_count": 37,
+  "stroke_path_count": 44,
+  "filled_region_count": 58,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 1,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "最低返航储备 20%",
+      "text_bbox": [
+        420.8056335449219,
+        16.2257080078125,
+        488.61798095703125,
+        25.2257080078125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        38.01250076293945,
+        23.96551513671875,
+        505.4525146484375,
+        23.96551513671875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        64
+      ]
+    }
+  ]
+}

@@ -24,7 +24,7 @@ def breakdown(model, route):
     for node in list(route['order']) + [0]:
         equivalent_range = t['L0'] - (t['L0'] - t['LF']) * (remaining / t['Q']) ** 1.5
         horizontal += t['E'] * model.D[prev, node] / equivalent_range
-        climb += (t['mass'] + remaining) * 9.81 * (
+        climb += (t['mass'] + remaining) * model.parameters['gravity_m_s2'] * (
             model.H[prev, node] - model.op[prev]) / (t['eta'] * 3.6e6)
         if node:
             remaining -= sum(model.boxes[i]['w'] for i in boxes

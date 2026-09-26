@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-09-25T04:26:00.912579+00:00",
+  "created_at": "2026-09-25T09:05:37.827970+00:00",
   "python": "3.12.13",
   "packages": {
     "numpy": "2.5.3",
@@ -47,9 +47,11 @@
     "cp_sat": 42
   },
   "archived_selected_plans_sha256": {
-    "q2_time_energy_candidate.json": "83a3607f0815e0562df3c59ac35e28e190154a1c42dc0990629fa82d8460e4b1",
+    "q2_time_energy_candidate.json": "0ad6abb487f2bd3a21bc33f46b6bb01a2413435ee8d28a7c622f5452287f96e2",
     "q3_hard_hill1_e3900_margin.json": "57d019e88c4a87fdd9fd1b8ce8ec4651a70649cb30677451948d3cc5bbcbf83a",
-    "method_comparison.json": "ae34a01fed0a5db62d2bc9f8bf5cec9adfcc9416c899a77038e527775155f50e",
+    "method_comparison.json": "9f797dbe1b95cc73408eb9d6aef1ce9a1a7a601643093ce2f0962655ff2af3a7",
+    "method_comparison_strict_archive.json": "ae34a01fed0a5db62d2bc9f8bf5cec9adfcc9416c899a77038e527775155f50e",
+    "q3_soft_legacy.json": "a2699111238f63bef97ec526d0dd6ba6cb1bab1d40792a3c2c2a20a007dd4ffc",
     "q3_hard_hill1_e2900_trim.json": "7b61cfdcc7907eade9f65637a6b873e4102ce4cb3bf0c8588b0fa479132d6465",
     "q3_hard_hill1_e3100_trim.json": "586f07e2e5c90fae8ae633005c9a3abd7c120392acdb9ce40928d0b09b168edc",
     "q3_hard_hill1_e3300_trim.json": "864ff12e498b10f68fbfde8d784b3aa90b018762eddf1e6c4ea6a052eba16196",
@@ -82,91 +84,139 @@
     "q3_hard_hill1_e3500_margin.json": "6f0e00501f80d451fe0a537363bc4e76bc65bce2adeca1027b9dd1abfeebecab",
     "q3_hard_hill1_e4100_margin.json": "19d587f8434adb719b3732f063aa7eb44e4ad6413bf6697cd10415e821ec63ab"
   },
-  "archive_note": "Q1 is recalculated; the common-budget stochastic search and finite joint search are archived as route witnesses, each independently recalculated and validated. This replay does not repeat wall-clock discovery.",
+  "archive_note": "Q1 is recalculated; the revised-rule common-budget search, prior strict-rule search, historical soft plan, and finite joint search are archived as route witnesses. Current plans are independently recalculated and validated. This replay does not repeat wall-clock discovery.",
   "commands": [
     {
-      "script": "common.py",
+      "script": "mountain_flood/core/domain.py",
       "exit_code": 0
     },
     {
-      "script": "recompute_q1.py",
+      "script": "mountain_flood/problem1/recompute.py",
       "exit_code": 0
     },
     {
-      "script": "verify_methods_archive.py",
+      "script": "mountain_flood/validation/verify_methods_archive.py",
       "exit_code": 0
     },
     {
-      "script": "compare_joint_candidates.py",
+      "script": "mountain_flood/validation/compare_joint_candidates.py",
       "exit_code": 0
     },
     {
-      "script": "promote_fusion.py",
+      "script": "mountain_flood/workflow/promote_fusion.py",
       "exit_code": 0
     },
     {
-      "script": "partition_validate.py",
+      "script": "mountain_flood/validation/runner.py",
       "exit_code": 0
     },
     {
-      "script": "energy_sensitivity.py",
+      "script": "mountain_flood/experiments/energy_sensitivity.py",
       "exit_code": 0
     },
     {
-      "script": "export_submission.py",
+      "script": "mountain_flood/reporting/export_submission.py",
       "exit_code": 0
     },
     {
-      "script": "figures.py",
+      "script": "mountain_flood/figure/q1.py",
       "exit_code": 0
     },
     {
-      "script": "compare_figures.py",
+      "script": "mountain_flood/figure/q2.py",
       "exit_code": 0
     },
     {
-      "script": "render_roadmap.py",
+      "script": "mountain_flood/figure/q3.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/figure/q4.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/figure/overview.py",
       "exit_code": 0
     }
   ],
   "input_sha256": {
+    "~$物资需求与配送时限.xlsx": "7c194ac3dec83f6609fc5082be19d4bf333ba7ea10fd38e5bd8137a1c707b566",
     "中继无人机数据.xlsx": "be52643ff29419233e6a141dca03a04160a8af551cab36d8c49b51bb836bea04",
     "物资需求与配送时限.xlsx": "5a3346159ceddcf585859d270b8f62114b388a1f737fbe64ffde0ee1fdc8170a",
     "结果提交模板.xlsx": "16f521f29a7103c4ff7c3709ce1696bb9fffa18ce741895e45b7bc7afaf3320a",
     "调度中心与服务区.xlsx": "541a7af1ded08c9a3ff448480332cb5f6a54902f0afa6e9bcd50c1d2b2b34e38",
     "运输无人机数据.xlsx": "9296a657c07e042afba6aeea7999665d9cd24e00b592fd6c269de6e338480dcb",
     "通信链路参数.xlsx": "1860d153199e7ae460ba36e83b673374e640e19de91ea167f2877271001f5f81",
-    "镇龙乡及周边30米DEM.tif": "741fe6de0b2bcaffd0f4007f574ee698d46197094f52cc954b532c4f90fc7c03"
+    "镇龙乡及周边30米DEM.tif": "741fe6de0b2bcaffd0f4007f574ee698d46197094f52cc954b532c4f90fc7c03",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/数字高程模型数据（DEM）/镇龙乡及周边30米DEM.mat": "c68703e0cc8f94f4bd52ff6e9974b66a2dae33865f0723ad71c04b6694bf4fbf",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/数字高程模型数据（DEM）/镇龙乡及周边30米DEM.tif": "741fe6de0b2bcaffd0f4007f574ee698d46197094f52cc954b532c4f90fc7c03",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/村镇点位/镇龙乡及周边村镇点位.csv": "b6e2ffc0b728fb33c532e471b6f27dcb54ff70a9a2025546539eea97e5232d6f",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/村镇点位/镇龙乡及周边村镇点位.mat": "61419e92447ada38c56b7f64f04e4aada2eb1ed076ae33e95f1cbc69f3514beb",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/水体（面）/镇龙乡及周边水体.csv": "4d72a2b46d893701da635ac1b083539568ad3a8b9ffb1b28b09c06bf8af74324",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/水体（面）/镇龙乡及周边水体.mat": "b79df14bdc0b22811f5c219897a66775d8879a93c4a865e455d8c43ab099b50a",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/水系（线）/镇龙乡及周边水系.csv": "3502b997e000e8043e36b7159202bafb12a0c21d23a8b5ad4ec6877bad580a65",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/水系（线）/镇龙乡及周边水系.mat": "b89f4f294bf771962676009fa9044f46ef26a06613fb6f91e2c6f9ccd430f8e8",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/道路/镇龙乡及周边道路.csv": "adcd23b4ae2c28475412fc2c8a3c0504b2a293ac2ec25faa1da2fe3c3d063ebe",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/道路/镇龙乡及周边道路.mat": "c868717284d8aee60157e3bc9b20e18a81b26fde3d75fc7d80317ef877af9849",
+    "镇龙乡地理空间数据/镇龙乡地理空间数据说明.pdf": "6d1522c6832a5d91a108dae0d07954845025c0dabd44af8ee78c7860d7c405e4",
+    "镇龙乡地理空间数据/镇龙乡地理空间详情地图.html": "5bb8082f4f5913e6787f86fa9dd3b6f8cbcfa309359f222f57355d1ae991b452"
   },
   "code_sha256": {
-    "audit_public_reference.py": "9547b4456b86b3065db13e60e11345407454e7ddd70a75a7b68895fe036a1bf1",
-    "common.py": "3fcd62bd7363502ceaeff6e85a0365a70253b82fce3fec0d5980761fda062e5a",
-    "communication.py": "2274cab82b9ee1e3dc8aeb418d0172aef11c098e43b527a6ccad8da068f59ac8",
-    "compare_figures.py": "94c664fc1d026369ccb8edce85cd78effe0d32bfff5cb67b75a034bd9e91fdd1",
-    "compare_joint_candidates.py": "66ef9a4cdfb90c2e42cea034f7de26f5ff0521c79f3aea83c61e49fdd81301df",
-    "compare_methods.py": "6f85e257e0073f1259f3e5f5f2cc867e4a2425c8be10479b30dd21493094c74a",
-    "energy_sensitivity.py": "40bd0c57ce8bc9cefbf84cf4b1ae9dcd59ef9effa8048306381ce7380bc4a2c2",
-    "export_submission.py": "5e549319b5a92a0c2b95ef7f8e38f2ab7859c751fe8e6b40c9cca9bda1e6d659",
-    "figures.py": "fe2869ba3b0047901b91207930d5448863b491c55894a537a4ce3c696b6215d7",
-    "hard_deadline_joint.py": "e4cae4732c2796003e6867e87a56bf3380dd8c17ac7206653f82fee30e35b2e5",
-    "joint_schedule.py": "9327ae7159957d26a218d632e509d03a7b1bffb0e00b4035e14ec5224020eb1d",
-    "partition_validate.py": "008cbbf069b50a4485ff8d545a4f91de6092ee9f7c9ffd9e398c0ad25c63af40",
-    "probe_joint_fusion.py": "b10add889566979129b5e1594d679b238332281c0098df136a82bc4599aedd0f",
-    "promote_fusion.py": "f5cdeed31eec9bdeca654af315cfa62d8d704e46d3e61bec26d5b4fdb4ec561a",
-    "recompute_q1.py": "5283968cca46ef7e4c66e56b0d06860ceca190f3d2bdca4e182dfc5aec13d8cc",
-    "refine_joint_fusion.py": "3d7fab7abf1af694e7870fd1c9050460c61d6c02f65bcdc67f6c0cf7e17a05c9",
-    "render_roadmap.py": "c6fbca1cfdc1a3842cfa5a2abb2b0c37839a428f725c11a8893903b71f345b1f",
-    "reproduce.py": "3b9e09be09f2565fabbd726fef23c28ef73ab7bbb8aa675c76c57d9d0508766f",
-    "reschedule_methods.py": "74a7386895849705ce0cce0c0661b5e78168319c9df214172455629818b42386",
-    "solve_joint.py": "8e9438ffd6a4ec9d2973aa6883c4b9a1b1987cf6699b255b40bebcf159acc83d",
-    "solve_transport.py": "b7d5e66ae9e3ee4e1d58cb927c7fe951b4288a746dd06b6d510ed8aba4486913",
-    "trim_relays.py": "cd28a17dc3c2146b3524e6c4d0ebde2c3f664278ba07631db24e09e6d89f88b3",
-    "verify_methods_archive.py": "60f550a7a5ac12dd9e0de4659e1c09ca9a1f12367519107db4a4baf46d8ea463"
+    ".gitignore": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+    "README.md": "8288c541863eff28ee62eef32a1010af679aaae421c95c0665a2bd491ccad224",
+    "audit_public_reference.py": "d0de3752f9b442b2fd02af3ce4ea7d536a67516529a97b7c11481b441efaeb3c",
+    "energy_sensitivity.py": "59e13c8b985f5fb6fb2fd4d2a659519fd05a9453f2b38ccd9b0a0547fbc9ac60",
+    "mountain_flood/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/core/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/core/domain.py": "85b09d914f6b51f7bbaedc522bef716498dd3bdcc20871ad2c3d7c6748c859e0",
+    "mountain_flood/experiments/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/experiments/audit_public_reference.py": "b29be0be0ca83a6237f4d9d7cbc3dda3a273cab0dcaf121dde2f1893ef47f779",
+    "mountain_flood/experiments/energy_sensitivity.py": "5f48090e671bc7b8dd281de50cae892f30eb865f5d1831f4109d129885e211ca",
+    "mountain_flood/experiments/probe_joint_fusion.py": "cb22fcca5b9fe06afb0bdf123a3d73ce6334dfc6902a29ae6e81ada68d026ff9",
+    "mountain_flood/experiments/refine_joint_fusion.py": "dbfbf55f18bd98eebe88d81d4109fd03b9073d55b724998eaf322f6ede34625b",
+    "mountain_flood/experiments/reschedule_methods.py": "636600021550af089c9f51530f6853bb229f5eaa615403f6d7bc1106bd28d95b",
+    "mountain_flood/experiments/trim_relays.py": "5fd80d11616c635a7f59473980591368f86992d964c6532bb71f98745f918f35",
+    "mountain_flood/figure/README.md": "60a970ba6e6731db76a372a24eb163dbb3b004898fc1ac90787a9c417378788e",
+    "mountain_flood/figure/__init__.py": "75149c5d77802c2f3f2738a60bbaa315675708fe9d992a81307d9c86a22cd0da",
+    "mountain_flood/figure/common.py": "a1bb9e8b4b40982136f55368dd82f1bc1d396a0420a32712e5854580636c145a",
+    "mountain_flood/figure/overview.py": "326f645d4fb87dd2546e2d6165ccfc33375271079d0a2f3ffecbd40622084fb5",
+    "mountain_flood/figure/q1.py": "2d401352937687898228f945ffd570c4e2b1e1d15e6d0ed437d0d86933e4fa9f",
+    "mountain_flood/figure/q2.py": "c25bee3d402dd9349f6a4d7d698d4ab85c2832e9bfd6a18cdf4cef9a008aee74",
+    "mountain_flood/figure/q3.py": "f2472e843858f533482b38b111c34c916e24d76f565613224c162bf1a90f0838",
+    "mountain_flood/figure/q4.py": "ada71c531d58d8ad9e377f5d0e2b6de6b8aa75c08597f0d4d8d991e0d2ac98a9",
+    "mountain_flood/figure_matlab/README.md": "d7ddd29361315ca38e4bde4d73201e9af4dc1723e3ee4146e68dd5c190753425",
+    "mountain_flood/figure_matlab/run_all.m": "06c1c6f381b20787db8bbd73e36a2551680cd616db1a90a7f9df33c6aefa30c0",
+    "mountain_flood/paths.py": "0a5e34aa6ae924b476e85d63440eeb29768f7d26d5b9aa53afa7a4f7018f8839",
+    "mountain_flood/problem1/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/problem1/packing.py": "0bfdc6fdd05d199911f9be4fd85422a0f7d3adc2f95ecdb2dcc3bcf1d91cb71f",
+    "mountain_flood/problem1/recompute.py": "0d75a14d1b4442315778c4cde9b049b2a71ada5ab05227657e7b14c7bea18956",
+    "mountain_flood/problem2/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/problem2/search.py": "350f693c0dc0fcd486121fd7f4b0bea4f8973e1cb89a757b5d465afb3a79f1c9",
+    "mountain_flood/problem2/transport.py": "f9388c48f7f6c71c8e6ca5eb82f18929ea963678250553b68250e3b8fbd21915",
+    "mountain_flood/problem3/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/problem3/communication.py": "d5abcb5a8614b41fe504cb9fc8ae9f96615710593064e49696025a9ee67a3158",
+    "mountain_flood/problem3/hard_deadline.py": "1b7d7a22f19c5f8ad6c2bc0afe4ef3897810ecc35f2497aa6695737167a3d7cc",
+    "mountain_flood/problem3/joint_solver.py": "bac442f9f541c24cf2eb2ccc0eb7f424f06e7a67719ab207b619611c7b45b8ec",
+    "mountain_flood/problem3/schedule.py": "54732f5e6a4d37addc28cffebbd91d9d7dc5ede338568601a6db54a65523a05c",
+    "mountain_flood/problem4/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/problem4/partition.py": "df1e51a47cf2ca9c350a3c3116f7df71e2d21e8a7234fe8b6dfa300df41b454e",
+    "mountain_flood/reporting/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/reporting/export_submission.py": "d4971ab8e6659b8b5f14cf651b04b12aa056792b55fe370cde486afa6035e068",
+    "mountain_flood/validation/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/validation/compare_joint_candidates.py": "647656c5e26ed3e563f57619880e85e45c91d0a062b2bd5df41fdb669d732645",
+    "mountain_flood/validation/replay.py": "b2e445d7c202f69958e2c9f7d9c315bb2246a5e9a84eab3614eb991a50802814",
+    "mountain_flood/validation/resources.py": "0a6f6bc3ec14bb8b33b3d150d41448fd626325bdf2ce181fbff9f05afb9a2b77",
+    "mountain_flood/validation/runner.py": "56b13ef1e2580fee2cf598dd66a344a9be28730303bd817b5c6f90e1a72617ae",
+    "mountain_flood/validation/verify_methods_archive.py": "1328c069f0cb2d01209f260eefe0aa7b6ad7f28a50101728b87af1f90e446805",
+    "mountain_flood/workflow/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/workflow/promote_fusion.py": "d701347ac36d6c34a3dc11719356d296fc8ce58b739b84d94f5adf993b0deacc",
+    "mountain_flood/workflow/reproduce.py": "5e74dcc2774b1952b742ef41599ce448f22fa6e208da8090ee06147171314ba2",
+    "reproduce.py": "ef05350df235c5047f3b9ab9116fedb2b620a081c6ad5ccb35bc4a9e4120edb3"
   },
   "roadmap_source_sha256": "469e1fb77979687120521dbe1e3b5a61387696a50179caf53f2ef1dabc0e14fd",
   "q2": {
     "count": 24,
-    "energy": 71.916857054454,
+    "energy": 71.91685705445398,
     "makespan": 6276.8314356603205,
     "weighted_tardiness": 0,
     "weighted_arrival": 2620881.820855962,
@@ -212,17 +262,36 @@
       5
     ]
   },
-  "workbook_sha256": "a5e2bc4fe252249b2633b5d3b46c60400d07af3aca655ca1ce4fe08ec9edf900",
+  "workbook_sha256": "3889b2ea942c55c7b159900a10eec2b68bccb599cffcc351e4841ddb854a05b6",
   "figure_files": [
-    "battery_gantt.pdf",
-    "capacity.pdf",
     "fig_roadmap.pdf",
-    "joint_gantt.pdf",
-    "method_tradeoff.pdf",
-    "partitions.pdf",
-    "relay_map.pdf",
-    "routes.pdf",
-    "sensitivity.pdf",
-    "transport_gantt.pdf"
+    "q1_capacity_heatmap.pdf",
+    "q1_dem_nodes.pdf",
+    "q1_objective_solutions.pdf",
+    "q1_payload_energy.pdf",
+    "q1_return_soc.pdf",
+    "q1_safe_capacity.pdf",
+    "q1_sensitivity.pdf",
+    "q1_typical_elevation_profile.pdf",
+    "q2_battery_timeline.pdf",
+    "q2_delivery_deadlines.pdf",
+    "q2_drone_timeline.pdf",
+    "q2_return_soc.pdf",
+    "q2_route_energy.pdf",
+    "q2_search_comparison.pdf",
+    "q2_transport_routes.pdf",
+    "q3_communication_timeline.pdf",
+    "q3_joint_timeline.pdf",
+    "q3_link_margin.pdf",
+    "q3_q2_q3_comparison.pdf",
+    "q3_relay_coverage_points.pdf",
+    "q3_relay_map.pdf",
+    "q3_relay_soc.pdf",
+    "q4_partition_2groups.pdf",
+    "q4_partition_3groups.pdf",
+    "q4_resource_deficit.pdf",
+    "q4_resource_demand.pdf",
+    "q4_task_network.pdf",
+    "q4_workload.pdf"
   ]
 }

@@ -3784,7 +3784,7 @@
   ],
   "summary": {
     "count": 24,
-    "energy": 71.916857054454,
+    "energy": 71.91685705445398,
     "makespan": 6276.8314356603205,
     "weighted_tardiness": 0,
     "weighted_arrival": 2620881.820855962,
@@ -3793,8 +3793,9 @@
     "last_delivery": 5734.230262262905
   },
   "source": {
-    "method": "hill",
-    "seed": 1,
-    "algorithm_comparison": "method_comparison.json"
+    "method": "existing_baseline",
+    "seed": null,
+    "algorithm_comparison": "method_comparison.json",
+    "origin": "hill-climbing seed 1 in method_comparison_strict_archive.json"
   }
 }

@@ -1,0 +1,49 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q2_transport_routes.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 21,
+  "text_trace_count": 26,
+  "stroke_path_count": 132,
+  "filled_region_count": 83,
+  "image_region_count": 1,
+  "summary": {
+    "fail": 1,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        185.51556396484375,
+        277.8133850097656,
+        236.78102111816406,
+        286.8133850097656
+      ],
+      "other_text": null,
+      "other_bbox": [
+        192.83067321777344,
+        187.5709686279297,
+        221.7845001220703,
+        312.9858093261719
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        18,
+        78
+      ]
+    }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+  "pdf": "figures/20260925_optimized_figures/spatial_terrain_time_partitions.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 54,
+  "text_trace_count": 70,
+  "stroke_path_count": 1102,
+  "filled_region_count": 966,
+  "image_region_count": 5,
+  "summary": {
+    "fail": 9,
+    "warn": 1,
+    "contained_fill_overlays": 1,
+    "contained_image_overlays": 1
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "a  DEM 与调度中心、服务点",
+      "text_bbox": [
+        36.21562576293945,
+        8.310832977294922,
+        164.0366668701172,
+        19.1108341217041
+      ],
+      "other_text": null,
+      "other_bbox": [
+        131.63743591308594,
+        -1.0,
+        189.58364868164062,
+        139.16546630859375
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        35
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        146.99879455566406,
+        223.77085876464844,
+        198.26425170898438,
+        232.77085876464844
+      ],
+      "other_text": null,
+      "other_bbox": [
+        159.08851623535156,
+        160.96246337890625,
+        265.41455078125,
+        393.71673583984375
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        18,
+        54
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        146.99879455566406,
+        475.4136962890625,
+        198.26425170898438,
+        484.4136962890625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        159.08851623535156,
+        400.1053161621094,
+        236.67816162109375,
+        560.7372436523438
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        471,
+        507
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "O01",
+      "text_bbox": [
+        178.7545928955078,
+        198.01136779785156,
+        191.06700134277344,
+        207.01136779785156
+      ],
+      "other_text": null,
+      "other_bbox": [
+        171.72007751464844,
+        192.81268310546875,
+        181.23065185546875,
+        201.85775756835938
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        91
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "六边形描边按最近服务点所属组标识，仅作空间示意；分组结果以彩色服务点为准。",
+      "text_bbox": [
+        202.9682159423828,
+        545.1988525390625,
+        490.97210693359375,
+        553.1988525390625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        159.08851623535156,
+        400.1053161621094,
+        236.67816162109375,
+        560.7372436523438
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        507
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "4",
+      "text_bbox": [
+        209.9928741455078,
+        517.2880249023438,
+        215.3928680419922,
+        529.8880004882812
+      ],
+      "other_text": null,
+      "other_bbox": [
+        159.08851623535156,
+        400.1053161621094,
+        236.67816162109375,
+        560.7372436523438
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        507
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "b  B 型单程参考飞行时间",
+      "text_bbox": [
+        425.52130126953125,
+        8.310832977294922,
+        536.6548461914062,
+        19.1108341217041
+      ],
+      "other_text": null,
+      "other_bbox": [
+        520.943115234375,
+        -1.0,
+        578.8893432617188,
+        139.16546630859375
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        158
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        536.3045043945312,
+        223.77085876464844,
+        587.5699462890625,
+        232.77085876464844
+      ],
+      "other_text": null,
+      "other_bbox": [
+        548.3942260742188,
+        160.96246337890625,
+        654.72021484375,
+        393.71673583984375
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        141,
+        177
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        536.3045043945312,
+        475.4136962890625,
+        587.5699462890625,
+        484.4136962890625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        548.3942260742188,
+        400.1053161621094,
+        625.9838256835938,
+        560.7372436523438
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        801,
+        837
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "O01",
+      "text_bbox": [
+        178.7545928955078,
+        198.01136779785156,
+        191.06700134277344,
+        207.01136779785156
+      ],
+      "other_text": null,
+      "other_bbox": [
+        171.72007751464844,
+        192.81268310546875,
+        181.23065185546875,
+        201.85775756835938
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        91
+      ]
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "created_at": "2026-09-25T14:29:54.863475+00:00",
+  "python": "3.12.13",
+  "packages": {
+    "numpy": "2.5.3",
+    "openpyxl": "3.1.5",
+    "scipy": "1.18.1",
+    "rasterio": "1.5.1",
+    "pyproj": "3.8.0",
+    "ortools": "9.15.6755",
+    "matplotlib": "3.11.2",
+    "affine": "3.0.1"
+  },
+  "requirements_sha256": "7a7c73d2785cbb084b17c8f41f04c608233b9481f7d5538ab123ae7d8795ac03",
+  "random_seeds": {
+    "route_construction": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "method_comparison": [
+      0,
+      1,
+      2
+    ],
+    "cp_sat": 42
+  },
+  "archived_selected_plans_sha256": {
+    "q2_time_energy_candidate.json": "0ad6abb487f2bd3a21bc33f46b6bb01a2413435ee8d28a7c622f5452287f96e2",
+    "q3_hard_hill1_e3900_margin.json": "57d019e88c4a87fdd9fd1b8ce8ec4651a70649cb30677451948d3cc5bbcbf83a",
+    "method_comparison.json": "9f797dbe1b95cc73408eb9d6aef1ce9a1a7a601643093ce2f0962655ff2af3a7",
+    "method_comparison_strict_archive.json": "ae34a01fed0a5db62d2bc9f8bf5cec9adfcc9416c899a77038e527775155f50e",
+    "q3_soft_legacy.json": "a2699111238f63bef97ec526d0dd6ba6cb1bab1d40792a3c2c2a20a007dd4ffc",
+    "q3_hard_hill1_e2900_trim.json": "7b61cfdcc7907eade9f65637a6b873e4102ce4cb3bf0c8588b0fa479132d6465",
+    "q3_hard_hill1_e3100_trim.json": "586f07e2e5c90fae8ae633005c9a3abd7c120392acdb9ce40928d0b09b168edc",
+    "q3_hard_hill1_e3300_trim.json": "864ff12e498b10f68fbfde8d784b3aa90b018762eddf1e6c4ea6a052eba16196",
+    "q3_hard_hill1_e3500_trim.json": "21974c133111626ff67e20a97659c51f7de59ec6f43d044355e69d3f90538dae",
+    "q3_hard_hill1_e3700_trim.json": "9397d365507067f3d63c0fc1353781d7c6ecd79a0124684339adec40e2a02e26",
+    "q3_hard_hill1_e3900_trim.json": "22f827a8cbeeafa896522ac17e23e17856a7cc8aaa1687f75d41d234cf8129eb",
+    "q3_hard_hill1_e4100_trim.json": "fc03de6bfdaa29c2636ca4a3366e9b8413a57dbd6f904a438ec16007b0c504f0",
+    "q3_hard_hill1_e4300_trim.json": "3612bb231ab04e9529a4d764a13d1b3026fe9408f15add51169187bbe2a6fcbb",
+    "q3_hard_hill1_e4500_trim.json": "f3a841c9c32be0e9419e28d9b39098ba6298a756c7f88e8609fddb8e06af2c44",
+    "q3_hard_hill1_e4700_trim.json": "a495f599c0bc5207ce58e38b00f771040a7911442e097cfe7f35624d484c9de3",
+    "q3_hard_newq2_e3500_trim.json": "6692f3055e93a4dba53a11a897e335e42732e70b96f03d50f07e26dddd2beae2",
+    "q3_hard_newq2_e3700_trim.json": "fa8bcf771751b4f0e00306034b2f0a103b9f977c91c07734a3ffd4148ec6373a",
+    "q3_hard_newq2_e3900_trim.json": "57b1bdf67b114a8f14ed36d851f6397a69166d50beb337ba5dd923be79f2f5c0",
+    "q3_hard_newq2_e4100_trim.json": "29b069dbcf157cf916a25f456d40d00dd9635cad7716a47ef512e79f004b478a",
+    "q3_hard_newq2_e4300_trim.json": "2483c85013a7e0535d88246e2d8485d436c694ab32ac1905cce3e026ddc694b9",
+    "q3_hard_newq2_e4500_trim.json": "1281570f8de0947c72d8962c6b43fc426542461e9ac0868424116bc765e3e9a2",
+    "q3_hard_newq2_e4700_trim.json": "21190d60ec8c12d3479962d2e1d24a9c3367205cc401e29e4bd7288f1e3cbbdc",
+    "q3_hard_newq2_e4900_trim.json": "93adc18079b451011fd24fd57f27e08df081a263204ebbe5b346e257a803a0f8",
+    "q3_hard_q2_e2900_completion_trim.json": "ee83d5aebc902ab91aa8902c171b06b78f1b3ab0115229db8ee63406f4c99a6e",
+    "q3_hard_q2_e3500_completion_trim.json": "49589a193c008b889fa08ba36d8f812e030f9df6ec81d4cf2f07d9ce386fc49e",
+    "q3_hard_q2_e3700_completion_trim.json": "127150560d6e37f8533f9b776c7b82a6cccbeed35cc6362572ef3321e8c57ecd",
+    "q3_hard_q2_e3900_completion_trim.json": "59a2f3cfafe493faa55f38730e4c5b9f3b61b7cbfcf019f1f6f4e6cfadf68f0a",
+    "q3_hard_q2_e4100_completion_trim.json": "ed480299bab3020c4b4e7acbecf328648d86e1bb8db7757e577e851213bcd1cd",
+    "q3_hard_q2_e4300_completion_trim.json": "d32aadfc623af8dabe817c7b1bd3ffa9d7ccc009394d3f09fa1df0be4e49c9ec",
+    "q3_hard_q2_e4500_completion_trim.json": "c1824096648bb5a3371d70ceb3a6814015932a0b1c88869b98eb423fd4593192",
+    "q3_hard_q2_e4700_completion_trim.json": "ed71715e113a835829c84b7bdf0127fd45d7cf6402c267ae3e3fd6da022a7f7a",
+    "q3_hard_q2_e4900_completion_trim.json": "3f3df4cb3714d6ef0e6090e92b75879ac36f0c40b1e7cb73a2277fbcb9f757dd",
+    "q3_hard_q2_e4700_buffer15_trim.json": "cb2ab51346c127ec80a6f4421c608e53893f64bf3758e4dab0d10ca59496b6c4",
+    "q3_hard_hill1_e3100_margin.json": "3ef6cc730263fd954d2fe223fbb85b59b4565068c8dd7ad5c4e5995010a256ed",
+    "q3_hard_hill1_e3500_margin.json": "6f0e00501f80d451fe0a537363bc4e76bc65bce2adeca1027b9dd1abfeebecab",
+    "q3_hard_hill1_e4100_margin.json": "19d587f8434adb719b3732f063aa7eb44e4ad6413bf6697cd10415e821ec63ab"
+  },
+  "archive_note": "Q1 is recalculated; the revised-rule common-budget search, prior strict-rule search, historical soft plan, and finite joint search are archived as route witnesses. Current plans are independently recalculated and validated. This replay does not repeat wall-clock discovery.",
+  "commands": [
+    {
+      "script": "mountain_flood/core/domain.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/problem1/recompute.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/validation/verify_methods_archive.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/validation/compare_joint_candidates.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/workflow/promote_fusion.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/validation/runner.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/experiments/energy_sensitivity.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/reporting/export_submission.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/figure/q1.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/figure/q2.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/figure/q3.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/figure/q4.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/figure/spatial.py",
+      "exit_code": 0
+    },
+    {
+      "script": "mountain_flood/figure/overview.py",
+      "exit_code": 0
+    }
+  ],
+  "input_sha256": {
+    "中继无人机数据.xlsx": "be52643ff29419233e6a141dca03a04160a8af551cab36d8c49b51bb836bea04",
+    "物资需求与配送时限.xlsx": "5a3346159ceddcf585859d270b8f62114b388a1f737fbe64ffde0ee1fdc8170a",
+    "结果提交模板.xlsx": "16f521f29a7103c4ff7c3709ce1696bb9fffa18ce741895e45b7bc7afaf3320a",
+    "调度中心与服务区.xlsx": "541a7af1ded08c9a3ff448480332cb5f6a54902f0afa6e9bcd50c1d2b2b34e38",
+    "运输无人机数据.xlsx": "9296a657c07e042afba6aeea7999665d9cd24e00b592fd6c269de6e338480dcb",
+    "通信链路参数.xlsx": "1860d153199e7ae460ba36e83b673374e640e19de91ea167f2877271001f5f81",
+    "镇龙乡及周边30米DEM.tif": "741fe6de0b2bcaffd0f4007f574ee698d46197094f52cc954b532c4f90fc7c03",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/数字高程模型数据（DEM）/镇龙乡及周边30米DEM.mat": "c68703e0cc8f94f4bd52ff6e9974b66a2dae33865f0723ad71c04b6694bf4fbf",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/数字高程模型数据（DEM）/镇龙乡及周边30米DEM.tif": "741fe6de0b2bcaffd0f4007f574ee698d46197094f52cc954b532c4f90fc7c03",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/村镇点位/镇龙乡及周边村镇点位.csv": "b6e2ffc0b728fb33c532e471b6f27dcb54ff70a9a2025546539eea97e5232d6f",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/村镇点位/镇龙乡及周边村镇点位.mat": "61419e92447ada38c56b7f64f04e4aada2eb1ed076ae33e95f1cbc69f3514beb",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/水体（面）/镇龙乡及周边水体.csv": "4d72a2b46d893701da635ac1b083539568ad3a8b9ffb1b28b09c06bf8af74324",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/水体（面）/镇龙乡及周边水体.mat": "b79df14bdc0b22811f5c219897a66775d8879a93c4a865e455d8c43ab099b50a",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/水系（线）/镇龙乡及周边水系.csv": "3502b997e000e8043e36b7159202bafb12a0c21d23a8b5ad4ec6877bad580a65",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/水系（线）/镇龙乡及周边水系.mat": "b89f4f294bf771962676009fa9044f46ef26a06613fb6f91e2c6f9ccd430f8e8",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/道路/镇龙乡及周边道路.csv": "adcd23b4ae2c28475412fc2c8a3c0504b2a293ac2ec25faa1da2fe3c3d063ebe",
+    "镇龙乡地理空间数据/镇龙乡及周边地理数据/道路/镇龙乡及周边道路.mat": "c868717284d8aee60157e3bc9b20e18a81b26fde3d75fc7d80317ef877af9849",
+    "镇龙乡地理空间数据/镇龙乡地理空间数据说明.pdf": "6d1522c6832a5d91a108dae0d07954845025c0dabd44af8ee78c7860d7c405e4",
+    "镇龙乡地理空间数据/镇龙乡地理空间详情地图.html": "5bb8082f4f5913e6787f86fa9dd3b6f8cbcfa309359f222f57355d1ae991b452"
+  },
+  "code_sha256": {
+    ".gitignore": "6feaded4e28ea86e001a6751b4e3d960e8b7c31b9616ff9936b79297086e809b",
+    "README.md": "a0dd732746dd1983915f64f3f2012cffaf6b5adb457081c56ec44a7294b45c8f",
+    "audit_public_reference.py": "d0de3752f9b442b2fd02af3ce4ea7d536a67516529a97b7c11481b441efaeb3c",
+    "energy_sensitivity.py": "59e13c8b985f5fb6fb2fd4d2a659519fd05a9453f2b38ccd9b0a0547fbc9ac60",
+    "mountain_flood/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/core/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/core/domain.py": "5308ea6c8097e155343944dcb54970879a8d8a01cb028cbe47cd427bc824a922",
+    "mountain_flood/core/parameters.py": "6b99b08f909ae8b184f7c64ac2430ad2baa673c2c41f4e1453cea4b70b5af1b0",
+    "mountain_flood/experiments/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/experiments/audit_public_reference.py": "b29be0be0ca83a6237f4d9d7cbc3dda3a273cab0dcaf121dde2f1893ef47f779",
+    "mountain_flood/experiments/energy_sensitivity.py": "fbab57f8d9bbc6f18dcb178f9523775f7f8384312f907dfb9e679e4fe54956e4",
+    "mountain_flood/experiments/probe_joint_fusion.py": "cb22fcca5b9fe06afb0bdf123a3d73ce6334dfc6902a29ae6e81ada68d026ff9",
+    "mountain_flood/experiments/refine_joint_fusion.py": "dbfbf55f18bd98eebe88d81d4109fd03b9073d55b724998eaf322f6ede34625b",
+    "mountain_flood/experiments/reschedule_methods.py": "636600021550af089c9f51530f6853bb229f5eaa615403f6d7bc1106bd28d95b",
+    "mountain_flood/experiments/trim_relays.py": "16a33c250db3795770af5d0d071c3a362f56975293e5a6fa07406123e8774f96",
+    "mountain_flood/figure/README.md": "a802313caf8c49d5cc98562ecfe794df0597b21cf7976be556be73fba58b397d",
+    "mountain_flood/figure/__init__.py": "75149c5d77802c2f3f2738a60bbaa315675708fe9d992a81307d9c86a22cd0da",
+    "mountain_flood/figure/common.py": "2cd24417124355f1f711a621d5f7cdc370e275d4b7d5d08663bed24e2627401b",
+    "mountain_flood/figure/generate.py": "f2d57c2ef12f51d4aa114ac742c76fb78ee76a5c86d20b14ba966e74bd11f160",
+    "mountain_flood/figure/overview.py": "dc6a50145f17ce1afd4e0782d461c3f92eb915a7e4829de0b4bb0ba6d7621181",
+    "mountain_flood/figure/q1.py": "728cdf49137d70466a8463b6edf49771a28a22cd693d214d4a5bb574481b0a4f",
+    "mountain_flood/figure/q2.py": "4cddbe4bf8476a93761adc254ba019ebf15d4a0b411f97b19ab003ac41f4ceeb",
+    "mountain_flood/figure/q3.py": "69c25f07f1b68762b2187e9c2c6ce899c8d9665e40ba292b8f2faf0b560d6fbe",
+    "mountain_flood/figure/q4.py": "ed9d40d7d9646e69571848c385f61055bf2578148b352e15bec1f92f646d9951",
+    "mountain_flood/figure/spatial.py": "4cff592ee6a21b7412ce8033cf61cfb19814a4f2625320c20c8ae9ca48649106",
+    "mountain_flood/figure_matlab/README.md": "b3efe7fa9f9e9754ed580580c86030e5e44bc8650f531c4a11b4143ecf48220e",
+    "mountain_flood/figure_matlab/run_all.m": "f00cba6ced3d0cc0aed4d1d492d1a2f0bd62f7620eac00742307c1a7eb09f2c5",
+    "mountain_flood/paths.py": "0a5e34aa6ae924b476e85d63440eeb29768f7d26d5b9aa53afa7a4f7018f8839",
+    "mountain_flood/problem1/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/problem1/packing.py": "1b0ea9c3f2722413159c8ad3ad17277c8520acc19d272f30a5db7d1599bd7b05",
+    "mountain_flood/problem1/recompute.py": "0d75a14d1b4442315778c4cde9b049b2a71ada5ab05227657e7b14c7bea18956",
+    "mountain_flood/problem2/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/problem2/search.py": "303ce20782444136618ebb4828fc0a02dab8d582f9893c257974517468200ec1",
+    "mountain_flood/problem2/transport.py": "ba1fba29af1177a8dab446bb1affeaee34ca9c9b2afa68940881d343ad9a18ae",
+    "mountain_flood/problem3/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/problem3/communication.py": "d7d8bc7fdff8edc7401e5ebc561c194ccee6ef894f95625740794b79daa60972",
+    "mountain_flood/problem3/hard_deadline.py": "12bb18af6740389bb69ecf2d0a57eb18358531d4f94493ebdad93ac99d7c4b87",
+    "mountain_flood/problem3/joint_solver.py": "1e0ef7d0080b2a393761a71a6bf50092bba1c16503407697f4845ed69db564eb",
+    "mountain_flood/problem3/schedule.py": "355f99db8b69b2ec10b32aab9eeb20fb439f36fb8e2fb0a526c2e37eb36171f1",
+    "mountain_flood/problem4/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/problem4/partition.py": "07683ee9c7ea31a7a293671132b91d7c3a1b74399d5d64531c4965c19f0b008a",
+    "mountain_flood/reporting/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/reporting/export_submission.py": "d4971ab8e6659b8b5f14cf651b04b12aa056792b55fe370cde486afa6035e068",
+    "mountain_flood/validation/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/validation/compare_joint_candidates.py": "647656c5e26ed3e563f57619880e85e45c91d0a062b2bd5df41fdb669d732645",
+    "mountain_flood/validation/replay.py": "2ce3ccc042778675a8af2799787c85a970da64967ffac506740aa4b33e5f7c73",
+    "mountain_flood/validation/resources.py": "0a6f6bc3ec14bb8b33b3d150d41448fd626325bdf2ce181fbff9f05afb9a2b77",
+    "mountain_flood/validation/runner.py": "56b13ef1e2580fee2cf598dd66a344a9be28730303bd817b5c6f90e1a72617ae",
+    "mountain_flood/validation/verify_methods_archive.py": "1328c069f0cb2d01209f260eefe0aa7b6ad7f28a50101728b87af1f90e446805",
+    "mountain_flood/workflow/__init__.py": "dc454d7c4db19a31df7172f1baa4b4c3e82de8879f67fd18ca61de091b8393a1",
+    "mountain_flood/workflow/promote_fusion.py": "d701347ac36d6c34a3dc11719356d296fc8ce58b739b84d94f5adf993b0deacc",
+    "mountain_flood/workflow/reproduce.py": "0d0bbfd7fea9e32a7331c4efe04814175e02e318d2741c5eb9f47f67c27e498c",
+    "reproduce.py": "ef05350df235c5047f3b9ab9116fedb2b620a081c6ad5ccb35bc4a9e4120edb3"
+  },
+  "config_sha256": {
+    "base_parameters.json": "6c7803671dc3263f8189459f132cce40d91c555fc98d616ce09e7e00f746933e",
+    "optimization_parameters.json": "97b41293382a561e33fb4b56e06037557ce1a0cd9ce5f84b1cc47672c2dd4626"
+  },
+  "roadmap_source_sha256": "469e1fb77979687120521dbe1e3b5a61387696a50179caf53f2ef1dabc0e14fd",
+  "q2": {
+    "count": 24,
+    "energy": 71.91685705445398,
+    "makespan": 6276.8314356603205,
+    "weighted_tardiness": 0,
+    "weighted_arrival": 2620881.820855962,
+    "hard_violations": 0,
+    "delivered": 80,
+    "last_delivery": 5734.230262262905
+  },
+  "q3": {
+    "count": 26,
+    "energy": 78.87319924399829,
+    "makespan": 6769.22155442542,
+    "weighted_tardiness": 0,
+    "weighted_arrival": 2890126.287706867,
+    "hard_violations": 0,
+    "delivered": 80,
+    "last_delivery": 6317.396902784204,
+    "transport_energy": 75.39881220844622,
+    "relay_energy": 3.474387035552063,
+    "relay_count": 3,
+    "transport_makespan": 6625.61323183137,
+    "comm_intervals": 4061,
+    "comm_min_margin": 0.09378043058285357
+  },
+  "q4": {
+    "2": [
+      4,
+      3,
+      2,
+      6,
+      5,
+      4,
+      3,
+      4
+    ],
+    "3": [
+      6,
+      2,
+      3,
+      8,
+      4,
+      4,
+      4,
+      5
+    ]
+  },
+  "workbook_sha256": "a652f6aa4da92081b56e8c10a58ab14f0a0ec7cd4a618a733cc72b3065fb571d",
+  "figure_files": [
+    "reproduced_figures/fig_roadmap.pdf",
+    "reproduced_figures/q1_capacity_heatmap.pdf",
+    "reproduced_figures/q1_dem_nodes.pdf",
+    "reproduced_figures/q1_objective_solutions.pdf",
+    "reproduced_figures/q1_payload_energy.pdf",
+    "reproduced_figures/q1_return_soc.pdf",
+    "reproduced_figures/q1_safe_capacity.pdf",
+    "reproduced_figures/q1_sensitivity.pdf",
+    "reproduced_figures/q1_typical_elevation_profile.pdf",
+    "reproduced_figures/q2_battery_timeline.pdf",
+    "reproduced_figures/q2_delivery_deadlines.pdf",
+    "reproduced_figures/q2_drone_timeline.pdf",
+    "reproduced_figures/q2_return_soc.pdf",
+    "reproduced_figures/q2_route_energy.pdf",
+    "reproduced_figures/q2_search_comparison.pdf",
+    "reproduced_figures/q2_transport_routes.pdf",
+    "reproduced_figures/q3_battery_timeline.pdf",
+    "reproduced_figures/q3_communication_timeline.pdf",
+    "reproduced_figures/q3_joint_timeline.pdf",
+    "reproduced_figures/q3_link_margin.pdf",
+    "reproduced_figures/q3_q2_q3_comparison.pdf",
+    "reproduced_figures/q3_relay_coverage_points.pdf",
+    "reproduced_figures/q3_relay_map.pdf",
+    "reproduced_figures/q3_relay_soc.pdf",
+    "reproduced_figures/q4_partition_2groups.pdf",
+    "reproduced_figures/q4_partition_3groups.pdf",
+    "reproduced_figures/q4_resource_deficit.pdf",
+    "reproduced_figures/q4_resource_demand.pdf",
+    "reproduced_figures/q4_task_network.pdf",
+    "reproduced_figures/q4_workload.pdf",
+    "reproduced_figures/spatial_group_standard_ellipses.pdf",
+    "reproduced_figures/spatial_terrain_routes_3d.pdf",
+    "reproduced_figures/spatial_terrain_time_partitions.pdf",
+    "reproduced_figures/spatial_time_sliced_routes.pdf"
+  ]
+}

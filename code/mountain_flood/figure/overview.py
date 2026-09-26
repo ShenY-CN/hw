@@ -23,9 +23,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+from mountain_flood.figure.common import FIGURE_DIR, update_figure_manifest
 
 SOURCE = PROJECT_ROOT / "figures" / "fig_roadmap.drawio"
-TARGET = PROJECT_ROOT / "figures" / "fig_roadmap.pdf"
+TARGET = FIGURE_DIR / "fig_roadmap.pdf"
 FONT = "/System/Library/Fonts/STHeiti Medium.ttc"
 
 
@@ -76,7 +77,10 @@ def run():
     fig.subplots_adjust(0, 0, 1, 1)
     fig.savefig(TARGET, format="pdf", metadata={
         "Title": "总体建模流程", "Creator": "fig_roadmap.drawio 渲染结果"})
+    fig.savefig(FIGURE_DIR / "fig_roadmap.png", dpi=300)
+    fig.savefig(FIGURE_DIR / "fig_roadmap.svg")
     plt.close(fig)
+    update_figure_manifest()
     print(TARGET)
 
 

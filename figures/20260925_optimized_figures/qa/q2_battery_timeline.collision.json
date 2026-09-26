@@ -1,0 +1,342 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q2_battery_timeline.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 26,
+  "text_trace_count": 27,
+  "stroke_path_count": 115,
+  "filled_region_count": 117,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 2,
+    "warn": 11,
+    "contained_fill_overlays": 3,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 3 stroked path(s)",
+      "text": "运输任务",
+      "text_bbox": [
+        519.3531494140625,
+        16.225692749023438,
+        546.3529663085938,
+        25.225692749023438
+      ],
+      "other_text": null,
+      "other_bbox": [
+        396.0,
+        -36.0,
+        612.0,
+        281.3199768066406
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        128,
+        148,
+        150
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 3 stroked path(s)",
+      "text": "充电",
+      "text_bbox": [
+        519.3531494140625,
+        29.725692749023438,
+        528.3530883789062,
+        38.72569274902344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        396.0,
+        -36.0,
+        612.0,
+        281.3199768066406
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        128,
+        148,
+        150
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "BB02",
+      "text_bbox": [
+        20.653125762939453,
+        150.46401977539062,
+        38.246742248535156,
+        159.46401977539062
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        108.0,
+        180.0,
+        180.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        32
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "BB03",
+      "text_bbox": [
+        20.653125762939453,
+        168.76063537597656,
+        38.246742248535156,
+        177.76063537597656
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        108.0,
+        180.0,
+        180.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        32
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "AB02",
+      "text_bbox": [
+        20.840625762939453,
+        40.68428039550781,
+        38.24674987792969,
+        49.68428039550781
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        36.0,
+        180.0,
+        108.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        70
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "AB03",
+      "text_bbox": [
+        20.840625762939453,
+        58.98089599609375,
+        38.24674987792969,
+        67.98089599609375
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        36.0,
+        180.0,
+        108.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        70
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "AB04",
+      "text_bbox": [
+        20.840625762939453,
+        77.27752685546875,
+        38.24674987792969,
+        86.27752685546875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        36.0,
+        180.0,
+        108.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        70
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "AB05",
+      "text_bbox": [
+        20.840625762939453,
+        95.57414245605469,
+        38.24674987792969,
+        104.57414245605469
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        36.0,
+        180.0,
+        108.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        70
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "AB06",
+      "text_bbox": [
+        20.840625762939453,
+        113.87077331542969,
+        38.24674987792969,
+        122.87077331542969
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        108.0,
+        180.0,
+        180.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        32
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "BB01",
+      "text_bbox": [
+        22.450000762939453,
+        132.16738891601562,
+        40.043617248535156,
+        141.16738891601562
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        108.0,
+        180.0,
+        180.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        32
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "AB01",
+      "text_bbox": [
+        22.637500762939453,
+        22.387649536132812,
+        40.04362487792969,
+        31.387649536132812
+      ],
+      "other_text": null,
+      "other_bbox": [
+        36.0,
+        -36.0,
+        180.0,
+        36.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        4
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "运输任务",
+      "text_bbox": [
+        519.3531494140625,
+        16.225692749023438,
+        546.3529663085938,
+        25.225692749023438
+      ],
+      "other_text": null,
+      "other_bbox": [
+        396.0,
+        -36.0,
+        540.0,
+        36.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        148
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 3 filled region(s)",
+      "text": "充电",
+      "text_bbox": [
+        519.3531494140625,
+        29.725692749023438,
+        528.3530883789062,
+        38.72569274902344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        396.0,
+        -36.0,
+        612.0,
+        108.0
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        40,
+        148,
+        150
+      ]
+    }
+  ]
+}

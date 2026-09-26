@@ -38,7 +38,7 @@ def partition(model, data, output="q4.json"):
     component_count = len(components)
     print("partition components", components, flush=True)
 
-    inventory = [4, 2, 2, 6, 4, 4, 2, 6]
+    inventory = [len(model.units[g]) for g in model.types] + [model.types[g]['batteries'] for g in model.types] + [len(model.relay['units']),model.relay['components']]
 
     @lru_cache(None)
     def group(mask):
@@ -83,12 +83,12 @@ def partition(model, data, output="q4.json"):
                 )
             )
         resources.append(
-            peak([(relay["start"], relay["end"] + 300) for relay in relay_tasks])
+            peak([(relay["start"], relay["end"] + model.relay['turnaround']) for relay in relay_tasks])
         )
         resources.append(
             peak(
                 [
-                    (relay["start"], relay["end"] + charge(relay["soc"], 1800))
+                    (relay["start"], relay["end"] + charge(relay["soc"], model.relay['charge']))
                     for relay in relay_tasks
                 ]
             )

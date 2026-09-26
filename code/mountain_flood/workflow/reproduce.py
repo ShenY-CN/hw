@@ -32,6 +32,7 @@ STEPS=[
     'mountain_flood/figure/q2.py',
     'mountain_flood/figure/q3.py',
     'mountain_flood/figure/q4.py',
+    'mountain_flood/figure/spatial.py',
     'mountain_flood/figure/overview.py',
 ]
 PACKAGES=['numpy','openpyxl','scipy','rasterio','pyproj','ortools','matplotlib','affine']
@@ -63,11 +64,12 @@ def run(out):
     if mismatches:raise RuntimeError(f'Dependency versions differ from requirements.lock: {mismatches}')
     out.mkdir(parents=True)
     shutil.copytree(ROOT/'code',out/'code',ignore=shutil.ignore_patterns('__pycache__','*.pyc','.DS_Store'))
-    shutil.copytree(ROOT/'input',out/'input',ignore=shutil.ignore_patterns('.DS_Store'))
+    shutil.copytree(ROOT/'input',out/'input',ignore=shutil.ignore_patterns('.DS_Store','~$*'))
+    shutil.copytree(ROOT/'config',out/'config')
     shutil.copy2(ROOT/'requirements.lock',out/'requirements.lock')
     (out/'results').mkdir();(out/'figures').mkdir()
     shutil.copy2(ROOT/'figures'/'fig_roadmap.drawio',out/'figures'/'fig_roadmap.drawio')
-    archives=['q2_time_energy_candidate.json','q3_hard_hill1_e3900_margin.json','method_comparison.json']
+    archives=['q2_time_energy_candidate.json','q3_hard_hill1_e3900_margin.json','method_comparison.json','method_comparison_strict_archive.json','q3_soft_legacy.json']
     for pattern in ('q3_hard_hill1_e*_trim.json','q3_hard_newq2_e*_trim.json',
                     'q3_hard_q2_e*_completion_trim.json','q3_hard_q2_e*_buffer15_trim.json',
                     'q3_hard_hill1_e*_margin.json'):
@@ -75,7 +77,9 @@ def run(out):
     archives=list(dict.fromkeys(archives))
     for filename in archives:
         shutil.copy2(ROOT/'results'/filename,out/'results'/filename)
-    env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',MPLCONFIGDIR=str(out/'matplotlib_cache'))
+    figure_set='reproduced_figures'
+    env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',MPLCONFIGDIR=str(out/'matplotlib_cache'),
+             MOUNTAIN_FLOOD_FIGURE_SET=figure_set)
     logs=[]
     for step in STEPS:
         command=[sys.executable,str(out/'code'/step)]
@@ -97,33 +101,38 @@ def run(out):
     from openpyxl import load_workbook
     book=load_workbook(out/'D题结果提交表.xlsx',read_only=True,data_only=True)
     if len(book.sheetnames)!=8:raise RuntimeError('Submission workbook lacks required sheets')
-    pdfs=sorted(p.stem for p in (out/'figures').glob('*.pdf'))
-    pngs=sorted(p.stem for p in (out/'figures').glob('*.png'))
+    figure_folder=out/'figures'/figure_set
+    pdfs=sorted(p.stem for p in figure_folder.glob('*.pdf'))
+    pngs=sorted(p.stem for p in figure_folder.glob('*.png'))
+    svgs=sorted(p.stem for p in figure_folder.glob('*.svg'))
     expected_figures={
         'q1_dem_nodes','q1_safe_capacity','q1_capacity_heatmap','q1_typical_elevation_profile',
         'q1_payload_energy','q1_objective_solutions','q1_sensitivity','q1_return_soc',
         'q2_transport_routes','q2_drone_timeline',
         'q2_battery_timeline','q2_delivery_deadlines','q2_return_soc',
         'q2_search_comparison','q2_route_energy','q3_relay_map','q3_relay_coverage_points',
-        'q3_communication_timeline','q3_link_margin','q3_joint_timeline',
+        'q3_communication_timeline','q3_link_margin','q3_joint_timeline','q3_battery_timeline',
         'q3_relay_soc','q3_q2_q3_comparison','q4_partition_2groups',
         'q4_partition_3groups','q4_resource_demand','q4_workload',
         'q4_resource_deficit','q4_task_network',
+        'spatial_terrain_time_partitions','spatial_group_standard_ellipses',
+        'spatial_terrain_routes_3d','spatial_time_sliced_routes',
     }
-    if set(pdfs)!=(expected_figures|{'fig_roadmap'}) or set(pngs)!=expected_figures:
-        raise RuntimeError(f'Figure outputs incomplete: PDF={pdfs}, PNG={pngs}')
+    expected_figures.add('fig_roadmap')
+    if set(pdfs)!=expected_figures or set(pngs)!=expected_figures or set(svgs)!=expected_figures:
+        raise RuntimeError(f'Figure outputs incomplete: PDF={pdfs}, PNG={pngs}, SVG={svgs}')
     manifest=dict(
         created_at=datetime.now(timezone.utc).isoformat(),python=sys.version.split()[0],
         packages=installed,requirements_sha256=digest(out/'requirements.lock'),
         random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),
         archived_selected_plans_sha256={name:digest(out/'results'/name) for name in archives},
-        archive_note='Q1 is recalculated; the common-budget stochastic search and finite joint search are archived as route witnesses, each independently recalculated and validated. This replay does not repeat wall-clock discovery.',
+        archive_note='Q1 is recalculated; the revised-rule common-budget search, prior strict-rule search, historical soft plan, and finite joint search are archived as route witnesses. Current plans are independently recalculated and validated. This replay does not repeat wall-clock discovery.',
         commands=[dict(script=s,exit_code=0) for s in STEPS],
-        input_sha256=hashes(out/'input'),code_sha256=hashes(out/'code'),
+        input_sha256=hashes(out/'input'),code_sha256=hashes(out/'code'),config_sha256=hashes(out/'config'),
         roadmap_source_sha256=digest(out/'figures'/'fig_roadmap.drawio'),
         q2=q2,q3=q3,q4={k:v['selected']['total'] for k,v in q4['schemes'].items()},
         workbook_sha256=digest(out/'D题结果提交表.xlsx'),
-        figure_files=[name+'.pdf' for name in pdfs])
+        figure_files=[f'{figure_set}/{name}.pdf' for name in pdfs])
     (out/'results'/'复现清单.json').write_text(
         json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf8')
     print('PASS',out,flush=True)

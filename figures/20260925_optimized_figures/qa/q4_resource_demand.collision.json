@@ -1,0 +1,72 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q4_resource_demand.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 21,
+  "text_trace_count": 29,
+  "stroke_path_count": 37,
+  "filled_region_count": 46,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 2,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "现有库存",
+      "text_bbox": [
+        591.3062744140625,
+        16.225692749023438,
+        618.3060913085938,
+        25.225692749023438
+      ],
+      "other_text": null,
+      "other_bbox": [
+        32.60625076293945,
+        18.324981689453125,
+        635.40625,
+        18.324981689453125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        42
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "3组需求",
+      "text_bbox": [
+        596.71875,
+        43.2257080078125,
+        614.7186279296875,
+        52.2257080078125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        32.60625076293945,
+        46.13743591308594,
+        635.40625,
+        46.13743591308594
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        40
+      ]
+    }
+  ]
+}

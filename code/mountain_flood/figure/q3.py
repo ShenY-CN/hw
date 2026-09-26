@@ -6,7 +6,9 @@ import sys
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(PROJECT_ROOT / "code"), str(PROJECT_ROOT)]
 
-from mountain_flood.figure.common import COLORS, RELAY_COLORS, Model, draw_region, load_result, save_figure
+from mountain_flood.figure.common import (
+    COLORS, RELAY_COLORS, Model, NEUTRAL, draw_region, load_result, save_figure,
+)
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
@@ -17,7 +19,7 @@ def plot_relay_map(model, data):
     draw_region(ax, model)
     for route in data["routes"]:
         points = model.xy[[0] + route["order"] + [0]] / 1000
-        ax.plot(points[:, 0], points[:, 1], color="#777777", lw=0.55, alpha=0.35)
+        ax.plot(points[:, 0], points[:, 1], color=NEUTRAL, lw=0.55, alpha=0.35)
     shown = set()
     for relay in data["relays"]:
         site = relay["site"]
@@ -41,15 +43,16 @@ def plot_relay_map(model, data):
     handles = [Line2D([0], [0], color=color, marker="D", linestyle="--",
                       label=f"{site}中继点") for site, color in RELAY_COLORS.items()
                if site in shown]
-    ax.legend(handles=handles, loc="lower left", fontsize=8)
+    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.12),
+              fontsize=8, ncol=max(1, len(handles)))
     save_figure(fig, "q3_relay_map")
 
 
 def plot_relay_coverage_points(model, data):
     """把通信证书中的中继服务区间映射回航线上，展示直连盲区的中继覆盖。"""
     routes = {route["id"]: route for route in data["routes"]}
-    points = {provider: [[], []] for provider in RELAY_COLORS.values()}
-    relay_provider_color = {"R01": "#0072B2", "R02": "#D55E00"}
+    points = {}
+    relay_provider_color = {"R01": "#69549A", "R02": "#258A91"}
     for interval in data["communication"]:
         provider = interval["provider"]
         if provider == "G01":
@@ -66,7 +69,7 @@ def plot_relay_coverage_points(model, data):
         longitude = first[0] + fraction * (second[0] - first[0])
         latitude = first[1] + fraction * (second[1] - first[1])
         x, y = model.local(longitude, latitude)
-        color = relay_provider_color.get(provider, "#009E73")
+        color = relay_provider_color.get(provider, COLORS["C"])
         points.setdefault(color, [[], []])[0].append(x / 1000)
         points[color][1].append(y / 1000)
 
@@ -74,9 +77,9 @@ def plot_relay_coverage_points(model, data):
     draw_region(ax, model)
     for route in data["routes"]:
         path = model.xy[[0] + route["order"] + [0]] / 1000
-        ax.plot(path[:, 0], path[:, 1], color="#888888", linewidth=0.5, alpha=0.25)
-    relay_labels = {"#0072B2": "R01中继覆盖采样", "#D55E00": "R02中继覆盖采样",
-                    "#009E73": "其他中继覆盖采样"}
+        ax.plot(path[:, 0], path[:, 1], color=NEUTRAL, linewidth=0.5, alpha=0.25)
+    relay_labels = {"#69549A": "R01中继覆盖采样", "#258A91": "R02中继覆盖采样",
+                    COLORS["C"]: "其他中继覆盖采样"}
     for color, (x_values, y_values) in points.items():
         if x_values:
             ax.scatter(x_values, y_values, s=7, color=color, alpha=0.55,
@@ -90,7 +93,7 @@ def plot_relay_coverage_points(model, data):
         ax.scatter(x / 1000, y / 1000, marker="D", s=75,
                    color=RELAY_COLORS[relay["site"]], edgecolor="black", linewidth=0.4,
                    label=f"{relay['site']}中继站", zorder=6)
-    ax.legend(fontsize=7, loc="lower left", ncol=2)
+    ax.legend(fontsize=7, loc="upper center", bbox_to_anchor=(0.5, -0.12), ncol=2)
     save_figure(fig, "q3_relay_coverage_points")
 
 
@@ -112,18 +115,18 @@ def plot_communication_timeline(data):
     route_index = {route["id"]: index for index, route in enumerate(routes)}
     grouped = _merge_status_intervals(data["communication"])
     providers = sorted({provider for _, provider in grouped})
-    palette = {"G01": "#777777", "R01": "#0072B2", "R02": "#D55E00"}
+    palette = {"G01": NEUTRAL, "R01": "#69549A", "R02": "#258A91"}
     fig, ax = plt.subplots(figsize=(9.0, max(5.0, 0.24 * len(routes))))
     for (route_id, provider), ranges in grouped.items():
         bars = [(start / 60, (end - start) / 60) for start, end in ranges]
         ax.broken_barh(bars, (route_index[route_id] - 0.32, 0.64),
-                       facecolors=palette.get(provider, "#009E73"), linewidth=0)
+                       facecolors=palette.get(provider, COLORS["C"]), linewidth=0)
     ax.set_yticks(range(len(routes)), [route["id"] for route in routes])
     ax.invert_yaxis()
     ax.set_xlabel("时刻 / min")
     ax.set_ylabel("运输架次")
     ax.grid(axis="x", alpha=0.2)
-    ax.legend(handles=[Patch(color=palette.get(provider, "#009E73"), label=
+    ax.legend(handles=[Patch(color=palette.get(provider, COLORS["C"]), label=
                              "调度中心直连" if provider == "G01" else f"{provider}中继")
                        for provider in providers], loc="upper right", ncol=len(providers), fontsize=8)
     save_figure(fig, "q3_communication_timeline")
@@ -134,10 +137,10 @@ def plot_link_margin(data):
     relayed = [item["margin"] for item in data["communication"] if item["provider"] != "G01"]
     fig, ax = plt.subplots(figsize=(6.5, 3.8))
     ax.hist([direct, relayed], bins=28, label=["调度中心直连", "中继链路"],
-            color=["#777777", "#0072B2"], alpha=0.75)
+            color=[NEUTRAL, "#69549A"], alpha=0.75)
     minimum = min(item["margin"] for item in data["communication"])
-    ax.axvline(0, color="#D55E00", linestyle="--", label="链路可行阈值")
-    ax.axvline(minimum, color="#009E73", linestyle=":",
+    ax.axvline(0, color=COLORS["C"], linestyle="--", label="链路可行阈值")
+    ax.axvline(minimum, color="#258A91", linestyle=":",
                label=f"最小证书裕量 {minimum:.2f} dB")
     ax.set_xlabel("链路裕量 / dB")
     ax.set_ylabel("认证区间数")
@@ -160,21 +163,22 @@ def plot_joint_timeline(data):
             ax.barh(lane, end - start, left=start, height=0.58, color=color,
                     edgecolor="white", linewidth=0.4)
         else:
-            ax.barh(lane, end - start, left=start, height=0.58, color="#CC79A7",
+            ax.barh(lane, end - start, left=start, height=0.58, color="#9381B2",
                     edgecolor="white", linewidth=0.4)
             service_start, service_end = task["ready"] / 60, task["service_end"] / 60
             ax.barh(lane, service_end - service_start, left=service_start,
-                    height=0.3, color="#78518B")
-        ax.text((start + end) / 2, lane, task.get("id", ""), ha="center", va="center",
-                fontsize=6.5, color="white")
+                    height=0.3, color="#69549A")
+        if end - start >= 4:
+            ax.text((start + end) / 2, lane, task.get("id", ""), ha="center", va="center",
+                    fontsize=6.5, color="white")
     ax.set_yticks(range(len(units)), units)
     ax.invert_yaxis()
     ax.set_xlabel("时刻 / min")
     ax.set_ylabel("运输机与中继机")
     ax.grid(axis="x", alpha=0.2)
-    ax.legend(handles=[Patch(color="#777777", label="运输架次"),
-                       Patch(color="#CC79A7", label="中继飞行任务"),
-                       Patch(color="#78518B", label="中继通信服务窗")],
+    ax.legend(handles=[Patch(color=NEUTRAL, label="运输架次"),
+                       Patch(color="#9381B2", label="中继飞行任务"),
+                       Patch(color="#69549A", label="中继通信服务窗")],
               loc="best", fontsize=8)
     save_figure(fig, "q3_joint_timeline")
 
@@ -184,7 +188,7 @@ def plot_relay_soc(data):
     fig, ax = plt.subplots(figsize=(5.8, 3.4))
     ax.bar([relay["id"] for relay in relays], [relay["soc"] * 100 for relay in relays],
            color=[RELAY_COLORS[relay["site"]] for relay in relays])
-    ax.axhline(20, color="#D55E00", linestyle="--", linewidth=1,
+    ax.axhline(20, color=COLORS["C"], linestyle="--", linewidth=1,
                label="最低返航储备 20%")
     ax.set_xlabel("中继任务")
     ax.set_ylabel("返航剩余电量 / %")
@@ -202,7 +206,7 @@ def plot_q2_q3_comparison(q2, q3):
     ]
     fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))
     for ax, (pair, ylabel) in zip(axes, values):
-        ax.bar(labels, pair, color=["#0072B2", "#D55E00"])
+        ax.bar(labels, pair, color=[COLORS["A"], COLORS["B"]])
         ax.set_ylabel(ylabel)
         ax.grid(axis="y", alpha=0.2)
     save_figure(fig, "q3_q2_q3_comparison")
@@ -212,11 +216,13 @@ def run():
     model = Model()
     q2 = load_result("q2.json")
     q3 = load_result("q3.json")
+    from mountain_flood.figure.q2 import plot_battery_timeline
     plot_relay_map(model, q3)
     plot_relay_coverage_points(model, q3)
     plot_communication_timeline(q3)
     plot_link_margin(q3)
     plot_joint_timeline(q3)
+    plot_battery_timeline(model, q3, "q3_battery_timeline")
     plot_relay_soc(q3)
     plot_q2_q3_comparison(q2, q3)
 

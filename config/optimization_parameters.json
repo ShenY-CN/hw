@@ -1,0 +1,10 @@
+{
+  "method_comparison": {"methods": ["grasp", "hill", "anneal", "tabu"], "seeds": [0, 1, 2], "search_budget_s": 6, "schedule_budget_s": 8, "cp_sat_seed": 42},
+  "route_search": {"max_stops_per_route": 3, "mutation_attempts": 35, "hill_neighbors": 10, "tabu_neighbors": 10, "hill_restart_interval": 8, "tabu_tenure": 12, "anneal_min_temperature": 0.001, "anneal_acceptance_scale": 50000, "initial_seed_attempts": 30, "schedule_horizon_s": 24000},
+  "construction": {"jitter_min": 0.75, "jitter_max": 1.25, "exponent_min": 0.1, "exponent_max": 0.8, "energy_weight_max": 0.2, "soft_due_offset_s": 10000, "seed_shortlist": 12, "hard_priority_multiplier": 3, "marginal_duration_divisor_s": 600, "marginal_offset": 0.15, "score_time_divisor_s": 1000, "tardiness_divisor_s": 3600},
+  "anneal_scalar": {"hard_violation_weight": 10000000, "soft_tardiness_weight": 100, "makespan_divisor": 100, "arrival_divisor": 10},
+  "q1_capacity_bisection_iterations": 55,
+  "communication_certificate": {"step_s": 10, "max_depth": 6, "distance_safety_factor": 1.0002},
+  "relay_site_search": {"grid_m": 750, "x_min_m": -6000, "x_stop_m": 6750, "y_min_m": 0, "y_stop_m": 9750, "direct_sampling_m": 150, "direct_gap_threshold_db": 0.2, "required_margin_db": 0.3},
+  "q3_schedule_horizon_s": 13000
+}

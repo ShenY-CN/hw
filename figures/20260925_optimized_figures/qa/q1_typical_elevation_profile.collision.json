@@ -1,0 +1,74 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q1_typical_elevation_profile.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 21,
+  "text_trace_count": 24,
+  "stroke_path_count": 40,
+  "filled_region_count": 21,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 2,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 3 stroked path(s)",
+      "text": "DEM 地面高程",
+      "text_bbox": [
+        255.35874938964844,
+        95.05570983886719,
+        305.3927917480469,
+        104.05570983886719
+      ],
+      "other_text": null,
+      "other_bbox": [
+        43.41875076293945,
+        7.1999969482421875,
+        505.0987548828125,
+        203.55999755859375
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        2,
+        11,
+        29
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "无人机飞行高度",
+      "text_bbox": [
+        255.35874938964844,
+        108.55570983886719,
+        309.3583984375,
+        117.55570983886719
+      ],
+      "other_text": null,
+      "other_bbox": [
+        272.2058410644531,
+        7.1999969482421875,
+        272.2058410644531,
+        203.55999755859375
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        11
+      ]
+    }
+  ]
+}

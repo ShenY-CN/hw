@@ -1,4 +1,4 @@
-"""在每个货箱的硬截止时间内联合选择运输机型和起飞时刻。
+"""在医疗期望时刻与首批截止约束下联合选择运输机型和起飞时刻。
 
 搜索器只负责提出排程候选；候选必须通过路线、资源和连续通信验证后才会被接受。
 """
@@ -18,6 +18,7 @@ from mountain_flood.problem3.communication import certify_routes
 from mountain_flood.problem3.schedule import allowed_starts, intersect
 from mountain_flood.validation.replay import validate
 from mountain_flood.problem2.transport import metrics
+from mountain_flood.core.parameters import optimization_parameters
 
 
 def split_by_node(m, routes, route_id, model_by_node=None):
@@ -102,7 +103,7 @@ def solve_choices(m, routes, relays, seconds=45, verbose=False, objective='arriv
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = seconds
     solver.parameters.num_search_workers = 1
-    solver.parameters.random_seed = 42
+    solver.parameters.random_seed = optimization_parameters()['method_comparison']['cp_sat_seed']
     status = solver.solve(cp)
     if verbose: print('choices', solver.status_name(status), solver.objective_value,
                       solver.best_objective_bound, flush=True)

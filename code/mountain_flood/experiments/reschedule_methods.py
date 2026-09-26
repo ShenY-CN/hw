@@ -1,4 +1,4 @@
-"""对归档路线候选应用统一的完工优先解码器和排程器。"""
+"""对归档路线候选应用统一的分层时限解码器和排程器。"""
 
 # 支持直接运行本文件；此处将 code/ 加入模块搜索路径。
 if __package__ in (None, ""):
@@ -36,15 +36,15 @@ def run(seconds=8):
                            validation=validate(m, dict(routes=baseline['routes']), 2)))
     feasible = [x for x in candidates if x['validation']['pass_'] and x['metrics']['hard_violations'] == 0]
     frontier = nondominated(feasible)
-    selected = min(feasible, key=lambda x:(x['metrics']['makespan'], x['metrics']['weighted_arrival'],
+    selected = min(feasible, key=lambda x:(x['metrics']['weighted_tardiness'],x['metrics']['makespan'], x['metrics']['weighted_arrival'],
                                            x['metrics']['energy'], x['metrics']['count']))
     for x in candidates:
         x['on_frontier'] = x in frontier
         x['selected'] = x is selected
     archive['candidates'] = candidates
     archive['protocol']['schedule_seconds'] = seconds
-    archive['protocol']['decoder_objective'] = ['hard_due','makespan','weighted_arrival']
-    archive['protocol']['objective'] = ['all_boxes_on_time','makespan','weighted_arrival','energy','count']
+    archive['protocol']['decoder_objective'] = ['medical_due_and_first_cutoff','weighted_tardiness','makespan','weighted_arrival']
+    archive['protocol']['objective'] = ['hard_feasibility','weighted_tardiness','makespan','weighted_arrival','energy','count']
     save('method_comparison.json', archive)
     save('q2_time_energy_candidate.json', dict(routes=selected['routes'], summary=selected['metrics'],
                                                source=dict(method=selected['method'], seed=selected['seed'],

@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "notes": [],
+  "metrics": {
+    "Q1": {
+      "count": 18,
+      "energy": 59.13129602205464,
+      "time": 32776.01574891603
+    },
+    "Q2": {
+      "count": 24,
+      "energy": 71.91685705445398,
+      "makespan": 6276.8314356603205,
+      "weighted_tardiness": 0,
+      "weighted_arrival": 2620881.820855962,
+      "hard_violations": 0,
+      "delivered": 80,
+      "last_delivery": 5734.230262262905
+    },
+    "Q3": {
+      "count": 26,
+      "energy": 78.87319924399829,
+      "makespan": 6769.22155442542,
+      "weighted_tardiness": 0,
+      "weighted_arrival": 2890126.287706867,
+      "hard_violations": 0,
+      "delivered": 80,
+      "last_delivery": 6317.396902784204,
+      "transport_energy": 75.39881220844622,
+      "relay_energy": 3.474387035552063,
+      "relay_count": 3,
+      "transport_makespan": 6625.61323183137,
+      "comm_intervals": 4061,
+      "comm_min_margin": 0.09378043058285357
+    },
+    "Q4_two": [
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "Q4_three": [
+      2,
+      0,
+      1,
+      2,
+      0,
+      0,
+      2,
+      0
+    ]
+  },
+  "figures": 17
+}

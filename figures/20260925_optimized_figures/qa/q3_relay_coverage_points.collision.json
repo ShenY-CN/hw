@@ -1,0 +1,123 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q3_relay_coverage_points.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 23,
+  "text_trace_count": 30,
+  "stroke_path_count": 1971,
+  "filled_region_count": 1923,
+  "image_region_count": 1,
+  "summary": {
+    "fail": 4,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "R01中继覆盖采样",
+      "text_bbox": [
+        161.7843017578125,
+        284.74810791015625,
+        208.5399627685547,
+        291.74810791015625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        187.9056854248047,
+        182.02064514160156,
+        233.56874084472656,
+        323.0281066894531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        18,
+        80
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "R02中继覆盖采样",
+      "text_bbox": [
+        161.7843017578125,
+        295.24810791015625,
+        209.92822265625,
+        302.24810791015625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        187.9056854248047,
+        182.02064514160156,
+        233.56874084472656,
+        323.0281066894531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        18,
+        80
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        179.8936767578125,
+        270.0832824707031,
+        236.60414123535156,
+        279.0832824707031
+      ],
+      "other_text": null,
+      "other_bbox": [
+        187.9056854248047,
+        182.02064514160156,
+        233.56874084472656,
+        323.0281066894531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        18,
+        80
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "O01",
+      "text_bbox": [
+        212.1840057373047,
+        229.35670471191406,
+        224.4964141845703,
+        238.35670471191406
+      ],
+      "other_text": null,
+      "other_bbox": [
+        204.61495971679688,
+        222.51327514648438,
+        214.12551879882812,
+        231.558349609375
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        1957
+      ]
+    }
+  ]
+}

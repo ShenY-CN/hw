@@ -1,0 +1,198 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q3_relay_map.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 24,
+  "text_trace_count": 29,
+  "stroke_path_count": 168,
+  "filled_region_count": 89,
+  "image_region_count": 1,
+  "summary": {
+    "fail": 4,
+    "warn": 3,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 5 stroked path(s)",
+      "text": "W",
+      "text_bbox": [
+        156.937255859375,
+        143.43206787109375,
+        165.3072509765625,
+        156.0320587158203
+      ],
+      "other_text": null,
+      "other_bbox": [
+        128.58737182617188,
+        65.27197265625,
+        278.6896057128906,
+        175.2132568359375
+      ],
+      "object_count": 5,
+      "object_indexes": [
+        45,
+        77,
+        78,
+        82,
+        152
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        193.49368286132812,
+        288.7833251953125,
+        244.75914001464844,
+        297.7833251953125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        199.81980895996094,
+        195.4475555419922,
+        230.0657501220703,
+        325.2721252441406
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        18,
+        108
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "N",
+      "text_bbox": [
+        226.97024536132812,
+        90.9073257446289,
+        233.4412384033203,
+        103.50732421875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        216.2620391845703,
+        65.27197265625,
+        240.4785614013672,
+        111.15553283691406
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        96,
+        154
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "E",
+      "text_bbox": [
+        349.5279541015625,
+        178.4485626220703,
+        355.2609558105469,
+        191.04855346679688
+      ],
+      "other_text": null,
+      "other_bbox": [
+        338.81976318359375,
+        185.2803497314453,
+        352.2361755371094,
+        198.69674682617188
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        153
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "W",
+      "text_bbox": [
+        156.937255859375,
+        143.43206787109375,
+        165.3072509765625,
+        156.0320587158203
+      ],
+      "other_text": null,
+      "other_bbox": [
+        146.2290496826172,
+        150.26385498046875,
+        159.6454620361328,
+        163.68026733398438
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        152
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "N",
+      "text_bbox": [
+        226.97024536132812,
+        90.9073257446289,
+        233.4412384033203,
+        103.50732421875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        216.2620391845703,
+        97.73912048339844,
+        229.67845153808594,
+        111.15553283691406
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        154
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "E",
+      "text_bbox": [
+        349.5279541015625,
+        178.4485626220703,
+        355.2609558105469,
+        191.04855346679688
+      ],
+      "other_text": null,
+      "other_bbox": [
+        338.81976318359375,
+        185.2803497314453,
+        352.2361755371094,
+        198.69674682617188
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        153
+      ]
+    }
+  ]
+}

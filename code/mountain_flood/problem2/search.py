@@ -17,8 +17,9 @@ from pathlib import Path
 from mountain_flood.core.domain import Model, RESULT, save, charge
 from mountain_flood.problem2.transport import construct, metrics
 from mountain_flood.validation.replay import validate
+from mountain_flood.core.parameters import optimization_parameters
 
-METHODS = ('grasp', 'hill', 'anneal', 'tabu')
+METHODS = tuple(optimization_parameters()['method_comparison']['methods'])
 
 def plan_from_routes(routes):
     return [(r['g'], tuple(r['boxes']), tuple(r['order'])) for r in sorted(routes,key=lambda z:z['start'])]
@@ -35,7 +36,7 @@ def decode(m, plan):
     out=[]
     for index,(g,boxes,order) in enumerate(plan):
         required={m.boxes[b]['node'] for b in boxes}
-        if not boxes or len(order)>3 or len(order)!=len(set(order)) or set(order)!=required:return None
+        if not boxes or len(order)>optimization_parameters()['route_search']['max_stops_per_route'] or len(order)!=len(set(order)) or set(order)!=required:return None
         r=m.route(g,list(boxes),list(order))
         if r is None:return None
         ui=min(range(len(units[g])), key=lambda k: units[g][k])
@@ -48,11 +49,12 @@ def decode(m, plan):
 
 def score(m, routes):
     z=metrics(m,routes)
-    return (z['hard_violations'],z['weighted_tardiness'],z['weighted_arrival'],z['makespan'],z['energy'],z['count'])
+    return (z['hard_violations'],z['weighted_tardiness'],z['makespan'],z['weighted_arrival'],z['energy'],z['count'])
 
 def scalar(z):
     # 该标量只用于模拟退火接受概率，不作为论文或结果报告中的模型目标值。
-    return 1e7*z[0]+100*z[1]+z[2]/100+z[3]/10+z[4]
+    p=optimization_parameters()['anneal_scalar']
+    return p['hard_violation_weight']*z[0]+p['soft_tardiness_weight']*z[1]+z[2]/p['makespan_divisor']+z[3]/p['arrival_divisor']+z[4]
 
 def signature(plan):
     return tuple((g,tuple(sorted(bs)),tuple(order)) for g,bs,order in plan)
@@ -60,7 +62,7 @@ def signature(plan):
 def mutate(m, plan, rng):
     """五种搜索策略共用的路线变换之一；生成结果均经过物理可行性筛选。"""
     n=len(plan)
-    for _ in range(35):
+    for _ in range(optimization_parameters()['route_search']['mutation_attempts']):
         kind=rng.randrange(5)
         q=list(plan)
         if kind==0 and n>1:  # 调整架次执行顺序
@@ -89,7 +91,7 @@ def mutate(m, plan, rng):
         elif kind==4 and n>1:  # 合并两个架次
             i,j=sorted(rng.sample(range(n),2));g,a,o=q[i];h,b,p=q[j]
             both=a+b;order=normalize_order(m,both,o+p)
-            if len(order)>3:continue
+            if len(order)>optimization_parameters()['route_search']['max_stops_per_route']:continue
             q[i]=(rng.choice((g,h)),both,order);q.pop(j)
         else:continue
         if signature(q)==signature(plan):continue
@@ -115,30 +117,30 @@ def search(m, method, initial_plan, seed, budget):
             z=score(m,routes);curr_plan,curr_score=q,z
         elif method=='hill':
             candidates=[]
-            for _ in range(10):
+            for _ in range(optimization_parameters()['route_search']['hill_neighbors']):
                 q,routes=mutate(m,curr_plan,rng)
                 if q is not None:candidates.append((score(m,routes),q))
             if not candidates:continue
             z,q=min(candidates,key=lambda x:x[0])
             if z<curr_score:curr_plan,curr_score=q,z
-            elif iterations%8==0:curr_plan=list(best_plan);curr_score=best_score
+            elif iterations%optimization_parameters()['route_search']['hill_restart_interval']==0:curr_plan=list(best_plan);curr_score=best_score
         elif method=='anneal':
             q,routes=mutate(m,curr_plan,rng)
             if q is None:continue
-            z=score(m,routes);temp=max(1e-3,1-(time.monotonic()-start)/budget)
+            z=score(m,routes);temp=max(optimization_parameters()['route_search']['anneal_min_temperature'],1-(time.monotonic()-start)/budget)
             delta=scalar(z)-scalar(curr_score)
-            if delta<=0 or rng.random()<math.exp(-min(700,delta/(50000*temp))):
+            if delta<=0 or rng.random()<math.exp(-min(700,delta/(optimization_parameters()['route_search']['anneal_acceptance_scale']*temp))):
                 curr_plan,curr_score=q,z
         elif method=='tabu':
             candidates=[]
-            for _ in range(10):
+            for _ in range(optimization_parameters()['route_search']['tabu_neighbors']):
                 q,routes=mutate(m,curr_plan,rng)
                 if q is None:continue
                 sig=signature(q);z=score(m,routes)
                 if tabu.get(sig,0)<=iterations or z<best_score:candidates.append((z,q,sig))
             if not candidates:continue
             z,q,sig=min(candidates,key=lambda x:x[0]);curr_plan,curr_score=q,z
-            tabu[sig]=iterations+12
+            tabu[sig]=iterations+optimization_parameters()['route_search']['tabu_tenure']
         if curr_score<best_score:
             best_plan=list(curr_plan);best_score=curr_score
             history.append({'iteration':iterations,'elapsed_s':round(time.monotonic()-start,3),'score':best_score})
@@ -156,10 +158,10 @@ def nondominated(items):
     return out
 
 def refine_timefirst(m, rs, seconds=6.0):
-    """对每种路线划分使用相同的 CP-SAT 排程器，优先保证准时并最小化完工时间。"""
+    """医疗及首批硬截止通过后，依次压低其他物资迟到、返航收尾与交付时刻。"""
     from ortools.sat.python import cp_model
     model=cp_model.CpModel();starts=[];ends=[];intervals=[];battery_intervals=[]
-    tardy_terms=[];arrival_terms=[];horizon=24000
+    tardy_terms=[];arrival_terms=[];horizon=optimization_parameters()['route_search']['schedule_horizon_s']
     for j,r in enumerate(rs):
         duration=math.ceil(r['duration'])
         recharge=math.ceil(charge(r['soc'],m.types[r['g']]['charge']))
@@ -175,7 +177,7 @@ def refine_timefirst(m, rs, seconds=6.0):
             if box['deadline']<1e8:model.add(start<=math.floor(box['deadline']-t))
             delay=model.new_int_var(0,horizon*1000,f'late{j}_{b}')
             model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])
-            tardy_terms.append(box['priority']*delay)
+            if not box['medical']:tardy_terms.append(box['priority']*delay)
             arrival_terms.append(box['priority']*(1000*start+round(t*1000)))
     for g in m.types:
         js=[j for j,r in enumerate(rs) if r['g']==g]
@@ -184,11 +186,11 @@ def refine_timefirst(m, rs, seconds=6.0):
     cmax=model.new_int_var(0,horizon+max(math.ceil(r['duration']) for r in rs),'cmax')
     model.add_max_equality(cmax,ends)
     tardiness=sum(tardy_terms);arrival=sum(arrival_terms)
-    solver=cp_model.CpSolver();solver.parameters.num_search_workers=1;solver.parameters.random_seed=42
+    solver=cp_model.CpSolver();solver.parameters.num_search_workers=1;solver.parameters.random_seed=optimization_parameters()['method_comparison']['cp_sat_seed']
     stage=[];chosen=None
-    for label,objective in [('makespan',cmax),('weighted_arrival',arrival)]:
+    for label,objective in [('weighted_tardiness',tardiness),('makespan',cmax),('weighted_arrival',arrival)]:
         model.minimize(objective)
-        solver.parameters.max_time_in_seconds=max(1.0,seconds/2)
+        solver.parameters.max_time_in_seconds=max(1.0,seconds/3)
         status=solver.solve(model)
         info=dict(stage=label,status=solver.status_name(status))
         if status not in (cp_model.OPTIMAL,cp_model.FEASIBLE):
@@ -212,19 +214,23 @@ def refine_timefirst(m, rs, seconds=6.0):
             units[ui]=r['end'];batteries[bi]=r['end']+charge(r['soc'],m.types[g]['charge'])
     return out,stage
 
-def run(budget=8.0,seeds=(0,1,2),schedule_seconds=6.0):
+def run(budget=None,seeds=None,schedule_seconds=None):
+    settings=optimization_parameters()['method_comparison']
+    if budget is None:budget=settings['search_budget_s']
+    if seeds is None:seeds=tuple(settings['seeds'])
+    if schedule_seconds is None:schedule_seconds=settings['schedule_budget_s']
     m=Model();root=RESULT
     baseline=root/'q2.json'
     base=json.loads(baseline.read_text(encoding='utf8'))['routes']
     trials=[];starts={};initial_seeds={}
     for seed in seeds:
-        for trial_seed in range(seed*100,seed*100+30):
+        for trial_seed in range(seed*100,seed*100+optimization_parameters()['route_search']['initial_seed_attempts']):
             initial=construct(m,trial_seed,multi=True)
             if initial is not None:
                 starts[seed]=plan_from_routes(initial)
                 initial_seeds[seed]=trial_seed
                 break
-        if seed not in starts:raise RuntimeError(f'No on-time initial plan for seed {seed}')
+        if seed not in starts:raise RuntimeError(f'No hard-feasible initial plan for seed {seed}')
     for seed in seeds:
         for method in METHODS:
             rec=search(m,method,starts[seed],seed,budget)
@@ -242,17 +248,20 @@ def run(budget=8.0,seeds=(0,1,2),schedule_seconds=6.0):
         check=validate(m,dict(routes=refined),2)
         candidates.append(dict(method=rec['method'],seed=rec['seed'],metrics=z,solver=solver,validation=check,routes=refined))
         print('SCHEDULE',rec['method'],rec['seed'],z['weighted_tardiness'],z['weighted_arrival'],z['makespan'],check['pass_'],flush=True)
-    candidates.append(dict(method='existing_baseline',seed=None,metrics=metrics(m,base),solver={'status':'existing_verified'},validation=validate(m,dict(routes=base),2),routes=base))
+    candidates.append(dict(method='existing_baseline',seed=None,metrics=metrics(m,base),solver={'status':'archived_verified','origin':'prior hill-climbing seed 1 under stricter all-due experiment'},validation=validate(m,dict(routes=base),2),routes=base))
     feasible=[x for x in candidates if x['validation']['pass_'] and x['metrics']['hard_violations']==0 and x['metrics']['delivered']==80]
     frontier=nondominated(feasible)
-    selected=min(feasible,key=lambda x:(x['metrics']['makespan'],x['metrics']['weighted_arrival'],x['metrics']['energy'],x['metrics']['count']))
+    selected=min(feasible,key=lambda x:(x['metrics']['weighted_tardiness'],x['metrics']['makespan'],x['metrics']['weighted_arrival'],x['metrics']['energy'],x['metrics']['count']))
     overview=[]
     for x in candidates:
         overview.append(dict(method=x['method'],seed=x['seed'],metrics=x['metrics'],solver=x['solver'],validation=x['validation'],routes=x['routes'],on_frontier=x in frontier,selected=x is selected))
-    save('method_comparison.json',dict(protocol=dict(methods=METHODS,seeds=list(seeds),initial_seeds=initial_seeds,budget_s=budget,schedule_seconds=schedule_seconds,objective=['all_boxes_on_time','makespan','weighted_arrival','energy','count'],carbon_factor=None,provenance='independent local code'),trials=trials,candidates=overview))
-    save('q2_time_energy_candidate.json',dict(routes=selected['routes'],summary=selected['metrics'],source=dict(method=selected['method'],seed=selected['seed'],algorithm_comparison='method_comparison.json')))
+    save('method_comparison.json',dict(protocol=dict(methods=METHODS,seeds=list(seeds),initial_seeds=initial_seeds,budget_s=budget,schedule_seconds=schedule_seconds,hard_deadline='medical due and first-batch cutoff',soft_due='other goods expected delivery time',objective=['hard_feasibility','weighted_tardiness','makespan','weighted_arrival','energy','count'],carbon_factor=None,provenance='independent local code',historical_baseline='prior hill-climbing seed 1 under stricter all-due experiment; not a fifth current-budget run'),trials=trials,candidates=overview))
+    source=dict(method=selected['method'],seed=selected['seed'],algorithm_comparison='method_comparison.json')
+    if selected['method']=='existing_baseline':source['origin']='hill-climbing seed 1 in method_comparison_strict_archive.json'
+    save('q2_time_energy_candidate.json',dict(routes=selected['routes'],summary=selected['metrics'],source=source))
     print('SELECTED',selected['method'],selected['metrics'],flush=True)
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser();ap.add_argument('--budget',type=float,default=8.0);ap.add_argument('--seeds',default='0,1,2');ap.add_argument('--schedule-seconds',type=float,default=6.0)
+    settings=optimization_parameters()['method_comparison']
+    ap=argparse.ArgumentParser();ap.add_argument('--budget',type=float,default=settings['search_budget_s']);ap.add_argument('--seeds',default=','.join(map(str,settings['seeds'])));ap.add_argument('--schedule-seconds',type=float,default=settings['schedule_budget_s'])
     a=ap.parse_args();run(a.budget,tuple(int(s) for s in a.seeds.split(',')),a.schedule_seconds)

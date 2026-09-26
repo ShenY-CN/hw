@@ -15,6 +15,7 @@ import rasterio
 from pyproj import Geod
 
 from mountain_flood.paths import ROOT, INPUT, RESULT
+from mountain_flood.core.parameters import base_parameters
 def save(name,data):
     (RESULT/name).write_text(json.dumps(data,ensure_ascii=False,indent=2,default=lambda x:x.item() if hasattr(x,'item') else str(x)),encoding='utf-8')
 def rows(name,sheet='数据'):
@@ -23,11 +24,12 @@ def rows(name,sheet='数据'):
 
 class Model:
     def __init__(self):
+        self.parameters=base_parameters()
         nr=rows('调度中心与服务区')
         self.nodes=[dict(id=r[0],name=r[1],lon=r[2],lat=r[3],z=r[4],pop=r[5] or 0) for r in [nr[2]]+nr[6:21]]
         self.idx={n['id']:i for i,n in enumerate(self.nodes)}
         self.geo=Geod(ellps='WGS84')
-        self.raster=rasterio.open(next(INPUT.rglob('*.tif')))
+        self.raster=rasterio.open(INPUT / self.parameters['dem_file'])
         self.dem=self.raster.read(1)
         self.tf=self.raster.transform
         tr=rows('运输无人机数据')
@@ -35,21 +37,30 @@ class Model:
         self.types={r[0]:dict(zip(keys,r)) for r in tr[2:5]}
         self.units={g:[r[0] for r in tr[8:16] if r[1]==g] for g in self.types}
         for r in tr[19:22]: self.types[r[0]].update(batteries=r[1],charge=r[2])
+        rr=rows('中继无人机数据')
+        rk=['id','name','airframe_mass','module_mass','mass','vc','cruise_power','E','rho','prep','link_setup','turnaround','vu','vd','eta','downeta','hover_power','comm_power','max_agl']
+        self.relay=dict(zip(rk,rr[2]))
+        self.relay.update(units=[r[0] for r in rr[6:8]],components=rr[11][1],charge=rr[11][2])
+        cr=rows('通信链路参数')
+        self.comm=dict(frequency_mhz=cr[2][4],system_loss_db=cr[3][4],obstruction_db=cr[4][4],sensitivity_dbm=cr[5][4],fade_margin_db=cr[6][4],gateway_height_m=cr[15][4])
+        tx={'transport':(cr[7][4],cr[8][4]),'access':(cr[9][4],cr[10][4]),'backhaul':(cr[11][4],cr[12][4]),'gateway':(cr[13][4],cr[14][4])}
+        self.comm['thresholds_db']={name:min(tx[a][0]+tx[a][1]+tx[b][1],tx[b][0]+tx[b][1]+tx[a][1])-self.comm['sensitivity_dbm']-self.comm['fade_margin_db']-self.comm['system_loss_db'] for name,a,b in [('direct','transport','gateway'),('access','transport','access'),('backhaul','backhaul','gateway')]}
         self.boxes=[]
         for r in rows('物资需求与配送时限','逐箱货箱清单')[1:]:
-            # 每个货箱都必须在其规定的送达时间前到达；若属于首批货物，
-            # 首批截止时间还可能构成一个更早的额外硬时限。
-            hard=min(r[7],r[6] if r[5]=='是' else 1e9)
-            self.boxes.append(dict(id=r[0],node=self.idx[r[1]],kind=r[2],w=r[3],v=r[4],first=r[5]=='是',deadline=hard,due=r[7],priority=r[8]))
+            # 医疗物资的期望时刻、首批保障货箱的首批截止是硬约束；
+            # 其他物资的期望时刻只进入配送及时性评价。
+            medical=r[2]=='医疗物资';first=r[5]=='是'
+            hard=min(r[7] if medical else 1e9,r[6] if first else 1e9)
+            self.boxes.append(dict(id=r[0],node=self.idx[r[1]],kind=r[2],w=r[3],v=r[4],first=first,medical=medical,first_deadline=r[6] if first else None,deadline=hard,due=r[7],priority=r[8]))
         self.xy=np.array([self.local(n['lon'],n['lat']) for n in self.nodes])
-        self.op=np.array([n['z']+(30 if i else 0) for i,n in enumerate(self.nodes)])
+        self.op=np.array([n['z']+(self.parameters['service_height_m'] if i else 0) for i,n in enumerate(self.nodes)])
         self.D=np.zeros((16,16));self.H=np.zeros((16,16))
         self.T={g:np.zeros((16,16)) for g in self.types}
         for i in range(16):
             for j in range(i+1,16):
                 a,b=self.nodes[i],self.nodes[j]
                 d=self.geo.inv(a['lon'],a['lat'],b['lon'],b['lat'])[2]
-                h=max(self.line_max(a['lon'],a['lat'],b['lon'],b['lat'])+50,self.op[i],self.op[j])
+                h=max(self.line_max(a['lon'],a['lat'],b['lon'],b['lat'])+self.parameters['terrain_clearance_m'],self.op[i],self.op[j])
                 self.D[i,j]=self.D[j,i]=d;self.H[i,j]=self.H[j,i]=h
         for g,t in self.types.items():
             for i in range(16):
@@ -83,12 +94,13 @@ class Model:
         return bool(np.any(h>np.minimum(z[:-1],z[1:])+1e-8))
     def link_margin(self,a,b,threshold):
         d=math.hypot(self.geo.inv(a[0],a[1],b[0],b[1])[2],b[2]-a[2])/1000
-        return threshold-(32.45+20*math.log10(2400)+20*math.log10(max(d,1e-6))+10*self.blocked(a,b))
+        return threshold-(32.45+20*math.log10(self.comm['frequency_mhz'])+20*math.log10(max(d,1e-6))+self.comm['obstruction_db']*self.blocked(a,b))
     def energy(self,g,i,j,q):
         t=self.types[g]; L=t['L0']-(t['L0']-t['LF'])*(max(q,0)/t['Q'])**1.5
-        return t['E']*self.D[i,j]/L+(t['mass']+q)*9.81*(self.H[i,j]-self.op[i])/(t['eta']*3.6e6)
-    def route(self,g,ids,order=None,rho=.2):
+        return t['E']*self.D[i,j]/L+(t['mass']+q)*self.parameters['gravity_m_s2']*(self.H[i,j]-self.op[i])/(t['eta']*3.6e6)
+    def route(self,g,ids,order=None,rho=None):
         t=self.types[g];bs=[self.boxes[i] for i in ids]
+        if rho is None:rho=t['rho']/100
         w=sum(b['w'] for b in bs);v=sum(b['v'] for b in bs)
         if w>t['Q']+1e-9 or v>t['V']+1e-9:return None
         order=list(order or sorted(set(b['node'] for b in bs)))
@@ -111,7 +123,8 @@ class Model:
         return dict(g=g,boxes=list(ids),order=order,w=sum(b['w'] for b in bs),v=v,energy=e,duration=clock,takeoff=takeoff,deliver=deliver,segments=segments,soc=1-e/t['E'])
 
 def charge(s,T):
-    return T*(.65*(.9-s)/.9+.35) if s<.9 else T*.35*(1-s)/.1
+    p=base_parameters();b=p['charge_soc_break'];a=p['charge_first_stage_fraction'];c=p['charge_second_stage_fraction']
+    return T*(a*(b-s)/b+c) if s<b else T*c*(1-s)/(1-b)
 
 if __name__=='__main__':
     m=Model()

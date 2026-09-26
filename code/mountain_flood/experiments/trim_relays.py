@@ -22,11 +22,12 @@ def run(source, output):
             changes.append(dict(id=r['id'],change='removed_unused'));continue
         last=max(c['end'] for c in data['communication'] if c['relay_task']==r['id'])
         v=relay_flight(m,*r['pos'])
-        expected=v['fly_energy']+(r['service_end']-r['ready']+30)*1.1/3600
+        power=m.relay['hover_power']+m.relay['comm_power']
+        expected=v['fly_energy']+(r['service_end']-r['ready']+m.relay['link_setup'])*power/3600
         if abs(expected-r['energy'])>1e-6:raise AssertionError((r['id'],expected,r['energy']))
         new=dict(r);new['service_end']=min(r['service_end'],last+1.0);new['end']=new['service_end']+v['ret']
-        new['energy']=v['fly_energy']+(new['service_end']-new['ready']+30)*1.1/3600
-        new['soc']=1-new['energy']/3.2
+        new['energy']=v['fly_energy']+(new['service_end']-new['ready']+m.relay['link_setup'])*power/3600
+        new['soc']=1-new['energy']/m.relay['E']
         relays.append(new);changes.append(dict(id=r['id'],change='shortened',old_end=r['service_end'],new_end=new['service_end']))
     records,fails=certify_routes(m,data['routes'],relays,verbose=False)
     if fails:raise RuntimeError(f'{len(fails)} communication intervals failed after trimming')

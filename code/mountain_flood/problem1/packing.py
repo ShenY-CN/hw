@@ -7,13 +7,18 @@ from itertools import product
 import math
 
 from mountain_flood.core.domain import Model
+from mountain_flood.core.parameters import optimization_parameters
 
-def q1(m,rho=.2,objective='count'):
+def q1(m,rho=None,objective='count'):
+    if rho is None:
+        reserves={t['rho'] for t in m.types.values()}
+        if len(reserves)!=1:raise ValueError('Q1 default reserve requires equal model reserve percentages')
+        rho=reserves.pop()/100
     allroutes=[];capacities=[];certs=[]
     for node in range(1,16):
         for g,t in m.types.items():
             lo,hi=0.,float(t['Q'])
-            for _ in range(55):
+            for _ in range(optimization_parameters()['q1_capacity_bisection_iterations']):
                 mid=(lo+hi)/2
                 if m.energy(g,0,node,mid)+m.energy(g,node,0,0)<=(1-rho)*t['E']:lo=mid
                 else:hi=mid

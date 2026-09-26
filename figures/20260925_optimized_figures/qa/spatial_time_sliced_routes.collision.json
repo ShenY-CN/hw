@@ -1,0 +1,123 @@
+{
+  "pdf": "figures/20260925_optimized_figures/spatial_time_sliced_routes.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 46,
+  "text_trace_count": 61,
+  "stroke_path_count": 467,
+  "filled_region_count": 164,
+  "image_region_count": 3,
+  "summary": {
+    "fail": 4,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        150.4257354736328,
+        240.98289489746094,
+        201.69119262695312,
+        249.98289489746094
+      ],
+      "other_text": null,
+      "other_bbox": [
+        162.09063720703125,
+        164.3457794189453,
+        215.45947265625,
+        289.7085876464844
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        18,
+        54
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        466.8990478515625,
+        240.98289489746094,
+        518.1644897460938,
+        249.98289489746094
+      ],
+      "other_text": null,
+      "other_bbox": [
+        478.56396484375,
+        164.3457794189453,
+        531.9328002929688,
+        289.7085876464844
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        181,
+        217
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "C 型航段",
+      "text_bbox": [
+        508.06219482421875,
+        269.83428955078125,
+        535.6119384765625,
+        278.83428955078125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        478.56396484375,
+        164.3457794189453,
+        531.9328002929688,
+        289.7085876464844
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        217
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        783.3723754882812,
+        240.98289489746094,
+        834.6378173828125,
+        249.98289489746094
+      ],
+      "other_text": null,
+      "other_bbox": [
+        795.0372924804688,
+        164.3457794189453,
+        848.4061279296875,
+        289.7085876464844
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        335,
+        371
+      ]
+    }
+  ]
+}

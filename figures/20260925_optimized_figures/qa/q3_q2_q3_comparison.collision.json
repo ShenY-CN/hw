@@ -1,0 +1,23 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q3_q2_q3_comparison.pdf",
+  "auditable": true,
+  "verdict": "PASS",
+  "page_count": 1,
+  "visible_text_box_count": 30,
+  "text_trace_count": 32,
+  "stroke_path_count": 54,
+  "filled_region_count": 37,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 0,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": []
+}

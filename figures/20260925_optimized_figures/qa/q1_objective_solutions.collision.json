@@ -1,0 +1,97 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q1_objective_solutions.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 18,
+  "text_trace_count": 20,
+  "stroke_path_count": 30,
+  "filled_region_count": 18,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 3,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "最小能耗方案",
+      "text_bbox": [
+        63.103790283203125,
+        8.022873878479004,
+        103.10432434082031,
+        16.02287483215332
+      ],
+      "other_text": null,
+      "other_bbox": [
+        43.41875076293945,
+        8.9501953125,
+        366.4896545410156,
+        231.8061981201172
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        4,
+        26
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "最小能耗方案",
+      "text_bbox": [
+        304.3896484375,
+        17.975906372070312,
+        349.38934326171875,
+        26.975906372070312
+      ],
+      "other_text": null,
+      "other_bbox": [
+        317.72637939453125,
+        8.9501953125,
+        317.72637939453125,
+        231.8061981201172
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        12
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "最短时间方案",
+      "text_bbox": [
+        304.3896484375,
+        31.475906372070312,
+        349.38934326171875,
+        40.47590637207031
+      ],
+      "other_text": null,
+      "other_bbox": [
+        317.72637939453125,
+        8.9501953125,
+        317.72637939453125,
+        231.8061981201172
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        12
+      ]
+    }
+  ]
+}

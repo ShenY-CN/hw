@@ -9,6 +9,7 @@ from mountain_flood.core.domain import Model, charge
 from mountain_flood.problem3.communication import gateway, certify_routes, certificate
 from mountain_flood.validation.replay import validate
 from mountain_flood.problem2.transport import metrics
+from mountain_flood.core.parameters import optimization_parameters
 
 def intersect(a,b):
     out=[]
@@ -23,18 +24,21 @@ def intersect(a,b):
         else:merged.append((x,y))
     return merged
 
-def allowed_starts(m,r,relays,step=10,horizon=13000):
+def allowed_starts(m,r,relays,step=None,horizon=None):
+    settings=optimization_parameters()
+    if step is None:step=settings['communication_certificate']['step_s']
+    if horizon is None:horizon=settings['q3_schedule_horizon_s']
     gw=gateway(m);allowed=[(0,horizon)]
     for s in r['segments']:
         d=s['end']-s['start'];n=max(1,math.ceil(d/step))
         a=np.array(s['a']);b=np.array(s['b'])
         for f0,f1 in zip(np.linspace(0,1,n+1)[:-1],np.linspace(0,1,n+1)[1:]):
             p=(a+(b-a)*f0).tolist();q=(a+(b-a)*f1).tolist()
-            if certificate(m,p,q,gw,122)[0]>=0:continue
+            if certificate(m,p,q,gw,m.comm['thresholds_db']['direct'])[0]>=0:continue
             tau0=s['start']+d*float(f0);tau1=s['start']+d*float(f1)
             windows=[]
             for v in relays:
-                if certificate(m,p,q,v['pos'],116)[0]>=0:
+                if certificate(m,p,q,v['pos'],m.comm['thresholds_db']['access'])[0]>=0:
                     lo=math.ceil(v['ready']-tau0-1e-7);hi=math.floor(v['service_end']-tau1+1e-7)
                     if lo<=hi:windows.append((lo,hi))
             allowed=intersect(allowed,windows)
@@ -62,7 +66,7 @@ def solve(m,rs,relays,seconds=15,verbose=False,priority_arrival=False):
             box=m.boxes[int(b)]
             late=model.new_int_var(0,30000000,f'l{j}_{b}')
             model.add_max_equality(late,[0,1000*start+round(t*1000)-round(box['due']*1000)])
-            lates.append(box['priority']*late)
+            if not box['medical']:lates.append(box['priority']*late)
             arrivals.append(box['priority']*(1000*start+round(t*1000)))
     for g in m.types:
         js=[j for j,r in enumerate(rs) if r['g']==g]
@@ -70,7 +74,7 @@ def solve(m,rs,relays,seconds=15,verbose=False,priority_arrival=False):
         model.add_cumulative([biv[j] for j in js],[1]*len(js),m.types[g]['batteries'])
     cmax=model.new_int_var(0,25000,'cmax');model.add_max_equality(cmax,ends)
     obj=sum(lates);model.minimize(obj)
-    solver=cp_model.CpSolver();solver.parameters.max_time_in_seconds=seconds;solver.parameters.num_search_workers=1;solver.parameters.random_seed=42
+    solver=cp_model.CpSolver();solver.parameters.max_time_in_seconds=seconds;solver.parameters.num_search_workers=1;solver.parameters.random_seed=optimization_parameters()['method_comparison']['cp_sat_seed']
     status=solver.solve(model)
     if verbose:print('stage1',solver.status_name(status),solver.objective_value,solver.best_objective_bound,flush=True)
     if status not in (cp_model.OPTIMAL,cp_model.FEASIBLE):return None

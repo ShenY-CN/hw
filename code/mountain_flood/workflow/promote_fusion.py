@@ -74,7 +74,7 @@ def run():
     partition(Model(),q3)
     save('validation.json',{'2':c2,'3':c3})
     save('fusion_selection.json',dict(
-        criterion='all boxes at assigned service areas by their due times; then joint completion, weighted arrival, energy',
+        criterion='all boxes at assigned service areas; medical due and first-batch cutoff hard; then weighted soft tardiness, joint completion, weighted arrival, energy',
         q2_source='q2_time_energy_candidate.json',
         q3_source='q3_hard_hill1_e3900_margin.json',
         comparisons=['method_comparison.json','joint_comparison.json'],

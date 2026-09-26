@@ -1,0 +1,72 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q1_dem_nodes.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 26,
+  "text_trace_count": 30,
+  "stroke_path_count": 2095,
+  "filled_region_count": 161,
+  "image_region_count": 1,
+  "summary": {
+    "fail": 1,
+    "warn": 1,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "镇龙乡",
+      "text_bbox": [
+        175.49688720703125,
+        126.87861633300781,
+        189.4969482421875,
+        133.8786163330078
+      ],
+      "other_text": null,
+      "other_bbox": [
+        185.72198486328125,
+        133.1503143310547,
+        191.3788299560547,
+        138.8071746826172
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        2093
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "镇龙乡",
+      "text_bbox": [
+        175.49688720703125,
+        126.87861633300781,
+        189.4969482421875,
+        133.8786163330078
+      ],
+      "other_text": null,
+      "other_bbox": [
+        185.72198486328125,
+        133.1503143310547,
+        191.3788299560547,
+        138.8071746826172
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        2093
+      ]
+    }
+  ]
+}

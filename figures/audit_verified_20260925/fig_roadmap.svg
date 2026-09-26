@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="664.4pt" height="784.4pt" viewBox="0 0 664.4 784.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-25T22:29:11.532964</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M -0 784.4 
+L 664.4 784.4 
+L 664.4 0 
+L -0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 49.18 32.18 
+L 290.22 32.18 
+Q 302.22 32.18 302.22 44.18 
+L 302.22 125.22 
+Q 302.22 137.22 290.22 137.22 
+L 49.18 137.22 
+Q 37.18 137.22 37.18 125.22 
+L 37.18 44.18 
+Q 37.18 32.18 49.18 32.18 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #e8f0fa; stroke: #4477aa; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 374.18 32.18 
+L 615.22 32.18 
+Q 627.22 32.18 627.22 44.18 
+L 627.22 125.22 
+Q 627.22 137.22 615.22 137.22 
+L 374.18 137.22 
+Q 362.18 137.22 362.18 125.22 
+L 362.18 44.18 
+Q 362.18 32.18 374.18 32.18 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #e8f0fa; stroke: #4477aa; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 374.18 232.18 
+L 615.22 232.18 
+Q 627.22 232.18 627.22 244.18 
+L 627.22 325.22 
+Q 627.22 337.22 615.22 337.22 
+L 374.18 337.22 
+Q 362.18 337.22 362.18 325.22 
+L 362.18 244.18 
+Q 362.18 232.18 374.18 232.18 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #eaf4ed; stroke: #449966; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 49.18 232.18 
+L 290.22 232.18 
+Q 302.22 232.18 302.22 244.18 
+L 302.22 325.22 
+Q 302.22 337.22 290.22 337.22 
+L 49.18 337.22 
+Q 37.18 337.22 37.18 325.22 
+L 37.18 244.18 
+Q 37.18 232.18 49.18 232.18 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #eaf4ed; stroke: #449966; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 49.18 432.18 
+L 290.22 432.18 
+Q 302.22 432.18 302.22 444.18 
+L 302.22 525.22 
+Q 302.22 537.22 290.22 537.22 
+L 49.18 537.22 
+Q 37.18 537.22 37.18 525.22 
+L 37.18 444.18 
+Q 37.18 432.18 49.18 432.18 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #fdf0e7; stroke: #d37b42; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 374.18 432.18 
+L 615.22 432.18 
+Q 627.22 432.18 627.22 444.18 
+L 627.22 525.22 
+Q 627.22 537.22 615.22 537.22 
+L 374.18 537.22 
+Q 362.18 537.22 362.18 525.22 
+L 362.18 444.18 
+Q 362.18 432.18 374.18 432.18 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #fdf0e7; stroke: #d37b42; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 374.18 632.18 
+L 615.22 632.18 
+Q 627.22 632.18 627.22 644.18 
+L 627.22 725.22 
+Q 627.22 737.22 615.22 737.22 
+L 374.18 737.22 
+Q 362.18 737.22 362.18 725.22 
+L 362.18 644.18 
+Q 362.18 632.18 374.18 632.18 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #f2ecf9; stroke: #8064a2; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 49.18 632.18 
+L 290.22 632.18 
+Q 302.22 632.18 302.22 644.18 
+L 302.22 725.22 
+Q 302.22 737.22 290.22 737.22 
+L 49.18 737.22 
+Q 37.18 737.22 37.18 725.22 
+L 37.18 644.18 
+Q 37.18 632.18 49.18 632.18 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #f2ecf9; stroke: #8064a2; stroke-width: 1.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 307.201526 84.7 
+Q 330.700397 84.7 351.739594 84.7 
+" clip-path="url(#pa3f8e9f482)" style="fill: none; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 343.739594 80.7 
+L 351.739594 84.7 
+L 343.739594 88.7 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #555555; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 494.7 142.202502 
+Q 494.7 183.200243 494.7 221.73831 
+" clip-path="url(#pa3f8e9f482)" style="fill: none; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 498.7 213.73831 
+L 494.7 221.73831 
+L 490.7 213.73831 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #555555; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 357.198474 284.7 
+Q 333.699603 284.7 312.660406 284.7 
+" clip-path="url(#pa3f8e9f482)" style="fill: none; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 320.660406 288.7 
+L 312.660406 284.7 
+L 320.660406 280.7 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #555555; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 169.7 342.202502 
+Q 169.7 383.200243 169.7 421.73831 
+" clip-path="url(#pa3f8e9f482)" style="fill: none; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 173.7 413.73831 
+L 169.7 421.73831 
+L 165.7 413.73831 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #555555; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 307.201526 484.7 
+Q 330.700397 484.7 351.739594 484.7 
+" clip-path="url(#pa3f8e9f482)" style="fill: none; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 343.739594 480.7 
+L 351.739594 484.7 
+L 343.739594 488.7 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #555555; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 494.7 542.202502 
+Q 494.7 583.200243 494.7 621.73831 
+" clip-path="url(#pa3f8e9f482)" style="fill: none; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 498.7 613.73831 
+L 494.7 621.73831 
+L 490.7 613.73831 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #555555; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 357.198474 684.7 
+Q 333.699603 684.7 312.660406 684.7 
+" clip-path="url(#pa3f8e9f482)" style="fill: none; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+    <path d="M 320.660406 688.7 
+L 312.660406 684.7 
+L 320.660406 680.7 
+z
+" clip-path="url(#pa3f8e9f482)" style="fill: #555555; stroke: #555555; stroke-width: 2.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(137.7 70.32375)">输入附件</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(81.7 90.3325)">节点、货箱、机型、电池</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(128.1075 110.35625)">DEM、链路</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(446.7 80.28375)">统一物理规则</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(374.7 100.3)">航段时间、能耗、充电与双向链路</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(430.7 280.2275)">问题一：单点组批</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(390.7 300.39625)">安全载荷与计数状态动态规划</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(105.7 270.4275)">问题二：多点运输</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(97.7 290.2675)">四种算法同预算比较</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(113.7 310.2675)">车辆与电池排程</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(105.7 470.4125)">问题三：通信协同</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(97.7 490.26875)">救援时间—能源权衡</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(105.7 510.3875)">连续轨迹通信核验</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(430.7 480.34)">问题四：独立分区</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(374.7 500.32375)">不可拆组件枚举、资源峰值与缺口</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(462.7 670.28375)">逐项验证</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(413.26 690.36375)">唯一覆盖、SOC、时限</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(446.7 710.36375)">通信、敏感性</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(137.7 680.37125)">统一交付</text>
+    <text style="font-size: 16px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; fill: #263442" transform="translate(57.7 700.18)">结果表、图表、论文与复现清单</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa3f8e9f482">
+   <rect x="7.2" y="7.2" width="650" height="770"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -770,60 +770,53 @@ Package fontspec Info: Font family 'HeitiSC(0)' created for font 'Heiti SC'
 \openout4 = `main.toc'.
 
  [2] (sections/1_restatement
-File: ../figures/fig_roadmap.pdf Graphic file (type pdf)
-<use ../figures/fig_roadmap.pdf>
+File: ../figures/audit_verified_20260925/fig_roadmap.pdf Graphic file (type pdf
+)
+<use ../figures/audit_verified_20260925/fig_roadmap.pdf>
 ) (sections/2_analysis [3]
 [4] [5]) (sections/3_assumptions) (sections/4_symbols) (sections/5_problem1
 [6]
-File: ../figures/capacity.pdf Graphic file (type pdf)
-<use ../figures/capacity.pdf>
- [7]) (sections/6_problem2
-Overfull \hbox (5.68727pt too wide) in paragraph at lines 24--31
- [][] 
- []
+File: ../figures/audit_verified_20260925/q1_safe_capacity.pdf Graphic file (typ
+e pdf)
+<use ../figures/audit_verified_20260925/q1_safe_capacity.pdf>
+ [7]) (sections/6_problem2 [8]
+
+LaTeX Font Warning: Font shape `TU/SongtiSC(0)/m/it' undefined
+(Font)              using `TU/SongtiSC(0)/m/n' instead on input line 38.
 
 
 Package fontspec Warning: Font "Songti SC" does not contain requested Script
 (fontspec)                "CJK".
 
-[8]
-File: ../figures/method_tradeoff.pdf Graphic file (type pdf)
-<use ../figures/method_tradeoff.pdf>
-File: ../figures/routes.pdf Graphic file (type pdf)
-<use ../figures/routes.pdf>
-File: ../figures/transport_gantt.pdf Graphic file (type pdf)
-<use ../figures/transport_gantt.pdf>
- [9]) (sections/7_problem3 [10]
-Overfull \hbox (31.22017pt too wide) in paragraph at lines 21--27
- [][] 
- []
-
-
-Overfull \hbox (20.07037pt too wide) in paragraph at lines 31--32
-[]\TU/SongtiSC(0)/m/n/12 主 方 案 最 紧 货 箱 仍 提 前 \TU/TimesNewRoman(0)/m/n/12 84.65 
-s\TU/SongtiSC(0)/m/n/12 ，|  最 低 运 输 机 及 中 继 返 航 \TU/TimesNewRoman(0)/m/n/12 SOC
- \TU/SongtiSC(0)/m/n/12 分 别 为 \TU/TimesNewRoman(0)/m/n/12 20.4065% \TU/SongtiSC
-(0)/m/n/12 和 \TU/TimesNewRoman(0)/m/n/12 38.6085%\TU/SongtiSC(0)/m/n/12 。|
- []
-
-
-Overfull \hbox (18.62943pt too wide) in paragraph at lines 31--32
-\TU/TimesNewRoman(0)/m/n/12 4061 \TU/SongtiSC(0)/m/n/12 个 连 续 通 信 区 间 全 部 通 过 证
- 书，|  实 体 机、|  电 池 和 中 继 组 件 无 重 叠。|  最 小 链 路 裕 量 \TU/TimesNewRoman(0)/m/n/12 0
-.09378 dB\TU/SongtiSC(0)/m/n/12 ，|
- []
-
-File: ../figures/relay_map.pdf Graphic file (type pdf)
-<use ../figures/relay_map.pdf>
-[11]
-File: ../figures/joint_gantt.pdf Graphic file (type pdf)
-<use ../figures/joint_gantt.pdf>
-File: ../figures/battery_gantt.pdf Graphic file (type pdf)
-<use ../figures/battery_gantt.pdf>
-) (sections/8_problem4 [12]
-File: ../figures/partitions.pdf Graphic file (type pdf)
-<use ../figures/partitions.pdf>
- [13]) (sections/9_sensitivity
+File: ../figures/audit_verified_20260925/q2_search_comparison.pdf Graphic file 
+(type pdf)
+<use ../figures/audit_verified_20260925/q2_search_comparison.pdf>
+[9]
+File: ../figures/audit_verified_20260925/q2_transport_routes.pdf Graphic file (
+type pdf)
+<use ../figures/audit_verified_20260925/q2_transport_routes.pdf>
+File: ../figures/audit_verified_20260925/q2_drone_timeline.pdf Graphic file (ty
+pe pdf)
+<use ../figures/audit_verified_20260925/q2_drone_timeline.pdf>
+) (sections/7_problem3 [10] [11]
+File: ../figures/audit_verified_20260925/q3_relay_map.pdf Graphic file (type pd
+f)
+<use ../figures/audit_verified_20260925/q3_relay_map.pdf>
+File: ../figures/audit_verified_20260925/q3_joint_timeline.pdf Graphic file (ty
+pe pdf)
+<use ../figures/audit_verified_20260925/q3_joint_timeline.pdf>
+File: ../figures/audit_verified_20260925/q3_battery_timeline.pdf Graphic file (
+type pdf)
+<use ../figures/audit_verified_20260925/q3_battery_timeline.pdf>
+ [12]) (sections/8_problem4 [13]
+File: ../figures/audit_verified_20260925/q4_partition_2groups.pdf Graphic file 
+(type pdf)
+<use ../figures/audit_verified_20260925/q4_partition_2groups.pdf>
+File: ../figures/audit_verified_20260925/q4_partition_3groups.pdf Graphic file 
+(type pdf)
+<use ../figures/audit_verified_20260925/q4_partition_3groups.pdf>
+)
+(sections/9_sensitivity
 Overfull \hbox (13.85988pt too wide) in paragraph at lines 3--4
 []\TU/SongtiSC(0)/m/n/12 问 题 一 对 返 航 安 全 余 量 的 离 散 扫 描 见 图 []\TU/TimesNewRoman(
 0)/m/n/12 10[]\TU/SongtiSC(0)/m/n/12 。| \TU/TimesNewRoman(0)/m/n/12 10% \TU/Son
@@ -832,9 +825,18 @@ gtiSC(0)/m/n/12 和 \TU/TimesNewRoman(0)/m/n/12 20% \TU/SongtiSC(0)/m/n/12 余 �
 an(0)/m/n/12 59.1313 kWh\TU/SongtiSC(0)/m/n/12 ；|
  []
 
-File: ../figures/sensitivity.pdf Graphic file (type pdf)
-<use ../figures/sensitivity.pdf>
-[14]) (sections/10_evaluation
+[14]
+File: ../figures/audit_verified_20260925/q1_sensitivity.pdf Graphic file (type 
+pdf)
+<use ../figures/audit_verified_20260925/q1_sensitivity.pdf>
+
+Overfull \hbox (7.88936pt too wide) in paragraph at lines 17--18
+[]\TU/SongtiSC(0)/m/n/12 逐 箱 时 限 由 交 接 完 成 时 刻 独 立 复 算：|  问 题 二 最 紧 硬 截 止 提 前 \
+TU/TimesNewRoman(0)/m/n/12 221.03 s\TU/SongtiSC(0)/m/n/12 ，|  问 题 三 提 前 \TU/Tim
+esNewRoman(0)/m/n/12 84.65 s\TU/SongtiSC(0)/m/n/12 ；|
+ []
+
+) (sections/10_evaluation
 Overfull \hbox (6.66785pt too wide) in paragraph at lines 19--1
 []\TU/SongtiSC(0)/m/n/12 能 源 与 低 碳 方 面，|  问 题 三 主 方 案 任 务 耗 电 \TU/TimesNewRoman
 (0)/m/n/12 78.8732 kWh\TU/SongtiSC(0)/m/n/12 ，|  单 位 货 物 耗 电 为 \TU/TimesNewRoma
@@ -872,7 +874,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                replaced by space on input line 211.
 
 (sections/A_code) [18] (main.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BA9E50DEE5D545F1A3B27C6B8DA5289B;2999.
+(rerunfilecheck)             Checksum: 4339C327460648627FD680BF9CC555CD;2991.
  )
-Output written on main.xdv (19 pages, 233064 bytes).
+Output written on main.xdv (19 pages, 246604 bytes).

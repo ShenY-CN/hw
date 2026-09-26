@@ -1,0 +1,73 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q2_search_comparison.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 54,
+  "text_trace_count": 60,
+  "stroke_path_count": 139,
+  "filled_region_count": 91,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 2,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "随机化构造",
+      "text_bbox": [
+        238.09375,
+        17.982227325439453,
+        266.0938720703125,
+        24.982227325439453
+      ],
+      "other_text": null,
+      "other_bbox": [
+        262.5231018066406,
+        10.96221923828125,
+        262.5231018066406,
+        217.95614624023438
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        25
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "历史可行解基线",
+      "text_bbox": [
+        238.09375,
+        59.98222732543945,
+        280.09393310546875,
+        66.98222351074219
+      ],
+      "other_text": null,
+      "other_bbox": [
+        45.79375076293945,
+        10.96221923828125,
+        293.39373779296875,
+        217.95614624023438
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        25,
+        39
+      ]
+    }
+  ]
+}

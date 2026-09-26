@@ -1,0 +1,48 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q3_communication_timeline.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 36,
+  "text_trace_count": 39,
+  "stroke_path_count": 41,
+  "filled_region_count": 135,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 1,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "调度中心直连",
+      "text_bbox": [
+        442.35186767578125,
+        15.222855567932129,
+        482.3524169921875,
+        23.222856521606445
+      ],
+      "other_text": null,
+      "other_bbox": [
+        455.3466491699219,
+        7.199981689453125,
+        455.3466491699219,
+        408.03997802734375
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        107
+      ]
+    }
+  ]
+}

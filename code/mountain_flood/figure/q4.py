@@ -6,25 +6,28 @@ import sys
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(PROJECT_ROOT / "code"), str(PROJECT_ROOT)]
 
-from mountain_flood.figure.common import COLORS, Model, draw_region, load_result, save_figure
+from mountain_flood.figure.common import (
+    COLORS, GROUP_COLORS, Model, NEUTRAL, draw_region, load_result, save_figure,
+)
 import matplotlib.pyplot as plt
 import numpy as np
 
 
 def _plot_partition_map(model, groups, group_count):
     fig, ax = plt.subplots(figsize=(6.2, 4.4))
-    draw_region(ax, model, annotate=False)
+    draw_region(ax, model, annotate=False, show_services=False)
     markers = ["o", "s", "^"]
     for index, group in enumerate(groups):
         nodes = group["nodes"]
         xy = model.xy[nodes] / 1000
-        color = list(COLORS.values())[index]
+        color = GROUP_COLORS[index]
         ax.scatter(xy[:, 0], xy[:, 1], color=color, marker=markers[index],
                    s=48, label=f"第{index + 1}组")
         for node, (x, y) in zip(nodes, xy):
             ax.annotate(f"{node:03}", (x, y), xytext=(3, 4),
                         textcoords="offset points", fontsize=7)
-    ax.legend(loc="best", fontsize=8)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.12),
+              fontsize=8, ncol=group_count)
     save_figure(fig, f"q4_partition_{group_count}groups")
 
 
@@ -37,8 +40,8 @@ def plot_resource_demand(data, inventory):
     for index, group_count in enumerate((2, 3)):
         total = data["schemes"][str(group_count)]["selected"]["total"]
         ax.bar(x + (index - 0.5) * width, total, width,
-               label=f"{group_count}组需求", color=("#0072B2", "#D55E00")[index])
-    ax.scatter(x, inventory, marker="D", color="#222222", s=28, label="现有库存", zorder=4)
+               label=f"{group_count}组需求", color=(COLORS["A"], COLORS["B"])[index])
+    ax.scatter(x, inventory, marker="D", color=NEUTRAL, s=28, label="现有库存", zorder=4)
     ax.set_xticks(x, labels, rotation=25, ha="right")
     ax.set_ylabel("资源数量")
     ax.grid(axis="y", alpha=0.2)
@@ -53,7 +56,7 @@ def plot_workload(data):
         groups = selected["groups"]
         index = np.arange(len(groups))
         bars = ax.bar(index, [group["work"] / 3600 for group in groups],
-               color=[list(COLORS.values())[i] for i in index])
+               color=[GROUP_COLORS[i] for i in index])
         ax.set_xticks(index, [f"第{i + 1}组" for i in index])
         ax.set_title(f"{group_count}组方案")
         ax.set_ylabel("累计飞行工作时长 / h")
@@ -75,7 +78,7 @@ def plot_resource_deficit(data, inventory):
         deficit = data["schemes"][str(group_count)]["selected"]["deficit"]
         ax.bar(x + (index - 0.5) * width, deficit, width,
                label=f"{group_count}组方案的库存缺口",
-               color=("#0072B2", "#D55E00")[index])
+               color=(COLORS["A"], COLORS["B"])[index])
     ax.set_xticks(x, labels, rotation=25, ha="right")
     ax.set_ylabel("缺少数量")
     ax.set_ylim(bottom=0)
@@ -94,6 +97,7 @@ def plot_task_network(model, data, q3):
             edge_counts[edge] = edge_counts.get(edge, 0) + 1
 
     fig, ax = plt.subplots(figsize=(6.4, 4.8))
+    draw_region(ax, model, annotate=False, show_services=False)
     for (start, end), count in edge_counts.items():
         first, second = model.xy[start] / 1000, model.xy[end] / 1000
         ax.plot([first[0], second[0]], [first[1], second[1]],
@@ -107,7 +111,7 @@ def plot_task_network(model, data, q3):
         x, y = model.xy[node] / 1000
         ax.annotate(f"{node:03}", (x, y), xytext=(3, 4),
                     textcoords="offset points", fontsize=7)
-    ax.scatter(0, 0, marker="*", s=100, color="black", label="调度中心", zorder=3)
+    ax.annotate("O01", (0, 0), xytext=(4, 4), textcoords="offset points", fontsize=8)
     ax.set_aspect("equal")
     ax.set_xlabel("东向距离 / km")
     ax.set_ylabel("北向距离 / km")

@@ -1,4 +1,4 @@
-"""重新核验并比较有限集合中的问题三准时联合方案。"""
+"""重新核验并比较有限集合中的问题三联合方案。"""
 
 # 支持直接运行本文件；此处将 code/ 加入模块搜索路径。
 if __package__ in (None, ""):
@@ -18,11 +18,12 @@ PATTERNS = (
     ('alternate_q2_hill0', 'q3_hard_newq2_e*_trim.json'),
     ('prior_q2', 'q3_hard_q2_e*_completion_trim.json'),
     ('prior_q2', 'q3_hard_q2_e*_buffer15_trim.json'),
+    ('historical_soft', 'q3_soft_legacy.json'),
 )
 
 
 def dominates(a, b):
-    keys = ('joint_completion_s', 'weighted_arrival_s', 'total_energy_kwh')
+    keys = ('weighted_soft_tardiness_s', 'joint_completion_s', 'weighted_arrival_s', 'total_energy_kwh')
     av = [a[k] for k in keys]
     bv = [b[k] for k in keys]
     return all(x <= y + 1e-7 for x, y in zip(av, bv)) and any(x < y - 1e-7 for x, y in zip(av, bv))
@@ -43,6 +44,8 @@ def run():
             row = dict(source=path.name, route_origin=origin,
                        east_window_end_s=int(match.group(1)) if match else None,
                        verified=check['pass_'], late_boxes=check['checks']['late_boxes'],
+                       weighted_soft_tardiness_s=check['checks']['weighted_soft_tardiness_s'],
+                       min_hard_slack_s=check['checks']['min_hard_slack'],
                        min_due_slack_s=check['checks']['min_due_slack'],
                        transport_flights=s['count'], relay_flights=s['relay_count'],
                        joint_completion_s=s['makespan'],
@@ -54,17 +57,17 @@ def run():
             if not check['pass_']:
                 row['errors'] = check['errors']
             rows.append(row)
-    feasible = [x for x in rows if x['verified'] and x['late_boxes'] == 0]
+    feasible = [x for x in rows if x['verified']]
     if not feasible:
-        raise RuntimeError('No all-on-time verified joint plan')
+        raise RuntimeError('No hard-feasible verified joint plan')
     for x in rows:
         x['pareto'] = x in feasible and not any(y is not x and dominates(y, x) for y in feasible)
         x['selected'] = False
-    selected = min(feasible, key=lambda x:(x['joint_completion_s'], x['weighted_arrival_s'],
+    selected = min(feasible, key=lambda x:(x['weighted_soft_tardiness_s'],x['joint_completion_s'], x['weighted_arrival_s'],
                                           x['total_energy_kwh'], x['transport_flights']))
     selected['selected'] = True
-    report = dict(protocol=dict(box_delivery_due='hard', box_destination='hard',
-                                continuous_communication='required', time_priority='joint completion, then weighted arrival',
+    report = dict(protocol=dict(medical_due='hard',first_batch_cutoff='hard',other_goods_due='soft_timeliness', box_destination='hard',
+                                continuous_communication='required', time_priority='weighted soft tardiness, joint completion, then weighted arrival',
                                 carbon_factor=None, scope='finite archived route families and east relay windows'),
                   candidates=rows, selected=selected['source'])
     save('joint_comparison.json', report)

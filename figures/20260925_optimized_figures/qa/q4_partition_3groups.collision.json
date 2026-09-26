@@ -1,0 +1,97 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q4_partition_3groups.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 35,
+  "text_trace_count": 43,
+  "stroke_path_count": 93,
+  "filled_region_count": 56,
+  "image_region_count": 1,
+  "summary": {
+    "fail": 3,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "003",
+      "text_bbox": [
+        77.02191925048828,
+        150.6237335205078,
+        85.42820739746094,
+        157.6237335205078
+      ],
+      "other_text": null,
+      "other_bbox": [
+        70.55781555175781,
+        156.45962524414062,
+        77.48602294921875,
+        163.38783264160156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        16
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "015",
+      "text_bbox": [
+        132.39447021484375,
+        127.28500366210938,
+        139.41012573242188,
+        134.28500366210938
+      ],
+      "other_text": null,
+      "other_bbox": [
+        43.73165512084961,
+        127.30940246582031,
+        176.2021484375,
+        177.6195831298828
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        55
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "东向距离 / km",
+      "text_bbox": [
+        190.47491455078125,
+        284.63250732421875,
+        241.74037170410156,
+        293.63250732421875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        197.1752471923828,
+        192.46722412109375,
+        226.93228149414062,
+        320.62322998046875
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        33,
+        69
+      ]
+    }
+  ]
+}

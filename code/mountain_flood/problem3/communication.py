@@ -8,12 +8,13 @@ if __package__ in (None, ""):
     from pathlib import Path as _BootstrapPath
     sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))
 from mountain_flood.core.domain import *
+from mountain_flood.core.parameters import optimization_parameters
 from rasterio.features import rasterize
 from affine import Affine
 from itertools import combinations
 
 def gateway(m):
-    n=m.nodes[0];return [n['lon'],n['lat'],n['z']+20]
+    n=m.nodes[0];return [n['lon'],n['lat'],n['z']+m.comm['gateway_height_m']]
 
 def certificate(m,a,b,fixed,threshold):
     """证明移动端点沿线段 [a,b] 运动时始终能与 fixed 建立链路。
@@ -21,9 +22,10 @@ def certificate(m,a,b,fixed,threshold):
     距离上界取线段两端中的最大值；遮挡部分使用 10 dB 最坏损耗，或通过
     栅格化扫掠三角形给出保守视距证明。局部切平面距离额外放大 0.02%。
     """
-    ds=[math.hypot(m.geo.inv(p[0],p[1],fixed[0],fixed[1])[2]*1.0002,p[2]-fixed[2]) for p in [a,b]]
-    fspl=32.45+20*math.log10(2400)+20*math.log10(max(max(ds)/1000,1e-6))
-    if fspl+10<=threshold:return threshold-fspl-10,'worst_obstruction'
+    factor=optimization_parameters()['communication_certificate']['distance_safety_factor']
+    ds=[math.hypot(m.geo.inv(p[0],p[1],fixed[0],fixed[1])[2]*factor,p[2]-fixed[2]) for p in [a,b]]
+    fspl=32.45+20*math.log10(m.comm['frequency_mhz'])+20*math.log10(max(max(ds)/1000,1e-6))
+    if fspl+m.comm['obstruction_db']<=threshold:return threshold-fspl-m.comm['obstruction_db'],'worst_obstruction'
     if fspl>threshold:return -1.,'distance'
     a=np.array(a);b=np.array(b);f=np.array(fixed)
     ab=b[:2]-a[:2];af=f[:2]-a[:2]
@@ -52,12 +54,13 @@ def certificate(m,a,b,fixed,threshold):
     return (threshold-fspl,'swept_LOS') if clear else (-1.,'unproven')
 
 def relay_flight(m,lon,lat,z):
-    o=m.nodes[0];h=max(m.line_max(o['lon'],o['lat'],lon,lat)+50,z)
+    t=m.relay;o=m.nodes[0];h=max(m.line_max(o['lon'],o['lat'],lon,lat)+m.parameters['terrain_clearance_m'],z)
     d=m.geo.inv(o['lon'],o['lat'],lon,lat)[2]
-    out=(h-o['z'])/4+d/15+(h-z)/3
-    ret=(h-z)/4+d/15+(h-o['z'])/3
-    e=2*1.15*d/15/3600+23.5*9.81*((h-o['z'])+(h-z))/(.72*3.6e6)
-    return dict(out=out,ret=ret,fly_energy=e,ready=180+out+30,max_service=(2.56-e)*3600/1.1-30)
+    out=(h-o['z'])/t['vu']+d/t['vc']+(h-z)/t['vd']
+    ret=(h-z)/t['vu']+d/t['vc']+(h-o['z'])/t['vd']
+    e=2*t['cruise_power']*d/t['vc']/3600+t['mass']*m.parameters['gravity_m_s2']*((h-o['z'])+(h-z))/(t['eta']*3.6e6)
+    service_power=t['hover_power']+t['comm_power']
+    return dict(out=out,ret=ret,fly_energy=e,ready=t['prep']+out+t['link_setup'],max_service=((1-t['rho']/100)*t['E']-e)*3600/service_power-t['link_setup'])
 
 def sample_segments(rs,step=150):
     pts=[];meta=[]
@@ -71,19 +74,21 @@ def sample_segments(rs,step=150):
 
 def select_relays(m,rs):
     pts,meta=sample_segments(rs,200);gw=gateway(m)
-    bad=[i for i,p in enumerate(pts) if m.link_margin(p,gw,122)<.2]
+    search=optimization_parameters()['relay_site_search']
+    bad=[i for i,p in enumerate(pts) if m.link_margin(p,gw,m.comm['thresholds_db']['direct'])<search['direct_gap_threshold_db']]
     pts=[pts[i] for i in bad];meta=[meta[i] for i in bad]
     candidates=[];covers=[]
     # 在任务范围内按 750 m 网格枚举站点，并加入各服务区位置；高度按规则取值。
     coords=[]
-    for x in np.arange(-6000,6750,750):
-        for y in np.arange(0,9750,750):coords.append((x,y))
+    grid=search['grid_m']
+    for x in np.arange(search['x_min_m'],search['x_stop_m'],grid):
+        for y in np.arange(search['y_min_m'],search['y_stop_m'],grid):coords.append((x,y))
     coords.extend(map(tuple,m.xy[1:]))
     for x,y in coords:
-        lon,lat=m.lonlat(x,y);z=float(m.ground(lon,lat))+300
+        lon,lat=m.lonlat(x,y);z=float(m.ground(lon,lat))+m.relay['max_agl']
         p=[lon,lat,z]
-        if m.link_margin(p,gw,126)<.3:continue
-        coverage=np.array([m.link_margin(q,p,116)>=.3 for q in pts])
+        if m.link_margin(p,gw,m.comm['thresholds_db']['backhaul'])<search['required_margin_db']:continue
+        coverage=np.array([m.link_margin(q,p,m.comm['thresholds_db']['access'])>=search['required_margin_db'] for q in pts])
         if not coverage.any():continue
         candidates.append(dict(pos=p,x=x,y=y,**relay_flight(m,*p)));covers.append(coverage)
     best=None
@@ -103,7 +108,7 @@ def certify_routes(m,rs,relays,verbose=True):
                 a=np.array(s['a']);b=np.array(s['b']);p=a+(b-a)*f0;q=a+(b-a)*f1
                 t0=r['start']+s['start']+(s['end']-s['start'])*f0
                 t1=r['start']+s['start']+(s['end']-s['start'])*f1
-                options=[('G01',gw,122,None)]+[(v['unit'],v['pos'],116,v['id']) for v in relays if t0>=v['ready']-1e-7 and t1<=v['service_end']+1e-7]
+                options=[('G01',gw,m.comm['thresholds_db']['direct'],None)]+[(v['unit'],v['pos'],m.comm['thresholds_db']['access'],v['id']) for v in relays if t0>=v['ready']-1e-7 and t1<=v['service_end']+1e-7]
                 best=None
                 for provider,fixed,threshold,mission in options:
                     margin,method=certificate(m,p,q,fixed,threshold)
@@ -114,10 +119,10 @@ def certify_routes(m,rs,relays,verbose=True):
                 if best is not None:
                     margin,method,provider,mission=best
                     records.append(dict(route=r['id'],phase=s['phase'],start=t0,end=t1,provider=provider,relay_task=mission,margin=margin,method=method));return
-                if depth<6:
+                if depth<optimization_parameters()['communication_certificate']['max_depth']:
                     mid=(f0+f1)/2;split(f0,mid,depth+1);split(mid,f1,depth+1)
                 else:fails.append(dict(route=r['id'],phase=s['phase'],time=[t0,t1],pos=((p+q)/2).tolist()))
-            dur=s['end']-s['start'];cuts=list(np.linspace(0,1,max(1,math.ceil(dur/10))+1))
+            dur=s['end']-s['start'];cuts=list(np.linspace(0,1,max(1,math.ceil(dur/optimization_parameters()['communication_certificate']['step_s']))+1))
             if dur>0:
                 for v in relays:
                     for edge in [v['ready'],v['service_end']]:

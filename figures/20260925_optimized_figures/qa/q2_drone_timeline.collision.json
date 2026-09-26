@@ -1,0 +1,120 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q2_drone_timeline.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 40,
+  "text_trace_count": 41,
+  "stroke_path_count": 46,
+  "filled_region_count": 40,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 4,
+    "warn": 0,
+    "contained_fill_overlays": 24,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "T006",
+      "text_bbox": [
+        132.3267822265625,
+        77.01056671142578,
+        144.17051696777344,
+        83.51056671142578
+      ],
+      "other_text": null,
+      "other_bbox": [
+        138.8514404296875,
+        7.20001220703125,
+        138.8514404296875,
+        232.36000061035156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        28
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "T019",
+      "text_bbox": [
+        228.8741912841797,
+        23.426563262939453,
+        239.42105102539062,
+        29.926563262939453
+      ],
+      "other_text": null,
+      "other_bbox": [
+        233.2685089111328,
+        7.20001220703125,
+        233.2685089111328,
+        232.36000061035156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        30
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "T022",
+      "text_bbox": [
+        318.7165222167969,
+        77.01056671142578,
+        330.56024169921875,
+        83.51056671142578
+      ],
+      "other_text": null,
+      "other_bbox": [
+        327.6855773925781,
+        7.20001220703125,
+        327.6855773925781,
+        232.36000061035156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        32
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "T021",
+      "text_bbox": [
+        410.79742431640625,
+        23.426563262939453,
+        422.6411437988281,
+        29.926563262939453
+      ],
+      "other_text": null,
+      "other_bbox": [
+        422.1026306152344,
+        7.20001220703125,
+        422.1026306152344,
+        232.36000061035156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        34
+      ]
+    }
+  ]
+}

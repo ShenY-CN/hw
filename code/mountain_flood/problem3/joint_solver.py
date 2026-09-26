@@ -13,6 +13,7 @@ from mountain_flood.problem2.transport import improve_schedule, metrics
 from mountain_flood.problem3.communication import gateway, relay_flight, sample_segments, select_relays, certify_routes
 from mountain_flood.problem3.schedule import solve as schedule_with_relays
 from mountain_flood.validation.replay import validate
+from mountain_flood.core.parameters import optimization_parameters
 
 
 def components(routes):
@@ -57,16 +58,19 @@ def split_for_partitions(m,routes):
 
 def northern_sites(m,routes,west,east,limit=4):
     pts,_=sample_segments(routes,200);gw=gateway(m)
-    missed=[p for p in pts if m.link_margin(p,gw,122)<.2 and
-            m.link_margin(p,west['pos'],116)<.3 and m.link_margin(p,east['pos'],116)<.3]
+    direct=m.comm['thresholds_db']['direct'];access=m.comm['thresholds_db']['access'];backhaul=m.comm['thresholds_db']['backhaul']
+    search=optimization_parameters()['relay_site_search']
+    missed=[p for p in pts if m.link_margin(p,gw,direct)<search['direct_gap_threshold_db'] and
+            m.link_margin(p,west['pos'],access)<search['required_margin_db'] and m.link_margin(p,east['pos'],access)<search['required_margin_db']]
     options=[]
-    for x in np.arange(-6000,6750,750):
-        for y in np.arange(0,9750,750):
+    grid=search['grid_m']
+    for x in np.arange(search['x_min_m'],search['x_stop_m'],grid):
+        for y in np.arange(search['y_min_m'],search['y_stop_m'],grid):
             lon,lat=m.lonlat(float(x),float(y))
             if not (m.raster.bounds.left<=lon<=m.raster.bounds.right and m.raster.bounds.bottom<=lat<=m.raster.bounds.top):continue
-            pos=[lon,lat,float(m.ground(lon,lat))+300]
-            if m.link_margin(pos,gw,126)<.3:continue
-            covered=sum(m.link_margin(p,pos,116)>=.3 for p in missed)
+            pos=[lon,lat,float(m.ground(lon,lat))+m.relay['max_agl']]
+            if m.link_margin(pos,gw,backhaul)<search['required_margin_db']:continue
+            covered=sum(m.link_margin(p,pos,access)>=search['required_margin_db'] for p in missed)
             if covered==len(missed):
                 options.append(dict(x=float(x),y=float(y),pos=pos,**relay_flight(m,*pos)))
     if not options:raise RuntimeError('No northern site covers remaining sampled gaps')
@@ -74,20 +78,21 @@ def northern_sites(m,routes,west,east,limit=4):
     return options[:limit],len(missed)
 
 
-def relay_plan(m,sites,west_end,east_end,north_end,late_end=13000):
+def relay_plan(m,sites,west_end,east_end,north_end,late_end=None):
+    if late_end is None:late_end=optimization_parameters()['q3_schedule_horizon_s']
     missions=[]
     def add(site,unit,start,end,code,component):
         v=sites[site];ready=start+v['ready']
-        energy=v['fly_energy']+(end-ready+30)*1.1/3600
-        if end<=ready or energy>2.56+1e-8:return False
+        energy=v['fly_energy']+(end-ready+m.relay['link_setup'])*(m.relay['hover_power']+m.relay['comm_power'])/3600
+        if end<=ready or energy>(1-m.relay['rho']/100)*m.relay['E']+1e-8:return False
         missions.append(dict(id=code,unit=unit,component=component,site=['W','E','N'][site],pos=v['pos'],
-                             start=start,ready=ready,service_end=end,end=end+v['ret'],energy=energy,soc=1-energy/3.2))
+                             start=start,ready=ready,service_end=end,end=end+v['ret'],energy=energy,soc=1-energy/m.relay['E']))
         return True
     if not add(0,'R01',0,west_end,'RP01','RB01'):return None
     if not add(1,'R02',0,east_end,'RP02','RB02'):return None
-    if not add(2,'R02',missions[1]['end']+300,north_end,'RP03','RB03'):return None
-    if not add(0,'R01',missions[0]['end']+300,late_end,'RP04','RB04'):return None
-    if not add(1,'R02',missions[2]['end']+300,late_end,'RP05','RB05'):return None
+    if not add(2,'R02',missions[1]['end']+m.relay['turnaround'],north_end,'RP03','RB03'):return None
+    if not add(0,'R01',missions[0]['end']+m.relay['turnaround'],late_end,'RP04','RB04'):return None
+    if not add(1,'R02',missions[2]['end']+m.relay['turnaround'],late_end,'RP05','RB05'):return None
     return missions
 
 

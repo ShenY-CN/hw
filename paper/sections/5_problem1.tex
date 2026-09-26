@@ -8,7 +8,7 @@ q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E^g_{0i}(q)+E^g_{i0}(0)\le(1-\rho_g)E_g^{\r
 \end{equation}
 左端随$q$单调不减，故用二分法求解，并再受额定质量与体积约束。若空载往返已经超出能量上限，定义安全载荷为0且该机型对该区不可用。图~\ref{fig:capacity}展示20\%安全余量下的45个机型—服务区载荷上限，差异主要来自水平距离、沿线最高地形和各机型满载航程。
 
-\begin{figure}[H]\centering\includegraphics[width=.95\textwidth]{../figures/capacity.pdf}\caption{20\%返航安全余量下的逐区最大安全载荷}\label{fig:capacity}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.95\textwidth]{../figures/audit_verified_20260925/q1_safe_capacity.pdf}\caption{20\%返航安全余量下的逐区最大安全载荷}\label{fig:capacity}\end{figure}
 
 \subsection{不可拆货箱组批}
 
@@ -26,4 +26,3 @@ q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E^g_{0i}(q)+E^g_{i0}(0)\le(1-\rho_g)E_g^{\r
 \bottomrule\end{tabular}\end{table}
 
 20\%余量下，主方案为18架次、59.1313~kWh。若放弃最少架次而只优化能耗，则为19架次、59.0339~kWh，仅节省0.0974~kWh，却增加1架次及1663.96~s。故在应急任务中先压缩架次更合理。安全余量升至30\%时最少架次增为20；40\%时S004的B型最大安全载荷仅8.6665~kg，其余机型无法完成安全空载往返，14~kg整箱饮用水无可行机型。图~\ref{fig:sens}给出可行区间内的变化。
-

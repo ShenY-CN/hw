@@ -11,25 +11,27 @@ from mountain_flood.problem1.packing import q1
 from mountain_flood.core.domain import *
 from itertools import combinations, permutations, product
 import random, time
+from mountain_flood.core.parameters import optimization_parameters
 
 
 def metrics(m,rs):
     deliveries={int(b):r['start']+t for r in rs for b,t in r['deliver'].items()}
-    return dict(count=len(rs),energy=sum(r['energy'] for r in rs),makespan=max(r['end'] for r in rs),weighted_tardiness=sum(m.boxes[b]['priority']*max(0,t-m.boxes[b]['due']) for b,t in deliveries.items()),weighted_arrival=sum(m.boxes[b]['priority']*t for b,t in deliveries.items()),hard_violations=sum(t>m.boxes[b]['deadline']+1e-6 for b,t in deliveries.items()),delivered=len(deliveries),last_delivery=max(deliveries.values()))
+    return dict(count=len(rs),energy=sum(r['energy'] for r in rs),makespan=max(r['end'] for r in rs),weighted_tardiness=sum(m.boxes[b]['priority']*max(0,t-m.boxes[b]['due']) for b,t in deliveries.items() if not m.boxes[b]['medical']),weighted_arrival=sum(m.boxes[b]['priority']*t for b,t in deliveries.items()),hard_violations=sum(t>m.boxes[b]['deadline']+1e-6 for b,t in deliveries.items()),delivered=len(deliveries),last_delivery=max(deliveries.values()))
 
 def construct(m,seed,multi=True,earliest=0):
+    p=optimization_parameters()['construction']
     rng=random.Random(seed)
     remaining=set(range(80));routes=[]
     units={u:0. for us in m.units.values() for u in us}
     bat={g:[0.]*t['batteries'] for g,t in m.types.items()}
     # 优先级扰动用于改变装箱和访问顺序；每次路线构造仍显式检查硬时限。
-    jitter={i:rng.uniform(.75,1.25) for i in remaining}
-    exp=rng.uniform(.1,.8);energy_weight=rng.uniform(0,.2)
+    jitter={i:rng.uniform(p['jitter_min'],p['jitter_max']) for i in remaining}
+    exp=rng.uniform(p['exponent_min'],p['exponent_max']);energy_weight=rng.uniform(0,p['energy_weight_max'])
     while remaining:
         choices=[]
         for g in m.types:
             u=min(m.units[g],key=units.get);bi=int(np.argmin(bat[g]));start=max(units[u],bat[g][bi],earliest)
-            seeds=sorted(remaining,key=lambda i:(m.boxes[i]['deadline'] if m.boxes[i]['deadline']<1e8 else m.boxes[i]['due']+10000)*jitter[i])[:12]
+            seeds=sorted(remaining,key=lambda i:(m.boxes[i]['deadline'] if m.boxes[i]['deadline']<1e8 else m.boxes[i]['due']+p['soft_due_offset_s'])*jitter[i])[:p['seed_shortlist']]
             seeds=list(dict.fromkeys(next(i for i in seeds if m.boxes[i]['node']==node) for node in dict.fromkeys(m.boxes[i]['node'] for i in seeds)))
             for seedbox in seeds:
                 r=m.route(g,[seedbox]);ids=[seedbox]
@@ -40,20 +42,20 @@ def construct(m,seed,multi=True,earliest=0):
                     for b in sorted(remaining-set(ids)):
                         node=m.boxes[b]['node'];order=r['order']
                         if not multi and node not in order:continue
-                        if node not in order and len(order)>=3:continue
+                        if node not in order and len(order)>=optimization_parameters()['route_search']['max_stops_per_route']:continue
                         orders=[order] if node in order else [order[:j]+[node]+order[j:] for j in range(len(order)+1)]
                         for o in orders:
                             trial=m.route(g,ids+[b],o)
                             if trial is None:continue
                             if any(start+t>m.boxes[i]['deadline'] for i,t in trial['deliver'].items()):continue
-                            benefit=m.boxes[b]['priority']*(3 if m.boxes[b]['deadline']<1e8 else 1)*jitter[b]
-                            marginal=(trial['duration']-r['duration'])/600+energy_weight*(trial['energy']-r['energy'])+.15
+                            benefit=m.boxes[b]['priority']*(p['hard_priority_multiplier'] if m.boxes[b]['deadline']<1e8 else 1)*jitter[b]
+                            marginal=(trial['duration']-r['duration'])/p['marginal_duration_divisor_s']+energy_weight*(trial['energy']-r['energy'])+p['marginal_offset']
                             add.append((benefit/marginal,b,trial))
                     if not add:break
                     _,b,r=max(add,key=lambda a:a[0]);ids.append(b)
-                benefit=sum(m.boxes[b]['priority']*(3 if m.boxes[b]['deadline']<1e8 else 1)*jitter[b] for b in ids)
-                late=sum(m.boxes[b]['priority']*max(0,start+t-m.boxes[b]['due'])/3600 for b,t in r['deliver'].items())
-                score=benefit/((start+r['duration'])/1000)**exp/(r['duration']/1000+energy_weight*r['energy'])-late
+                benefit=sum(m.boxes[b]['priority']*(p['hard_priority_multiplier'] if m.boxes[b]['deadline']<1e8 else 1)*jitter[b] for b in ids)
+                late=sum(m.boxes[b]['priority']*max(0,start+t-m.boxes[b]['due'])/p['tardiness_divisor_s'] for b,t in r['deliver'].items())
+                score=benefit/((start+r['duration'])/p['score_time_divisor_s'])**exp/(r['duration']/p['score_time_divisor_s']+energy_weight*r['energy'])-late
                 choices.append((score,u,bi,start,r))
         if not choices:return None
         _,u,bi,start,r=max(choices,key=lambda a:a[0]);g=r['g']
@@ -89,7 +91,7 @@ def improve_schedule(m,rs,seconds=15,earliest=0,start_after=None):
             penalties.append(m.boxes[b]['priority']*v)
     tardiness=sum(penalties)
     model.minimize(tardiness)
-    solver=cp_model.CpSolver();solver.parameters.max_time_in_seconds=seconds;solver.parameters.num_search_workers=1;solver.parameters.random_seed=42
+    solver=cp_model.CpSolver();solver.parameters.max_time_in_seconds=seconds;solver.parameters.num_search_workers=1;solver.parameters.random_seed=optimization_parameters()['method_comparison']['cp_sat_seed']
     status=solver.solve(model)
     if status not in [cp_model.OPTIMAL,cp_model.FEASIBLE]:return rs,dict(status=solver.status_name(status))
     first=dict(status=solver.status_name(status),objective=solver.objective_value,bound=solver.best_objective_bound)

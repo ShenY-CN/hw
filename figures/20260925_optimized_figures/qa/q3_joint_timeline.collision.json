@@ -1,0 +1,336 @@
+{
+  "pdf": "figures/20260925_optimized_figures/q3_joint_timeline.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 50,
+  "text_trace_count": 51,
+  "stroke_path_count": 56,
+  "filled_region_count": 53,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 7,
+    "warn": 6,
+    "contained_fill_overlays": 29,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "T013",
+      "text_bbox": [
+        129.75225830078125,
+        119.54883575439453,
+        140.2991180419922,
+        126.04883575439453
+      ],
+      "other_text": null,
+      "other_bbox": [
+        136.84593200683594,
+        7.199981689453125,
+        136.84593200683594,
+        261.15997314453125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        36
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "T011",
+      "text_bbox": [
+        131.5697479248047,
+        240.04608154296875,
+        142.11660766601562,
+        246.54608154296875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        136.84593200683594,
+        7.199981689453125,
+        136.84593200683594,
+        261.15997314453125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        36
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "T006b",
+      "text_bbox": [
+        216.8228759765625,
+        71.34993743896484,
+        235.82284545898438,
+        77.84993743896484
+      ],
+      "other_text": null,
+      "other_bbox": [
+        229.25747680664062,
+        7.199981689453125,
+        229.25747680664062,
+        261.15997314453125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        38
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "T008",
+      "text_bbox": [
+        501.32867431640625,
+        191.84718322753906,
+        513.1724243164062,
+        198.34718322753906
+      ],
+      "other_text": null,
+      "other_bbox": [
+        506.4921569824219,
+        7.199981689453125,
+        506.4921569824219,
+        261.15997314453125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        44
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "运输架次",
+      "text_bbox": [
+        528.5943603515625,
+        222.78285217285156,
+        552.5946655273438,
+        230.78285217285156
+      ],
+      "other_text": null,
+      "other_bbox": [
+        417.0839538574219,
+        211.53921508789062,
+        546.3978271484375,
+        225.51690673828125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        22
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "中继飞行任务",
+      "text_bbox": [
+        528.5943603515625,
+        234.7828369140625,
+        568.5949096679688,
+        242.7828369140625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        376.037841796875,
+        235.638671875,
+        553.2413330078125,
+        249.61634826660156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        20
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "中继通信服务窗",
+      "text_bbox": [
+        528.5943603515625,
+        246.7828369140625,
+        576.594970703125,
+        254.7828369140625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        376.037841796875,
+        235.638671875,
+        553.2413330078125,
+        249.61634826660156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        20
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "RP02",
+      "text_bbox": [
+        183.6016082763672,
+        47.2504768371582,
+        196.07034301757812,
+        53.7504768371582
+      ],
+      "other_text": null,
+      "other_bbox": [
+        100.46609497070312,
+        46.21699523925781,
+        295.7723693847656,
+        53.44682312011719
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        31000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "RP01",
+      "text_bbox": [
+        297.5429382324219,
+        23.151020050048828,
+        310.0116882324219,
+        29.651020050048828
+      ],
+      "other_text": null,
+      "other_bbox": [
+        97.70939636230469,
+        22.1175537109375,
+        524.477294921875,
+        29.347381591796875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        29000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "RP03",
+      "text_bbox": [
+        467.8202819824219,
+        47.2504768371582,
+        480.2890319824219,
+        53.7504768371582
+      ],
+      "other_text": null,
+      "other_bbox": [
+        466.0298767089844,
+        46.21699523925781,
+        499.55511474609375,
+        53.44682312011719
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        33000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "运输架次",
+      "text_bbox": [
+        528.5943603515625,
+        222.78285217285156,
+        552.5946655273438,
+        230.78285217285156
+      ],
+      "other_text": null,
+      "other_bbox": [
+        417.0839538574219,
+        211.53921508789062,
+        546.3978271484375,
+        225.51690673828125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        22000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "中继飞行任务",
+      "text_bbox": [
+        528.5943603515625,
+        234.7828369140625,
+        568.5949096679688,
+        242.7828369140625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        376.037841796875,
+        235.638671875,
+        553.2413330078125,
+        249.61634826660156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        20000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "中继通信服务窗",
+      "text_bbox": [
+        528.5943603515625,
+        246.7828369140625,
+        576.594970703125,
+        254.7828369140625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        376.037841796875,
+        235.638671875,
+        553.2413330078125,
+        249.61634826660156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        20000
+      ]
+    }
+  ]
+}

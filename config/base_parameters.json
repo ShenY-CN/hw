@@ -1,0 +1,11 @@
+{
+  "dem_file": "镇龙乡及周边30米DEM.tif",
+  "terrain_clearance_m": 50,
+  "service_height_m": 30,
+  "gravity_m_s2": 9.81,
+  "charge_soc_break": 0.9,
+  "charge_first_stage_fraction": 0.65,
+  "charge_second_stage_fraction": 0.35,
+  "initial_soc": 1.0,
+  "relay_max_agl_m": 300
+}
