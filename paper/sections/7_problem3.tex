@@ -1,73 +1,261 @@
-\section{问题三：连续通信修复与有限候选分解协调}
+% titlesec 在排目录时才检查 tocdepth。把切换写进 toc 文件，只隐藏本章三级标题。
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+\section{问题三：连续通信约束下的运输—中继协同优化}
 
-\subsection{中继资源与覆盖约束}
+\subsection{问题分析与建模框架}
 
-固定网关G01位于O01上方20~m。运输机到网关、运输机到中继、中继到网关的双向允许损耗分别为122、116、126~dB。对中继任务$\ell$、候选位置--高度$h$、中继机$u$与能源组件$r$，定义启用和分配变量$e_\ell,q_{\ell h},z^R_{\ell u},w^R_{\ell r}$：
+问题二给出的是物流可行方案：货箱编组、机型、地形航段、20\%返航储备、医疗期望时刻、首批截止，以及8架运输机和14组电池的占用都已满足。它不检查飞行过程中与固定网关的链路。山区里，三维距离和DEM遮挡随位置连续变化，航次在起飞、巡航和返航中都可能离开网关的直连范围。因此物流可行并不蕴含通信可行。
+
+问题三在同一批80箱、758~kg货物上增加固定网关G01、2架中继机、6组中继能源组件、2400~MHz链路预算和DEM遮挡。通信约束作用在每架运输机从起飞到返航的全部时间上，中继又有自己的飞行、悬停、能源和周转。运输调度、空间覆盖和中继资源因此耦合在一起。
+
+本文采用运输计划与通信保障的分层协同求解框架，只在有限运输结构和有限中继候选上协调航次拆分、机型、起飞时刻、中继服务窗和资源占用。最终主方案是经过连续通信认证和独立回放验证的可执行方案，不是联合求得的全局最优运输—通信方案。证书通过只说明该计划在附件参数和这张DEM上可行。因此，下文依次建立连续通信与中继保障模型，给出分层协同求解方法，并对主方案进行时空分析和独立验证。
+
+\subsection{连续通信与中继保障模型}
+\label{sec:q3model}
+
+本节先定义单条链路何时成立，再给出运输机在某一时刻的通信条件和DEM遮挡判据，然后规定中继任务的时空与能源约束，最后构造覆盖完整飞行区间的连续通信证书。
+
+\subsubsection{双向通信链路模型}
+
+网关G01固定在调度中心O01的经纬度上，天线高度为地面海拔加20~m，即147.7~m。运输机不另设通信高度，端点就是爬升、巡航、下降或交接时的飞行位置。中继在服务窗内悬停，位置不变。
+
+端点$a,b$在时刻$t$的三维距离先按米合成，再化为千米。水平分量$d_{ab}^{\rm h}$是WGS84测地距离：
 \begin{equation}
-\sum_hq_{\ell h}=e_\ell,\qquad \sum_uz^R_{\ell u}=e_\ell,\qquad \sum_rw^R_{\ell r}=e_\ell.
-\label{eq:q3-relay-select}
+D_{ab}(t)=\frac{1}{1000}\sqrt{d_{ab}^{\rm h}(t)^2+\bigl(z_a(t)-z_b(t)\bigr)^2}.
+\label{eq:distance3d}
 \end{equation}
-任务时刻满足$t_\ell\le a_\ell\le b_\ell\le c_\ell$。飞抵、建链、服务、返航及悬停能量等式仅在$e_\ell=1$时生效；$e_\ell=0$时四个时刻和能耗均固定为0。中继机占用到返航后300~s，组件占用延长到充满，并分别施加\texttt{NoOverlap}。
-
-对运输分段$(k,m)$定义直连选择$d_{km}$和由同一中继任务承担接入、回程的$c_{km\ell}$。连续证书参数为$\kappa^{\rm dir}_{km},\kappa^{\rm acc}_{kmh},\kappa^{\rm back}_h$，则
-\begin{align}
-&d_{km}\le\kappa^{\rm dir}_{km},\quad c_{km\ell}\le e_\ell,\label{eq:q3-cover-a}\\
-&c_{km\ell}\le\sum_hq_{\ell h}\kappa^{\rm acc}_{kmh},\quad
-c_{km\ell}\le\sum_hq_{\ell h}\kappa^{\rm back}_h,\label{eq:q3-cover-b}\\
-&a_\ell\le\underline t_{km}+M(1-c_{km\ell}),\quad
-b_\ell\ge\overline t_{km}-M(1-c_{km\ell}),\label{eq:q3-cover-c}\\
-&d_{km}+\sum_\ell c_{km\ell}\ge1.\label{eq:q3-cover-all}
-\end{align}
-式~\eqref{eq:q3-cover-b}保证接入与回程同时成立，不能拼接两架不同中继。
-
-\subsection{连续区间证书命题}
-
-链路损耗为
+自由空间路径损耗采用题给频率形式，与ITU-R P.525的自由空间衰减计算一致\cite{itur}：
 \begin{equation}
-L_{ab}(t)=32.45+20\log_{10}(2400)+20\log_{10}D_{ab}(t)+10B_{ab}(t).
-\label{eq:q3-loss}
+L^{\rm FSPL}\bigl(D\bigr)=32.45+20\log_{10}(f_{\rm MHz})+20\log_{10}D,
+\label{eq:fspl}
 \end{equation}
-
-\noindent\textbf{命题（连续覆盖证书）。}
-对运输子区间$I$，若距离上界$\bar D_I\ge\max_{t\in I}D_{ab}(t)$且遮挡上界$\bar B_I\ge10B_{ab}(t)$对$I$内所有时刻成立，令
+其中$f_{\rm MHz}=2400$，$D$以km计，$d_{ab}^{\rm h}$与高差$z_a-z_b$以m计。地形遮挡不直接判链路中断，只叠加题目附件规定的10~dB；这不是本文另设的惩罚项。记$B_{ab}(t)\in\{0,1\}$，
 \begin{equation}
-\bar L_I=32.45+20\log_{10}(2400)+20\log_{10}\bar D_I+\bar B_I.
+L_{ab}(t)=L^{\rm FSPL}\bigl(D_{ab}(t)\bigr)+10\,B_{ab}(t).
+\label{eq:link-loss}
 \end{equation}
-当直连满足$\bar L_I\le L^{\max}_{T\leftrightarrow G}$，或存在同一在役中继使接入与回程两条链路各自的$\bar L_I$均不超过相应门限时，$I$内每一时刻均双向可通信。
+$B_{ab}(t)=1$表示按第\ref{sec:dem}节的DEM栅格规则，该连线被判为视线受地形遮挡。
 
-\noindent\textbf{证明。}
-$20\log_{10}D$关于$D>0$单调不减，遮挡项也被$\bar B_I$控制，故任意$t\in I$均有$L_{ab}(t)\le\bar L_I$。中继情形分别对接入和回程应用此不等式，并由式~\eqref{eq:q3-cover-b}、\eqref{eq:q3-cover-c}保证同一中继全区间在役，结论成立。\hfill$\square$
+双向门限不分别仿真上、下行两套随机衰落，而由附件的发射功率、天线增益、灵敏度、衰落裕量和系统损耗合成。记两端功率为$P_a,P_b$（dBm），增益为$G_a,G_b$（dBi），则
+\begin{equation}
+L^{\max}_{a\leftrightarrow b}
+=\min(P_a,P_b)+G_a+G_b-P_{\rm sens}-M-L_{\rm sys}.
+\label{eq:threshold}
+\end{equation}
+两个方向都计入两端增益，较弱的发射功率决定门限，所以下面三个数都是双向有效门限。灵敏度$P_{\rm sens}=-98$~dBm、衰落裕量$M=8$~dB和系统损耗$L_{\rm sys}=3$~dB只扣除一次。代入附件后：
 
-程序以爬升、巡航、下降、交接和中继切换为初始分点；距离上界乘1.0002安全因子，遮挡由DEM像元扫掠证明。不能证明时递归二分，深度用尽即拒绝，离散采样只作交叉检查。
+运输机（20~dBm，3~dBi）与网关（27~dBm，12~dBi）的直连门限为122~dB；
 
-\subsection{有限候选分解协调审计}
+运输机与中继接入端（20~dBm，6~dBi）的接入门限为116~dB；
 
-主问题提出运输族和中继窗口，通信子问题返回连续证书；理论上通信冲突应形成覆盖割并回传主问题。当前程序只暴露有限运输族，没有可调用的通信冲突割接口，因此本次计算严格称为“有限候选上的通信可行性修复与分解协调审计”，不称强联合优化或全局最优。
+中继回传端（19~dBm，8~dBi）与网关的回传门限为126~dB。
 
-审计三类运输族和32个中继窗口候选，所有候选均重新验证硬时限、资源与连续通信。表~\ref{tab:q3_coordination_audit}给出三轮候选规模；在相同零加权迟到条件下形成3个非支配点。本文用时间优先的正式主方案文件作为提交结果，同时另报最大最小链路裕度候选。连续区间认证核心代码见附录A.3。
-\input{tables/q3_coordination_audit}
+可用性为$A_{ab}(t)=\mathbf{1}\{L_{ab}(t)\le L^{\max}_{a\leftrightarrow b}\}$。
 
-\begingroup\emergencystretch=1em
-主方案共29架次（运输26、中继3）。返航时刻为6769.22~s；总能耗78.8732~kWh，最小链路裕度0.093780~dB。\par
-\endgroup
+\subsubsection{直接通信与中继通信条件}
 
-最大裕度候选采用东部窗口3500~s，返航6769.31~s、能耗79.0401~kWh，29个总架次，最小裕度0.094145~dB。其裕度只增加0.000365~dB，不能视为实质稳健化；两种方案在现场执行前都须重新测量链路与地形。
+运输机$u$在时刻$t$通信可行，当且仅当直连成立，或存在同一架正在服务的中继$r$，使接入和回传同时成立：
+\begin{equation}
+C_u(t)=C_{uG}(t)\lor\bigvee_r\bigl(C_{ur}(t)\land C_{rG}(t)\bigr).
+\label{eq:comm-cover}
+\end{equation}
+采用中继时，必须是同一架正在服务的中继同时完成运输机—中继接入和中继—网关回传。只连上中继而回传不通，或者接入用R01、回传用R02，都不满足式~\eqref{eq:comm-cover}。服务窗内中继停在固定悬停点，回传几何不随时间变化，因而每个悬停点只验算一次$C_{rG}$；随时间变化、需要逐段给出充分条件的是运输机到网关或到该悬停点的链路。准备阶段在起飞之前，不进入该式。交接悬停包含在飞行区间内。中继往返悬停点的途中不在运输机证书之内。
 
-主方案80箱均在原服务区交接，31箱硬截止和64箱非医疗物资期望时刻均无违约；最后一箱6317.40~s交接。运输机6625.61~s收尾，运输与中继分别耗电75.3988和3.4744~kWh。最紧硬截止提前84.65~s，最低运输机与中继返航SOC分别为20.4065\%和38.6085\%。4061个连续区间全部获证，最窄区间的保守裕度为0.093780~dB。三处悬停离地高度都等于300~m上限，也没有高度扰动余量。
+\subsubsection{DEM地形遮挡判定}
+\label{sec:dem}
 
-为比较通信约束加入前后的空间方案，图~\ref{fig:spatial3d}在同一DEM上以问题二运输方案为基线，展示问题三联合航线、分机型航线及中继位置；其中(a)为问题二方案，(b)--(f)为问题三方案。中继点及其对直连盲区的覆盖关系另见图~\ref{fig:relay}和图~\ref{fig:relay_coverage}；任务时间关系与逐段通信提供方见图~\ref{fig:joint}、图~\ref{fig:communication_timeline}和图~\ref{fig:time_sliced_routes}。链路裕度分布与中继返航电量分别见图~\ref{fig:link_margin}和图~\ref{fig:relay_soc}。
+只比较欧氏距离会漏掉山体。视线由两端三维位置的直线确定。DEM为EPSG:4326下$1309\times1486$个名义30~m像元，经纬度经栅格仿射变换落到列、行，高程取所在像元。
 
-\input{tables/q3_relay_tasks}
-\input{tables/q3_communication}
-\input{tables/q2_q3_compare}
+判定单条连线时，不按固定步长抽点，而求连线与经向、纬向网格线的全部交点，使每个子段落在一个像元内。设子段两端的归一化参数为$s_1,s_2$，视线海拔
+\begin{equation}
+z_{\rm LOS}(s)=z_a+(z_b-z_a)s,\qquad s\in[0,1].
+\label{eq:los}
+\end{equation}
+若该像元高程高于子段视线两端的较低者，
+\begin{equation}
+z_{\rm DEM}>\min\bigl(z_{\rm LOS}(s_1),z_{\rm LOS}(s_2)\bigr),
+\label{eq:blocked}
+\end{equation}
+则$B_{ab}=1$，容差为$10^{-8}$~m；否则$B_{ab}=0$。式~\eqref{eq:blocked}使用子段两端视线高度的较低值，是题给DEM栅格上的保守判据：线性视线上，这个较低值不超过线段上任一点的视线高度，因此不会把擦过像元上沿的视线判成畅通，但可能把并未切断视线的地形判成遮挡。判成遮挡后再加附件规定的10~dB。这是栅格模型下的确定性判定，不表示对真实山体作了无限分辨率测量；约30~m的像元也不能表示像元内部的陡坎。上述判据给出固定时刻的链路状态。运输机运动后，只在少数时刻调用该式，不能推出相邻时刻之间没有新的遮挡，因此需要进一步构造区间证书。
 
-\begin{figure}[H]\centering\includegraphics[width=.96\textwidth]{../figures/paper_full_20260926/spatial_terrain_routes_3d.pdf}\caption{问题二与问题三运输航线、机型分布及中继位置的DEM三维对比}\label{fig:spatial3d}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.82\textwidth]{../figures/paper_full_20260926/q3_relay_map.pdf}\caption{主方案西、东、北中继悬停点}\label{fig:relay}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.90\textwidth]{../figures/paper_full_20260926/q3_relay_coverage_points.pdf}\caption{运输盲区采样点与中继覆盖关系}\label{fig:relay_coverage}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.90\textwidth]{../figures/paper_full_20260926/q3_joint_timeline.pdf}\caption{运输与中继联合时间表}\label{fig:joint}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.92\textwidth]{../figures/paper_full_20260926/q3_communication_timeline.pdf}\caption{运输任务各时段的通信提供方}\label{fig:communication_timeline}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.96\textwidth]{../figures/paper_full_20260926/spatial_time_sliced_routes.pdf}\caption{不同时间段的运输航线与中继空间分布}\label{fig:time_sliced_routes}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/paper_full_20260926/q3_battery_timeline.pdf}\caption{运输电池占用与充电区间}\label{fig:battery}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.76\textwidth]{../figures/paper_full_20260926/q3_relay_soc.pdf}\caption{三项中继任务的返航剩余电量}\label{fig:relay_soc}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.82\textwidth]{../figures/paper_full_20260926/q3_link_margin.pdf}\caption{连续通信区间的保守链路裕度分布}\label{fig:link_margin}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.86\textwidth]{../figures/paper_full_20260926/q3_q2_q3_comparison.pdf}\caption{问题二与问题三运输和通信方案指标比较}\label{fig:q2_q3_comparison}\end{figure}
+\subsubsection{中继无人机时空与能源约束}
+
+空间变量和时间变量分开。空间上，一次任务选定一个悬停点，离地高度取附件上限300~m，服务期间不移动。时间上，任务包含固定准备180~s、按地形净空飞抵悬停点、建链30~s、悬停服务和原路返航；同一机体下一次任务前留300~s周转。悬停功率1.05~kW与通信附加功率0.05~kW在建链和服务期间计能耗；往返按巡航功率1.15~kW和爬升势能计能耗，下降不另计。可用能量3.2~kWh，返航SOC不得低于20\%。能源组件初始满电，任务结束后按与运输电池相同的两阶段模型充满才能再用。两架机体和6组组件的占用不得重叠。入选悬停点的空间分工和三班时刻见第\ref{sec:q3result}节。
+
+\subsubsection{连续通信区间证书}
+
+若只在离散时刻$t_k$上得到$C_u(t_k)=1$，得不出$\forall t\in[t_k,t_{k+1}]$，$C_u(t)=1$。爬升和下降改变高度，巡航改变水平位置，中继也在有限个时刻进入或退出服务。两个采样点之间，距离和相交地形都可能变差。问题三要求式~\eqref{eq:comm-cover}在整个$[t_u^{\rm to},t_u^{\rm end}]$上成立。
+
+证书的对象是闭区间$I=[t^-,t^+]$，而不是采样点。它在附件模型和这张DEM上给出充分条件：若条件成立，则该区间内任意时刻都有一条不超过对应门限的路径。未获得充分条件的区间不视为通信可行。
+
+切分来自航段阶段边界，即爬升、巡航、下降和交接；中继的可服务时刻和停服务时刻若落在航段内部，也作为切点。此后按10~s构造初始待认证区间。10~s只用于这一步切分，不是连续通信成立的采样间隔；区间若不能直接认证，还会继续二分。每个小区间上，运输机位置取两端的线性插值，网关和在役中继位置不变。
+
+距离上界先把水平测地距离乘以1.0002，再与高差合成，并取区间两端的较大值：
+\begin{equation}
+D_I^{\rm ub}
+=\max_{t\in\{t^-,t^+\}}
+\frac{1}{1000}\sqrt{\bigl(1.0002\,d^{\rm h}(t)\bigr)^2+\bigl(z_u(t)-z_{\rm fix}\bigr)^2}.
+\label{eq:dub}
+\end{equation}
+$d^{\rm h}$以m计，$z_u$为运输机海拔，$z_{\rm fix}$为网关或悬停中继的海拔。1.0002不是传播模型参数，只是距离上界的保守膨胀，用来避免端点取值和浮点舍入把证明用的距离算小。它使证书裕量比同一模型、同一端点的回放约低$20\log_{10}(1.0002)\approx0.00174$~dB。
+
+在$D_I^{\rm ub}$上有三类充分条件。若即使按全程遮挡仍不超过门限，
+\begin{equation}
+L^{\rm FSPL}(D_I^{\rm ub})+10\le L^{\max},
+\label{eq:worst}
+\end{equation}
+则记为最坏遮挡证书，裕量为$L^{\max}-L^{\rm FSPL}(D_I^{\rm ub})-10$。它只说明无论该区间在DEM上是否遮挡，链路都不会超过门限，不能据此说该区间存在遮挡。若式~\eqref{eq:worst}不成立，但$L^{\rm FSPL}(D_I^{\rm ub})$本身仍不超过门限，则改证整段在DEM上无遮挡。运输端沿区间内的线段移动时，该线段与固定端点构成扫掠三角形；三角形盖住的每个像元上，视线平面先扣除半个像元的坡度，再要求不低于DEM。这样得到的区间为扫掠视距证书，裕量为$L^{\max}-L^{\rm FSPL}(D_I^{\rm ub})$，不再加10~dB。水平位置不变、只有高度变化时，改为检查较低端点发出的射线，相应区间为垂直射线证书，裕量同样不加10~dB。
+
+距离上界已经超过门限，或上述地形条件失败时，将区间在中点二分。最大递归深度为6。这是证书算法的停止界限，不是物理参数。超过深度仍未得到充分条件的候选直接拒绝，不默认可行。直连证书裕量达到1~dB时不再改配中继；这1~dB是提供方分配阈值，不是链路门限。不足1~dB且某架在役中继的证书裕量更大时，可以把该段改记到这架已经悬停的中继，运输轨迹不变。因此$M(I)\ge 0$是保守裕量，不大于同一模型下该区间回放裕量的下界，也不必等于回放裕量的最小值。
+
+只有从起飞到返航的全部证书区间首尾连续覆盖，且每一区间都有合法提供方，使用中继的区间还落在对应服务窗内，该航次才通过连续通信验收。
+
+\subsection{运输—通信分层协同求解}
+
+本节说明主方案如何从问题二的运输种子得到，并与选点网格或五班中继模板区分开。代码中的选点网格和五班中继模板不是本主方案的生成过程。归档主方案按下面三步得到，每一步只处理该步的决策变量：
+\begin{center}
+运输候选 $\rightarrow$ 固定路线排程 $\rightarrow$ 中继窗口协调 $\rightarrow$ 连续通信认证 $\rightarrow$ 独立回放 $\rightarrow$ 正式方案
+\end{center}
+
+\subsubsection{运输结构调整与固定航次排程}
+
+从问题二局部爬山种子1的24个航次出发。其中T006与T021都依次访问S009和S012。主方案按服务区把它们拆成T006a、T006b、T021a、T021b，箱集合不变，运输航次变为26个。除这次拆分外，只有T008由A型改为B型。拆分是入选计划的结构；当前没有“不拆分则一定不可行”的证明。
+
+固定这26条航次后，在整数秒上排程。每个航次只保留直连或在役中继能够认证、且不违反医疗期望时刻和首批截止的起飞区间。CP-SAT在这些区间上选择出发时刻，并用累积约束限制4架A型、2架B型、2架C型运输机以及6、4、4组电池，电池区间延长到充满。对这26条航次和裁剪前的中继窗口，运输收尾的状态为\texttt{OPTIMAL}，目标值与下界均为6626~s。这只说明该整数秒子问题达到最优，不是问题三整体的最优解。连续时间回代的运输收尾是6625.613~s。
+
+\subsubsection{中继窗口与有限候选协调}
+
+比较一组离散的东站窗口和另外两类问题二箱组来源，共保留29个已验证计划。其中6个在加权迟到、联合返航、加权交付和总能耗上互不支配。入选顺序是：先取普通物资加权迟到，再取联合返航，然后取优先加权平均交付，最后取总能耗。主方案是东站裁剪前窗口3900~s的那一个。
+
+表~\ref{tab:q3}只列出29个已验证计划中的五行，用来说明入选顺序，不是搜索空间的全部。五行都满足硬时限和连续通信。东窗3100~s的对照与主方案有相同的26个运输航次和3个中继航次，总能耗低0.0776~kWh，加权平均交付早0.705~min，但联合返航晚55.876~s，因此在“先收尾、后能耗”的顺序下不入选。普通水迟到的历史计划在现行时限下硬约束可行，但有4箱非医疗物资迟到，加权迟到14206.21系数$\cdot$s，不作为主方案。
+
+\begin{table}[H]\centering\scriptsize\caption{已验证联合方案的代表性对比}\label{tab:q3}
+\resizebox{\textwidth}{!}{\begin{tabular}{lrrrrrr}\toprule
+箱组来源／东站裁剪前窗口 & 运输／中继 & 软迟到箱 & 联合返航/min & 加权交付/min & 总能耗/kWh & 最紧硬提前/s\\\midrule
+局部爬山1／3900~s（主方案） & 26／3 & 0 & \textbf{112.82} & 50.39 & 78.8732 & 84.65\\
+局部爬山1／3100~s & 26／3 & 0 & 113.75 & 49.68 & \textbf{78.7956} & \textbf{236.73}\\
+局部爬山0／3900~s & 27／3 & 0 & 116.62 & 49.29 & 81.3287 & 45.83\\
+历史基线箱组／4700~s & 26／3 & 0 & 125.26 & 51.15 & 82.1944 & 284.71\\
+普通水迟到历史方案 & 26／3 & 4 & 137.60 & 55.12 & 81.6496 & 348.50\\\bottomrule
+\end{tabular}}\end{table}
+
+\subsubsection{连续通信认证与独立回放}
+
+对入选时刻重做区间证书，把每班悬停截到最后一段已被证明使用的时刻再加1~s，并重算能耗和返航。截断不改变运输轨迹。随后由另一套回放重算能耗、交付、SOC和资源占用，不读取优化器内部的可行性标记。另外用同一链路函数对每个证书区间按不超过1~s的间距取样，用来区分证书上界和模型判定的遮挡，不替代证书。
+
+\subsection{主方案及通信协同结果}
+\label{sec:q3result}
+
+本节报告通过上述认证的主方案：先给总体时间和能量，再按空间布置、资源时间表和链路提供方说明协同关系，最后分析裕量最小的通信区间。
+
+\subsubsection{主方案总体结果}
+
+主方案为26个运输航次加3个中继航次，联合收尾6769.222~s，总能耗78.8732~kWh，硬时限违约为0，4061个证书区间全部通过。表~\ref{tab:q3main}的数字来自\texttt{results/q3.json}的汇总、\texttt{results/validation.json}的回放，以及按同一链路函数做的密集采样。80箱全部在原服务区交接，64箱非医疗物资的加权迟到为0。最紧硬截止是T019送往S007的首批饮用水S007-WAT-01：交接3515.352~s，截止3600~s，提前84.648~s。最低运输SOC为20.4065\%，出现在A型航次T010；最低中继SOC为38.6085\%，出现在RP01。
+
+\begin{table}[H]\centering\small
+\caption{问题三主方案时间、能源与通信指标}\label{tab:q3main}
+\begin{tabular}{lr}\toprule
+指标 & 数值\\\midrule
+运输架次／中继架次 & 26／3\\
+运输能耗／中继能耗／总能耗 & 75.3988／3.4744／78.8732~kWh\\
+单位货物耗电 & 0.10405~kWh/kg\\
+最后一箱交接 & 6317.397~s\\
+运输收尾$C_T$／联合收尾$C_J$ & 6625.613／6769.222~s\\
+硬时限违约箱数／最紧硬提前 & 0／84.648~s\\
+最低运输SOC／最低中继SOC & 20.4065\%／38.6085\%\\
+通信证书区间／最小证书裕量 & 4061／0.09378~dB\\
+密集采样最小模型裕量 & 0.09552~dB\\\bottomrule
+\end{tabular}\end{table}
+
+三班中继见表~\ref{tab:relay}，表中时间为s，能耗为kWh，离地高度均为300~m。联合收尾由RP01返航决定，比运输收尾晚143.608~s。R02先飞东点、再飞北点，两班之间留有周转。裁剪前的服务结束时刻分别为8100~s、3900~s和7600~s。证书生成后，每班悬停截到最后一段已被证明使用的时刻再加1~s，并重算能耗和返航；截断不把北点任务前移，所以RP02返航与RP03起飞之间的空档大于300~s。
+
+\begin{table}[H]\centering\scriptsize
+\caption{问题三中继任务配置与执行结果}\label{tab:relay}
+\begin{tabular}{llrrrrrr}\toprule
+任务 & 机体／站点 & 可服务 & 服务结束 & 返航 & 能耗 & SOC\\\midrule
+RP01 & R01／W & 691.797 & 6233.544 & 6769.222 & 1.9645 & 38.608\%\\
+RP02 & R02／E & 727.594 & 3263.722 & 3826.917 & 1.0760 & 66.374\%\\
+RP03 & R02／N & 5474.582 & 5909.920 & 6445.102 & 0.4338 & 86.443\%\\\bottomrule
+\end{tabular}\end{table}
+
+上述4061个区间中，最坏遮挡证书2781个，扫掠视距证书774个，垂直射线证书506个，合计$2781+774+506=4061$。最坏遮挡证书不能据此说该区间存在遮挡。
+
+\subsubsection{运输与中继的时空协同}
+
+主方案采用有限候选中入选的三个悬停点，离地高度都取题设允许的上限300~m，见图~\ref{fig:coverage}。西点W在O01西北、靠近S007与S015，由R01执行RP01，服务窗最长，证书里西侧和北侧航段多由它接入。东点E在O01以东、靠近S010与S013，由R02执行RP02，前半程东侧航段多由它接入。北点N在S005附近，由同一架R02在RP02结束并完成周转后执行RP03。图中彩色点表示连续通信证书中实际由R01或R02提供保障的轨迹采样位置，仅用于展示已执行轨迹上的中继接入分布，不表示连续空间覆盖区域，也不能外推到图上没有飞过的位置。三点的回传在悬停位置上单独计算。西点无遮挡，相对126~dB的裕量为12.24~dB；北点无遮挡，裕量10.36~dB；东点被判遮挡，加10~dB后裕量仅0.773~dB。东点因此是回传最紧的悬停点，但在标称参数下仍然成立。
+
+\begin{figure}[H]\centering
+\includegraphics[width=.86\textwidth]{../figures/paper_full_20260926/q3_relay_coverage_points.pdf}
+\caption{中继悬停点与中继保障轨迹采样分布}
+\label{fig:coverage}
+\end{figure}
+
+图~\ref{fig:joint}是8架运输机和2架中继机的占用。U01至U04执行A型，U05与U06执行B型，U07与U08执行C型，八条时间带并行，而不是一架飞机串行飞完26个航次。R01的RP01从约11.5~min进入服务，一直维持到103.9~min，再飞回O01。该返航时刻为6769.222~s，即112.82~min，就是联合收尾。R02并不是全程开机：RP02在约63.8~min返航结束，经过周转后才从79.4~min起飞执行RP03，91.2~min才再次进入服务。中间这一段东侧不再有中继，能飞的航次必须靠网关直连。
+
+\begin{figure}[H]\centering
+\includegraphics[width=.92\textwidth]{../figures/paper_full_20260926/q3_joint_timeline.pdf}
+\caption{运输无人机与中继无人机联合任务时序}
+\label{fig:joint}
+\end{figure}
+
+图~\ref{fig:commtime}按证书提供方着色，说明中继窗口如何接到运输航次上。靠近O01的短航次可以整段直连，所以中继不必为它们开启。西侧和较长的北侧航段主要落在RP01的服务窗里，由西点接入。东侧前半程落在RP02，北点RP03只覆盖后半程的一小段。颜色在航次内部切换，是因为直连裕量、中继进出服务窗或二分后的区间边界变了，不是航线在空间上跳变。T006a与T006b、T021a与T021b是两条多站航次的拆分，不是临时改名。拆开后，S009与S012各飞一次往返，出站和返航次数增加；相应能耗差放在与问题二的比较中。T021a由U02在任务后段执行，返航巡航跨过RP01的服务结束时刻，最紧链路就出现在这次由R01改接G01之后。
+
+\begin{figure}[H]\centering
+\includegraphics[width=.90\textwidth]{../figures/paper_full_20260926/q3_communication_timeline.pdf}
+\caption{运输航次的通信证书提供方随时间分布}
+\label{fig:commtime}
+\end{figure}
+
+\subsubsection{最紧通信区间分析}
+
+图~\ref{fig:marginenv}是各在役区间证书裕量的下包络。任务中段长期只有数分贝，约104~min处降到全任务最小；两端较大，是因为飞机还在O01附近。图例中的0.094~dB为归档最小证书裕量0.09378~dB按三位小数显示的结果。
+
+\begin{figure}[H]\centering
+\includegraphics[width=.88\textwidth]{../figures/audit_verified_20260925/q3_margin_envelope.pdf}
+\caption{连续通信证书裕量的时间下包络}
+\label{fig:marginenv}
+\end{figure}
+
+最小证书裕量出现在T021a返航巡航的$[6233.544,6242.449]$~s。该航次是A型机U02把8~kg货物送往S009后返回O01，返航巡航海拔293.23~m。6233.544~s正好是西点RP01的服务结束：此前1~s仍由R01以扫掠视距证书覆盖，裕量2.558~dB；此后提供方改为G01直连。表~\ref{tab:tight}按区间起点计算，这一端三维距离最大。
+
+\begin{table}[H]\centering\small
+\caption{T021a最紧通信区间链路预算}\label{tab:tight}
+\begin{tabular}{lr}\toprule
+项目 & 数值\\\midrule
+提供方／证书方法 & G01直连／最坏遮挡上界\\
+飞行海拔／网关海拔 & 293.23／147.70~m\\
+水平距离／三维距离 & 3910.32／3913.03~m\\
+自由空间损耗 & 111.9045~dB\\
+地形遮挡／附加损耗 & 是／10~dB\\
+总损耗／直连门限 & 121.9045／122~dB\\
+回放裕量／证书裕量 & 0.09552／0.09378~dB\\
+视线相对地形的最低差 & $-29.47$~m\\\bottomrule
+\end{tabular}\end{table}
+
+图~\ref{fig:los}是这一端到G01的剖面。阴影区域表示该DEM上地形高于端点连线，因此按题给规则计入10~dB遮挡附加损耗。约3.1~km处DEM高出视线，最大高出29.47~m，远大于$10^{-8}$~m的比较容差，故式~\eqref{eq:blocked}给出$B=1$。同一区间内以约0.45~s间距取21个点，在该DEM规则下全部遮挡；飞机飞向O01，模型回放裕量从起点0.09552~dB增到终点0.33583~dB。
+
+\begin{figure}[H]\centering
+\includegraphics[width=.88\textwidth]{../figures/audit_verified_20260925/q3_tight_los_profile.pdf}
+\caption{T021a最紧通信区间起点至G01的DEM视线剖面}
+\label{fig:los}
+\end{figure}
+
+对4061个区间共取44056个不超过1~s间距的样本，其中6722个被同一规则判为遮挡。独立密集采样所得最小模型裕量为0.09552~dB，与证书保守裕量0.09378~dB接近，且二者都落在T021a的这一遮挡巡航段。二者相差0.00173~dB，与$20\log_{10}(1.0002)\approx0.00174$~dB相符，来自式~\eqref{eq:dub}对水平距离的膨胀。这不是另一套传播模型，也不是现场测量。扫掠视距和垂直射线所覆盖的样本没有被判为遮挡，最小回放裕量分别为0.990~dB和0.981~dB，都不是全任务最紧处。$0.09378~{\rm dB}>0$，所以在题给模型和这张DEM下该区间通过。裕量小于0.1~dB，只说明这一条直连刚刚满足122~dB门限，不能外推到设备衰减、DEM误差、定位误差或天气变化。
+
+\subsection{方案验证、对比与适用边界}
+
+本节只记录主方案已经通过的独立回放、相对问题二多付出的代价，以及固定方案不能外推的边界。证书和遮挡规则的定义见第\ref{sec:q3model}节，系统的参数压力检验见第9章。
+
+\subsubsection{独立可行性回放}
+
+找方案的程序和验收程序分开。回放不读取优化器内部的可行性标记，而是用航次、中继时刻和DEM重新检查：80箱是否各交付一次、目的地是否正确、硬时限和加权迟到、载重与体积、航段能耗、运输机和中继的SOC、8架运输机与2架中继机的占用、14组运输电池与6组中继能源组件的占用和充电，以及4061个证书区间是否从起飞覆盖到返航。上述项目在主方案上均通过。密集采样仍使用同一DEM、同一自由空间公式和同一10~dB规则，只用来核对证书上界没有掩盖负的模型裕量；样本是离散的，连续结论以证书为准。
+
+\subsubsection{与问题二的代价比较}
+
+问题二主方案为24个运输航次、总能耗71.9169~kWh、运输收尾6276.831~s、优先加权平均交付45.69~min。问题三主方案为26个运输航次、3个中继航次、总能耗78.8732~kWh、联合收尾6769.222~s、加权平均交付50.39~min。总能耗增加6.9563~kWh，全部设备返航推迟492.390~s。从结果构成看，其中运输任务能耗增加3.4820~kWh，中继任务新增能耗3.4744~kWh。运输能耗增量同时包含航次拆分、机型调整和重新排程，不能解释为通信约束本身的纯物理耗电。按航次相减：T006拆成两段后增加1.8167~kWh，T021拆开后增加1.8308~kWh，T008改用B型后减少0.1656~kWh，其余航次能耗不变。中继的3.4744~kWh对应三班往返和悬停。时间上，运输收尾比问题二晚348.782~s，联合收尾再多出的143.608~s是RP01仍在返航。两个方案的运输航次并不相同，因此不能把全部差额看成同一条航线上开关通信约束的结果。
+
+\subsubsection{鲁棒性与模型边界}
+
+主方案的最小证书裕量为0.09378~dB。若在当前链路损耗上统一再加0.1~dB，表~\ref{tab:tight}的证书不再成立。这只说明当前固定方案至少有一个原证书失效。本文没有因此重新搜索中继位置、服务窗、运输航线或起飞时刻，所以不能把0.1~dB写成问题三的可行边界，也不能写成通信系统只能承受的扰动。
+
+能源方面，固定这26条航次和当前时刻时，最紧航次T010的水平能耗再增加0.5441\%就会触及20\%返航储备；全部水平能耗统一上调1\%时，越界的仍是这一个架次。这是固定方案的临界扰动。重新组批、更换机型或重新排程后是否恢复可行，本文没有检验。中继最低SOC为38.6085\%，能量上更紧的是T010。悬停点只有三个入选位置；东站窗口只比较了归档中的离散值；CP-SAT的最优界限于给定航次上的整数秒运输收尾；中继航路、风、设备老化和定位误差都不在4061个证书之内。更系统的固定方案压力检验见第9章。
