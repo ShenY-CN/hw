@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="842.4pt" height="518.4pt" viewBox="0 0 842.4 518.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-26T15:15:50.079189</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 518.4 
+L 842.4 518.4 
+L 842.4 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 46.116 167.472 
+L 241.524 167.472 
+Q 262.224 167.472 262.224 154.872 
+L 262.224 71.208 
+Q 262.224 58.608 241.524 58.608 
+L 46.116 58.608 
+Q 25.416 58.608 25.416 71.208 
+L 25.416 154.872 
+Q 25.416 167.472 46.116 167.472 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #315e9d; fill-opacity: 0.094118; stroke: #315e9d; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 323.496 167.472 
+L 518.904 167.472 
+Q 539.604 167.472 539.604 154.872 
+L 539.604 71.208 
+Q 539.604 58.608 518.904 58.608 
+L 323.496 58.608 
+Q 302.796 58.608 302.796 71.208 
+L 302.796 154.872 
+Q 302.796 167.472 323.496 167.472 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #258a91; fill-opacity: 0.094118; stroke: #258a91; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 600.876 167.472 
+L 796.284 167.472 
+Q 816.984 167.472 816.984 154.872 
+L 816.984 71.208 
+Q 816.984 58.608 796.284 58.608 
+L 600.876 58.608 
+Q 580.176 58.608 580.176 71.208 
+L 580.176 154.872 
+Q 580.176 167.472 600.876 167.472 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #b64a60; fill-opacity: 0.094118; stroke: #b64a60; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 249.317479 113.04 
+Q 282.509129 113.04 314.023729 113.04 
+" clip-path="url(#p17cf963b85)" style="fill: none; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 308.423729 110.24 
+L 314.023729 113.04 
+L 308.423729 115.84 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #65727f; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 526.697479 113.04 
+Q 559.889129 113.04 591.403729 113.04 
+" clip-path="url(#p17cf963b85)" style="fill: none; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 585.803729 110.24 
+L 591.403729 113.04 
+L 585.803729 115.84 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #65727f; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 112.356 323.712 
+L 382.284 323.712 
+Q 402.984 323.712 402.984 311.112 
+L 402.984 217.368 
+Q 402.984 204.768 382.284 204.768 
+L 112.356 204.768 
+Q 91.656 204.768 91.656 217.368 
+L 91.656 311.112 
+Q 91.656 323.712 112.356 323.712 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #69549a; fill-opacity: 0.094118; stroke: #69549a; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 460.116 323.712 
+L 730.044 323.712 
+Q 750.744 323.712 750.744 311.112 
+L 750.744 217.368 
+Q 750.744 204.768 730.044 204.768 
+L 460.116 204.768 
+Q 439.416 204.768 439.416 217.368 
+L 439.416 311.112 
+Q 439.416 323.712 460.116 323.712 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #ce853d; fill-opacity: 0.094118; stroke: #ce853d; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 696.81436 159.345769 
+Q 646.827358 186.121415 598.318682 212.105193 
+" clip-path="url(#p17cf963b85)" style="fill: none; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 604.577198 211.929199 
+L 598.318682 212.105193 
+L 601.932997 206.992783 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #65727f; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 390.08127 264.24 
+Q 421.198865 264.24 450.63941 264.24 
+" clip-path="url(#p17cf963b85)" style="fill: none; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 445.03941 261.44 
+L 450.63941 264.24 
+L 445.03941 267.04 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #65727f; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 178.596 469.872 
+L 663.804 469.872 
+Q 684.504 469.872 684.504 457.272 
+L 684.504 373.608 
+Q 684.504 361.008 663.804 361.008 
+L 178.596 361.008 
+Q 157.896 361.008 157.896 373.608 
+L 157.896 457.272 
+Q 157.896 469.872 178.596 469.872 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #315e9d; fill-opacity: 0.094118; stroke: #315e9d; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 593.256874 315.453801 
+Q 532.981558 342.359305 474.23765 368.581223 
+" clip-path="url(#p17cf963b85)" style="fill: none; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 480.492633 368.855434 
+L 474.23765 368.581223 
+L 478.210009 363.741764 
+z
+" clip-path="url(#p17cf963b85)" style="fill: #65727f; stroke: #65727f; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'Heiti SC', sans-serif; text-anchor: middle; fill: #213547" x="421.2" y="37.74" transform="rotate(-0 421.2 37.74)">山区无人机运输—通信—分区配置证据链</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Heiti SC', sans-serif; text-anchor: start; fill: #315e9d" x="61.02" y="104.86" transform="rotate(-0 61.02 104.86)">统一输入与物理回放</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(61.02 129.185656)">80箱 / 15服务区 / DEM</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(61.02 140.071156)">载荷—能耗、硬时限</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(61.02 151.173828)">机体、电池与充电占用</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Heiti SC', sans-serif; text-anchor: start; fill: #258a91" x="338.4" y="104.86" transform="rotate(-0 338.4 104.86)">Q1  单点直送DP</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(338.4 129.021656)">枚举可行批次模式</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(338.4 140.0135)">Bellman词典序转移</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(338.4 151.161656)">限定模型内精确最优</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Heiti SC', sans-serif; text-anchor: start; fill: #b64a60" x="615.78" y="104.86" transform="rotate(-0 615.78 104.86)">Q2  两层VRPTW调度</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(615.78 129.058172)">路线列启发式 → 固定路线CP-SAT</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(615.78 140.058984)">共享24架次warm-start</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(615.78 151.116172)">4法×10种子×固定3评估</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Heiti SC', sans-serif; text-anchor: start; fill: #69549a" x="127.26" y="251.02" transform="rotate(-0 127.26 251.02)">Q3  连续通信子问题</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(127.26 275.325156)">区间距离/遮挡上界证书</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(127.26 286.226672)">同一中继：接入与回程同时成立</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(127.26 297.337672)">32个有限候选，返回可行性与裕度</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Heiti SC', sans-serif; text-anchor: start; fill: #ce853d" x="475.02" y="251.02" transform="rotate(-0 475.02 251.02)">有限分解协调边界</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(475.02 275.173328)">运输族 + 中继窗口 → 连续证书</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(475.02 286.198484)">当前无通信冲突割回传接口</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(475.02 297.333828)">不宣称强联合或全局最优</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Heiti SC', sans-serif; text-anchor: start; fill: #315e9d" x="193.5" y="407.26" transform="rotate(-0 193.5 407.26)">Q4  固定Q3任务的两组/三组分区</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(193.5 431.396672)">不可拆组件 → 事件时刻资源峰值 → 穷举分组</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(193.5 442.434)">分别报告 duplicated（重复配置）、unused（库存闲置）、deficit（库存缺口）</text>
+    <text style="font-size: 8.2px; font-family: 'Heiti SC', sans-serif; fill: #263442" transform="translate(193.5 453.545)">最终逐箱、逐航次、逐资源、逐通信区间回放验收</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 8.5px; font-family: 'Heiti SC', sans-serif; text-anchor: middle; fill: #536273" x="421.2" y="498.6" transform="rotate(-0 421.2 498.6)">结论边界：小协议未发现新Pareto点；结果是可执行见证，不是全局最优证明</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p17cf963b85">
+   <rect x="7.2" y="7.2" width="828" height="504"/>
+  </clipPath>
+ </defs>
+</svg>

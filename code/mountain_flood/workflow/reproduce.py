@@ -1,4 +1,4 @@
-# 本程序及代码在人工智能工具辅助下完成：OpenAI Codex（GPT-6，OpenAI；GPT-6 模型家族发布日期 2026-09-03）。
+# 本程序及代码在人工智能工具辅助下完成：OpenAI Codex（GPT-5，OpenAI；GPT-5 发布于 2025-08-07）。
 # 参赛队须自行理解、复核与改写；本会话未提供更细的子型号标识。
 """重算问题一，并独立回放和验证归档的搜索候选方案。"""
 
@@ -23,9 +23,14 @@ STEPS=[
     'mountain_flood/core/domain.py',
     'mountain_flood/problem1/recompute.py',
     'mountain_flood/validation/verify_methods_archive.py',
+    'mountain_flood/experiments/formal_q2_protocol.py',
+    'mountain_flood/experiments/formal_q3_protocol.py',
     'mountain_flood/validation/compare_joint_candidates.py',
     'mountain_flood/workflow/promote_fusion.py',
     'mountain_flood/validation/runner.py',
+    'independent_solution_audit.py',
+    'audit_kmax_archive.py',
+    'controlled_stress.py',
     'mountain_flood/experiments/energy_sensitivity.py',
     'mountain_flood/reporting/export_submission.py',
     'mountain_flood/figure/q1.py',
@@ -34,6 +39,8 @@ STEPS=[
     'mountain_flood/figure/q4.py',
     'mountain_flood/figure/spatial.py',
     'mountain_flood/figure/overview.py',
+    'figure_raw_inputs.py',
+    'assemble_figure_pool.py',
 ]
 PACKAGES=['numpy','openpyxl','scipy','rasterio','pyproj','ortools','matplotlib','affine']
 
@@ -69,7 +76,9 @@ def run(out):
     shutil.copy2(ROOT/'requirements.lock',out/'requirements.lock')
     (out/'results').mkdir();(out/'figures').mkdir()
     shutil.copy2(ROOT/'figures'/'fig_roadmap.drawio',out/'figures'/'fig_roadmap.drawio')
-    archives=['q2_time_energy_candidate.json','q3_hard_hill1_e3900_margin.json','method_comparison.json','method_comparison_strict_archive.json','q3_soft_legacy.json']
+    archives=['q2_time_energy_candidate.json','q3_hard_hill1_e3900_margin.json',
+              'method_comparison.json','method_comparison_strict_archive.json',
+              'q3_soft_legacy.json','kmax_scan_20260926.json']
     for pattern in ('q3_hard_hill1_e*_trim.json','q3_hard_newq2_e*_trim.json',
                     'q3_hard_q2_e*_completion_trim.json','q3_hard_q2_e*_buffer15_trim.json',
                     'q3_hard_hill1_e*_margin.json'):
@@ -121,18 +130,30 @@ def run(out):
     expected_figures.add('fig_roadmap')
     if set(pdfs)!=expected_figures or set(pngs)!=expected_figures or set(svgs)!=expected_figures:
         raise RuntimeError(f'Figure outputs incomplete: PDF={pdfs}, PNG={pngs}, SVG={svgs}')
+    pool=out/'figures'/'rigor_pool_20260926'
+    pool_manifest=json.loads((pool/'figure_pool_manifest.json').read_text(encoding='utf8'))
+    if len(pool_manifest['file_sha256'])!=39 or any(
+            digest(pool/name)!=recorded for name,recorded in pool_manifest['file_sha256'].items()):
+        raise RuntimeError('Audited figure pool is incomplete or its manifest differs')
+    kmax_audit=json.loads((out/'results'/'kmax_archive_audit_20260926.json').read_text(encoding='utf8'))
+    if kmax_audit['status']!='PASS' or kmax_audit['passed']!=48:
+        raise RuntimeError('Archived K-scan route witnesses failed independent audit')
+    verified_results=('q2_formal_protocol.json','q3_formal_coordination_audit.json','q4.json')
     manifest=dict(
         created_at=datetime.now(timezone.utc).isoformat(),python=sys.version.split()[0],
         packages=installed,requirements_sha256=digest(out/'requirements.lock'),
         random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),
         archived_selected_plans_sha256={name:digest(out/'results'/name) for name in archives},
-        archive_note='Q1 is recalculated; the revised-rule common-budget search, prior strict-rule search, historical soft plan, and finite joint search are archived as route witnesses. Current plans are independently recalculated and validated. This replay does not repeat wall-clock discovery.',
+        verified_results_sha256={name:digest(out/'results'/name) for name in verified_results},
+        archive_note='Q1 is recalculated; revised-rule and K-limit wall-clock searches, prior strict-rule search, historical soft plan, and finite joint search are archived as route witnesses. All 48 K-limit witnesses and current plans are independently recalculated and validated. This replay does not repeat wall-clock discovery.',
         commands=[dict(script=s,exit_code=0) for s in STEPS],
         input_sha256=hashes(out/'input'),code_sha256=hashes(out/'code'),config_sha256=hashes(out/'config'),
         roadmap_source_sha256=digest(out/'figures'/'fig_roadmap.drawio'),
         q2=q2,q3=q3,q4={k:v['selected']['total'] for k,v in q4['schemes'].items()},
         workbook_sha256=digest(out/'D题结果提交表.xlsx'),
-        figure_files=[f'{figure_set}/{name}.pdf' for name in pdfs])
+        figure_files=[f'{figure_set}/{name}.pdf' for name in pdfs],
+        audited_figure_pool_sha256=pool_manifest['file_sha256'],
+        kmax_archive_audit_sha256=digest(out/'results'/'kmax_archive_audit_20260926.json'))
     (out/'results'/'复现清单.json').write_text(
         json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf8')
     print('PASS',out,flush=True)
@@ -144,5 +165,8 @@ def run(out):
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',required=True,help='New directory for an isolated fresh run')
+    parser.add_argument('--manifest-target',help='Optional path receiving the generated manifest')
     args=parser.parse_args()
-    run(args.output)
+    completed=run(args.output)
+    if args.manifest_target:
+        shutil.copy2(completed/'results'/'复现清单.json',Path(args.manifest_target).resolve())

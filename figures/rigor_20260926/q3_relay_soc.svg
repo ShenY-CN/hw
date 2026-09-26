@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="411.84pt" height="239.76pt" viewBox="0 0 411.84 239.76" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-26T09:18:52.123974</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 239.76 
+L 411.84 239.76 
+L 411.84 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 38 203.56 
+L 404.64 203.56 
+L 404.64 7.2 
+L 38 7.2 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 54.665455 203.56 
+L 149.896623 203.56 
+L 149.896623 120.035341 
+L 54.665455 120.035341 
+z
+" clip-path="url(#pd8d1d5d814)" style="fill: #69549a"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 173.704416 203.56 
+L 268.935584 203.56 
+L 268.935584 59.969078 
+L 173.704416 59.969078 
+z
+" clip-path="url(#pd8d1d5d814)" style="fill: #258a91"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 292.743377 203.56 
+L 387.974545 203.56 
+L 387.974545 16.550476 
+L 292.743377 16.550476 
+z
+" clip-path="url(#pd8d1d5d814)" style="fill: #9b713c"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m780644701c" d="M 0 0 
+L 0 3.5 
+" style="stroke: #536273; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m780644701c" x="102.281039" y="203.56" style="fill: #536273; stroke: #536273; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #536273" x="102.281039" y="218.3" transform="rotate(-0 102.281039 218.3)">RP01</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m780644701c" x="221.32" y="203.56" style="fill: #536273; stroke: #536273; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #536273" x="221.32" y="218.3" transform="rotate(-0 221.32 218.3)">RP02</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m780644701c" x="340.358961" y="203.56" style="fill: #536273; stroke: #536273; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #536273" x="340.358961" y="218.3" transform="rotate(-0 340.358961 218.3)">RP03</text>
+     </g>
+    </g>
+    <g id="text_4">
+     <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #263442" x="221.32" y="231.3" transform="rotate(-0 221.32 231.3)">中继任务</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_4">
+      <path d="M 38 203.56 
+L 404.64 203.56 
+" clip-path="url(#pd8d1d5d814)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_5">
+      <defs>
+       <path id="me6302e7526" d="M 0 0 
+L -3.5 0 
+" style="stroke: #536273; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#me6302e7526" x="38" y="203.56" style="fill: #536273; stroke: #536273; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #536273" x="31" y="207.43" transform="rotate(-0 31 207.43)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_6">
+      <path d="M 38 160.292482 
+L 404.64 160.292482 
+" clip-path="url(#pd8d1d5d814)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#me6302e7526" x="38" y="160.292482" style="fill: #536273; stroke: #536273; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #536273" x="31" y="164.162482" transform="rotate(-0 31 164.162482)">20</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8">
+      <path d="M 38 117.024965 
+L 404.64 117.024965 
+" clip-path="url(#pd8d1d5d814)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#me6302e7526" x="38" y="117.024965" style="fill: #536273; stroke: #536273; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #536273" x="31" y="120.894965" transform="rotate(-0 31 120.894965)">40</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_10">
+      <path d="M 38 73.757447 
+L 404.64 73.757447 
+" clip-path="url(#pd8d1d5d814)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#me6302e7526" x="38" y="73.757447" style="fill: #536273; stroke: #536273; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #536273" x="31" y="77.627447" transform="rotate(-0 31 77.627447)">60</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_12">
+      <path d="M 38 30.489929 
+L 404.64 30.489929 
+" clip-path="url(#pd8d1d5d814)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#me6302e7526" x="38" y="30.489929" style="fill: #536273; stroke: #536273; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #536273" x="31" y="34.359929" transform="rotate(-0 31 34.359929)">80</text>
+     </g>
+    </g>
+    <g id="text_10">
+     <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #263442" x="14.94" y="105.38" transform="rotate(-90 14.94 105.38)">返航剩余电量 / %</text>
+    </g>
+   </g>
+   <g id="line2d_14">
+    <path d="M 38 160.292482 
+L 404.64 160.292482 
+" clip-path="url(#pd8d1d5d814)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b64a60"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 38 203.56 
+L 38 7.2 
+" style="fill: none; stroke: #8996a3; stroke-width: 0.7; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 38 203.56 
+L 404.64 203.56 
+" style="fill: none; stroke: #8996a3; stroke-width: 0.7; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="legend_1">
+    <g id="line2d_15">
+     <path d="M 46.1 19.89 
+L 55.1 19.89 
+L 64.1 19.89 
+" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b64a60"/>
+    </g>
+    <g id="text_11">
+     <text style="font-size: 9px; font-family: 'PingFang SC', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #263442" x="71.3" y="23.04" transform="rotate(-0 71.3 23.04)">最低返航储备 20%</text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd8d1d5d814">
+   <rect x="38" y="7.2" width="366.64" height="196.36"/>
+  </clipPath>
+ </defs>
+</svg>

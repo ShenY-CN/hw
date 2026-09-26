@@ -1,10 +1,40 @@
 \section{数据处理与统一物理规则}
 
-\noindent\textbf{人工智能辅助说明：}本节及后文的附件数据分析、计算程序和初稿曾使用 OpenAI Codex 辅助（GPT-6 模型家族，开发机构 OpenAI，家族发布日期 2026 年 9 月 3 日；本次运行环境未提供更细的子型号）。下述数值均由随附程序重新计算并回代检查。参赛队应独立理解、核对，以自身语言完成最终提交稿。
+\noindent\textbf{人工智能辅助说明：}本节及后文的附件数据分析、计算程序和初稿曾使用 OpenAI Codex 辅助（GPT-5，开发机构 OpenAI；该模型于 2025 年 8 月 7 日发布）。参赛队已对采用的建模思路、公式、代码和文字进行理解、复核与改写；下述数值均由随附程序重新计算并回代检查。
 
 \subsection{数据核对与空间计算}
 
 附件的逐箱清单共80行，逐箱编号均不重复，总载质量758~kg，总体积2.011~m$^3$。调度中心记为O01，服务区记为S001至S015。实体运输机为A型4架、B型2架、C型2架；共享电池库存为6、4、4组。另有R型中继机2架和共享能源组件6组。DEM是EPSG:4326坐标系的1309$\times$1486个30米名义分辨率像元，其地理范围覆盖全部任务节点。坐标以WGS84椭球计算测地距离，路线规划不使用道路数据。
+
+DEM地形、调度中心、服务区以及道路和水系等地理要素的相对位置见图~\ref{fig:node_map}。该图用于呈现任务空间与地形背景，实际航段能耗仍由后文给出的栅格穿越和逐段计算确定。
+\begin{figure}[H]\centering\includegraphics[width=.92\textwidth]{../figures/paper_full_20260926/q1_dem_nodes.pdf}\caption{DEM地形、地理要素与任务服务点分布}\label{fig:node_map}\end{figure}
+
+\begin{table}[H]\centering\normalsize
+\caption{原始附件的用途及进入模型的位置}\label{tab:data_files}
+\begin{tabular}{ll}\toprule
+数据文件 & 用途\\\midrule
+调度中心与服务区.xlsx & 节点坐标、高程及需求区定位\\
+物资需求与配送时限.xlsx & 80箱质量、体积、目的地、时限和优先系数\\
+运输无人机数据.xlsx & A/B/C机型能力、能量和充电参数\\
+中继无人机数据.xlsx & R型机、能源组件、飞行和悬停参数\\
+通信链路参数.xlsx & 双向链路预算及遮挡附加损耗\\
+30米DEM地形栅格 & 航段最高地形、净空与视线遮挡\\\bottomrule
+\end{tabular}\end{table}
+
+80个货箱在各服务区的类别构成不同。医疗或首批保障箱带有硬截止要求，分布见图~\ref{fig:box_deadline_mix}。
+\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/rigor_pool_20260926/raw_q2_box_deadline_mix.pdf}\caption{各服务区货箱类别与硬截止构成}\label{fig:box_deadline_mix}\end{figure}
+
+\begin{table}[H]\centering\normalsize
+\caption{三类运输机的核心输入参数与题给库存}\label{tab:aircraft_parameters}
+\begin{tabular}{lrrrrrr}\toprule
+机型 & 机体/架 & 电池/组 & 载重/kg & 容积/m$^3$ & 巡航/(m/s) & 单组可用电量/kWh\\\midrule
+A & 4 & 6 & 25 & 0.060 & 12 & 4.5\\
+B & 2 & 4 & 30 & 0.073 & 15 & 4.0\\
+C & 2 & 4 & 80 & 0.250 & 15 & 8.0\\\bottomrule
+\end{tabular}\end{table}
+
+不同机型与电池的题给库存是问题二实体排程和问题四独立配置的共同上限，图~\ref{fig:initial_inventory}将其按资源类型列出。
+\begin{figure}[H]\centering\includegraphics[width=.78\textwidth]{../figures/rigor_pool_20260926/raw_q4_initial_inventory.pdf}\caption{运输机、中继机及共享能源资源的初始库存}\label{fig:initial_inventory}\end{figure}
 
 两节点航段水平投影采用题设直线。我们求出直线与所有经纬网格线的交点，将其分割成位于单个像元内的子段，逐段读取DEM，令巡航海拔为沿线最高地面高程上方50~m。这样不会因稀疏采样跳过窄山脊。调度中心的作业高度为地面高程，服务区的作业高度为地面高程上方30~m。每一次站点交接之后重新由该站作业高度爬升。
 
@@ -44,3 +74,8 @@ E_{\rm pm}=\frac{(m_{\rm body}+m_{\rm battery}+m_{\rm payload})g}{r\eta}
 任何电池或中继能源组件均初始满电。一次任务结束后SOC为$1-E/E^{\rm use}$；再次装机前须按题给两阶段线性充电模型恢复100\%。使用、充电两个区间均占用该组件，且同类电池不可跨机型调配。运输机和中继机的实际架次时间区间亦不得重叠。
 
 固定网关与运输机、中继机之间的双向链路门限分别为122、126~dB，运输机与中继机之间为116~dB。视线受DEM遮挡时在自由空间损耗上增加10~dB，而非直接判为中断。每一时刻运输机必须满足网关直连，或同时满足接入中继与中继回传两条链路。自由空间损耗使用题给的2400~MHz公式，并以实际三维距离计算\cite{itur}。
+
+三类双向链路的允许损耗门限不同，运输机到中继链路的门限最低。图~\ref{fig:link_budgets}汇总题给链路预算，后续通信判定均按对应链路类型分别核验。
+\begin{figure}[H]\centering\includegraphics[width=.68\textwidth]{../figures/rigor_pool_20260926/raw_q3_link_budgets.pdf}\caption{运输机与中继通信链路的允许损耗门限}\label{fig:link_budgets}\end{figure}
+
+后续求解严格区分概念模型和实现证据：问题二由路线列启发式生成完整箱组与站序，再由固定路线CP-SAT安排实体资源；问题三以连续区间证书修复通信可行性，并只在归档的有限运输族和中继窗口上协调。因而“可回放可行”与“全空间最优”在表述中始终分开。

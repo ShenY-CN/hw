@@ -1,0 +1,20 @@
+% =============================================================================
+%  目录页模块
+%  标题 “目录” 居中，16pt 黑体加粗；条目与页码之间的点线引导由 main.tex
+%  中 tocloft 的 \cft*leader 配置提供。\@starttoc{toc} 读取 xelatex 编译
+%  产生的 .toc 文件，因此生成目录需要运行 xelatex main.tex 两遍。
+%  通过 \@afterheading 与 \parindent\z@/\parskip\cftparskip 包裹，使 tocloft
+%  的 section/subsection/subsubsection 分级缩进真正生效（编号逐级右移错开）。
+% =============================================================================
+\makeatletter
+\begin{center}
+  {\fontsize{16pt}{19.2pt}\heiti\bfseries 目录}
+\end{center}
+\vspace{1.0cm}
+\@afterheading
+\begingroup
+  \parindent\z@ \parskip\cftparskip
+  \@starttoc{toc}%
+\endgroup
+\makeatother
+\newpage

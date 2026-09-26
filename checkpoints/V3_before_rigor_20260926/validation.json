@@ -1,0 +1,49 @@
+{
+  "2": {
+    "pass_": true,
+    "errors": [],
+    "checks": {
+      "boxes": 80,
+      "hard_boxes": 31,
+      "medical_boxes": 16,
+      "first_boxes": 30,
+      "min_hard_slack": 221.0319695569815,
+      "min_medical_slack": 221.0319695569815,
+      "min_first_slack": 221.0319695569815,
+      "min_due_slack": 221.0319695569815,
+      "late_boxes": 0,
+      "soft_late_boxes": [],
+      "weighted_soft_tardiness_s": 0,
+      "min_transport_SOC": 0.20406515078253173,
+      "machines_used": 8,
+      "batteries_used": 14,
+      "max_machine_overlap": 1,
+      "max_battery_overlap": 1
+    }
+  },
+  "3": {
+    "pass_": true,
+    "errors": [],
+    "checks": {
+      "boxes": 80,
+      "hard_boxes": 31,
+      "medical_boxes": 16,
+      "first_boxes": 30,
+      "min_hard_slack": 84.6479577296318,
+      "min_medical_slack": 604.2223005098776,
+      "min_first_slack": 84.6479577296318,
+      "min_due_slack": 84.6479577296318,
+      "late_boxes": 0,
+      "soft_late_boxes": [],
+      "weighted_soft_tardiness_s": 0,
+      "min_transport_SOC": 0.20406515078253173,
+      "machines_used": 8,
+      "batteries_used": 14,
+      "max_machine_overlap": 1,
+      "max_battery_overlap": 1,
+      "communication_intervals": 4061,
+      "min_comm_margin": 0.09378043058285357,
+      "min_relay_SOC": 0.38608482158634994
+    }
+  }
+}

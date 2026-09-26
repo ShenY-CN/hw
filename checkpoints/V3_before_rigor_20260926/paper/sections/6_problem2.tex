@@ -1,0 +1,65 @@
+\section{问题二：分层时限下的多算法运输调度}
+
+\subsection{多点航次与目标}
+
+一个航次$p$由箱集$B_p$、机型$g_p$和服务区访问序列描述，从O01出发并返回。每个货箱只在原始需求表指定的服务区交接一次；交接结束才算送达。记货箱$b$的交付时刻为$D_b$、期望送达时刻为$d_b$、首批截止为$f_b$，其适用硬截止为
+\begin{equation}
+h_b=\begin{cases}
+\min(d_b,f_b),&b\text{ 同属医疗与首批},\\
+d_b,&b\text{ 为非首批医疗物资},\\
+f_b,&b\text{ 为非医疗首批保障箱},\\
++\infty,&\text{其他货箱},
+\end{cases}
+\qquad D_b\le h_b\quad(h_b<+\infty).
+\label{eq:hard_delivery}
+\end{equation}
+原始清单有16箱医疗物资、30箱首批保障物资，两者重合后共31箱受硬时限约束。全部64箱非医疗物资的期望时刻不构成硬截止（其中15箱首批饮用水仍受首批截止约束），以$T_b=\max(0,D_b-d_b)$衡量迟到。箱重在所属站交接后扣除，逐段重算能耗；每架次同时受载重、容积和20\%返航电量储备约束。同一机体不得执行重叠航次，电池占用延长至按返航SOC充满。
+
+只有上述硬条件全部通过的候选才参加排序。先比较普通物资的优先加权迟到$T_\pi=\sum_{b\notin M}\pi_bT_b$，再比较最后一架运输机返航时刻$C_T=\max_p f_p$，继而比较优先加权平均交付
+\begin{equation}
+\bar D_\pi=\frac{\sum_b\pi_bD_b}{\sum_b\pi_b},
+\end{equation}
+并列报告普通物资晚于期望时刻的箱数、运输耗电$E_T$与架次数。$\pi_b$为原始附件的优先系数；医疗与首批硬截止不能由其他箱提前抵消，其他物资允许迟到但承担及时性损失。
+
+\subsection{同预算算法对照}
+
+公开项目启发了多算法同口径比较的实验设计\cite{akun}；本项目独立实现随机化构造、局部爬山、模拟退火与禁忌搜索。四法共享航次物理模型与资源解码器；爬山、退火和禁忌搜索共用五类邻域，随机化构造以独立重新构造为搜索动作。修订时限解释后，每法用种子0、1、2各搜索6~s；每组固定箱组再交给同一CP-SAT排程器，以8~s预算依次压低加权迟到、$C_T$和$\bar D_\pi$。排程以整数秒决策，最终回代连续秒交付、充电和能耗。表~\ref{tab:method_compare}列出每种算法三次中按上述层级目标排序的最好结果及返航中位数。四法各3/3次通过31箱适用硬截止、全部80箱目的地与物理资源校验；随机化构造的3次结果仍有普通物资晚于期望时刻。
+
+\begin{table}[H]\centering\scriptsize\caption{修订时限后的四算法同预算结果与历史可行解基线；均通过全部硬约束}\label{tab:method_compare}
+\begin{tabular}{lrrrrrrr}\toprule
+方法或参照方案 & 达标 & 迟到箱 & 加权迟到/系数$\cdot$s & 最后返航/min & 能耗/kWh & 架次 & 返航中位数/min\\\midrule
+随机化构造 & 3/3 & 1 & 155.67 & 146.39 & 72.94 & 23 & 177.24\\
+局部爬山 & 3/3 & 0 & 0 & 116.89 & 78.38 & 26 & 122.03\\
+模拟退火 & 3/3 & 0 & 0 & 126.65 & 85.07 & 29 & 146.29\\
+禁忌搜索 & 3/3 & 0 & 0 & 130.50 & 88.87 & 27 & 139.79\\
+历史可行解基线 & 1/1 & 0 & 0 & \textbf{104.61} & \textbf{71.92} & 24 & ---\\\bottomrule
+\end{tabular}\end{table}
+
+历史可行解基线可追溯至前轮更严格“全部期望时刻均为硬截止”实验的局部爬山种子1，路线见证及原始四法比较单独归档。该路线在修订后的规则下重新回放仍然可行，且在修订后的12次候选与该历史候选中，按“硬约束、加权迟到、最后返航、加权交付、能耗”顺序位居首位。因此结果提交表继续采用\emph{局部爬山生成箱组加CP-SAT排程}的24架次方案；表中历史行是跨轮参照，不计作第五种算法，也不参与本轮同预算四法排名。入选路线原固定排程只达到\texttt{FEASIBLE}，没有闭合全局最优界。图~\ref{fig:method_tradeoff}展示本轮见证的加权迟到、交付、返航与能耗。公开项目报告的21架次节能点提供组批思路；对其已归档的另一个21架次及26架次逐箱路线核对发现目的地不一致，故其数字未并入本表同口径性能排名。
+
+\begin{figure}[H]\centering
+\includegraphics[width=.98\textwidth]{../figures/audit_verified_20260925/q2_search_comparison.pdf}
+\caption{修订时限后的同预算算法：耗电与加权迟到、交付和最后返航；黑圈为提交方案}
+\label{fig:method_tradeoff}
+\end{figure}
+
+\subsection{运输主方案}
+
+入选主方案采用历史实验中局部爬山种子1生成的路线，并由CP-SAT完成固定路线资源排程。24架次完成80箱投送，全部设备于6276.83~s（104.61~min）内返航；总能耗为71.9169~kWh，优先加权平均交付时刻为45.69~min，最后一箱于5734.23~s交付。31箱适用硬截止全部满足，64箱非医疗物资也均未晚于期望时刻，加权迟到为0；最紧硬截止提前221.03~s，最低返航SOC为20.4065\%。8架实体机和14组电池的占用及充电区间均无重叠。
+
+\begin{table}[H]\centering\small
+\caption{问题二逐箱交付与时限验收汇总}\label{tab:q2_deadlines}
+\begin{tabular}{lrrl}\toprule
+验收对象 & 箱数 & 违约/迟到箱 & 判据\\\midrule
+医疗物资 & 16 & 0 & 不晚于附件期望时刻\\
+首批保障货箱 & 30 & 0 & 不晚于首批截止时刻\\
+两类去重后的硬时限货箱 & 31 & 0 & 同属两类时取较早截止\\
+非医疗物资的期望时刻 & 64 & 0 & 统计软迟到，不作硬否决\\\bottomrule
+\end{tabular}\end{table}
+
+表~\ref{tab:q2_service_delivery}把80箱按原始服务区汇总，列出该区最后交付时刻及适用硬截止的最小提前量。完整24架次的机体、电池和时间见附录表~\ref{tab:q2_flights}，逐箱编号与实际交付时刻见结果提交表。
+\input{tables/q2_service_delivery}
+
+图~\ref{fig:routes}为运输航线，图~\ref{fig:gantt}为机体排程；逐箱目的地、实际交付和电池编号见结果提交表。
+\begin{figure}[H]\centering\includegraphics[width=.86\textwidth]{../figures/audit_verified_20260925/q2_transport_routes.pdf}\caption{问题二多点运输航线与服务区位置}\label{fig:routes}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.86\textwidth]{../figures/audit_verified_20260925/q2_drone_timeline.pdf}\caption{问题二运输机架次时间表}\label{fig:gantt}\end{figure}

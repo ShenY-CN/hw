@@ -6,5 +6,15 @@
 
 四问的核心关系是逐级增加约束：第一问提供航段和组批能力基准，第二问确定物流时间表，第三问修复通信缺口并与运输调度协同，第四问评估共享资源被分割后产生的重复配置。本文始终使用相同的节点编号、坐标系、航段能耗和电池周转规则，避免跨问比较混入计算口径变化。
 
+\begin{table}[H]\centering\normalsize
+\caption{四问的核心难点、数学对象与求解方法}\label{tab:question_methods}
+\begin{tabular}{cll}\toprule
+问题 & 关键数学对象 & 求解与验收方式\\\midrule
+一 & 单点安全载荷与不可拆货箱组批 & 单调二分、计数状态动态规划\\
+二 & 多点路线、时限与共享机体电池 & 四法路线搜索、CP-SAT排程、逐箱回放\\
+三 & 双向通信覆盖与运输中继时窗 & 有限候选协调、连续区间链路证书\\
+四 & 不可拆任务组件和独立资源峰值 & 两组、三组穷举与库存缺口核算\\\bottomrule
+\end{tabular}\end{table}
+
 图~\ref{fig:roadmap}给出统一物理规则、四问求解及最终逐项核验的衔接顺序。
-\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/audit_verified_20260925/fig_roadmap.pdf}\caption{山区无人机运输与通信协同建模流程}\label{fig:roadmap}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.96\textwidth]{../figures/rigor_pool_20260926/flow_overall_model.pdf}\caption{山区无人机运输、连续通信与分区配置的证据链}\label{fig:roadmap}\end{figure}

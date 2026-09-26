@@ -176,11 +176,13 @@ def plot_joint_timeline(data):
     ax.set_xlabel("时刻 / min")
     ax.set_ylabel("运输机与中继机")
     ax.grid(axis="x", alpha=0.2)
-    ax.legend(handles=[Patch(color=NEUTRAL, label="运输架次"),
-                       Patch(color="#9381B2", label="中继飞行任务"),
-                       Patch(color="#69549A", label="中继通信服务窗")],
-              loc="best", fontsize=8)
-    save_figure(fig, "q3_joint_timeline")
+    handles = [Patch(color=COLORS[g], label=f"{g}型运输") for g in "ABC"]
+    handles.extend((Patch(color="#9381B2", label="中继飞行"),
+                    Patch(color="#69549A", label="中继服务窗")))
+    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.16),
+              ncol=5, fontsize=7)
+    fig.tight_layout(rect=(0, 0.09, 1, 1))
+    save_figure(fig, "q3_joint_timeline", tight=False)
 
 
 def plot_relay_soc(data):

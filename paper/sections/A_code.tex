@@ -1,1 +1,28 @@
-本文由随附Python程序从原始附件读取节点、货箱、机型、DEM与通信参数，不以论文表格为计算输入。四种路线算法保存三个种子、统一搜索预算、候选箱组和共同CP-SAT排程结果；修订时限后的同预算实验与前轮更严格实验分别归档。联合调度保存三类箱组来源、东部中继服务窗口、机型与起飞时刻的搜索见证，以及连续通信区间证书。选定计划归档后，统一入口重新计算问题一，并从原始附件回算问题二、三的逐箱目的地、医疗和首批硬截止、普通物资迟到、航次物理量、机体和电池占用、中继时序和通信，再生成第四问分区、图表与提交表。归档回放保证已选结果可检查，不等同于在另一台计算机上重复墙钟启发式搜索并找到相同候选；两类证据在结果报告中分开说明。
+本文随附\path{code/}目录中的完整Python源代码和\path{requirements.lock}依赖锁定文件。固定参数单独保存在
+\begin{center}\path{config/optimization_parameters.json}\end{center}
+唯一总复现命令为
+\begin{lstlisting}[language=bash]
+python code/reproduce.py
+\end{lstlisting}
+该命令从原始附件读取节点、货箱、机型、DEM与通信参数，重算问题一，回放问题二、三的正式方案，核验逐箱目的地、硬时限、能耗、机体/电池占用及连续通信，生成问题四分区、论文数值表、图片与提交表。墙钟型启发式不承诺在另一机器再次找到相同候选；归档方案回放与重新搜索在输出中分开标识。
+
+\begin{table}[H]\centering\normalsize
+\caption{正式复现入口、证据与核验文件}\label{tab:reproduction-files}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.7cm}>{\raggedright\arraybackslash}p{9.1cm}}\toprule
+路径 & 作用\\\midrule
+\path{code/reproduce.py} & 唯一总入口；调用数据、求解、回放、图表和提交表流程\\
+\path{code/mountain_flood/problem1/packing.py} & Q1可行模式枚举与计数状态动态规划\\
+\path{code/mountain_flood/problem2/search.py} & Q2随机构造、五类邻域、爬山、退火和禁忌搜索\\
+\path{code/mountain_flood/experiments/formal_q2_protocol.py} & 四法$\times$10种子$\times$固定3评估的小协议\\
+\path{code/mountain_flood/experiments/formal_q3_protocol.py} & 三运输族、32候选的有限协调审计\\
+\path{code/mountain_flood/validation/} & 独立回放、资源占用、通信和正式见证核验器\\
+\path{code/generate_paper_tables.py} & 从正式JSON确定性生成论文数值表\\
+\path{results/q1_rho20.json}, \path{q2.json}, \path{q3.json}, \path{q4.json} & 四问正式结果\\
+\path{results/q2_formal_protocol.json} & Q2小协议的40次运行、目标配置与去重Pareto输出\\
+\path{results/q3_formal_coordination_audit.json} & Q3候选、连续证书裕度、非支配点和能力边界\\
+\path{results/solution_certificate.json} & 独立逐箱、逐资源、逐区间复核证书\\
+\path{results/}目录中的“复现清单.json” & 输入、程序、结果和产物哈希清单\\\bottomrule
+\end{tabular}\end{table}
+
+问题二完整24架次如下；逐箱编号、交付时刻和资源编号同时保存在\path{results/q2.json}与结果提交表中。
+\input{tables/q2_flights}

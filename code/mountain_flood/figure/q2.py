@@ -21,7 +21,7 @@ METHOD_COLORS = {
 }
 METHOD_LABELS = {
     "grasp": "随机化构造", "hill": "局部爬山", "anneal": "模拟退火",
-    "tabu": "禁忌搜索", "existing_baseline": "历史可行解基线",
+    "tabu": "禁忌搜索", "existing_baseline": "局部爬山（前轮归档）",
 }
 
 
@@ -130,41 +130,33 @@ def plot_return_soc(data):
     save_figure(fig, "q2_return_soc")
 
 
-def plot_search_comparison(model):
-    comparison = load_result("method_comparison.json")
-    total_priority = sum(box["priority"] for box in model.boxes)
-    fig, axes = plt.subplots(1, 3, figsize=(12.5, 3.6))
-    for method, label in METHOD_LABELS.items():
-        candidates = [item for item in comparison["candidates"]
-                      if item["method"] == method and item["validation"]["pass_"]]
-        if not candidates:
-            continue
-        energy = [item["metrics"]["energy"] for item in candidates]
-        weighted_arrival = [item["metrics"]["weighted_arrival"] / total_priority / 60
-                            for item in candidates]
-        weighted_delay = [item["metrics"]["weighted_tardiness"] / total_priority / 60
-                          for item in candidates]
-        makespan = [item["metrics"]["makespan"] / 60 for item in candidates]
-        axes[0].scatter(energy, weighted_delay, color=METHOD_COLORS[method],
-                        s=42, label=label, alpha=0.85)
-        axes[1].scatter(energy, weighted_arrival, color=METHOD_COLORS[method],
-                        s=42, label=label, alpha=0.85)
-        axes[2].scatter(energy, makespan, color=METHOD_COLORS[method],
-                        s=42, label=label, alpha=0.85)
-        for item, x, y0, y1, y2 in zip(candidates, energy, weighted_delay, weighted_arrival, makespan):
-            if item["selected"]:
-                for ax, y in zip(axes,(y0,y1,y2)):
-                    ax.scatter([x], [y], facecolors="none", edgecolors="black",
-                               s=130, linewidths=1.2, zorder=5)
-    axes[0].set_xlabel("运输能耗 / kWh")
-    axes[0].set_ylabel("优先加权平均迟到 / min")
-    axes[1].set_xlabel("运输能耗 / kWh")
-    axes[1].set_ylabel("优先加权平均送达 / min")
-    axes[2].set_xlabel("运输能耗 / kWh")
-    axes[2].set_ylabel("最晚返航 / min")
-    for ax in axes:
-        ax.grid(alpha=0.2)
-    axes[0].legend(fontsize=7, loc="best")
+def plot_search_comparison():
+    comparison = load_result("q2_formal_protocol.json")
+    statistics = comparison["algorithm_statistics"]
+    methods = ("grasp", "hill", "anneal", "tabu")
+    panels = (
+        ("makespan", "平均最晚返航 / min", 60),
+        ("energy", "平均能耗 / kWh", 1),
+        ("count", "平均运输架次 / 次", 1),
+    )
+    fig, axes = plt.subplots(1, 3, figsize=(12.5, 3.8))
+    for ax, (metric, ylabel, scale) in zip(axes, panels):
+        for index, method in enumerate(methods):
+            summary = statistics[method][metric]
+            ax.errorbar(
+                index,
+                summary["mean"] / scale,
+                yerr=summary["std"] / scale,
+                fmt="o",
+                color=METHOD_COLORS[method],
+                capsize=3,
+                markersize=5,
+            )
+        ax.set_xticks(range(len(methods)), [METHOD_LABELS[m] for m in methods],
+                      rotation=18, ha="right")
+        ax.set_ylabel(ylabel)
+        ax.grid(axis="y", alpha=0.2)
+    fig.suptitle("四种搜索方法的10种子均值与总体标准差", y=1.02)
     save_figure(fig, "q2_search_comparison")
 
 
@@ -189,7 +181,7 @@ def run():
     plot_battery_timeline(model, data)
     plot_deadlines(model, data)
     plot_return_soc(data)
-    plot_search_comparison(model)
+    plot_search_comparison()
     plot_route_energy(data)
 
 

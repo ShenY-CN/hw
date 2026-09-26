@@ -1,36 +1,73 @@
-\section{问题三：连续通信与分层时限的联合调度}
+\section{问题三：连续通信修复与有限候选分解协调}
 
-\subsection{双向链路与连续覆盖}
+\subsection{中继资源与覆盖约束}
 
-固定网关G01位于O01上方20~m。运输机到网关、运输机到中继、中继到网关的双向允许损耗分别为122、116、126~dB。若两端三维距离为$D_{ab}(t)$~km，地形遮挡指示为$B_{ab}(t)$，则可用性判据为
+固定网关G01位于O01上方20~m。运输机到网关、运输机到中继、中继到网关的双向允许损耗分别为122、116、126~dB。对中继任务$\ell$、候选位置--高度$h$、中继机$u$与能源组件$r$，定义启用和分配变量$e_\ell,q_{\ell h},z^R_{\ell u},w^R_{\ell r}$：
 \begin{equation}
-32.45+20\log_{10}(2400)+20\log_{10}D_{ab}(t)+10B_{ab}(t)
-\le L^{\max}_{a\leftrightarrow b}.
+\sum_hq_{\ell h}=e_\ell,\qquad \sum_uz^R_{\ell u}=e_\ell,\qquad \sum_rw^R_{\ell r}=e_\ell.
+\label{eq:q3-relay-select}
 \end{equation}
-运输机从起飞到返航的每一时刻须与网关直连，或经同一架中继完成接入与回传。中继悬停点须在DEM范围内且离地不超过300~m；中继排程计入准备、飞抵、建链、服务、返航、300~s周转、组件电量与充电。
+任务时刻满足$t_\ell\le a_\ell\le b_\ell\le c_\ell$。飞抵、建链、服务、返航及悬停能量等式仅在$e_\ell=1$时生效；$e_\ell=0$时四个时刻和能耗均固定为0。中继机占用到返航后300~s，组件占用延长到充满，并分别施加\texttt{NoOverlap}。
 
-为避免离散采样漏掉通信盲区，本文把爬升、巡航、下降、交接与中继切换作为分段点。对每个子区间，以端点距离上界、DEM像元扫掠和视线高度保守下界证明整段链路；仍不能证明时递归细分或拒绝。若直连链路的证明裕量不足1~dB且在役中继可提供更大裕量，通信分配改用中继；这不改变运输轨迹，只改变已悬停中继承担的链路。最终证书与中继在役窗口逐段对应。
+对运输分段$(k,m)$定义直连选择$d_{km}$和由同一中继任务承担接入、回程的$c_{km\ell}$。连续证书参数为$\kappa^{\rm dir}_{km},\kappa^{\rm acc}_{kmh},\kappa^{\rm back}_h$，则
+\begin{align}
+&d_{km}\le\kappa^{\rm dir}_{km},\quad c_{km\ell}\le e_\ell,\label{eq:q3-cover-a}\\
+&c_{km\ell}\le\sum_hq_{\ell h}\kappa^{\rm acc}_{kmh},\quad
+c_{km\ell}\le\sum_hq_{\ell h}\kappa^{\rm back}_h,\label{eq:q3-cover-b}\\
+&a_\ell\le\underline t_{km}+M(1-c_{km\ell}),\quad
+b_\ell\ge\overline t_{km}-M(1-c_{km\ell}),\label{eq:q3-cover-c}\\
+&d_{km}+\sum_\ell c_{km\ell}\ge1.\label{eq:q3-cover-all}
+\end{align}
+式~\eqref{eq:q3-cover-b}保证接入与回程同时成立，不能拼接两架不同中继。
 
-\subsection{机型、时刻与中继时窗联合选择}
+\subsection{连续区间证书命题}
 
-从问题二的24架次箱组出发，有两条经过S009与S012的多站航次无法同时落入现有中继服务窗口；把它们拆为单站任务，形成26个运输架次。对每条任务列举满足载重、体积和返航电量储备的机型，并求出同时满足全程通信、医疗期望时刻和首批截止的起飞时间区间。CP-SAT在这些区间上联合选择机型与出发时刻，限制8架运输机、14组电池及充电占用；合格计划按普通物资加权迟到、联合收尾与加权交付比较。中继由两架机执行西W、东E、北N三班任务；东点结束时刻取一组有限候选，北点接续转场。求得运输排程后缩短不必要的悬停，再重算中继能耗、返航时刻和全部通信证书。
+链路损耗为
+\begin{equation}
+L_{ab}(t)=32.45+20\log_{10}(2400)+20\log_{10}D_{ab}(t)+10B_{ab}(t).
+\label{eq:q3-loss}
+\end{equation}
 
-表~\ref{tab:q3}给出同一硬约束下的代表性候选。完整档案含三类箱组来源的28套原归档联合方案，以及一套普通水晚于期望时刻的历史方案；29套均通过修订后的硬约束和连续通信校验。表中的“相对最优”指这些已验证候选按加权迟到、全部设备最后返航、加权交付依次比较的结果。对固定箱组、机型选择与原始中继窗口，主方案的运输收尾CP-SAT状态为\texttt{OPTIMAL}；中继裁剪后的联合时间、站点选择和路线空间没有全局最优证明。
+\noindent\textbf{命题（连续覆盖证书）。}
+对运输子区间$I$，若距离上界$\bar D_I\ge\max_{t\in I}D_{ab}(t)$且遮挡上界$\bar B_I\ge10B_{ab}(t)$对$I$内所有时刻成立，令
+\begin{equation}
+\bar L_I=32.45+20\log_{10}(2400)+20\log_{10}\bar D_I+\bar B_I.
+\end{equation}
+当直连满足$\bar L_I\le L^{\max}_{T\leftrightarrow G}$，或存在同一在役中继使接入与回程两条链路各自的$\bar L_I$均不超过相应门限时，$I$内每一时刻均双向可通信。
 
-\begin{table}[H]\centering\small\caption{联合调度候选：均满足医疗、首批与通信硬约束；时间单位为分钟}\label{tab:q3}
-\resizebox{\textwidth}{!}{\begin{tabular}{lrrrrrr}\toprule
-箱组来源／东站窗口 & 运输／中继架次 & 软迟到箱 & 全部返航 & 加权交付 & 总能耗/kWh & 最紧硬提前/s\\\midrule
-局部爬山1／3900 s（主方案） & 26／3 & 0 & \textbf{112.82} & 50.39 & 78.8732 & 84.65\\
-局部爬山1／3100 s（节能对照） & 26／3 & 0 & 113.75 & 49.68 & \textbf{78.7956} & \textbf{236.73}\\
-局部爬山0／3900 s & 27／3 & 0 & 116.62 & 49.29 & 81.329 & ---\\
-历史基线箱组／4700 s & 26／3 & 0 & 125.26 & 51.15 & 82.194 & ---\\
-普通水迟到历史方案 & 26／3 & 4 & 137.60 & 55.12 & 81.6496 & 348.50\\\bottomrule
-\end{tabular}}\end{table}
+\noindent\textbf{证明。}
+$20\log_{10}D$关于$D>0$单调不减，遮挡项也被$\bar B_I$控制，故任意$t\in I$均有$L_{ab}(t)\le\bar L_I$。中继情形分别对接入和回程应用此不等式，并由式~\eqref{eq:q3-cover-b}、\eqref{eq:q3-cover-c}保证同一中继全区间在役，结论成立。\hfill$\square$
 
-主方案80箱均在各自原始服务区交接，31箱适用硬截止全部满足，64箱非医疗物资也均未晚于期望时刻；最后一箱于6317.40~s交接。运输机6625.61~s收尾，两架中继的三班任务全部完成后联合收尾为6769.22~s。运输与中继分别耗电75.3988与3.4744~kWh，合计78.8732~kWh，即0.10405~kWh/kg。节能对照少耗0.0776~kWh、加权平均交付早约0.70~min，联合收尾则晚55.88~s；它更适合在截止裕量优先时采用。普通水迟到历史方案在新口径下属于硬约束可行，但4箱迟到、加权迟到为14206.21系数$\cdot$s，联合收尾和能耗也更高，因而不入选。主方案相对于问题二多耗6.9563~kWh、联合收尾晚492.39~s；两问的箱组经过拆分和重新排程，差额不能单独解释为中继悬停的物理开销。
+程序以爬升、巡航、下降、交接和中继切换为初始分点；距离上界乘1.0002安全因子，遮挡由DEM像元扫掠证明。不能证明时递归二分，深度用尽即拒绝，离散采样只作交叉检查。
 
-主方案最紧硬截止货箱仍提前84.65~s，最低运输机及中继返航SOC分别为20.4065\%和38.6085\%。4061个连续通信区间全部通过证书，实体机、电池和中继组件无重叠。最小链路裕量0.09378~dB，仍对新增遮挡或衰减敏感；这说明标称参数下可行，实地执行前须更新地形、天气与链路测量，不能把有限模型证书当作现场通信保证。
+\subsection{有限候选分解协调审计}
 
-\begin{figure}[H]\centering\includegraphics[width=.84\textwidth]{../figures/audit_verified_20260925/q3_relay_map.pdf}\caption{主方案西、东、北中继悬停点}\label{fig:relay}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.90\textwidth]{../figures/audit_verified_20260925/q3_joint_timeline.pdf}\caption{主方案运输与中继架次时间表}\label{fig:joint}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/audit_verified_20260925/q3_battery_timeline.pdf}\caption{问题三运输电池任务占用与充电区间}\label{fig:battery}\end{figure}
+主问题提出运输族和中继窗口，通信子问题返回连续证书；理论上通信冲突应形成覆盖割并回传主问题。当前程序只暴露有限运输族，没有可调用的通信冲突割接口，因此本次计算严格称为“有限候选上的通信可行性修复与分解协调审计”，不称强联合优化或全局最优。
+
+审计三类运输族和32个中继窗口候选，所有候选均重新验证硬时限、资源与连续通信。表~\ref{tab:q3_coordination_audit}给出三轮候选规模；在相同零加权迟到条件下形成3个非支配点。本文用时间优先的正式主方案文件作为提交结果，同时另报最大最小链路裕度候选。
+\input{tables/q3_coordination_audit}
+
+\begingroup\emergencystretch=1em
+主方案共29架次（运输26、中继3）。返航时刻为6769.22~s；总能耗78.8732~kWh，最小链路裕度0.093780~dB。\par
+\endgroup
+
+最大裕度候选采用东部窗口3500~s，返航6769.31~s、能耗79.0401~kWh，29个总架次，最小裕度0.094145~dB。其裕度只增加0.000365~dB，不能视为实质稳健化；两种方案在现场执行前都须重新测量链路与地形。
+
+主方案80箱均在原服务区交接，31箱硬截止和64箱非医疗物资期望时刻均无违约；最后一箱6317.40~s交接。运输机6625.61~s收尾，运输与中继分别耗电75.3988和3.4744~kWh。最紧硬截止提前84.65~s，最低运输机与中继返航SOC分别为20.4065\%和38.6085\%。4061个连续区间全部获证，最窄区间的保守裕度为0.093780~dB。三处悬停离地高度都等于300~m上限，也没有高度扰动余量。
+
+为比较通信约束加入前后的空间方案，图~\ref{fig:spatial3d}在同一DEM上以问题二运输方案为基线，展示问题三联合航线、分机型航线及中继位置；其中(a)为问题二方案，(b)--(f)为问题三方案。中继点及其对直连盲区的覆盖关系另见图~\ref{fig:relay}和图~\ref{fig:relay_coverage}；任务时间关系与逐段通信提供方见图~\ref{fig:joint}、图~\ref{fig:communication_timeline}和图~\ref{fig:time_sliced_routes}。链路裕度分布与中继返航电量分别见图~\ref{fig:link_margin}和图~\ref{fig:relay_soc}。
+
+\input{tables/q3_relay_tasks}
+\input{tables/q3_communication}
+\input{tables/q2_q3_compare}
+
+\begin{figure}[H]\centering\includegraphics[width=.96\textwidth]{../figures/paper_full_20260926/spatial_terrain_routes_3d.pdf}\caption{问题二与问题三运输航线、机型分布及中继位置的DEM三维对比}\label{fig:spatial3d}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.82\textwidth]{../figures/paper_full_20260926/q3_relay_map.pdf}\caption{主方案西、东、北中继悬停点}\label{fig:relay}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.90\textwidth]{../figures/paper_full_20260926/q3_relay_coverage_points.pdf}\caption{运输盲区采样点与中继覆盖关系}\label{fig:relay_coverage}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.90\textwidth]{../figures/paper_full_20260926/q3_joint_timeline.pdf}\caption{运输与中继联合时间表}\label{fig:joint}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.92\textwidth]{../figures/paper_full_20260926/q3_communication_timeline.pdf}\caption{运输任务各时段的通信提供方}\label{fig:communication_timeline}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.96\textwidth]{../figures/paper_full_20260926/spatial_time_sliced_routes.pdf}\caption{不同时间段的运输航线与中继空间分布}\label{fig:time_sliced_routes}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.88\textwidth]{../figures/paper_full_20260926/q3_battery_timeline.pdf}\caption{运输电池占用与充电区间}\label{fig:battery}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.76\textwidth]{../figures/paper_full_20260926/q3_relay_soc.pdf}\caption{三项中继任务的返航剩余电量}\label{fig:relay_soc}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.82\textwidth]{../figures/paper_full_20260926/q3_link_margin.pdf}\caption{连续通信区间的保守链路裕度分布}\label{fig:link_margin}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.86\textwidth]{../figures/paper_full_20260926/q3_q2_q3_comparison.pdf}\caption{问题二与问题三运输和通信方案指标比较}\label{fig:q2_q3_comparison}\end{figure}

@@ -1,0 +1,143 @@
+{
+  "source_certificate_sha256": "32e4ea47f746a25c03e2911a55f74e518d7646f24e8c4db5faee42b62d8a6dd5",
+  "interpretation": "fixed Q2/Q3 routes, machines and schedule; no reoptimization",
+  "transport_energy": [
+    {
+      "question": "q2",
+      "horizontal_multiplier": 1.0,
+      "violating_routes": [],
+      "violation_count": 0,
+      "min_soc": 0.20406515078253173,
+      "transport_energy_kwh": 71.91685705445398
+    },
+    {
+      "question": "q2",
+      "horizontal_multiplier": 1.01,
+      "violating_routes": [
+        "T010"
+      ],
+      "violation_count": 1,
+      "min_soc": 0.19659437836561322,
+      "transport_energy_kwh": 72.60070689020182
+    },
+    {
+      "question": "q2",
+      "horizontal_multiplier": 1.02,
+      "violating_routes": [
+        "T010",
+        "T011",
+        "T017"
+      ],
+      "violation_count": 3,
+      "min_soc": 0.18912360594869482,
+      "transport_energy_kwh": 73.28455672594964
+    },
+    {
+      "question": "q2",
+      "horizontal_multiplier": 1.03,
+      "violating_routes": [
+        "T010",
+        "T011",
+        "T017"
+      ],
+      "violation_count": 3,
+      "min_soc": 0.1816528335317763,
+      "transport_energy_kwh": 73.96840656169748
+    },
+    {
+      "question": "q2",
+      "horizontal_multiplier": 1.05,
+      "violating_routes": [
+        "T010",
+        "T011",
+        "T017",
+        "T018"
+      ],
+      "violation_count": 4,
+      "min_soc": 0.1667112886979395,
+      "transport_energy_kwh": 75.33610623319314
+    },
+    {
+      "question": "q3",
+      "horizontal_multiplier": 1.0,
+      "violating_routes": [],
+      "violation_count": 0,
+      "min_soc": 0.20406515078253173,
+      "transport_energy_kwh": 75.39881220844622
+    },
+    {
+      "question": "q3",
+      "horizontal_multiplier": 1.01,
+      "violating_routes": [
+        "T010"
+      ],
+      "violation_count": 1,
+      "min_soc": 0.19659437836561322,
+      "transport_energy_kwh": 76.11638472136264
+    },
+    {
+      "question": "q3",
+      "horizontal_multiplier": 1.02,
+      "violating_routes": [
+        "T010",
+        "T011",
+        "T017"
+      ],
+      "violation_count": 3,
+      "min_soc": 0.18912360594869482,
+      "transport_energy_kwh": 76.83395723427904
+    },
+    {
+      "question": "q3",
+      "horizontal_multiplier": 1.03,
+      "violating_routes": [
+        "T010",
+        "T011",
+        "T017"
+      ],
+      "violation_count": 3,
+      "min_soc": 0.1816528335317763,
+      "transport_energy_kwh": 77.55152974719546
+    },
+    {
+      "question": "q3",
+      "horizontal_multiplier": 1.05,
+      "violating_routes": [
+        "T010",
+        "T011",
+        "T017",
+        "T018"
+      ],
+      "violation_count": 4,
+      "min_soc": 0.1667112886979395,
+      "transport_energy_kwh": 78.98667477302828
+    }
+  ],
+  "communication_loss": [
+    {
+      "extra_loss_db": 0,
+      "uncertified_intervals": 0,
+      "minimum_remaining_margin_db": 0.09378043058285357
+    },
+    {
+      "extra_loss_db": 0.5,
+      "uncertified_intervals": 36,
+      "minimum_remaining_margin_db": -0.40621956941714643
+    },
+    {
+      "extra_loss_db": 1,
+      "uncertified_intervals": 170,
+      "minimum_remaining_margin_db": -0.9062195694171464
+    },
+    {
+      "extra_loss_db": 2,
+      "uncertified_intervals": 671,
+      "minimum_remaining_margin_db": -1.9062195694171464
+    },
+    {
+      "extra_loss_db": 3,
+      "uncertified_intervals": 1101,
+      "minimum_remaining_margin_db": -2.9062195694171464
+    }
+  ]
+}

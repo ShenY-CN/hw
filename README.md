@@ -7,11 +7,11 @@
 | 问题 | 当前方案 | 关键说明 |
 |---|---|---|
 | 一 | 20% 返航储备下 18 架次、59.1313 kWh | 给定单点组批模型内的动态规划结果 |
-| 二 | 24 架次；全部设备 104.61 min 返航；加权平均交付 45.69 min；71.9169 kWh | 31 箱适用硬截止全部满足，64 箱非医疗物资零迟到；采用局部爬山生成的历史可行方案 |
+| 二 | 24 架次；全部设备 104.61 min 返航；加权平均交付 45.69 min；71.9169 kWh | 31 箱适用硬截止全部满足，64 箱非医疗物资零迟到；采用局部爬山生成的前轮归档方案 |
 | 三 | 26 个运输、3 个中继架次；112.82 min 全部返航；78.8732 kWh | 31 箱硬截止满足，64 箱非医疗物资零迟到；4061 个通信区间连续覆盖 |
 | 四 | 两组或三组独立执行均需补充资源 | 按第三问固定任务做组件分区穷举 |
 
-问题二在修订时限后比较随机化构造、局部爬山、模拟退火和禁忌搜索，每种方法使用 3 个种子；各方法共享物理模型、排程器、硬约束和验证器。前轮更严格时限实验中的局部爬山种子1方案经新口径回放后仍优于本轮12个候选，因此继续用于提交表。两轮实验分别归档，结论仅限已搜索候选，不代表全局最优。详情见 [结果报告](reports/RESULTS_REPORT.md) 和 [验收报告](reports/VERIFY_REPORT.md)。
+问题二在修订时限后比较随机化构造、局部爬山、模拟退火和禁忌搜索，每种方法使用 3 个种子；各方法共享物理模型、排程器、硬约束和验证器。前轮更严格时限实验中的局部爬山种子1方案经新口径回放后仍优于本轮12个候选，因此继续用于提交表。本轮另完成 K=2/3/4/5 的48次受控扫描，未找到优于正式方案的新解；结论仅限已搜索候选，不代表全局最优。详情见 [结果报告](reports/RESULTS_REPORT.md)、[优化执行记录](reports/终稿前优化执行与验收_20260926.md)和[验收报告](reports/VERIFY_REPORT.md)。
 
 公开仓库仅作为算法比较与组批思路参考。对可取得的逐箱路线逐项核验后，发现部分归档方案存在交付服务区不一致；审计范围和结果见 [公开项目核对报告](reports/PUBLIC_REPOSITORY_AUDIT.md)。
 
@@ -21,13 +21,13 @@
 
     python code/reproduce.py --output /path/to/new-empty-output
 
-输出目录须不存在。复现入口重算问题一，对归档方案独立核验，并生成提交表、图表和复现清单。修订时限后的四算法结果保存在 `results/method_comparison.json`，前轮更严格实验保存在 `results/method_comparison_strict_archive.json`；限时搜索与确定性归档回放分开记录。
+输出目录须不存在。复现入口重算问题一，从原始附件独立核验归档 Q1–Q3 方案，并生成提交表、图表和复现清单。新增的原始数据证书、K 上限扫描与固定方案压力检验分别保存在 `results/solution_certificate.json`、`results/kmax_scan_20260926.json` 和 `results/controlled_stress_20260926.json`。修订时限后的四算法结果保存在 `results/method_comparison.json`，前轮更严格实验保存在 `results/method_comparison_strict_archive.json`；限时搜索与确定性归档回放分开记录。
 
-- `paper/main.tex` 及 `paper/sections/`：当前已核对的论文源文件；`D题论文.pdf` 和 `paper/main.pdf` 已按本次审计图组重新编译并同步，封面身份字段须由参赛队填写。
+- `paper/main.tex`、`paper/sections/` 及 `paper/tables/`：论文源文件与独立数值表；数值表由 `python code/generate_paper_tables.py` 从正式结果生成。`D题论文.pdf` 和 `paper/main.pdf` 为同步编译版本，封面身份字段须由参赛队填写。
 - `D题结果提交表.xlsx`：逐问结果与逐箱交付明细。
 - `reports/`：模型分析、结果、验收及公开仓库审计。
 - `results/`：方案数据、逐箱时刻、验证与复现记录。
-- `figures/`：可编辑技术路线图源文件，以及每次生成结果图的独立子目录；运行 `.venv/bin/python code/mountain_flood/figure/generate.py` 新建一组配图，并在该子目录自动生成 `图组清单.md`。
+- `figures/`：可编辑技术路线图源文件，以及每次生成结果图的独立子目录。当前正式审计图池为 `figures/rigor_pool_20260926/`，13 张逻辑图均提供 PDF/PNG/SVG 和哈希清单；根目录散放的旧图是历史版本，不作为本轮图表门禁输入。运行 `.venv/bin/python code/mountain_flood/figure/generate.py` 可新建一组配图。
 - `config/`：统一物理假设与算法参数；`check_consistency.py`：参数、结果、提交表、图表和论文数值自动核对。执行 `.venv/bin/python check_consistency.py --write` 更新审计表与元数据，再执行 `.venv/bin/python check_consistency.py` 检查版本漂移。完整结论见 `reports/当前方案一致性审计报告.md`。
 
 附件未提供排放因子，结果报告飞行耗电，不据此推算碳减排。论文封面身份信息以及模型、代码和结果仍需参赛队独立复核。

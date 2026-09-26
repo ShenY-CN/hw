@@ -1,0 +1,250 @@
+{
+  "status": "PASS",
+  "scan_sha256": "0cc21aa4c6d30e018cc5b526c4c3f8267e30200ec818a84fdd0c0bc8a17ba86c",
+  "trial_count": 48,
+  "passed": 48,
+  "errors": [],
+  "trials": [
+    {
+      "trial": "K2/0/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/0/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/0/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/0/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/1/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/1/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/1/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/1/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/2/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/2/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/2/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K2/2/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/0/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/0/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/0/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/0/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/1/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/1/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/1/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/1/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/2/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/2/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/2/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K3/2/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/0/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/0/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/0/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/0/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/1/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/1/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/1/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/1/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/2/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/2/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/2/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K4/2/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/0/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/0/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/0/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/0/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/1/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/1/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/1/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/1/tabu",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/2/grasp",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/2/hill",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/2/anneal",
+      "pass_": true,
+      "errors": []
+    },
+    {
+      "trial": "K5/2/tabu",
+      "pass_": true,
+      "errors": []
+    }
+  ],
+  "scope": "archive witness replay; does not repeat wall-clock search"
+}

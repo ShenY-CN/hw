@@ -1,0 +1,20 @@
+{
+  "figure": "spatial_group_standard_ellipses",
+  "tolerance_pt": 1.5,
+  "max_deviation_pt": 0.0,
+  "panels_pt": [
+    [
+      39.98000000000001,
+      40.0840625,
+      355.43,
+      244.358125
+    ],
+    [
+      424.3299999999999,
+      40.0840625,
+      355.43,
+      244.358125
+    ]
+  ],
+  "passed": true
+}

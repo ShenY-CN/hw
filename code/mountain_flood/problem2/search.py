@@ -1,4 +1,4 @@
-# 本程序及代码在人工智能工具辅助下完成：OpenAI Codex（GPT-6，OpenAI；GPT-6 模型家族发布日期 2026-09-03）。
+# 本程序及代码在人工智能工具辅助下完成：OpenAI Codex（GPT-5，OpenAI；GPT-5 发布于 2025-08-07）。
 # 参赛队须自行理解、复核与改写；算法独立编写，未复制公开参赛仓库代码。
 """在统一物理模型和同等搜索预算下比较问题二的多种路线搜索方法。"""
 from __future__ import annotations
@@ -51,10 +51,44 @@ def score(m, routes):
     z=metrics(m,routes)
     return (z['hard_violations'],z['weighted_tardiness'],z['makespan'],z['weighted_arrival'],z['energy'],z['count'])
 
-def scalar(z):
-    # 该标量只用于模拟退火接受概率，不作为论文或结果报告中的模型目标值。
-    p=optimization_parameters()['anneal_scalar']
-    return p['hard_violation_weight']*z[0]+p['soft_tardiness_weight']*z[1]+z[2]/p['makespan_divisor']+z[3]/p['arrival_divisor']+z[4]
+def minimum_energy_margin(m, routes):
+    """Return the minimum normalized reserve margin above the required SOC."""
+    return min(r['soc']-m.types[r['g']]['rho']/100 for r in routes)
+
+def profile_score(m, routes, profile='timeliness', epsilon=None):
+    """Ranking used by the fixed-evaluation remediation experiment.
+
+    ``epsilon`` is a dictionary of admissible upper bounds obtained from the
+    common archived warm start.  Infeasible epsilon violations precede the
+    profile objective, which implements a finite epsilon-constraint search
+    without mixing unlike units in a weighted sum.
+    """
+    z=metrics(m,routes);margin=minimum_energy_margin(m,routes)
+    epsilon=epsilon or {}
+    violations=(
+        max(0.0,z['weighted_tardiness']-epsilon.get('weighted_tardiness',math.inf)),
+        max(0.0,z['makespan']-epsilon.get('makespan',math.inf)),
+    )
+    common=(z['hard_violations'],)+violations
+    if profile=='energy':
+        return common+(z['energy'],z['makespan'],z['count'],-margin,z['weighted_arrival'])
+    if profile=='count':
+        return common+(z['count'],z['energy'],z['makespan'],-margin,z['weighted_arrival'])
+    if profile=='robust':
+        return common+(-margin,z['energy'],z['makespan'],z['count'],z['weighted_arrival'])
+    return (z['hard_violations'],z['weighted_tardiness'],z['makespan'],z['weighted_arrival'],z['energy'],z['count'],-margin)
+
+def lexicographic_delta(candidate, incumbent):
+    """Return a signed annealing loss whose sign follows the exact ranking tuple.
+
+    Comparing the first differing coordinate avoids a weighted-sum reversal:
+    every lexicographically better candidate has a negative loss, regardless of
+    the magnitude of later objectives. The value is normalized for temperature.
+    """
+    for new, old in zip(candidate, incumbent):
+        if new != old:
+            return (new-old)/max(1.0, abs(old))
+    return 0.0
 
 def signature(plan):
     return tuple((g,tuple(sorted(bs)),tuple(order)) for g,bs,order in plan)
@@ -99,14 +133,16 @@ def mutate(m, plan, rng):
         if routes is not None:return q,routes
     return None,None
 
-def search(m, method, initial_plan, seed, budget):
+def search(m, method, initial_plan, seed, budget, max_evaluations=None,
+           profile='timeliness', epsilon=None):
     rng=random.Random(100000+seed)
     start=time.monotonic();limit=start+budget
     curr_plan=list(initial_plan);curr_routes=decode(m,curr_plan)
     if curr_routes is None:raise RuntimeError('invalid initial plan')
-    curr_score=score(m,curr_routes);best_plan=list(curr_plan);best_score=curr_score
-    seen={signature(curr_plan)};tabu={};history=[];iterations=0
-    while time.monotonic()<limit:
+    rank=lambda routes:profile_score(m,routes,profile,epsilon)
+    curr_score=rank(curr_routes);best_plan=list(curr_plan);best_score=curr_score
+    seen={signature(curr_plan)};tabu={};history=[];iterations=0;evaluated=1
+    while time.monotonic()<limit and (max_evaluations is None or evaluated<max_evaluations):
         iterations+=1
         if method=='grasp':
             # 随机化构造重启属于独立的搜索策略类别。
@@ -114,12 +150,14 @@ def search(m, method, initial_plan, seed, budget):
             if fresh is None:continue
             q=plan_from_routes(fresh);routes=decode(m,q)
             if routes is None:continue
-            z=score(m,routes);curr_plan,curr_score=q,z
+            z=rank(routes);evaluated+=1;curr_plan,curr_score=q,z
         elif method=='hill':
             candidates=[]
-            for _ in range(optimization_parameters()['route_search']['hill_neighbors']):
+            remaining=(max_evaluations-evaluated) if max_evaluations is not None else optimization_parameters()['route_search']['hill_neighbors']
+            for _ in range(min(optimization_parameters()['route_search']['hill_neighbors'],remaining)):
                 q,routes=mutate(m,curr_plan,rng)
-                if q is not None:candidates.append((score(m,routes),q))
+                if q is not None:
+                    candidates.append((rank(routes),q));evaluated+=1
             if not candidates:continue
             z,q=min(candidates,key=lambda x:x[0])
             if z<curr_score:curr_plan,curr_score=q,z
@@ -127,16 +165,20 @@ def search(m, method, initial_plan, seed, budget):
         elif method=='anneal':
             q,routes=mutate(m,curr_plan,rng)
             if q is None:continue
-            z=score(m,routes);temp=max(optimization_parameters()['route_search']['anneal_min_temperature'],1-(time.monotonic()-start)/budget)
-            delta=scalar(z)-scalar(curr_score)
-            if delta<=0 or rng.random()<math.exp(-min(700,delta/(optimization_parameters()['route_search']['anneal_acceptance_scale']*temp))):
+            z=rank(routes);evaluated+=1
+            progress=(evaluated/max_evaluations) if max_evaluations else ((time.monotonic()-start)/budget)
+            temp=max(optimization_parameters()['route_search']['anneal_min_temperature'],1-progress)
+            delta=lexicographic_delta(z,curr_score)
+            scale=optimization_parameters()['route_search']['anneal_lexicographic_scale']
+            if delta<=0 or rng.random()<math.exp(-min(700,delta/(scale*temp))):
                 curr_plan,curr_score=q,z
         elif method=='tabu':
             candidates=[]
-            for _ in range(optimization_parameters()['route_search']['tabu_neighbors']):
+            remaining=(max_evaluations-evaluated) if max_evaluations is not None else optimization_parameters()['route_search']['tabu_neighbors']
+            for _ in range(min(optimization_parameters()['route_search']['tabu_neighbors'],remaining)):
                 q,routes=mutate(m,curr_plan,rng)
                 if q is None:continue
-                sig=signature(q);z=score(m,routes)
+                sig=signature(q);z=rank(routes);evaluated+=1
                 if tabu.get(sig,0)<=iterations or z<best_score:candidates.append((z,q,sig))
             if not candidates:continue
             z,q,sig=min(candidates,key=lambda x:x[0]);curr_plan,curr_score=q,z
@@ -145,8 +187,13 @@ def search(m, method, initial_plan, seed, budget):
             best_plan=list(curr_plan);best_score=curr_score
             history.append({'iteration':iterations,'elapsed_s':round(time.monotonic()-start,3),'score':best_score})
     routes=decode(m,best_plan)
-    return dict(method=method,seed=seed,budget_s=budget,elapsed_s=time.monotonic()-start,iterations=iterations,
-                heuristic=metrics(m,routes),history=history,plan=best_plan)
+    guard_hit=time.monotonic()>=limit and (max_evaluations is None or evaluated<max_evaluations)
+    return dict(method=method,seed=seed,profile=profile,budget_s=budget,
+                evaluation_limit=max_evaluations,wall_clock_guard_hit=guard_hit,
+                elapsed_s=time.monotonic()-start,iterations=iterations,
+                valid_candidates_evaluated=evaluated,
+                heuristic=dict(**metrics(m,routes),minimum_energy_margin=minimum_energy_margin(m,routes)),
+                history=history,plan=best_plan)
 
 def nondominated(items):
     def vector(x):

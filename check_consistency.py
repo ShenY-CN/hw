@@ -1,3 +1,4 @@
+# 本程序及代码在人工智能工具辅助下完成：OpenAI Codex（GPT-5，OpenAI；GPT-5 发布于 2025-08-07）。
 """Audit canonical D-problem artifacts against attachment data and shared physics.
 Run with .venv/bin/python check_consistency.py --write to refresh audit tables/metadata.
 """
@@ -17,17 +18,58 @@ from mountain_flood.problem3.communication import certify_routes
 import openpyxl
 
 RESULT=ROOT/'results'; AUDIT=ROOT/'reports'/'audits'
-CANONICAL=['q1_rho20.json','q2.json','q3.json','q4.json','method_comparison.json','joint_comparison.json','validation.json']
+CANONICAL=['q1_rho20.json','q2.json','q3.json','q4.json','method_comparison.json','joint_comparison.json','validation.json','solution_certificate.json','controlled_stress_20260926.json','kmax_scan_20260926.json','kmax_archive_audit_20260926.json']
 FIG_SOURCES={
-'q1_safe_capacity':'q1_rho20.json','q1_sensitivity':'q1_rho10.json;q1_rho20.json;q1_rho30.json;q1_rho40.json',
-'q2_search_comparison':'method_comparison.json','q2_transport_routes':'q2.json','q2_drone_timeline':'q2.json',
-'q3_relay_map':'q3.json','q3_joint_timeline':'q3.json','q3_battery_timeline':'q3.json',
-'q4_partition_2groups':'q4.json;q3.json','q4_partition_3groups':'q4.json;q3.json','fig_roadmap':'figures/fig_roadmap.drawio'}
-FIG_SCRIPTS={'q1':'code/mountain_flood/figure/q1.py','q2':'code/mountain_flood/figure/q2.py','q3':'code/mountain_flood/figure/q3.py','q4':'code/mountain_flood/figure/q4.py','fig':'code/mountain_flood/figure/overview.py'}
+'q1_dem_nodes':'data_profile.json','q1_safe_capacity':'q1_rho20.json','q1_capacity_heatmap':'q1_rho20.json',
+'q1_typical_elevation_profile':'q1_rho20.json','q1_payload_energy':'q1_energy.json',
+'q1_objective_solutions':'q1_time.json;q1_energy.json','q1_sensitivity':'q1_rho10.json;q1_rho20.json;q1_rho30.json;q1_rho40.json',
+'q1_return_soc':'q1_rho20.json','q2_transport_routes':'q2.json','q2_drone_timeline':'q2.json',
+'q2_battery_timeline':'q2.json','q2_delivery_deadlines':'q2.json','q2_return_soc':'q2.json',
+'q2_search_comparison':'q2_formal_protocol.json','q2_route_energy':'q2.json',
+'q3_relay_map':'q3.json','q3_relay_coverage_points':'q3.json','q3_communication_timeline':'q3.json',
+'q3_link_margin':'q3.json','q3_joint_timeline':'q3.json','q3_battery_timeline':'q3.json',
+'q3_relay_soc':'q3.json','q3_q2_q3_comparison':'q2.json;q3.json',
+'q4_partition_2groups':'q4.json;q3.json','q4_partition_3groups':'q4.json;q3.json',
+'q4_resource_demand':'q4.json;q3.json','q4_workload':'q4.json;q3.json',
+'q4_resource_deficit':'q4.json;q3.json','q4_task_network':'q4.json;q3.json',
+'spatial_terrain_time_partitions':'q4.json;q3.json','spatial_group_standard_ellipses':'q4.json',
+'spatial_terrain_routes_3d':'q2.json;q3.json','spatial_time_sliced_routes':'q2.json;q3.json',
+'flow_overall_model':'figures/fig_roadmap.drawio',
+'raw_q2_box_deadline_mix':'input/物资需求与配送时限.xlsx',
+'raw_q3_link_budgets':'input/通信链路参数.xlsx',
+'raw_q4_initial_inventory':'input/运输无人机数据.xlsx;input/中继无人机数据.xlsx'}
+FIG_SCRIPTS={'q1':'code/mountain_flood/figure/q1.py','q2':'code/mountain_flood/figure/q2.py',
+'q3':'code/mountain_flood/figure/q3.py','q4':'code/mountain_flood/figure/q4.py',
+'spatial':'code/mountain_flood/figure/spatial.py','raw':'code/figure_raw_inputs.py',
+'flow':'code/mountain_flood/figure/overview.py','fig':'code/mountain_flood/figure/overview.py'}
 TABLE_SOURCES={'symbols':'config/base_parameters.json;input/运输无人机数据.xlsx;input/中继无人机数据.xlsx',
                'q1':'results/q1_rho10.json;results/q1_rho20.json;results/q1_rho30.json;results/q1_rho40.json',
-               'method_compare':'results/method_comparison.json','q3':'results/joint_comparison.json',
-               'q4':'results/q4.json','energy_stress':'results/energy_sensitivity.json'}
+               'method_compare':'results/method_comparison.json',
+               'method_efficiency':'results/method_comparison.json',
+               'q3':'results/joint_comparison.json',
+               'q3_candidate_metrics':'results/joint_comparison.json',
+               'q4':'results/q4.json','energy_stress':'results/energy_sensitivity.json',
+               'question_methods':'results/q1_rho20.json;results/q2.json;results/q3.json;results/q4.json',
+               'data_files':'input/调度中心与服务区.xlsx;input/物资需求与配送时限.xlsx;input/运输无人机数据.xlsx;input/中继无人机数据.xlsx;input/通信链路参数.xlsx',
+               'aircraft_parameters':'results/data_profile.json',
+               'decisions':'results/q1_rho20.json;results/q2.json;results/q3.json;results/q4.json',
+               'q1_capacity_batches':'results/q1_rho20.json',
+               'q2_deadlines':'results/q2.json;results/data_profile.json',
+               'q2_service_delivery':'results/q2.json;results/data_profile.json',
+               'q2_flights':'results/q2.json',
+               'q2_flight_metrics':'results/q2.json',
+               'q2_kmax_scan':'results/kmax_scan_20260926.json',
+               'q2_kmax_metrics':'results/kmax_scan_20260926.json',
+               'q3_relay_tasks':'results/q3.json',
+               'q3_relay_metrics':'results/q3.json',
+               'q3_communication':'results/q3.json',
+               'q2_q3_compare':'results/q2.json;results/q3.json',
+               'q4_groups':'results/q4.json',
+               'q4_compare':'results/q4.json',
+               'energy_multiplier':'results/controlled_stress_20260926.json;results/solution_certificate.json',
+               'communication_loss':'results/controlled_stress_20260926.json;results/solution_certificate.json',
+               'sensitivity_summary':'results/q1_rho10.json;results/q1_rho20.json;results/q1_rho30.json;results/q1_rho40.json;results/energy_sensitivity.json;results/q3.json',
+               'final_summary':'results/q1_rho20.json;results/q2.json;results/q3.json;results/q4.json'}
 
 def sha(path):
     h=hashlib.sha256()
@@ -112,7 +154,8 @@ def literal_inventory():
     return rows
 
 def figure_map():
-    paper='\n'.join(p.read_text(encoding='utf8') for p in (ROOT/'paper').rglob('*.tex'))
+    tex_files=list((ROOT/'paper').rglob('*.tex'))
+    paper='\n'.join(p.read_text(encoding='utf8') for p in tex_files)
     figures=sorted(set(re.findall(r'\\includegraphics(?:\[[^]]*\])?\{([^}]+)\}',paper)))
     rows=[]
     for f in figures:
@@ -126,12 +169,44 @@ def figure_map():
         rows.append(dict(figure_or_table=stem,figure_file=str(path.relative_to(ROOT)),generator_script=script,raw_result=source,parameter_version=sha(ROOT/'config'/'base_parameters.json')[:12]+'+'+sha(ROOT/'config'/'optimization_parameters.json')[:12],experiment_time=datetime.fromtimestamp(path.stat().st_mtime).isoformat(timespec='seconds') if path.exists() else 'missing',model=stem.split('_')[0],matches_current_code='是' if current else '否/未证实',paper_reference='是'))
     for label in re.findall(r'\\label\{tab:([^}]+)\}',paper):
         source=TABLE_SOURCES.get(label,'未映射')
-        rows.append(dict(figure_or_table='tab:'+label,figure_file='paper/sections/*.tex',generator_script='LaTeX表格；数值由对应结果文件人工排版',raw_result=source,parameter_version=sha(ROOT/'config'/'base_parameters.json')[:12]+'+'+sha(ROOT/'config'/'optimization_parameters.json')[:12],experiment_time='当前审计',model=label,matches_current_code='待数值核对' if source=='未映射' else '已核对关键数值',paper_reference='是'))
+        table_file=next((p for p in tex_files if '\\label{tab:'+label+'}' in p.read_text(encoding='utf8')),None)
+        rows.append(dict(figure_or_table='tab:'+label,figure_file=str(table_file.relative_to(ROOT)) if table_file else '缺失',generator_script='code/generate_paper_tables.py' if table_file and table_file.parent.name=='tables' else 'LaTeX表格；数值由对应结果文件人工排版',raw_result=source,parameter_version=sha(ROOT/'config'/'base_parameters.json')[:12]+'+'+sha(ROOT/'config'/'optimization_parameters.json')[:12],experiment_time='当前审计',model=label,matches_current_code='待数值核对' if source=='未映射' else '已核对关键数值',paper_reference='是'))
     csv_write(AUDIT/'figure_result_mapping.csv',rows,list(rows[0]));return rows
 
 def check(verify_metadata=True):
     errors=[];notes=[];m=Model()
     q1=data('q1_rho20.json');q2=data('q2.json');q3=data('q3.json');q4=data('q4.json')
+    independent=data('solution_certificate.json')
+    if independent.get('status')!='PASS':errors.append('独立物理与通信证书未通过')
+    for relative,digest in independent.get('inputs',{}).items():
+        path=ROOT/relative
+        if not path.exists() or sha(path)!=digest:errors.append('独立证书输入版本不符: '+relative)
+    stress_result=data('controlled_stress_20260926.json')
+    if stress_result.get('source_certificate_sha256')!=sha(RESULT/'solution_certificate.json'):
+        errors.append('稳健性扫描未绑定当前独立证书')
+    scan=data('kmax_scan_20260926.json')
+    scan_audit=data('kmax_archive_audit_20260926.json')
+    if (scan_audit.get('status')!='PASS' or scan_audit.get('passed')!=48
+            or scan_audit.get('scan_sha256')!=sha(RESULT/'kmax_scan_20260926.json')):
+        errors.append('K上限扫描归档见证未通过独立回算')
+    protocol=scan['protocol']
+    if (protocol['k_values']!=[2,3,4,5] or protocol['seeds']!=[0,1,2]
+            or protocol['methods']!=['grasp','hill','anneal','tabu']
+            or protocol['archived_q2_in_candidate_pool']):
+        errors.append('K上限扫描协议与论文不符')
+    if (protocol['source_hashes']['base_parameters']!=sha(ROOT/'config/base_parameters.json')
+            or protocol['source_hashes']['optimization_parameters']!=sha(ROOT/'config/optimization_parameters.json')):
+        errors.append('K上限扫描参数版本不符')
+    expected_trials={(k,seed,method) for k in (2,3,4,5) for seed in (0,1,2)
+                     for method in ('grasp','hill','anneal','tabu')}
+    actual_trials={(t['kmax'],t['seed'],t['method']) for t in scan['trials']}
+    if actual_trials!=expected_trials or len(scan['trials'])!=48:
+        errors.append('K上限扫描试验缺失或重复')
+    if any(t['status']!='PASS' or t['metrics']['hard_violations']!=0
+           or t['metrics']['delivered']!=80
+           or max(len(r['order']) for r in t['routes'])>t['kmax']
+           for t in scan['trials']):
+        errors.append('K上限扫描存在失败见证')
     if len(m.boxes)!=80 or len(m.nodes)!=16:errors.append('附件箱/节点数不符')
     if sum(b['w'] for b in m.boxes)!=758:errors.append('货箱总重不符')
     if len([b for b in m.boxes if b['medical']])!=16 or len([b for b in m.boxes if b['first']])!=30:errors.append('硬截止分类不符')
@@ -195,17 +270,21 @@ def check(verify_metadata=True):
             if f'{pct}\\%' not in q1tex or '不可直送' not in q1tex:errors.append(f'论文Q1 {pct}%不可行描述缺失')
         elif f'{pct}\\% & {rec["count"]} & {rec["energy"]:.4f} & {rec["time"]:.2f}' not in q1tex:errors.append(f'论文Q1 {pct}%表格不符')
     q2tex=(ROOT/'paper/sections/6_problem2.tex').read_text()
+    formal=data('q2_formal_protocol.json')
     display={'grasp':'随机化构造','hill':'局部爬山','anneal':'模拟退火','tabu':'禁忌搜索'}
     for method,label in display.items():
-        candidates=[c for c in data('method_comparison.json')['candidates'] if c['method']==method]
-        best=min(candidates,key=lambda c:tuple(c['metrics'][k] for k in ('weighted_tardiness','makespan','weighted_arrival','energy','count')))
-        z=best['metrics'];median=statistics.median(c['metrics']['makespan'] for c in candidates)/60
-        tardy='0' if abs(z['weighted_tardiness'])<1e-8 else f'{z["weighted_tardiness"]:.2f}'
-        expected=f'{label} & 3/3 & {sum(m.boxes[int(b)]["due"] < r["start"]+t-1e-7 and not m.boxes[int(b)]["medical"] for r in best["routes"] for b,t in r["deliver"].items())} & {tardy} & {z["makespan"]/60:.2f} & {z["energy"]:.2f} & {z["count"]} & {median:.2f}'
-        if expected not in q2tex:errors.append('论文Q2算法表格不符: '+method)
+        stat=formal['algorithm_statistics'][method]
+        row=(f'{label} & {stat["feasible_runs"]}/{stat["runs"]} & '
+             f'{stat["makespan"]["mean"]/60:.2f}$\\pm${stat["makespan"]["std"]/60:.2f} & '
+             f'{stat["energy"]["mean"]:.4f}$\\pm${stat["energy"]["std"]:.4f} & '
+             f'{stat["count"]["mean"]:.2f}$\\pm${stat["count"]["std"]:.2f}')
+        if row not in (ROOT/'paper/tables/q2_formal_protocol.tex').read_text():
+            errors.append('论文Q2正式协议表格不符: '+method)
     q3tex=(ROOT/'paper/sections/7_problem3.tex').read_text()
     selected=next(c for c in data('joint_comparison.json')['candidates'] if c['selected'])
-    if f'{selected["joint_completion_s"]/60:.2f}' not in q3tex or f'{selected["total_energy_kwh"]:.4f}' not in q3tex:errors.append('论文Q3主表不符')
+    if (f'{selected["joint_completion_s"]:.2f}' not in q3tex
+            and f'{selected["joint_completion_s"]/60:.2f}' not in q3tex) or f'{selected["total_energy_kwh"]:.4f}' not in q3tex:
+        errors.append('论文Q3主表不符')
     q4tex=(ROOT/'paper/sections/8_problem4.tex').read_text()
     for k in ('2','3'):
         scheme=q4['schemes'][k]['selected']
@@ -217,7 +296,7 @@ def check(verify_metadata=True):
     rows=figure_map()
     if any(x['matches_current_code']!='是' for x in rows if not x['figure_or_table'].startswith('tab:')):errors.append('论文图表文件缺失、早于结果或无法映射')
     pdf=ROOT/'paper'/'main.pdf'
-    newest=max((ROOT/'paper'/'main.tex').stat().st_mtime,*[p.stat().st_mtime for p in (ROOT/'paper'/'sections').glob('*.tex')])
+    newest=max(p.stat().st_mtime for p in (ROOT/'paper').rglob('*.tex'))
     if not pdf.exists() or pdf.stat().st_mtime<newest:notes.append('论文PDF早于LaTeX源文件，尚未重新编译')
     else:
         submission=ROOT/'D题论文.pdf'

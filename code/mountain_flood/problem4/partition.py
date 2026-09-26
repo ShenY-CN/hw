@@ -1,4 +1,4 @@
-# 本程序及代码在人工智能工具辅助下完成：OpenAI Codex（GPT-6，OpenAI；GPT-6 模型家族发布日期 2026-09-03）。
+# 本程序及代码在人工智能工具辅助下完成：OpenAI Codex（GPT-5，OpenAI；GPT-5 发布于 2025-08-07）。
 # 参赛队须自行理解、复核与改写；本会话未提供更细的子型号标识。
 """问题四：将不可拆分的运输路线组件分配给不同救援小组，并比较资源方案。"""
 
@@ -103,6 +103,10 @@ def partition(model, data, output="q4.json"):
         )
 
     all_mask = (1 << component_count) - 1
+    # 统一资源池在原联合时序下的峰值需求是“不分组”基准。
+    # 分组后各组独立配置的总和减该基准，才是重复配置冲余；
+    # 库存减独立配置总和的正部分则是库存闲置，两者不再混用。
+    pooled = group(all_mask)["resources"]
     answer = {}
     for group_count in (2, 3):
         best = None
@@ -119,6 +123,8 @@ def partition(model, data, output="q4.json"):
                 groups = [group(mask) for mask in masks]
                 total = np.sum([item["resources"] for item in groups], axis=0).astype(int).tolist()
                 deficit = [max(0, target - available) for target, available in zip(total, inventory)]
+                duplicated = [max(0, target - base) for target, base in zip(total, pooled)]
+                inventory_idle = [max(0, available - target) for target, available in zip(total, inventory)]
                 workloads = [item["work"] for item in groups]
                 cv = float(np.std(workloads) / np.mean(workloads))
                 score = (sum(deficit), sum(total), cv)
@@ -126,8 +132,11 @@ def partition(model, data, output="q4.json"):
                     K=group_count,
                     groups=groups,
                     total=total,
+                    pooled=pooled,
+                    duplicated=duplicated,
                     deficit=deficit,
-                    unused=[max(0, available - used) for used, available in zip(total, inventory)],
+                    inventory_idle=inventory_idle,
+                    unused=inventory_idle,  # 保留旧字段以兼容现有出图与提交脚本。
                     cv=cv,
                     score=score,
                 )
@@ -174,8 +183,9 @@ def partition(model, data, output="q4.json"):
             flush=True,
         )
 
-    save(output, dict(components=components, inventory=inventory, schemes=answer))
-    return dict(components=components, inventory=inventory, schemes=answer)
+    result=dict(components=components, inventory=inventory, pooled=pooled, schemes=answer)
+    save(output, result)
+    return result
 
 
 if __name__ == "__main__":

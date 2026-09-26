@@ -1,4 +1,454 @@
 ﻿file,line,value,context,classification
+code/assemble_figure_pool.py,13,1,ROOT = Path(__file__).resolve().parents[1],path/bootstrap
+code/assemble_figure_pool.py,54,2,"json.dumps(manifest, ensure_ascii=False, indent=2), encoding=""utf-8"")",solver/physics/index; inspect context
+code/assemble_figure_pool.py,55,3,"print(f""PASS {len(expected)//3} figures, 3 formats each: {POOL}"")",solver/physics/index; inspect context
+code/audit_kmax_archive.py,13,1,ROOT = Path(__file__).resolve().parents[1],path/bootstrap
+code/audit_kmax_archive.py,29,48,"if len(data[""trials""]) != 48 or {(t[""kmax""], t[""seed""], t[""method""])",solver/physics/index; inspect context
+code/audit_kmax_archive.py,61,1,raise SystemExit(1),solver/physics/index; inspect context
+code/audit_kmax_archive.py,25,2,"expected = {(k, seed, method) for k in (2, 3, 4, 5)",solver/physics/index; inspect context
+code/audit_kmax_archive.py,25,3,"expected = {(k, seed, method) for k in (2, 3, 4, 5)",solver/physics/index; inspect context
+code/audit_kmax_archive.py,25,4,"expected = {(k, seed, method) for k in (2, 3, 4, 5)",solver/physics/index; inspect context
+code/audit_kmax_archive.py,25,5,"expected = {(k, seed, method) for k in (2, 3, 4, 5)",solver/physics/index; inspect context
+code/audit_kmax_archive.py,26,0,"for seed in (0, 1, 2)",solver/physics/index; inspect context
+code/audit_kmax_archive.py,26,1,"for seed in (0, 1, 2)",solver/physics/index; inspect context
+code/audit_kmax_archive.py,26,2,"for seed in (0, 1, 2)",solver/physics/index; inspect context
+code/audit_kmax_archive.py,49,1e-07,"if abs(replay[""min_transport_soc""] - trial[""min_return_soc""]) > 1e-7:",solver/physics/index; inspect context
+code/audit_kmax_archive.py,58,2,"OUTPUT.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding=""utf-8"")",solver/physics/index; inspect context
+code/controlled_stress.py,9,1,ROOT = Path(__file__).resolve().parents[1],path/bootstrap
+code/controlled_stress.py,33,0,"for extra in (0, 0.5, 1, 2, 3):",solver/physics/index; inspect context
+code/controlled_stress.py,33,0.5,"for extra in (0, 0.5, 1, 2, 3):",solver/physics/index; inspect context
+code/controlled_stress.py,33,1,"for extra in (0, 0.5, 1, 2, 3):",solver/physics/index; inspect context
+code/controlled_stress.py,33,2,"for extra in (0, 0.5, 1, 2, 3):",solver/physics/index; inspect context
+code/controlled_stress.py,33,3,"for extra in (0, 0.5, 1, 2, 3):",solver/physics/index; inspect context
+code/controlled_stress.py,20,1.0,"for multiplier in (1.00, 1.01, 1.02, 1.03, 1.05):",solver/physics/index; inspect context
+code/controlled_stress.py,20,1.01,"for multiplier in (1.00, 1.01, 1.02, 1.03, 1.05):",solver/physics/index; inspect context
+code/controlled_stress.py,20,1.02,"for multiplier in (1.00, 1.01, 1.02, 1.03, 1.05):",solver/physics/index; inspect context
+code/controlled_stress.py,20,1.03,"for multiplier in (1.00, 1.01, 1.02, 1.03, 1.05):",solver/physics/index; inspect context
+code/controlled_stress.py,20,1.05,"for multiplier in (1.00, 1.01, 1.02, 1.03, 1.05):",solver/physics/index; inspect context
+code/controlled_stress.py,39,2,"target.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding=""utf-8"")",solver/physics/index; inspect context
+code/controlled_stress.py,40,2,"print(json.dumps(output, ensure_ascii=False, indent=2))",solver/physics/index; inspect context
+code/controlled_stress.py,25,1,soc = 1 - energy / rated,solver/physics/index; inspect context
+code/controlled_stress.py,24,1,"rated = route[""energy_kwh""] / (1 - route[""soc""])",solver/physics/index; inspect context
+code/controlled_stress.py,28,1e-08,"failures = [row[""route""] for row in rows if row[""reserve_margin_kwh""] < -1e-8]",solver/physics/index; inspect context
+code/controlled_stress.py,36,1e-08,"uncertified_intervals=sum(x < -1e-8 for x in margins),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,14,1,ROOT = Path(__file__).resolve().parents[1],path/bootstrap
+code/figure_raw_inputs.py,16,9,"plt.rcParams.update({""font.family"": ""PingFang SC"", ""font.size"": 9,",solver/physics/index; inspect context
+code/figure_raw_inputs.py,37,1,"(hard if row[2] == ""医疗物资"" or row[5] == ""是"" else soft)[row[1]] += 1",solver/physics/index; inspect context
+code/figure_raw_inputs.py,70,0,"ax.set_ylim(0, max(values) * 1.15)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,87,0,"ax.set_ylim(0, max(values) * 1.2)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,29,300,"dpi=300, size_inches=size, grayscale_preview=False, tight=False)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,34,1,"boxes = rows(""物资需求与配送时限"", ""逐箱货箱清单"")[1:]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,45,2,"ax.legend(frameon=False, ncol=2, loc=""upper right"")",solver/physics/index; inspect context
+code/figure_raw_inputs.py,46,0.2,"ax.grid(axis=""y"", alpha=0.2)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,47,45,"ax.tick_params(axis=""x"", labelrotation=45)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,48,7.2,"export(fig, ""raw_q2_box_deadline_mix"", (7.2, 3.6))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,48,3.6,"export(fig, ""raw_q2_box_deadline_mix"", (7.2, 3.6))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,53,4,"sensor, fade, system = data[5][4], data[6][4], data[3][4]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,53,4,"sensor, fade, system = data[5][4], data[6][4], data[3][4]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,53,4,"sensor, fade, system = data[5][4], data[6][4], data[3][4]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,70,1.15,"ax.set_ylim(0, max(values) * 1.15)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,72,0.2,"ax.grid(axis=""y"", alpha=0.2)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,73,5.8,"export(fig, ""raw_q3_link_budgets"", (5.8, 3.2))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,73,3.2,"export(fig, ""raw_q3_link_budgets"", (5.8, 3.2))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,81,1,"values += [transport[i][1] for i in range(19, 22)]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,82,1,"values += [len(relay[6:8]), relay[11][1]]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,87,1.2,"ax.set_ylim(0, max(values) * 1.2)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,89,0.2,"ax.grid(axis=""y"", alpha=0.2)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,90,6.2,"export(fig, ""raw_q4_initial_inventory"", (6.2, 3.3))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,90,3.3,"export(fig, ""raw_q4_initial_inventory"", (6.2, 3.3))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,37,1,"(hard if row[2] == ""医疗物资"" or row[5] == ""是"" else soft)[row[1]] += 1",solver/physics/index; inspect context
+code/figure_raw_inputs.py,38,1,"labels = [f""S{i:03}"" for i in range(1, 16)]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,38,16,"labels = [f""S{i:03}"" for i in range(1, 16)]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,39,7.2,"fig, ax = plt.subplots(figsize=(7.2, 3.6))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,39,3.6,"fig, ax = plt.subplots(figsize=(7.2, 3.6))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,53,5,"sensor, fade, system = data[5][4], data[6][4], data[3][4]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,53,6,"sensor, fade, system = data[5][4], data[6][4], data[3][4]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,53,3,"sensor, fade, system = data[5][4], data[6][4], data[3][4]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,54,4,"transmit = {""transport"": (data[7][4], data[8][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,54,4,"transmit = {""transport"": (data[7][4], data[8][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,55,4,"""access"": (data[9][4], data[10][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,55,4,"""access"": (data[9][4], data[10][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,56,4,"""backhaul"": (data[11][4], data[12][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,56,4,"""backhaul"": (data[11][4], data[12][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,57,4,"""gateway"": (data[13][4], data[14][4])}",solver/physics/index; inspect context
+code/figure_raw_inputs.py,57,4,"""gateway"": (data[13][4], data[14][4])}",solver/physics/index; inspect context
+code/figure_raw_inputs.py,66,5.8,"fig, ax = plt.subplots(figsize=(5.8, 3.2))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,66,3.2,"fig, ax = plt.subplots(figsize=(5.8, 3.2))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,67,0,"bars = ax.bar([x[0] for x in groups], values, color=[""#315E9D"", ""#CE853D"", ""#69549A""])",solver/physics/index; inspect context
+code/figure_raw_inputs.py,69,0.5,"ax.text(bar.get_x() + bar.get_width()/2, value + 0.5, f""{value:.0f}"", ha=""center"")",solver/physics/index; inspect context
+code/figure_raw_inputs.py,81,19,"values += [transport[i][1] for i in range(19, 22)]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,81,22,"values += [transport[i][1] for i in range(19, 22)]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,82,11,"values += [len(relay[6:8]), relay[11][1]]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,83,6.2,"fig, ax = plt.subplots(figsize=(6.2, 3.3))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,83,3.3,"fig, ax = plt.subplots(figsize=(6.2, 3.3))",solver/physics/index; inspect context
+code/figure_raw_inputs.py,86,0.1,"ax.text(bar.get_x() + bar.get_width()/2, value + 0.1, str(value), ha=""center"")",solver/physics/index; inspect context
+code/figure_raw_inputs.py,54,7,"transmit = {""transport"": (data[7][4], data[8][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,54,8,"transmit = {""transport"": (data[7][4], data[8][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,55,9,"""access"": (data[9][4], data[10][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,55,10,"""access"": (data[9][4], data[10][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,56,11,"""backhaul"": (data[11][4], data[12][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,56,12,"""backhaul"": (data[11][4], data[12][4]),",solver/physics/index; inspect context
+code/figure_raw_inputs.py,57,13,"""gateway"": (data[13][4], data[14][4])}",solver/physics/index; inspect context
+code/figure_raw_inputs.py,57,14,"""gateway"": (data[13][4], data[14][4])}",solver/physics/index; inspect context
+code/figure_raw_inputs.py,69,2,"ax.text(bar.get_x() + bar.get_width()/2, value + 0.5, f""{value:.0f}"", ha=""center"")",solver/physics/index; inspect context
+code/figure_raw_inputs.py,82,6,"values += [len(relay[6:8]), relay[11][1]]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,82,8,"values += [len(relay[6:8]), relay[11][1]]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,84,2,"bars = ax.bar(labels, values, color=[""#315E9D""]*3 + [""#CE853D""]*3 + [""#69549A""]*2)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,86,2,"ax.text(bar.get_x() + bar.get_width()/2, value + 0.1, str(value), ha=""center"")",solver/physics/index; inspect context
+code/figure_raw_inputs.py,80,1,"values = [sum(row[1] == g for row in transport[8:16]) for g in ""ABC""]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,84,3,"bars = ax.bar(labels, values, color=[""#315E9D""]*3 + [""#CE853D""]*3 + [""#69549A""]*2)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,84,3,"bars = ax.bar(labels, values, color=[""#315E9D""]*3 + [""#CE853D""]*3 + [""#69549A""]*2)",solver/physics/index; inspect context
+code/figure_raw_inputs.py,37,2,"(hard if row[2] == ""医疗物资"" or row[5] == ""是"" else soft)[row[1]] += 1",solver/physics/index; inspect context
+code/figure_raw_inputs.py,37,5,"(hard if row[2] == ""医疗物资"" or row[5] == ""是"" else soft)[row[1]] += 1",solver/physics/index; inspect context
+code/figure_raw_inputs.py,80,8,"values = [sum(row[1] == g for row in transport[8:16]) for g in ""ABC""]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,80,16,"values = [sum(row[1] == g for row in transport[8:16]) for g in ""ABC""]",solver/physics/index; inspect context
+code/figure_raw_inputs.py,64,1,"values.append(min(first[0] + first[1] + second[1],",solver/physics/index; inspect context
+code/figure_raw_inputs.py,65,1,second[0] + second[1] + first[1]) - sensor - fade - system),solver/physics/index; inspect context
+code/figure_raw_inputs.py,64,0,"values.append(min(first[0] + first[1] + second[1],",solver/physics/index; inspect context
+code/figure_raw_inputs.py,64,1,"values.append(min(first[0] + first[1] + second[1],",solver/physics/index; inspect context
+code/figure_raw_inputs.py,65,0,second[0] + second[1] + first[1]) - sensor - fade - system),solver/physics/index; inspect context
+code/figure_raw_inputs.py,65,1,second[0] + second[1] + first[1]) - sensor - fade - system),solver/physics/index; inspect context
+code/generate_paper_tables.py,15,1,ROOT = Path(__file__).resolve().parents[1],path/bootstrap
+code/generate_paper_tables.py,85,1,"for node in range(1, 16):",solver/physics/index; inspect context
+code/generate_paper_tables.py,85,16,"for node in range(1, 16):",solver/physics/index; inspect context
+code/generate_paper_tables.py,104,1e-06,"assert abs(max(q2_delivery.values()) - q2[""summary""][""last_delivery""]) < 1e-6",solver/physics/index; inspect context
+code/generate_paper_tables.py,106,1,"for node in range(1, 16):",solver/physics/index; inspect context
+code/generate_paper_tables.py,106,16,"for node in range(1, 16):",solver/physics/index; inspect context
+code/generate_paper_tables.py,219,1,"for number, group in enumerate(q4[""schemes""][k][""selected""][""groups""], 1):",solver/physics/index; inspect context
+code/generate_paper_tables.py,290,0,"assert m[""hard_violations""] == 0",solver/physics/index; inspect context
+code/generate_paper_tables.py,47,60,"return f""{seconds / 60:.2f}""",solver/physics/index; inspect context
+code/generate_paper_tables.py,287,12,assert len(trials) == 12 and len(passed) == 12,solver/physics/index; inspect context
+code/generate_paper_tables.py,287,12,assert len(trials) == 12 and len(passed) == 12,solver/physics/index; inspect context
+code/generate_paper_tables.py,291,0,"zero_late = sum(t[""metrics""][""weighted_tardiness""] == 0 for t in passed)",solver/physics/index; inspect context
+code/generate_paper_tables.py,73,60,"f""{stat['makespan']['mean']/60:.2f}$\\pm${stat['makespan']['std']/60:.2f} & """,solver/physics/index; inspect context
+code/generate_paper_tables.py,73,60,"f""{stat['makespan']['mean']/60:.2f}$\\pm${stat['makespan']['std']/60:.2f} & """,solver/physics/index; inspect context
+code/generate_paper_tables.py,136,100,"f""{route['energy']:.3f} & {100 * route['soc']:.2f}""",solver/physics/index; inspect context
+code/generate_paper_tables.py,158,100,"f""{minutes(relay['end'])} & {relay['energy']:.3f} & {100 * relay['soc']:.2f}""",solver/physics/index; inspect context
+code/generate_paper_tables.py,262,100,"f""{name} & {row['horizontal_multiplier']:.2f} & {row['min_soc']*100:.2f} & """,solver/physics/index; inspect context
+code/generate_paper_tables.py,223,3600,"f""{len(group['transport_ids'])} & {group['work'] / 3600:.2f}""",solver/physics/index; inspect context
+code/independent_solution_audit.py,24,1e-06,EPS = 1e-6,solver/physics/index; inspect context
+code/independent_solution_audit.py,20,1,ROOT = Path(__file__).resolve().parents[1],path/bootstrap
+code/independent_solution_audit.py,188,0.0,energy_total = time_total = 0.0,solver/physics/index; inspect context
+code/independent_solution_audit.py,355,0.0,tardiness = 0.0,solver/physics/index; inspect context
+code/independent_solution_audit.py,493,0.1,"def dense_tightest(raw: Raw, data: dict, segments: dict, time_step: float = 0.1,",solver/physics/index; inspect context
+code/independent_solution_audit.py,494,1.0,sight_step_m: float = 1.0) -> dict:,solver/physics/index; inspect context
+code/independent_solution_audit.py,139,1.0,safety: float = 1.0) -> float:,solver/physics/index; inspect context
+code/independent_solution_audit.py,236,45,"if len(data[""capacities""]) != 45:",solver/physics/index; inspect context
+code/independent_solution_audit.py,249,1e-06,"close(energy_total, data[""summary""][""energy""], ""Q1 total energy"", errors, 1e-6)",solver/physics/index; inspect context
+code/independent_solution_audit.py,250,1e-06,"close(time_total, data[""summary""][""time""], ""Q1 total duration"", errors, 1e-6)",solver/physics/index; inspect context
+code/independent_solution_audit.py,286,0.0,horizontal = climb = 0.0,solver/physics/index; inspect context
+code/independent_solution_audit.py,372,1e-06,"(sum(r[""energy""] for r in data.get(""relays"", []))), summary[""energy""], f""{name} total energy"", errors, 1e-6)",solver/physics/index; inspect context
+code/independent_solution_audit.py,505,0,"minimum, worst_time, obstruction_count = math.inf, None, 0",solver/physics/index; inspect context
+code/independent_solution_audit.py,558,0,"return 0 if output[""status""] == ""PASS"" else 1",solver/physics/index; inspect context
+code/independent_solution_audit.py,558,1,"return 0 if output[""status""] == ""PASS"" else 1",solver/physics/index; inspect context
+code/independent_solution_audit.py,49,50,"fixed_conventions = {""terrain_clearance_m"": 50, ""service_height_m"": 30,",solver/physics/index; inspect context
+code/independent_solution_audit.py,49,30,"fixed_conventions = {""terrain_clearance_m"": 50, ""service_height_m"": 30,",solver/physics/index; inspect context
+code/independent_solution_audit.py,50,9.81,"""gravity_m_s2"": 9.81, ""charge_soc_break"": 0.9,",solver/physics/index; inspect context
+code/independent_solution_audit.py,50,0.9,"""gravity_m_s2"": 9.81, ""charge_soc_break"": 0.9,",solver/physics/index; inspect context
+code/independent_solution_audit.py,51,0.65,"""charge_first_stage_fraction"": 0.65,",solver/physics/index; inspect context
+code/independent_solution_audit.py,52,0.35,"""charge_second_stage_fraction"": 0.35, ""initial_soc"": 1.0}",solver/physics/index; inspect context
+code/independent_solution_audit.py,52,1.0,"""charge_second_stage_fraction"": 0.35, ""initial_soc"": 1.0}",solver/physics/index; inspect context
+code/independent_solution_audit.py,56,1.0002,"if optimization[""communication_certificate""][""distance_safety_factor""] != 1.0002:",solver/physics/index; inspect context
+code/independent_solution_audit.py,109,0.0,"cuts = [0.0, 1.0]",solver/physics/index; inspect context
+code/independent_solution_audit.py,109,1.0,"cuts = [0.0, 1.0]",solver/physics/index; inspect context
+code/independent_solution_audit.py,115,2,mids = (cuts[:-1] + cuts[1:]) / 2,solver/physics/index; inspect context
+code/independent_solution_audit.py,136,2,"return GEOD.inv(a[0], a[1], b[0], b[1])[2]",solver/physics/index; inspect context
+code/independent_solution_audit.py,140,1000,"d = math.hypot(self.distance(a, b) * safety, b[2] - a[2]) / 1000",solver/physics/index; inspect context
+code/independent_solution_audit.py,148,1e-14,if abs(np.linalg.det(matrix)) < 1e-14:,solver/physics/index; inspect context
+code/independent_solution_audit.py,177,0.9,return full_charge * (0.65 * (0.9 - soc) / 0.9 + 0.35) if soc < 0.9 else full_charge * 0.35 * (1 - soc) / 0.1,solver/physics/index; inspect context
+code/independent_solution_audit.py,177,0.1,return full_charge * (0.65 * (0.9 - soc) / 0.9 + 0.35) if soc < 0.9 else full_charge * 0.35 * (1 - soc) / 0.1,solver/physics/index; inspect context
+code/independent_solution_audit.py,213,1,"if len(route[""order""]) != 1:",solver/physics/index; inspect context
+code/independent_solution_audit.py,216,0,"node = route[""order""][0]",solver/physics/index; inspect context
+code/independent_solution_audit.py,227,1e-07,"close(energy, route[""energy""], f""Q1 S{node:03} energy"", errors, 1e-7)",solver/physics/index; inspect context
+code/independent_solution_audit.py,241,0.0,"low, high = 0.0, aircraft[""Q""]",solver/physics/index; inspect context
+code/independent_solution_audit.py,242,55,for _ in range(55):,solver/physics/index; inspect context
+code/independent_solution_audit.py,248,1e-05,"close(low, entry[""maxload""], f""Q1 S{node:03} {kind} safe capacity"", errors, 1e-5)",solver/physics/index; inspect context
+code/independent_solution_audit.py,285,0,"remaining, previous = payload, 0",solver/physics/index; inspect context
+code/independent_solution_audit.py,288,0,"for node in [*order, 0]:",solver/physics/index; inspect context
+code/independent_solution_audit.py,314,1,"soc = 1 - energy / aircraft[""E""]",solver/physics/index; inspect context
+code/independent_solution_audit.py,315,1e-07,"close(energy, route[""energy""], f""{ident} energy"", errors, 1e-7)",solver/physics/index; inspect context
+code/independent_solution_audit.py,316,1e-07,"close(soc, route[""soc""], f""{ident} SOC"", errors, 1e-7)",solver/physics/index; inspect context
+code/independent_solution_audit.py,389,2,"origin = [raw.nodes[0][2], raw.nodes[0][3], raw.nodes[0][4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,389,3,"origin = [raw.nodes[0][2], raw.nodes[0][3], raw.nodes[0][4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,389,4,"origin = [raw.nodes[0][2], raw.nodes[0][3], raw.nodes[0][4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,404,1,"soc = 1 - energy / t[""E""]",solver/physics/index; inspect context
+code/independent_solution_audit.py,405,1e-06,"close(energy, r[""energy""], f""{ident} energy"", errors, 1e-6)",solver/physics/index; inspect context
+code/independent_solution_audit.py,406,1e-06,"close(soc, r[""soc""], f""{ident} SOC"", errors, 1e-6)",solver/physics/index; inspect context
+code/independent_solution_audit.py,479,1,methods[method] += 1,solver/physics/index; inspect context
+code/independent_solution_audit.py,504,1,"math.ceil((record[""end""] - record[""start""]) / time_step) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,510,1,"steps = max(1, math.ceil(d / sight_step_m))",solver/physics/index; inspect context
+code/independent_solution_audit.py,511,0,"fractions = np.linspace(0, 1, steps + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,511,1,"fractions = np.linspace(0, 1, steps + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,533,80,"if len(raw.boxes) != 80 or sum(b[""mass""] for b in raw.boxes) != 758:",solver/physics/index; inspect context
+code/independent_solution_audit.py,533,758,"if len(raw.boxes) != 80 or sum(b[""mass""] for b in raw.boxes) != 758:",solver/physics/index; inspect context
+code/independent_solution_audit.py,59,2,"self.nodes = [rows[2], *rows[6:21]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,60,0,"self.node_ids = {row[0]: i for i, row in enumerate(self.nodes)}",solver/physics/index; inspect context
+code/independent_solution_audit.py,64,0,"self.types = {r[0]: dict(zip(names, r)) for r in transport[2:5]}",solver/physics/index; inspect context
+code/independent_solution_audit.py,66,19,for r in transport[19:22]:,solver/physics/index; inspect context
+code/independent_solution_audit.py,66,22,for r in transport[19:22]:,solver/physics/index; inspect context
+code/independent_solution_audit.py,69,1,"for row in sheet(""物资需求与配送时限"", ""逐箱货箱清单"")[1:]:",solver/physics/index; inspect context
+code/independent_solution_audit.py,97,1,self.dem = source.read(1),solver/physics/index; inspect context
+code/independent_solution_audit.py,99,2,"self.gateway = [self.nodes[0][2], self.nodes[0][3],",solver/physics/index; inspect context
+code/independent_solution_audit.py,99,3,"self.gateway = [self.nodes[0][2], self.nodes[0][3],",solver/physics/index; inspect context
+code/independent_solution_audit.py,107,0,"ac, ar = self.pixel(a[0], a[1])",solver/physics/index; inspect context
+code/independent_solution_audit.py,107,1,"ac, ar = self.pixel(a[0], a[1])",solver/physics/index; inspect context
+code/independent_solution_audit.py,108,0,"bc, br = self.pixel(b[0], b[1])",solver/physics/index; inspect context
+code/independent_solution_audit.py,108,1,"bc, br = self.pixel(b[0], b[1])",solver/physics/index; inspect context
+code/independent_solution_audit.py,111,1e-14,if abs(end - start) > 1e-14:,solver/physics/index; inspect context
+code/independent_solution_audit.py,114,0,"cuts = np.unique(np.clip(cuts, 0, 1))",solver/physics/index; inspect context
+code/independent_solution_audit.py,114,1,"cuts = np.unique(np.clip(cuts, 0, 1))",solver/physics/index; inspect context
+code/independent_solution_audit.py,126,0,"c, r = self.pixel(a[0], a[1])",solver/physics/index; inspect context
+code/independent_solution_audit.py,126,1,"c, r = self.pixel(a[0], a[1])",solver/physics/index; inspect context
+code/independent_solution_audit.py,141,32.45,"fspl = 32.45 + 20 * math.log10(self.radio[""frequency""]) + 20 * math.log10(max(d, 1e-6))",solver/physics/index; inspect context
+code/independent_solution_audit.py,141,20,"fspl = 32.45 + 20 * math.log10(self.radio[""frequency""]) + 20 * math.log10(max(d, 1e-6))",solver/physics/index; inspect context
+code/independent_solution_audit.py,142,0,"return self.radio[kind] - fspl - (self.radio[""obstruction""] if blocked else 0)",solver/physics/index; inspect context
+code/independent_solution_audit.py,149,1e-12,if np.linalg.norm(xy[0] - xy[1]) < 1e-12:,solver/physics/index; inspect context
+code/independent_solution_audit.py,155,0,"c0, c1 = max(0, math.floor(min(columns)) - 1), min(self.dem.shape[1], math.ceil(max(columns)) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,156,0,"r0, r1 = max(0, math.floor(min(rows)) - 1), min(self.dem.shape[0], math.ceil(max(rows)) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,177,0.35,return full_charge * (0.65 * (0.9 - soc) / 0.9 + 0.35) if soc < 0.9 else full_charge * 0.35 * (1 - soc) / 0.1,solver/physics/index; inspect context
+code/independent_solution_audit.py,192,0,"origin, target = raw.nodes[0], raw.nodes[node]",solver/physics/index; inspect context
+code/independent_solution_audit.py,193,2,"outward_a = [origin[2], origin[3], origin[4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,193,3,"outward_a = [origin[2], origin[3], origin[4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,193,4,"outward_a = [origin[2], origin[3], origin[4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,194,2,"outward_b = [target[2], target[3], target[4] + 30]",solver/physics/index; inspect context
+code/independent_solution_audit.py,194,3,"outward_b = [target[2], target[3], target[4] + 30]",solver/physics/index; inspect context
+code/independent_solution_audit.py,194,30,"outward_b = [target[2], target[3], target[4] + 30]",solver/physics/index; inspect context
+code/independent_solution_audit.py,195,50,"outward_h = max(raw.top(outward_a, outward_b) + 50, outward_a[2], outward_b[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,195,2,"outward_h = max(raw.top(outward_a, outward_b) + 50, outward_a[2], outward_b[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,195,2,"outward_h = max(raw.top(outward_a, outward_b) + 50, outward_a[2], outward_b[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,202,0,"energy = leg_energy(payload, outward_a[2], outward_h) + leg_energy(0, outward_b[2], backward_h)",solver/physics/index; inspect context
+code/independent_solution_audit.py,209,1,"return energy, time, 1 - energy / aircraft[""E""]",solver/physics/index; inspect context
+code/independent_solution_audit.py,243,2,mid = (low + high) / 2,solver/physics/index; inspect context
+code/independent_solution_audit.py,389,0,"origin = [raw.nodes[0][2], raw.nodes[0][3], raw.nodes[0][4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,389,0,"origin = [raw.nodes[0][2], raw.nodes[0][3], raw.nodes[0][4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,389,0,"origin = [raw.nodes[0][2], raw.nodes[0][3], raw.nodes[0][4]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,392,50,"max_height = max(raw.top(origin, point) + 50, point[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,392,2,"max_height = max(raw.top(origin, point) + 50, point[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,403,3600,"(t[""hover_power""] + t[""comm_power""]) / 3600)",solver/physics/index; inspect context
+code/independent_solution_audit.py,446,1,if len(matches) != 1:,solver/physics/index; inspect context
+code/independent_solution_audit.py,449,0,"segment, a, b = matches[0]",solver/physics/index; inspect context
+code/independent_solution_audit.py,511,1,"fractions = np.linspace(0, 1, steps + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,512,0,longitude = point[0] + fractions * (fixed[0] - point[0]),solver/physics/index; inspect context
+code/independent_solution_audit.py,513,1,latitude = point[1] + fractions * (fixed[1] - point[1]),solver/physics/index; inspect context
+code/independent_solution_audit.py,518,2,sight_height = point[2] + fractions * (fixed[2] - point[2]),solver/physics/index; inspect context
+code/independent_solution_audit.py,554,2,"OUT.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding=""utf-8"")",solver/physics/index; inspect context
+code/independent_solution_audit.py,557,2,"""link_errors"": links[""total_errors""], ""dense"": tight}, ensure_ascii=False, indent=2))",solver/physics/index; inspect context
+code/independent_solution_audit.py,65,0,self.units = {g: [r[0] for r in transport[8:16] if r[1] == g] for g in self.types},solver/physics/index; inspect context
+code/independent_solution_audit.py,78,2,"self.relay = dict(zip(relay_names, relay_rows[2]))",solver/physics/index; inspect context
+code/independent_solution_audit.py,79,1,"self.relay.update(units=[r[0] for r in relay_rows[6:8]], components=relay_rows[11][1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,80,2,charge=relay_rows[11][2]),solver/physics/index; inspect context
+code/independent_solution_audit.py,82,4,"self.radio = dict(frequency=communication[2][4], loss=communication[3][4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,82,4,"self.radio = dict(frequency=communication[2][4], loss=communication[3][4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,83,4,"obstruction=communication[4][4], sensitivity=communication[5][4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,83,4,"obstruction=communication[4][4], sensitivity=communication[5][4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,84,4,"fade=communication[6][4], gateway_height=communication[15][4])",solver/physics/index; inspect context
+code/independent_solution_audit.py,84,4,"fade=communication[6][4], gateway_height=communication[15][4])",solver/physics/index; inspect context
+code/independent_solution_audit.py,85,4,"tx = {""transport"": (communication[7][4], communication[8][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,85,4,"tx = {""transport"": (communication[7][4], communication[8][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,86,4,"""access"": (communication[9][4], communication[10][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,86,4,"""access"": (communication[9][4], communication[10][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,87,4,"""backhaul"": (communication[11][4], communication[12][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,87,4,"""backhaul"": (communication[11][4], communication[12][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,88,4,"""gateway"": (communication[13][4], communication[14][4])}",solver/physics/index; inspect context
+code/independent_solution_audit.py,88,4,"""gateway"": (communication[13][4], communication[14][4])}",solver/physics/index; inspect context
+code/independent_solution_audit.py,99,0,"self.gateway = [self.nodes[0][2], self.nodes[0][3],",solver/physics/index; inspect context
+code/independent_solution_audit.py,99,0,"self.gateway = [self.nodes[0][2], self.nodes[0][3],",solver/physics/index; inspect context
+code/independent_solution_audit.py,100,4,"self.nodes[0][4] + self.radio[""gateway_height""]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,118,0,if np.any(rows < 0) or np.any(rows >= self.dem.shape[0]) or np.any(columns < 0) or np.any(columns >= self.dem.shape[1]):,solver/physics/index; inspect context
+code/independent_solution_audit.py,118,0,if np.any(rows < 0) or np.any(rows >= self.dem.shape[0]) or np.any(columns < 0) or np.any(columns >= self.dem.shape[1]):,solver/physics/index; inspect context
+code/independent_solution_audit.py,123,1,"return float(np.max(self.line_ground(a, b)[1]))",solver/physics/index; inspect context
+code/independent_solution_audit.py,131,2,"lowest = np.minimum(a[2] + (b[2] - a[2]) * cuts[:-1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,132,2,a[2] + (b[2] - a[2]) * cuts[1:]),solver/physics/index; inspect context
+code/independent_solution_audit.py,136,0,"return GEOD.inv(a[0], a[1], b[0], b[1])[2]",solver/physics/index; inspect context
+code/independent_solution_audit.py,136,1,"return GEOD.inv(a[0], a[1], b[0], b[1])[2]",solver/physics/index; inspect context
+code/independent_solution_audit.py,136,0,"return GEOD.inv(a[0], a[1], b[0], b[1])[2]",solver/physics/index; inspect context
+code/independent_solution_audit.py,136,1,"return GEOD.inv(a[0], a[1], b[0], b[1])[2]",solver/physics/index; inspect context
+code/independent_solution_audit.py,141,20,"fspl = 32.45 + 20 * math.log10(self.radio[""frequency""]) + 20 * math.log10(max(d, 1e-6))",solver/physics/index; inspect context
+code/independent_solution_audit.py,147,3,"matrix = np.column_stack((xy, np.ones(3)))",solver/physics/index; inspect context
+code/independent_solution_audit.py,153,2,"grad_lon, grad_lat, intercept = np.linalg.solve(matrix, [a[2], b[2], fixed[2]])",solver/physics/index; inspect context
+code/independent_solution_audit.py,153,2,"grad_lon, grad_lat, intercept = np.linalg.solve(matrix, [a[2], b[2], fixed[2]])",solver/physics/index; inspect context
+code/independent_solution_audit.py,153,2,"grad_lon, grad_lat, intercept = np.linalg.solve(matrix, [a[2], b[2], fixed[2]])",solver/physics/index; inspect context
+code/independent_solution_audit.py,155,1,"c0, c1 = max(0, math.floor(min(columns)) - 1), min(self.dem.shape[1], math.ceil(max(columns)) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,155,1,"c0, c1 = max(0, math.floor(min(columns)) - 1), min(self.dem.shape[1], math.ceil(max(columns)) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,155,1,"c0, c1 = max(0, math.floor(min(columns)) - 1), min(self.dem.shape[1], math.ceil(max(columns)) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,156,1,"r0, r1 = max(0, math.floor(min(rows)) - 1), min(self.dem.shape[0], math.ceil(max(rows)) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,156,0,"r0, r1 = max(0, math.floor(min(rows)) - 1), min(self.dem.shape[0], math.ceil(max(rows)) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,156,1,"r0, r1 = max(0, math.floor(min(rows)) - 1), min(self.dem.shape[0], math.ceil(max(rows)) + 1)",solver/physics/index; inspect context
+code/independent_solution_audit.py,177,0.9,return full_charge * (0.65 * (0.9 - soc) / 0.9 + 0.35) if soc < 0.9 else full_charge * 0.35 * (1 - soc) / 0.1,solver/physics/index; inspect context
+code/independent_solution_audit.py,177,0.35,return full_charge * (0.65 * (0.9 - soc) / 0.9 + 0.35) if soc < 0.9 else full_charge * 0.35 * (1 - soc) / 0.1,solver/physics/index; inspect context
+code/independent_solution_audit.py,177,1,return full_charge * (0.65 * (0.9 - soc) / 0.9 + 0.35) if soc < 0.9 else full_charge * 0.35 * (1 - soc) / 0.1,solver/physics/index; inspect context
+code/independent_solution_audit.py,182,0,"return any(b[0] < a[1] - EPS for a, b in zip(ordered, ordered[1:]))",solver/physics/index; inspect context
+code/independent_solution_audit.py,194,4,"outward_b = [target[2], target[3], target[4] + 30]",solver/physics/index; inspect context
+code/independent_solution_audit.py,202,2,"energy = leg_energy(payload, outward_a[2], outward_h) + leg_energy(0, outward_b[2], backward_h)",solver/physics/index; inspect context
+code/independent_solution_audit.py,202,2,"energy = leg_energy(payload, outward_a[2], outward_h) + leg_energy(0, outward_b[2], backward_h)",solver/physics/index; inspect context
+code/independent_solution_audit.py,230,100,"if soc < aircraft[""rho""] / 100 - EPS:",solver/physics/index; inspect context
+code/independent_solution_audit.py,244,0,"if direct(node, kind, mid, 0)[0] <= aircraft[""E""] * (1 - aircraft[""rho""] / 100):",solver/physics/index; inspect context
+code/independent_solution_audit.py,290,2,"a = [start_node[2], start_node[3], start_node[4] + (30 if previous else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,290,3,"a = [start_node[2], start_node[3], start_node[4] + (30 if previous else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,291,2,"b = [end_node[2], end_node[3], end_node[4] + (30 if node else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,291,3,"b = [end_node[2], end_node[3], end_node[4] + (30 if node else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,292,50,"cruise_height = max(raw.top(a, b) + 50, a[2], b[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,292,2,"cruise_height = max(raw.top(a, b) + 50, a[2], b[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,292,2,"cruise_height = max(raw.top(a, b) + 50, a[2], b[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,303,3600000.0,"climb += (aircraft[""mass""] + remaining) * 9.81 * (cruise_height - a[2]) / (aircraft[""eta""] * 3.6e6)",solver/physics/index; inspect context
+code/independent_solution_audit.py,319,100,"if soc < aircraft[""rho""] / 100 - EPS:",solver/physics/index; inspect context
+code/independent_solution_audit.py,367,0,"tardiness += box[""priority""] * max(0, time - box[""due""])",solver/physics/index; inspect context
+code/independent_solution_audit.py,399,3600,"energy = (2 * t[""cruise_power""] * distance / t[""vc""] / 3600 +",solver/physics/index; inspect context
+code/independent_solution_audit.py,409,2,"if point[2] - raw.ground(point) > t[""max_agl""] + EPS:",solver/physics/index; inspect context
+code/independent_solution_audit.py,469,1.0002,"margin_worst = min(raw.margin(p, fixed, kind, True, 1.0002),",solver/physics/index; inspect context
+code/independent_solution_audit.py,470,1.0002,"raw.margin(q, fixed, kind, True, 1.0002))",solver/physics/index; inspect context
+code/independent_solution_audit.py,488,100,"return dict(pass_=not errors, errors=errors[:100], total_errors=len(errors),",solver/physics/index; inspect context
+code/independent_solution_audit.py,516,0,if np.any(rr < 0) or np.any(cc < 0) or np.any(rr >= raw.dem.shape[0]) or np.any(cc >= raw.dem.shape[1]):,solver/physics/index; inspect context
+code/independent_solution_audit.py,516,0,if np.any(rr < 0) or np.any(cc < 0) or np.any(rr >= raw.dem.shape[0]) or np.any(cc >= raw.dem.shape[1]):,solver/physics/index; inspect context
+code/independent_solution_audit.py,35,1,"for block in iter(lambda: stream.read(1 << 20), b""""):",solver/physics/index; inspect context
+code/independent_solution_audit.py,35,20,"for block in iter(lambda: stream.read(1 << 20), b""""):",solver/physics/index; inspect context
+code/independent_solution_audit.py,59,6,"self.nodes = [rows[2], *rows[6:21]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,59,21,"self.nodes = [rows[2], *rows[6:21]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,64,2,"self.types = {r[0]: dict(zip(names, r)) for r in transport[2:5]}",solver/physics/index; inspect context
+code/independent_solution_audit.py,64,5,"self.types = {r[0]: dict(zip(names, r)) for r in transport[2:5]}",solver/physics/index; inspect context
+code/independent_solution_audit.py,67,1,"self.types[r[0]].update(batteries=r[1], charge=r[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,67,2,"self.types[r[0]].update(batteries=r[1], charge=r[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,70,2,"medical, first = row[2] == ""医疗物资"", row[5] == ""是""",solver/physics/index; inspect context
+code/independent_solution_audit.py,70,5,"medical, first = row[2] == ""医疗物资"", row[5] == ""是""",solver/physics/index; inspect context
+code/independent_solution_audit.py,79,0,"self.relay.update(units=[r[0] for r in relay_rows[6:8]], components=relay_rows[11][1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,79,11,"self.relay.update(units=[r[0] for r in relay_rows[6:8]], components=relay_rows[11][1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,80,11,charge=relay_rows[11][2]),solver/physics/index; inspect context
+code/independent_solution_audit.py,82,2,"self.radio = dict(frequency=communication[2][4], loss=communication[3][4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,82,3,"self.radio = dict(frequency=communication[2][4], loss=communication[3][4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,83,4,"obstruction=communication[4][4], sensitivity=communication[5][4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,83,5,"obstruction=communication[4][4], sensitivity=communication[5][4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,84,6,"fade=communication[6][4], gateway_height=communication[15][4])",solver/physics/index; inspect context
+code/independent_solution_audit.py,84,15,"fade=communication[6][4], gateway_height=communication[15][4])",solver/physics/index; inspect context
+code/independent_solution_audit.py,85,7,"tx = {""transport"": (communication[7][4], communication[8][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,85,8,"tx = {""transport"": (communication[7][4], communication[8][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,86,9,"""access"": (communication[9][4], communication[10][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,86,10,"""access"": (communication[9][4], communication[10][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,87,11,"""backhaul"": (communication[11][4], communication[12][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,87,12,"""backhaul"": (communication[11][4], communication[12][4]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,88,13,"""gateway"": (communication[13][4], communication[14][4])}",solver/physics/index; inspect context
+code/independent_solution_audit.py,88,14,"""gateway"": (communication[13][4], communication[14][4])}",solver/physics/index; inspect context
+code/independent_solution_audit.py,100,0,"self.nodes[0][4] + self.radio[""gateway_height""]]",solver/physics/index; inspect context
+code/independent_solution_audit.py,115,1,mids = (cuts[:-1] + cuts[1:]) / 2,solver/physics/index; inspect context
+code/independent_solution_audit.py,118,0,if np.any(rows < 0) or np.any(rows >= self.dem.shape[0]) or np.any(columns < 0) or np.any(columns >= self.dem.shape[1]):,solver/physics/index; inspect context
+code/independent_solution_audit.py,118,1,if np.any(rows < 0) or np.any(rows >= self.dem.shape[0]) or np.any(columns < 0) or np.any(columns >= self.dem.shape[1]):,solver/physics/index; inspect context
+code/independent_solution_audit.py,133,1e-08,return bool(np.any(elevations > lowest + 1e-8)),solver/physics/index; inspect context
+code/independent_solution_audit.py,140,2,"d = math.hypot(self.distance(a, b) * safety, b[2] - a[2]) / 1000",solver/physics/index; inspect context
+code/independent_solution_audit.py,140,2,"d = math.hypot(self.distance(a, b) * safety, b[2] - a[2]) / 1000",solver/physics/index; inspect context
+code/independent_solution_audit.py,141,1e-06,"fspl = 32.45 + 20 * math.log10(self.radio[""frequency""]) + 20 * math.log10(max(d, 1e-6))",solver/physics/index; inspect context
+code/independent_solution_audit.py,146,2,"xy = np.array([a[:2], b[:2], fixed[:2]], dtype=float)",solver/physics/index; inspect context
+code/independent_solution_audit.py,146,2,"xy = np.array([a[:2], b[:2], fixed[:2]], dtype=float)",solver/physics/index; inspect context
+code/independent_solution_audit.py,146,2,"xy = np.array([a[:2], b[:2], fixed[:2]], dtype=float)",solver/physics/index; inspect context
+code/independent_solution_audit.py,173,1e-08,"return bool(np.all(self.dem[r0 + rr, c0 + cc] <= lower + 1e-8))",solver/physics/index; inspect context
+code/independent_solution_audit.py,177,0.65,return full_charge * (0.65 * (0.9 - soc) / 0.9 + 0.35) if soc < 0.9 else full_charge * 0.35 * (1 - soc) / 0.1,solver/physics/index; inspect context
+code/independent_solution_audit.py,182,1,"return any(b[0] < a[1] - EPS for a, b in zip(ordered, ordered[1:]))",solver/physics/index; inspect context
+code/independent_solution_audit.py,199,1.5,"equivalent = aircraft[""L0""] - (aircraft[""L0""] - aircraft[""LF""]) * (weight / aircraft[""Q""]) ** 1.5",solver/physics/index; inspect context
+code/independent_solution_audit.py,201,3600000.0,"(aircraft[""mass""] + weight) * 9.81 * (cruise - start_height) / (aircraft[""eta""] * 3.6e6))",solver/physics/index; inspect context
+code/independent_solution_audit.py,206,2,"(backward_h - outward_a[2]) / aircraft[""vd""])",solver/physics/index; inspect context
+code/independent_solution_audit.py,244,0,"if direct(node, kind, mid, 0)[0] <= aircraft[""E""] * (1 - aircraft[""rho""] / 100):",solver/physics/index; inspect context
+code/independent_solution_audit.py,244,1,"if direct(node, kind, mid, 0)[0] <= aircraft[""E""] * (1 - aircraft[""rho""] / 100):",solver/physics/index; inspect context
+code/independent_solution_audit.py,290,4,"a = [start_node[2], start_node[3], start_node[4] + (30 if previous else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,290,30,"a = [start_node[2], start_node[3], start_node[4] + (30 if previous else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,290,0,"a = [start_node[2], start_node[3], start_node[4] + (30 if previous else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,291,4,"b = [end_node[2], end_node[3], end_node[4] + (30 if node else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,291,30,"b = [end_node[2], end_node[3], end_node[4] + (30 if node else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,291,0,"b = [end_node[2], end_node[3], end_node[4] + (30 if node else 0)]",solver/physics/index; inspect context
+code/independent_solution_audit.py,301,1.5,"equivalent_range = aircraft[""L0""] - (aircraft[""L0""] - aircraft[""LF""]) * (remaining / aircraft[""Q""]) ** 1.5",solver/physics/index; inspect context
+code/independent_solution_audit.py,303,9.81,"climb += (aircraft[""mass""] + remaining) * 9.81 * (cruise_height - a[2]) / (aircraft[""eta""] * 3.6e6)",solver/physics/index; inspect context
+code/independent_solution_audit.py,342,1,"if route[""battery""] not in [f""{kind}B{i:02}"" for i in range(1, aircraft[""batteries""] + 1)]:",solver/physics/index; inspect context
+code/independent_solution_audit.py,394,2,"outward = (max_height - origin[2]) / t[""vu""] + distance / t[""vc""] + (max_height - point[2]) / t[""vd""]",solver/physics/index; inspect context
+code/independent_solution_audit.py,395,2,"return_time = (max_height - point[2]) / t[""vu""] + distance / t[""vc""] + (max_height - origin[2]) / t[""vd""]",solver/physics/index; inspect context
+code/independent_solution_audit.py,401,3600000.0,"(t[""eta""] * 3.6e6) +",solver/physics/index; inspect context
+code/independent_solution_audit.py,407,100,"if soc < t[""rho""] / 100 - EPS or r[""service_end""] < ready - EPS:",solver/physics/index; inspect context
+code/independent_solution_audit.py,512,0,longitude = point[0] + fractions * (fixed[0] - point[0]),solver/physics/index; inspect context
+code/independent_solution_audit.py,512,0,longitude = point[0] + fractions * (fixed[0] - point[0]),solver/physics/index; inspect context
+code/independent_solution_audit.py,513,1,latitude = point[1] + fractions * (fixed[1] - point[1]),solver/physics/index; inspect context
+code/independent_solution_audit.py,513,1,latitude = point[1] + fractions * (fixed[1] - point[1]),solver/physics/index; inspect context
+code/independent_solution_audit.py,516,0,if np.any(rr < 0) or np.any(cc < 0) or np.any(rr >= raw.dem.shape[0]) or np.any(cc >= raw.dem.shape[1]):,solver/physics/index; inspect context
+code/independent_solution_audit.py,516,1,if np.any(rr < 0) or np.any(cc < 0) or np.any(rr >= raw.dem.shape[0]) or np.any(cc >= raw.dem.shape[1]):,solver/physics/index; inspect context
+code/independent_solution_audit.py,518,2,sight_height = point[2] + fractions * (fixed[2] - point[2]),solver/physics/index; inspect context
+code/independent_solution_audit.py,518,2,sight_height = point[2] + fractions * (fixed[2] - point[2]),solver/physics/index; inspect context
+code/independent_solution_audit.py,519,1e-08,"blocked = bool(np.any(raw.dem[rr, cc] > sight_height + 1e-8))",solver/physics/index; inspect context
+code/independent_solution_audit.py,65,8,self.units = {g: [r[0] for r in transport[8:16] if r[1] == g] for g in self.types},solver/physics/index; inspect context
+code/independent_solution_audit.py,65,16,self.units = {g: [r[0] for r in transport[8:16] if r[1] == g] for g in self.types},solver/physics/index; inspect context
+code/independent_solution_audit.py,65,1,self.units = {g: [r[0] for r in transport[8:16] if r[1] == g] for g in self.types},solver/physics/index; inspect context
+code/independent_solution_audit.py,67,0,"self.types[r[0]].update(batteries=r[1], charge=r[2])",solver/physics/index; inspect context
+code/independent_solution_audit.py,71,0,"self.boxes.append(dict(id=row[0], node=self.node_ids[row[1]], mass=row[3], volume=row[4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,71,3,"self.boxes.append(dict(id=row[0], node=self.node_ids[row[1]], mass=row[3], volume=row[4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,71,4,"self.boxes.append(dict(id=row[0], node=self.node_ids[row[1]], mass=row[3], volume=row[4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,73,7,"due=row[7], priority=row[8]))",solver/physics/index; inspect context
+code/independent_solution_audit.py,73,8,"due=row[7], priority=row[8]))",solver/physics/index; inspect context
+code/independent_solution_audit.py,93,1,"self.radio[kind] = min(a[0] + a[1] + b[1], b[0] + b[1] + a[1]) - (",solver/physics/index; inspect context
+code/independent_solution_audit.py,93,1,"self.radio[kind] = min(a[0] + a[1] + b[1], b[0] + b[1] + a[1]) - (",solver/physics/index; inspect context
+code/independent_solution_audit.py,115,1,mids = (cuts[:-1] + cuts[1:]) / 2,solver/physics/index; inspect context
+code/independent_solution_audit.py,131,2,"lowest = np.minimum(a[2] + (b[2] - a[2]) * cuts[:-1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,131,2,"lowest = np.minimum(a[2] + (b[2] - a[2]) * cuts[:-1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,132,2,a[2] + (b[2] - a[2]) * cuts[1:]),solver/physics/index; inspect context
+code/independent_solution_audit.py,132,2,a[2] + (b[2] - a[2]) * cuts[1:]),solver/physics/index; inspect context
+code/independent_solution_audit.py,132,1,a[2] + (b[2] - a[2]) * cuts[1:]),solver/physics/index; inspect context
+code/independent_solution_audit.py,149,0,if np.linalg.norm(xy[0] - xy[1]) < 1e-12:,solver/physics/index; inspect context
+code/independent_solution_audit.py,149,1,if np.linalg.norm(xy[0] - xy[1]) < 1e-12:,solver/physics/index; inspect context
+code/independent_solution_audit.py,150,2,low = a if a[2] <= b[2] else b,solver/physics/index; inspect context
+code/independent_solution_audit.py,150,2,low = a if a[2] <= b[2] else b,solver/physics/index; inspect context
+code/independent_solution_audit.py,160,2,"polygon = {""type"": ""Polygon"", ""coordinates"": [[a[:2], b[:2], fixed[:2], a[:2]]]}",solver/physics/index; inspect context
+code/independent_solution_audit.py,160,2,"polygon = {""type"": ""Polygon"", ""coordinates"": [[a[:2], b[:2], fixed[:2], a[:2]]]}",solver/physics/index; inspect context
+code/independent_solution_audit.py,160,2,"polygon = {""type"": ""Polygon"", ""coordinates"": [[a[:2], b[:2], fixed[:2], a[:2]]]}",solver/physics/index; inspect context
+code/independent_solution_audit.py,160,2,"polygon = {""type"": ""Polygon"", ""coordinates"": [[a[:2], b[:2], fixed[:2], a[:2]]]}",solver/physics/index; inspect context
+code/independent_solution_audit.py,177,0.9,return full_charge * (0.65 * (0.9 - soc) / 0.9 + 0.35) if soc < 0.9 else full_charge * 0.35 * (1 - soc) / 0.1,solver/physics/index; inspect context
+code/independent_solution_audit.py,182,1,"return any(b[0] < a[1] - EPS for a, b in zip(ordered, ordered[1:]))",solver/physics/index; inspect context
+code/independent_solution_audit.py,201,9.81,"(aircraft[""mass""] + weight) * 9.81 * (cruise - start_height) / (aircraft[""eta""] * 3.6e6))",solver/physics/index; inspect context
+code/independent_solution_audit.py,244,100,"if direct(node, kind, mid, 0)[0] <= aircraft[""E""] * (1 - aircraft[""rho""] / 100):",solver/physics/index; inspect context
+code/independent_solution_audit.py,269,0,if len(set(assigned)) != len(assigned) or not assigned or any(i < 0 or i >= len(raw.boxes) for i in assigned):,solver/physics/index; inspect context
+code/independent_solution_audit.py,294,2,"up, across, down = ((cruise_height - a[2]) / aircraft[""vu""],",solver/physics/index; inspect context
+code/independent_solution_audit.py,295,2,"distance / aircraft[""vc""], (cruise_height - b[2]) / aircraft[""vd""])",solver/physics/index; inspect context
+code/independent_solution_audit.py,296,0,"for phase, duration, start_pos, end_pos in ((""爬升"", up, a, [a[0], a[1], cruise_height]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,296,1,"for phase, duration, start_pos, end_pos in ((""爬升"", up, a, [a[0], a[1], cruise_height]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,297,0,"(""巡航"", across, [a[0], a[1], cruise_height], [b[0], b[1], cruise_height]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,297,1,"(""巡航"", across, [a[0], a[1], cruise_height], [b[0], b[1], cruise_height]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,297,0,"(""巡航"", across, [a[0], a[1], cruise_height], [b[0], b[1], cruise_height]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,297,1,"(""巡航"", across, [a[0], a[1], cruise_height], [b[0], b[1], cruise_height]),",solver/physics/index; inspect context
+code/independent_solution_audit.py,298,0,"(""下降"", down, [b[0], b[1], cruise_height], b)):",solver/physics/index; inspect context
+code/independent_solution_audit.py,298,1,"(""下降"", down, [b[0], b[1], cruise_height], b)):",solver/physics/index; inspect context
+code/independent_solution_audit.py,303,2,"climb += (aircraft[""mass""] + remaining) * 9.81 * (cruise_height - a[2]) / (aircraft[""eta""] * 3.6e6)",solver/physics/index; inspect context
+code/independent_solution_audit.py,342,1,"if route[""battery""] not in [f""{kind}B{i:02}"" for i in range(1, aircraft[""batteries""] + 1)]:",solver/physics/index; inspect context
+code/independent_solution_audit.py,347,1,"energy_kwh=energy, reserve_kwh=aircraft[""E""] * (1 - aircraft[""rho""] / 100),",solver/physics/index; inspect context
+code/independent_solution_audit.py,394,2,"outward = (max_height - origin[2]) / t[""vu""] + distance / t[""vc""] + (max_height - point[2]) / t[""vd""]",solver/physics/index; inspect context
+code/independent_solution_audit.py,395,2,"return_time = (max_height - point[2]) / t[""vu""] + distance / t[""vc""] + (max_height - origin[2]) / t[""vd""]",solver/physics/index; inspect context
+code/independent_solution_audit.py,400,9.81,"t[""mass""] * 9.81 * ((max_height - origin[2]) + (max_height - point[2])) /",solver/physics/index; inspect context
+code/independent_solution_audit.py,411,1,"if r[""unit""] not in t[""units""] or r[""component""] not in [f""RB{i:02}"" for i in range(1, t[""components""] + 1)]:",solver/physics/index; inspect context
+code/independent_solution_audit.py,474,1.0002,"margin = min(raw.margin(p, fixed, kind, False, 1.0002),",solver/physics/index; inspect context
+code/independent_solution_audit.py,475,1.0002,"raw.margin(q, fixed, kind, False, 1.0002))",solver/physics/index; inspect context
+code/independent_solution_audit.py,71,1,"self.boxes.append(dict(id=row[0], node=self.node_ids[row[1]], mass=row[3], volume=row[4],",solver/physics/index; inspect context
+code/independent_solution_audit.py,72,6,"medical=medical, first=first, first_deadline=row[6] if first else None,",solver/physics/index; inspect context
+code/independent_solution_audit.py,79,6,"self.relay.update(units=[r[0] for r in relay_rows[6:8]], components=relay_rows[11][1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,79,8,"self.relay.update(units=[r[0] for r in relay_rows[6:8]], components=relay_rows[11][1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,93,0,"self.radio[kind] = min(a[0] + a[1] + b[1], b[0] + b[1] + a[1]) - (",solver/physics/index; inspect context
+code/independent_solution_audit.py,93,1,"self.radio[kind] = min(a[0] + a[1] + b[1], b[0] + b[1] + a[1]) - (",solver/physics/index; inspect context
+code/independent_solution_audit.py,93,0,"self.radio[kind] = min(a[0] + a[1] + b[1], b[0] + b[1] + a[1]) - (",solver/physics/index; inspect context
+code/independent_solution_audit.py,93,1,"self.radio[kind] = min(a[0] + a[1] + b[1], b[0] + b[1] + a[1]) - (",solver/physics/index; inspect context
+code/independent_solution_audit.py,131,1,"lowest = np.minimum(a[2] + (b[2] - a[2]) * cuts[:-1],",solver/physics/index; inspect context
+code/independent_solution_audit.py,205,2,"(backward_h - outward_b[2]) / aircraft[""vu""] + distance / aircraft[""vc""] +",solver/physics/index; inspect context
+code/independent_solution_audit.py,347,100,"energy_kwh=energy, reserve_kwh=aircraft[""E""] * (1 - aircraft[""rho""] / 100),",solver/physics/index; inspect context
+code/independent_solution_audit.py,399,2,"energy = (2 * t[""cruise_power""] * distance / t[""vc""] / 3600 +",solver/physics/index; inspect context
+code/independent_solution_audit.py,411,1,"if r[""unit""] not in t[""units""] or r[""component""] not in [f""RB{i:02}"" for i in range(1, t[""components""] + 1)]:",solver/physics/index; inspect context
+code/independent_solution_audit.py,113,1,"math.floor(min(start, end)) + 1, math.ceil(max(start, end))))",solver/physics/index; inspect context
+code/independent_solution_audit.py,204,2,"(outward_h - outward_b[2]) / aircraft[""vd""] +",solver/physics/index; inspect context
+code/independent_solution_audit.py,400,2,"t[""mass""] * 9.81 * ((max_height - origin[2]) + (max_height - point[2])) /",solver/physics/index; inspect context
+code/independent_solution_audit.py,400,2,"t[""mass""] * 9.81 * ((max_height - origin[2]) + (max_height - point[2])) /",solver/physics/index; inspect context
+code/independent_solution_audit.py,203,2,"flying = ((outward_h - outward_a[2]) / aircraft[""vu""] + distance / aircraft[""vc""] +",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,21,1,ROOT = Path(__file__).resolve().parents[1],path/bootstrap
+code/kmax_controlled_scan.py,39,6.0,"parser.add_argument(""--search-seconds"", type=float, default=6.0)",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,40,8.0,"parser.add_argument(""--schedule-seconds"", type=float, default=8.0)",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,53,0,if args.search_seconds <= 0 or args.schedule_seconds <= 0:,solver/physics/index; inspect context
+code/kmax_controlled_scan.py,53,0,if args.search_seconds <= 0 or args.schedule_seconds <= 0:,solver/physics/index; inspect context
+code/kmax_controlled_scan.py,30,2,"temporary.write_text(json.dumps(content, ensure_ascii=False, indent=2,",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,73,100,"for trial_seed in range(seed * 100, seed * 100 + settings[""route_search""][""initial_seed_attempts""]):",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,57,2,"content = dict(protocol=dict(k_values=[2, 3, 4, 5], seeds=seeds, methods=methods,",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,57,3,"content = dict(protocol=dict(k_values=[2, 3, 4, 5], seeds=seeds, methods=methods,",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,57,4,"content = dict(protocol=dict(k_values=[2, 3, 4, 5], seeds=seeds, methods=methods,",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,57,5,"content = dict(protocol=dict(k_values=[2, 3, 4, 5], seeds=seeds, methods=methods,",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,73,100,"for trial_seed in range(seed * 100, seed * 100 + settings[""route_search""][""initial_seed_attempts""]):",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,100,1,"for index, route in enumerate(refined, 1):",solver/physics/index; inspect context
+code/kmax_controlled_scan.py,102,2,"check = validate(model, dict(routes=refined), 2)",solver/physics/index; inspect context
 code/mountain_flood/core/domain.py,9,0,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
 code/mountain_flood/core/domain.py,108,0,clock=t['prep']+t['load']*len(ids);takeoff=clock;prev=0;e=0.;deliver={};segments=[],solver/physics/index; inspect context
 code/mountain_flood/core/domain.py,108,0.0,clock=t['prep']+t['load']*len(ids);takeoff=clock;prev=0;e=0.;deliver={};segments=[],solver/physics/index; inspect context
@@ -170,6 +620,39 @@ code/mountain_flood/experiments/energy_sensitivity.py,41,1,all_energy_increase_p
 code/mountain_flood/experiments/energy_sensitivity.py,51,1,"for i, route in enumerate(routes, 1)]",historical_experiment
 code/mountain_flood/experiments/energy_sensitivity.py,58,1e-09,r['horizontal_kwh'] * 1.01 + r['climb_kwh'] > r['limit_kwh'] + 1e-9,historical_experiment
 code/mountain_flood/experiments/energy_sensitivity.py,58,1.01,r['horizontal_kwh'] * 1.01 + r['climb_kwh'] > r['limit_kwh'] + 1e-9,historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,89,30,"def run(evaluations=30, wall_seconds=90.0, schedule_seconds=1.2):",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,89,90.0,"def run(evaluations=30, wall_seconds=90.0, schedule_seconds=1.2):",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,89,1.2,"def run(evaluations=30, wall_seconds=90.0, schedule_seconds=1.2):",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,8,0,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
+code/mountain_flood/experiments/formal_q2_protocol.py,95,0.0,"epsilon={""weighted_tardiness"":0.0,""makespan"":warm_metrics[""makespan""]*1.10}",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,95,1.1,"epsilon={""weighted_tardiness"":0.0,""makespan"":warm_metrics[""makespan""]*1.10}",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,96,10,seeds=list(range(10));rows=[];schedule_cache={};starts={};initial_seeds={},historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,192,30,"parser.add_argument(""--evaluations"",type=int,default=30)",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,193,90.0,"parser.add_argument(""--wall-seconds"",type=float,default=90.0)",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,194,1.2,"parser.add_argument(""--schedule-seconds"",type=float,default=1.2)",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,8,2,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
+code/mountain_flood/experiments/formal_q2_protocol.py,101,100,"for trial_seed in range(seed*100,seed*100+20):",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,101,20,"for trial_seed in range(seed*100,seed*100+20):",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,126,1.1,"""makespan"":initial_metrics[""makespan""]*1.10}",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,131,2,"check=validate(model,{""routes"":refined},2)",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,151,2,"check=validate(model,{""routes"":refined},2)",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,101,100,"for trial_seed in range(seed*100,seed*100+20):",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,147,1.1,"""makespan"":initial_metrics[""makespan""]*1.10}",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,57,1e-08,"if not any(other is not item and all(x <= y+1e-8 for x,y in zip(vector(other),a))",historical_experiment
+code/mountain_flood/experiments/formal_q2_protocol.py,58,1e-08,"and any(x < y-1e-8 for x,y in zip(vector(other),a))",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,8,0,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
+code/mountain_flood/experiments/formal_q3_protocol.py,60,1,"for index,family in enumerate(sorted({x[""transport_family""] for x in records}),1):",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,31,3,"data=json.loads(path.read_text(encoding=""utf8""));check=validate(model,data,3)",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,8,2,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
+code/mountain_flood/experiments/formal_q3_protocol.py,52,1e-08,"zero=[x for x in records if x[""weighted_tardiness""]<=1e-8]",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,19,1e-08,return all(a[k]<=b[k]+1e-8 for k in keys) and any(a[k]<b[k]-1e-8 for k in keys),historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,19,1e-08,return all(a[k]<=b[k]+1e-8 for k in keys) and any(a[k]<b[k]-1e-8 for k in keys),historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,54,1.05,"epsilon=[x for x in zero if x[""makespan""]<=fastest*1.05 and x[""energy""]<=least_energy*1.01]",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,54,1.01,"epsilon=[x for x in zero if x[""makespan""]<=fastest*1.05 and x[""energy""]<=least_energy*1.01]",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,71,0,"epsilon=dict(weighted_tardiness=0,makespan_factor_from_fastest=1.05,",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,71,1.05,"epsilon=dict(weighted_tardiness=0,makespan_factor_from_fastest=1.05,",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,72,1.01,"energy_factor_from_minimum=1.01)),",historical_experiment
+code/mountain_flood/experiments/formal_q3_protocol.py,42,1,"relay_window_east_s=int(east_match.group(1)) if east_match else None,",historical_experiment
 code/mountain_flood/experiments/probe_joint_fusion.py,9,0,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
 code/mountain_flood/experiments/probe_joint_fusion.py,9,2,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
 code/mountain_flood/experiments/probe_joint_fusion.py,26,2,if stuck is None or len(stuck['order'])<2:break,historical_experiment
@@ -367,44 +850,102 @@ code/mountain_flood/figure/common.py,178,2,"if abs(item[0][1] + item[0][3] / 2 -
 code/mountain_flood/figure/common.py,178,0,"if abs(item[0][1] + item[0][3] / 2 - center_y) < tolerance_pt), None)",display/style
 code/mountain_flood/figure/common.py,178,3,"if abs(item[0][1] + item[0][3] / 2 - center_y) < tolerance_pt), None)",display/style
 code/mountain_flood/figure/common.py,178,0,"if abs(item[0][1] + item[0][3] / 2 - center_y) < tolerance_pt), None)",display/style
+code/mountain_flood/figure/export_figure.py,59,300,"dpi: int = 300,",display/style
+code/mountain_flood/figure/export_figure.py,63,0.05,"pad_inches: float = 0.05,",display/style
+code/mountain_flood/figure/export_figure.py,99,42,"plt.rcParams[""pdf.fonttype""] = 42",display/style
+code/mountain_flood/figure/export_figure.py,100,42,"plt.rcParams[""ps.fonttype""] = 42",display/style
+code/mountain_flood/figure/export_figure.py,187,0,return 0,display/style
+code/mountain_flood/figure/export_figure.py,155,7,rng = np.random.default_rng(7),display/style
+code/mountain_flood/figure/export_figure.py,156,0,"x = np.linspace(0, 10, 50)",display/style
+code/mountain_flood/figure/export_figure.py,156,10,"x = np.linspace(0, 10, 50)",display/style
+code/mountain_flood/figure/export_figure.py,156,50,"x = np.linspace(0, 10, 50)",display/style
+code/mountain_flood/figure/export_figure.py,94,2,if len(size_inches) != 2:,display/style
+code/mountain_flood/figure/export_figure.py,157,0,"y1 = np.sin(x) + rng.normal(0, 0.1, x.size)",display/style
+code/mountain_flood/figure/export_figure.py,157,0.1,"y1 = np.sin(x) + rng.normal(0, 0.1, x.size)",display/style
+code/mountain_flood/figure/export_figure.py,158,0,"y2 = np.cos(x) + rng.normal(0, 0.1, x.size)",display/style
+code/mountain_flood/figure/export_figure.py,158,0.1,"y2 = np.cos(x) + rng.normal(0, 0.1, x.size)",display/style
+code/mountain_flood/figure/export_figure.py,161,3,"ax.plot(x, y1, label=""sin"", marker=""o"", markersize=3)",display/style
+code/mountain_flood/figure/export_figure.py,162,3,"ax.plot(x, y2, label=""cos"", marker=""s"", markersize=3, linestyle=""--"")",display/style
+code/mountain_flood/figure/export_figure.py,171,300,"dpi=300,",display/style
+code/mountain_flood/figure/export_figure.py,160,3.5,"fig, ax = plt.subplots(figsize=(3.5, 2.625))",display/style
+code/mountain_flood/figure/export_figure.py,160,2.625,"fig, ax = plt.subplots(figsize=(3.5, 2.625))",display/style
+code/mountain_flood/figure/export_figure.py,170,3.5,"size_inches=(3.5, 2.625),",display/style
+code/mountain_flood/figure/export_figure.py,170,2.625,"size_inches=(3.5, 2.625),",display/style
 code/mountain_flood/figure/generate.py,9,3,PROJECT_ROOT = Path(__file__).resolve().parents[3],display/style
 code/mountain_flood/figure/generate.py,10,0,"sys.path[:0] = [str(PROJECT_ROOT / ""code""), str(PROJECT_ROOT)]",display/style
-code/mountain_flood/figure/overview.py,10,3,PROJECT_ROOT = Path(__file__).resolve().parents[3],display/style
-code/mountain_flood/figure/overview.py,11,0,"sys.path[:0] = [str(PROJECT_ROOT / ""code""), str(PROJECT_ROOT)]",display/style
-code/mountain_flood/figure/overview.py,45,0,"ax.set_xlim(0, width)",display/style
-code/mountain_flood/figure/overview.py,46,0,"ax.set_ylim(height, 0)",display/style
-code/mountain_flood/figure/overview.py,49,1,"for index in range(1, 9):",display/style
-code/mountain_flood/figure/overview.py,49,9,"for index in range(1, 9):",display/style
-code/mountain_flood/figure/overview.py,65,1,"for index in range(1, 8):",display/style
-code/mountain_flood/figure/overview.py,65,8,"for index in range(1, 8):",display/style
-code/mountain_flood/figure/overview.py,77,0,"fig.subplots_adjust(0, 0, 1, 1)",display/style
-code/mountain_flood/figure/overview.py,77,0,"fig.subplots_adjust(0, 0, 1, 1)",display/style
-code/mountain_flood/figure/overview.py,77,1,"fig.subplots_adjust(0, 0, 1, 1)",display/style
-code/mountain_flood/figure/overview.py,77,1,"fig.subplots_adjust(0, 0, 1, 1)",display/style
-code/mountain_flood/figure/overview.py,42,16,"font = font_manager.FontProperties(fname=FONT, size=16)",display/style
-code/mountain_flood/figure/overview.py,80,300,"fig.savefig(FIGURE_DIR / ""fig_roadmap.png"", dpi=300)",display/style
-code/mountain_flood/figure/overview.py,63,1.25,"ha=""center"", va=""center"", fontproperties=font, linespacing=1.25)",display/style
-code/mountain_flood/figure/overview.py,43,72,"fig, ax = plt.subplots(figsize=(width / 72, height / 72))",display/style
-code/mountain_flood/figure/overview.py,43,72,"fig, ax = plt.subplots(figsize=(width / 72, height / 72))",display/style
-code/mountain_flood/figure/overview.py,52,1,"style = dict(part.split(""="", 1) for part in cell.get(""style"").split("";"")",display/style
-code/mountain_flood/figure/overview.py,57,1.5,"linewidth=1.5,",display/style
-code/mountain_flood/figure/overview.py,62,2,"ax.text(x + box_width / 2, y + box_height / 2, label,",display/style
-code/mountain_flood/figure/overview.py,62,2,"ax.text(x + box_width / 2, y + box_height / 2, label,",display/style
-code/mountain_flood/figure/overview.py,74,20,"start, end, arrowstyle=""-|>"", mutation_scale=20,",display/style
-code/mountain_flood/figure/overview.py,75,2.2,"linewidth=2.2, color=""#555555""))",display/style
-code/mountain_flood/figure/overview.py,72,3,"start, end = (xa + wa / 2, ya + ha + 3), (xb + wb / 2, yb - 6)",display/style
-code/mountain_flood/figure/overview.py,72,6,"start, end = (xa + wa / 2, ya + ha + 3), (xb + wb / 2, yb - 6)",display/style
-code/mountain_flood/figure/overview.py,67,1,"xb, yb, wb, hb = _geometry(cells[f""n{index + 1}""])",display/style
-code/mountain_flood/figure/overview.py,69,3,"start, end = ((xa + wa + 3, ya + ha / 2), (xb - 6, yb + hb / 2)) \",display/style
-code/mountain_flood/figure/overview.py,69,6,"start, end = ((xa + wa + 3, ya + ha / 2), (xb - 6, yb + hb / 2)) \",display/style
-code/mountain_flood/figure/overview.py,70,3,"if xb > xa else ((xa - 3, ya + ha / 2), (xb + wb + 6, yb + hb / 2))",display/style
-code/mountain_flood/figure/overview.py,70,6,"if xb > xa else ((xa - 3, ya + ha / 2), (xb + wb + 6, yb + hb / 2))",display/style
-code/mountain_flood/figure/overview.py,72,2,"start, end = (xa + wa / 2, ya + ha + 3), (xb + wb / 2, yb - 6)",display/style
-code/mountain_flood/figure/overview.py,72,2,"start, end = (xa + wa / 2, ya + ha + 3), (xb + wb / 2, yb - 6)",display/style
-code/mountain_flood/figure/overview.py,69,2,"start, end = ((xa + wa + 3, ya + ha / 2), (xb - 6, yb + hb / 2)) \",display/style
-code/mountain_flood/figure/overview.py,69,2,"start, end = ((xa + wa + 3, ya + ha / 2), (xb - 6, yb + hb / 2)) \",display/style
-code/mountain_flood/figure/overview.py,70,2,"if xb > xa else ((xa - 3, ya + ha / 2), (xb + wb + 6, yb + hb / 2))",display/style
-code/mountain_flood/figure/overview.py,70,2,"if xb > xa else ((xa - 3, ya + ha / 2), (xb + wb + 6, yb + hb / 2))",display/style
+code/mountain_flood/figure/overview.py,7,3,PROJECT_ROOT = Path(__file__).resolve().parents[3],display/style
+code/mountain_flood/figure/overview.py,18,42,"""axes.unicode_minus"": False, ""pdf.fonttype"": 42, ""svg.fonttype"": ""none""})",display/style
+code/mountain_flood/figure/overview.py,40,0.5,"ax.text(.5, .965, ""山区无人机运输—通信—分区配置证据链"", ha=""center"",",display/style
+code/mountain_flood/figure/overview.py,40,0.965,"ax.text(.5, .965, ""山区无人机运输—通信—分区配置证据链"", ha=""center"",",display/style
+code/mountain_flood/figure/overview.py,60,0.5,"ax.text(.5, .025, ""结论边界：小协议未发现新Pareto点；结果是可执行见证，不是全局最优证明"",",display/style
+code/mountain_flood/figure/overview.py,60,0.025,"ax.text(.5, .025, ""结论边界：小协议未发现新Pareto点；结果是可执行见证，不是全局最优证明"",",display/style
+code/mountain_flood/figure/overview.py,62,0,"fig.subplots_adjust(0, 0, 1, 1)",display/style
+code/mountain_flood/figure/overview.py,62,0,"fig.subplots_adjust(0, 0, 1, 1)",display/style
+code/mountain_flood/figure/overview.py,62,1,"fig.subplots_adjust(0, 0, 1, 1)",display/style
+code/mountain_flood/figure/overview.py,62,1,"fig.subplots_adjust(0, 0, 1, 1)",display/style
+code/mountain_flood/figure/overview.py,27,0.025,"ax.text(x + .025, y + h - .055, title, fontsize=11, fontweight=""bold"", color=color, va=""top"")",display/style
+code/mountain_flood/figure/overview.py,27,0.055,"ax.text(x + .025, y + h - .055, title, fontsize=11, fontweight=""bold"", color=color, va=""top"")",display/style
+code/mountain_flood/figure/overview.py,27,11,"ax.text(x + .025, y + h - .055, title, fontsize=11, fontweight=""bold"", color=color, va=""top"")",display/style
+code/mountain_flood/figure/overview.py,28,0.025,"ax.text(x + .025, y + h - .105, body, fontsize=8.2, color=""#263442"", va=""top"", linespacing=1.35)",display/style
+code/mountain_flood/figure/overview.py,28,0.105,"ax.text(x + .025, y + h - .105, body, fontsize=8.2, color=""#263442"", va=""top"", linespacing=1.35)",display/style
+code/mountain_flood/figure/overview.py,28,8.2,"ax.text(x + .025, y + h - .105, body, fontsize=8.2, color=""#263442"", va=""top"", linespacing=1.35)",display/style
+code/mountain_flood/figure/overview.py,28,1.35,"ax.text(x + .025, y + h - .105, body, fontsize=8.2, color=""#263442"", va=""top"", linespacing=1.35)",display/style
+code/mountain_flood/figure/overview.py,41,15,"va=""top"", fontsize=15, fontweight=""bold"", color=""#213547"")",display/style
+code/mountain_flood/figure/overview.py,43,0.04,"box(ax, (.04, .70), (.25, .18), ""统一输入与物理回放"",",display/style
+code/mountain_flood/figure/overview.py,43,0.7,"box(ax, (.04, .70), (.25, .18), ""统一输入与物理回放"",",display/style
+code/mountain_flood/figure/overview.py,43,0.25,"box(ax, (.04, .70), (.25, .18), ""统一输入与物理回放"",",display/style
+code/mountain_flood/figure/overview.py,43,0.18,"box(ax, (.04, .70), (.25, .18), ""统一输入与物理回放"",",display/style
+code/mountain_flood/figure/overview.py,45,0.375,"box(ax, (.375, .70), (.25, .18), ""Q1  单点直送DP"",",display/style
+code/mountain_flood/figure/overview.py,45,0.7,"box(ax, (.375, .70), (.25, .18), ""Q1  单点直送DP"",",display/style
+code/mountain_flood/figure/overview.py,45,0.25,"box(ax, (.375, .70), (.25, .18), ""Q1  单点直送DP"",",display/style
+code/mountain_flood/figure/overview.py,45,0.18,"box(ax, (.375, .70), (.25, .18), ""Q1  单点直送DP"",",display/style
+code/mountain_flood/figure/overview.py,47,0.71,"box(ax, (.71, .70), (.25, .18), ""Q2  两层VRPTW调度"",",display/style
+code/mountain_flood/figure/overview.py,47,0.7,"box(ax, (.71, .70), (.25, .18), ""Q2  两层VRPTW调度"",",display/style
+code/mountain_flood/figure/overview.py,47,0.25,"box(ax, (.71, .70), (.25, .18), ""Q2  两层VRPTW调度"",",display/style
+code/mountain_flood/figure/overview.py,47,0.18,"box(ax, (.71, .70), (.25, .18), ""Q2  两层VRPTW调度"",",display/style
+code/mountain_flood/figure/overview.py,49,0.29,"arrow(ax, (.29, .79), (.375, .79)); arrow(ax, (.625, .79), (.71, .79))",display/style
+code/mountain_flood/figure/overview.py,49,0.79,"arrow(ax, (.29, .79), (.375, .79)); arrow(ax, (.625, .79), (.71, .79))",display/style
+code/mountain_flood/figure/overview.py,49,0.375,"arrow(ax, (.29, .79), (.375, .79)); arrow(ax, (.625, .79), (.71, .79))",display/style
+code/mountain_flood/figure/overview.py,49,0.79,"arrow(ax, (.29, .79), (.375, .79)); arrow(ax, (.625, .79), (.71, .79))",display/style
+code/mountain_flood/figure/overview.py,49,0.625,"arrow(ax, (.29, .79), (.375, .79)); arrow(ax, (.625, .79), (.71, .79))",display/style
+code/mountain_flood/figure/overview.py,49,0.79,"arrow(ax, (.29, .79), (.375, .79)); arrow(ax, (.625, .79), (.71, .79))",display/style
+code/mountain_flood/figure/overview.py,49,0.71,"arrow(ax, (.29, .79), (.375, .79)); arrow(ax, (.625, .79), (.71, .79))",display/style
+code/mountain_flood/figure/overview.py,49,0.79,"arrow(ax, (.29, .79), (.375, .79)); arrow(ax, (.625, .79), (.71, .79))",display/style
+code/mountain_flood/figure/overview.py,51,0.12,"box(ax, (.12, .39), (.34, .20), ""Q3  连续通信子问题"",",display/style
+code/mountain_flood/figure/overview.py,51,0.39,"box(ax, (.12, .39), (.34, .20), ""Q3  连续通信子问题"",",display/style
+code/mountain_flood/figure/overview.py,51,0.34,"box(ax, (.12, .39), (.34, .20), ""Q3  连续通信子问题"",",display/style
+code/mountain_flood/figure/overview.py,51,0.2,"box(ax, (.12, .39), (.34, .20), ""Q3  连续通信子问题"",",display/style
+code/mountain_flood/figure/overview.py,53,0.54,"box(ax, (.54, .39), (.34, .20), ""有限分解协调边界"",",display/style
+code/mountain_flood/figure/overview.py,53,0.39,"box(ax, (.54, .39), (.34, .20), ""有限分解协调边界"",",display/style
+code/mountain_flood/figure/overview.py,53,0.34,"box(ax, (.54, .39), (.34, .20), ""有限分解协调边界"",",display/style
+code/mountain_flood/figure/overview.py,53,0.2,"box(ax, (.54, .39), (.34, .20), ""有限分解协调边界"",",display/style
+code/mountain_flood/figure/overview.py,55,0.835,"arrow(ax, (.835, .70), (.71, .59)); arrow(ax, (.46, .49), (.54, .49))",display/style
+code/mountain_flood/figure/overview.py,55,0.7,"arrow(ax, (.835, .70), (.71, .59)); arrow(ax, (.46, .49), (.54, .49))",display/style
+code/mountain_flood/figure/overview.py,55,0.71,"arrow(ax, (.835, .70), (.71, .59)); arrow(ax, (.46, .49), (.54, .49))",display/style
+code/mountain_flood/figure/overview.py,55,0.59,"arrow(ax, (.835, .70), (.71, .59)); arrow(ax, (.46, .49), (.54, .49))",display/style
+code/mountain_flood/figure/overview.py,55,0.46,"arrow(ax, (.835, .70), (.71, .59)); arrow(ax, (.46, .49), (.54, .49))",display/style
+code/mountain_flood/figure/overview.py,55,0.49,"arrow(ax, (.835, .70), (.71, .59)); arrow(ax, (.46, .49), (.54, .49))",display/style
+code/mountain_flood/figure/overview.py,55,0.54,"arrow(ax, (.835, .70), (.71, .59)); arrow(ax, (.46, .49), (.54, .49))",display/style
+code/mountain_flood/figure/overview.py,55,0.49,"arrow(ax, (.835, .70), (.71, .59)); arrow(ax, (.46, .49), (.54, .49))",display/style
+code/mountain_flood/figure/overview.py,57,0.2,"box(ax, (.20, .10), (.60, .18), ""Q4  固定Q3任务的两组/三组分区"",",display/style
+code/mountain_flood/figure/overview.py,57,0.1,"box(ax, (.20, .10), (.60, .18), ""Q4  固定Q3任务的两组/三组分区"",",display/style
+code/mountain_flood/figure/overview.py,57,0.6,"box(ax, (.20, .10), (.60, .18), ""Q4  固定Q3任务的两组/三组分区"",",display/style
+code/mountain_flood/figure/overview.py,57,0.18,"box(ax, (.20, .10), (.60, .18), ""Q4  固定Q3任务的两组/三组分区"",",display/style
+code/mountain_flood/figure/overview.py,59,0.71,"arrow(ax, (.71, .39), (.56, .28))",display/style
+code/mountain_flood/figure/overview.py,59,0.39,"arrow(ax, (.71, .39), (.56, .28))",display/style
+code/mountain_flood/figure/overview.py,59,0.56,"arrow(ax, (.71, .39), (.56, .28))",display/style
+code/mountain_flood/figure/overview.py,59,0.28,"arrow(ax, (.71, .39), (.56, .28))",display/style
+code/mountain_flood/figure/overview.py,61,8.5,"ha=""center"", fontsize=8.5, color=""#536273"")",display/style
+code/mountain_flood/figure/overview.py,26,1.4,"linewidth=1.4, edgecolor=color, facecolor=color + ""18""))",display/style
+code/mountain_flood/figure/overview.py,32,14,"ax.add_patch(FancyArrowPatch(start, end, arrowstyle=""-|>"", mutation_scale=14,",display/style
+code/mountain_flood/figure/overview.py,33,1.5,"linewidth=1.5, color=""#65727F""))",display/style
+code/mountain_flood/figure/overview.py,38,11.5,"fig, ax = plt.subplots(figsize=(11.5, 7.0))",display/style
+code/mountain_flood/figure/overview.py,38,7.0,"fig, ax = plt.subplots(figsize=(11.5, 7.0))",display/style
+code/mountain_flood/figure/overview.py,39,0,"ax.set(xlim=(0, 1), ylim=(0, 1)); ax.axis(""off"")",display/style
+code/mountain_flood/figure/overview.py,39,1,"ax.set(xlim=(0, 1), ylim=(0, 1)); ax.axis(""off"")",display/style
+code/mountain_flood/figure/overview.py,39,0,"ax.set(xlim=(0, 1), ylim=(0, 1)); ax.axis(""off"")",display/style
+code/mountain_flood/figure/overview.py,39,1,"ax.set(xlim=(0, 1), ylim=(0, 1)); ax.axis(""off"")",display/style
+code/mountain_flood/figure/overview.py,64,300,"kwargs = {""dpi"": 300} if ext == ""png"" else {}",display/style
 code/mountain_flood/figure/q1.py,6,3,PROJECT_ROOT = Path(__file__).resolve().parents[3],display/style
 code/mountain_flood/figure/q1.py,79,0.0,offset = 0.0,display/style
 code/mountain_flood/figure/q1.py,7,0,"sys.path[:0] = [str(PROJECT_ROOT / ""code""), str(PROJECT_ROOT)]",display/style
@@ -643,9 +1184,9 @@ code/mountain_flood/figure/q2.py,158,5,"s=130, linewidths=1.2, zorder=5)",displa
 code/mountain_flood/figure/q3.py,6,3,PROJECT_ROOT = Path(__file__).resolve().parents[3],display/style
 code/mountain_flood/figure/q3.py,7,0,"sys.path[:0] = [str(PROJECT_ROOT / ""code""), str(PROJECT_ROOT)]",display/style
 code/mountain_flood/figure/q3.py,142,0,"ax.axvline(0, color=COLORS[""C""], linestyle=""--"", label=""链路可行阈值"")",display/style
-code/mountain_flood/figure/q3.py,191,20,"ax.axhline(20, color=COLORS[""C""], linestyle=""--"", linewidth=1,",display/style
-code/mountain_flood/figure/q3.py,207,1,"fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))",display/style
-code/mountain_flood/figure/q3.py,207,3,"fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))",display/style
+code/mountain_flood/figure/q3.py,193,20,"ax.axhline(20, color=COLORS[""C""], linestyle=""--"", linewidth=1,",display/style
+code/mountain_flood/figure/q3.py,209,1,"fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))",display/style
+code/mountain_flood/figure/q3.py,209,3,"fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))",display/style
 code/mountain_flood/figure/q3.py,21,1000,"points = model.xy[[0] + route[""order""] + [0]] / 1000",display/style
 code/mountain_flood/figure/q3.py,47,8,"fontsize=8, ncol=max(1, len(handles)))",display/style
 code/mountain_flood/figure/q3.py,67,0,"fraction = 0 if span <= 1e-12 else (elapsed - segment[""start""]) / span",display/style
@@ -660,9 +1201,10 @@ code/mountain_flood/figure/q3.py,147,0.2,"ax.grid(axis=""y"", alpha=0.2)",displa
 code/mountain_flood/figure/q3.py,148,8,ax.legend(fontsize=8),display/style
 code/mountain_flood/figure/q3.py,171,4,if end - start >= 4:,display/style
 code/mountain_flood/figure/q3.py,178,0.2,"ax.grid(axis=""x"", alpha=0.2)",display/style
-code/mountain_flood/figure/q3.py,182,8,"loc=""best"", fontsize=8)",display/style
-code/mountain_flood/figure/q3.py,191,1,"ax.axhline(20, color=COLORS[""C""], linestyle=""--"", linewidth=1,",display/style
-code/mountain_flood/figure/q3.py,195,0.2,"ax.grid(axis=""y"", alpha=0.2)",display/style
+code/mountain_flood/figure/q3.py,183,5,"ncol=5, fontsize=7)",display/style
+code/mountain_flood/figure/q3.py,183,7,"ncol=5, fontsize=7)",display/style
+code/mountain_flood/figure/q3.py,193,1,"ax.axhline(20, color=COLORS[""C""], linestyle=""--"", linewidth=1,",display/style
+code/mountain_flood/figure/q3.py,197,0.2,"ax.grid(axis=""y"", alpha=0.2)",display/style
 code/mountain_flood/figure/q3.py,18,6.4,"fig, ax = plt.subplots(figsize=(6.4, 4.5))",display/style
 code/mountain_flood/figure/q3.py,18,4.5,"fig, ax = plt.subplots(figsize=(6.4, 4.5))",display/style
 code/mountain_flood/figure/q3.py,22,0.55,"ax.plot(points[:, 0], points[:, 1], color=NEUTRAL, lw=0.55, alpha=0.35)",display/style
@@ -696,12 +1238,17 @@ code/mountain_flood/figure/q3.py,138,3.8,"fig, ax = plt.subplots(figsize=(6.5, 3
 code/mountain_flood/figure/q3.py,157,8.4,"fig, ax = plt.subplots(figsize=(8.4, max(4.2, 0.35 * len(units))))",display/style
 code/mountain_flood/figure/q3.py,160,60,"start, end = task[""start""] / 60, task[""end""] / 60",display/style
 code/mountain_flood/figure/q3.py,160,60,"start, end = task[""start""] / 60, task[""end""] / 60",display/style
-code/mountain_flood/figure/q3.py,188,5.8,"fig, ax = plt.subplots(figsize=(5.8, 3.4))",display/style
-code/mountain_flood/figure/q3.py,188,3.4,"fig, ax = plt.subplots(figsize=(5.8, 3.4))",display/style
-code/mountain_flood/figure/q3.py,189,100,"ax.bar([relay[""id""] for relay in relays], [relay[""soc""] * 100 for relay in relays],",display/style
-code/mountain_flood/figure/q3.py,207,8.4,"fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))",display/style
-code/mountain_flood/figure/q3.py,207,3.1,"fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))",display/style
-code/mountain_flood/figure/q3.py,211,0.2,"ax.grid(axis=""y"", alpha=0.2)",display/style
+code/mountain_flood/figure/q3.py,182,0.5,"ax.legend(handles=handles, loc=""upper center"", bbox_to_anchor=(0.5, -0.16),",display/style
+code/mountain_flood/figure/q3.py,184,0,"fig.tight_layout(rect=(0, 0.09, 1, 1))",display/style
+code/mountain_flood/figure/q3.py,184,0.09,"fig.tight_layout(rect=(0, 0.09, 1, 1))",display/style
+code/mountain_flood/figure/q3.py,184,1,"fig.tight_layout(rect=(0, 0.09, 1, 1))",display/style
+code/mountain_flood/figure/q3.py,184,1,"fig.tight_layout(rect=(0, 0.09, 1, 1))",display/style
+code/mountain_flood/figure/q3.py,190,5.8,"fig, ax = plt.subplots(figsize=(5.8, 3.4))",display/style
+code/mountain_flood/figure/q3.py,190,3.4,"fig, ax = plt.subplots(figsize=(5.8, 3.4))",display/style
+code/mountain_flood/figure/q3.py,191,100,"ax.bar([relay[""id""] for relay in relays], [relay[""soc""] * 100 for relay in relays],",display/style
+code/mountain_flood/figure/q3.py,209,8.4,"fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))",display/style
+code/mountain_flood/figure/q3.py,209,3.1,"fig, axes = plt.subplots(1, 3, figsize=(8.4, 3.1))",display/style
+code/mountain_flood/figure/q3.py,213,0.2,"ax.grid(axis=""y"", alpha=0.2)",display/style
 code/mountain_flood/figure/q3.py,22,0,"ax.plot(points[:, 0], points[:, 1], color=NEUTRAL, lw=0.55, alpha=0.35)",display/style
 code/mountain_flood/figure/q3.py,22,1,"ax.plot(points[:, 0], points[:, 1], color=NEUTRAL, lw=0.55, alpha=0.35)",display/style
 code/mountain_flood/figure/q3.py,30,1000,"ax.scatter(x / 1000, y / 1000, s=90, marker=""D"", color=color, zorder=7)",display/style
@@ -738,8 +1285,9 @@ code/mountain_flood/figure/q3.py,168,60,"service_start, service_end = task[""rea
 code/mountain_flood/figure/q3.py,170,0.3,"height=0.3, color=""#69549A"")",display/style
 code/mountain_flood/figure/q3.py,172,2,"ax.text((start + end) / 2, lane, task.get(""id"", """"), ha=""center"", va=""center"",",display/style
 code/mountain_flood/figure/q3.py,173,6.5,"fontsize=6.5, color=""white"")",display/style
-code/mountain_flood/figure/q3.py,204,60,"([q2[""summary""][""makespan""] / 60, q3[""summary""][""makespan""] / 60], ""完工时间 / min""),",display/style
-code/mountain_flood/figure/q3.py,204,60,"([q2[""summary""][""makespan""] / 60, q3[""summary""][""makespan""] / 60], ""完工时间 / min""),",display/style
+code/mountain_flood/figure/q3.py,182,0.16,"ax.legend(handles=handles, loc=""upper center"", bbox_to_anchor=(0.5, -0.16),",display/style
+code/mountain_flood/figure/q3.py,206,60,"([q2[""summary""][""makespan""] / 60, q3[""summary""][""makespan""] / 60], ""完工时间 / min""),",display/style
+code/mountain_flood/figure/q3.py,206,60,"([q2[""summary""][""makespan""] / 60, q3[""summary""][""makespan""] / 60], ""完工时间 / min""),",display/style
 code/mountain_flood/figure/q3.py,21,0,"points = model.xy[[0] + route[""order""] + [0]] / 1000",display/style
 code/mountain_flood/figure/q3.py,31,1000,"ax.annotate(site, (x / 1000, y / 1000), xytext=(4, 4),",display/style
 code/mountain_flood/figure/q3.py,31,1000,"ax.annotate(site, (x / 1000, y / 1000), xytext=(4, 4),",display/style
@@ -1135,79 +1683,84 @@ code/mountain_flood/problem1/recompute.py,14,40,"for pct in (10, 20, 30, 40):",s
 code/mountain_flood/problem1/recompute.py,7,2,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
 code/mountain_flood/problem1/recompute.py,18,0.2,"save(f'q1_{objective}.json', q1(m, .2, objective))",solver/physics/index; inspect context
 code/mountain_flood/problem1/recompute.py,15,100,"save(f'q1_rho{pct}.json', q1(m, pct / 100))",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,108,0,seen={signature(curr_plan)};tabu={};history=[];iterations=0,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,160,6.0,"def refine_timefirst(m, rs, seconds=6.0):",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,189,1,solver=cp_model.CpSolver();solver.parameters.num_search_workers=1;solver.parameters.random_seed=optimization_parameters()['method_comparison']['cp_sat_seed'],solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,91,0.0,return 0.0,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,144,0,seen={signature(curr_plan)};tabu={};history=[];iterations=0;evaluated=1,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,144,1,seen={signature(curr_plan)};tabu={};history=[];iterations=0;evaluated=1,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,207,6.0,"def refine_timefirst(m, rs, seconds=6.0):",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,236,1,solver=cp_model.CpSolver();solver.parameters.num_search_workers=1;solver.parameters.random_seed=optimization_parameters()['method_comparison']['cp_sat_seed'],solver/physics/index; inspect context
 code/mountain_flood/problem2/search.py,10,0,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
-code/mountain_flood/problem2/search.py,110,1,iterations+=1,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,186,0,"cmax=model.new_int_var(0,horizon+max(math.ceil(r['duration']) for r in rs),'cmax')",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,57,4,return p['hard_violation_weight']*z[0]+p['soft_tardiness_weight']*z[1]+z[2]/p['makespan_divisor']+z[3]/p['arrival_divisor']+z[4],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,66,5,kind=rng.randrange(5),solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,103,100000,rng=random.Random(100000+seed),solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,168,0,"start=model.new_int_var(0,horizon,f's{j}')",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,169,0,"end=model.new_int_var(0,horizon+duration,f'e{j}')",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,171,0,"bend=model.new_int_var(0,horizon+duration+recharge,f'be{j}')",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,193,1.0,"solver.parameters.max_time_in_seconds=max(1.0,seconds/3)",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,248,2,"check=validate(m,dict(routes=refined),2)",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,146,1,iterations+=1,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,233,0,"cmax=model.new_int_var(0,horizon+max(math.ceil(r['duration']) for r in rs),'cmax')",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,69,0.0,"max(0.0,z['weighted_tardiness']-epsilon.get('weighted_tardiness',math.inf)),",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,70,0.0,"max(0.0,z['makespan']-epsilon.get('makespan',math.inf)),",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,100,5,kind=rng.randrange(5),solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,138,100000,rng=random.Random(100000+seed),solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,153,1,"z=rank(routes);evaluated+=1;curr_plan,curr_score=q,z",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,215,0,"start=model.new_int_var(0,horizon,f's{j}')",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,216,0,"end=model.new_int_var(0,horizon+duration,f'e{j}')",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,218,0,"bend=model.new_int_var(0,horizon+duration+recharge,f'be{j}')",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,240,1.0,"solver.parameters.max_time_in_seconds=max(1.0,seconds/3)",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,295,2,"check=validate(m,dict(routes=refined),2)",solver/physics/index; inspect context
 code/mountain_flood/problem2/search.py,10,2,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
 code/mountain_flood/problem2/search.py,34,0.0,units={g:[0.]*len(m.units[g]) for g in m.types},solver/physics/index; inspect context
 code/mountain_flood/problem2/search.py,35,0.0,batteries={g:[0.]*m.types[g]['batteries'] for g in m.types},solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,68,0,if kind==0 and n>1:  # 调整架次执行顺序,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,68,1,if kind==0 and n>1:  # 调整架次执行顺序,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,69,2,"i,j=rng.sample(range(n),2);q[i],q[j]=q[j],q[i]",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,177,100000000.0,if box['deadline']<1e8:model.add(start<=math.floor(box['deadline']-t)),solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,178,0,"delay=model.new_int_var(0,horizon*1000,f'late{j}_{b}')",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,193,3,"solver.parameters.max_time_in_seconds=max(1.0,seconds/3)",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,207,0.0,units=[0.]*len(m.units[g]);batteries=[0.]*m.types[g]['batteries'],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,207,0.0,units=[0.]*len(m.units[g]);batteries=[0.]*m.types[g]['batteries'],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,212,0,ui=available_units[0];bi=available_batteries[0],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,212,0,ui=available_units[0];bi=available_batteries[0],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,227,100,"for trial_seed in range(seed*100,seed*100+optimization_parameters()['route_search']['initial_seed_attempts']):",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,57,3,return p['hard_violation_weight']*z[0]+p['soft_tardiness_weight']*z[1]+z[2]/p['makespan_divisor']+z[3]/p['arrival_divisor']+z[4],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,70,1,elif kind==1 and n>1:  # 将整箱货物移至另一架次,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,70,1,elif kind==1 and n>1:  # 将整箱货物移至另一架次,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,71,2,"i,j=rng.sample(range(n),2);g,a,o=q[i];h,b,p=q[j]",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,76,2,elif kind==2:  # 将一个货箱拆为单独直送架次,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,178,1000,"delay=model.new_int_var(0,horizon*1000,f'late{j}_{b}')",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,179,0,"model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,184,1,"model.add_cumulative([intervals[j] for j in js],[1]*len(js),len(m.units[g]))",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,185,1,"model.add_cumulative([battery_intervals[j] for j in js],[1]*len(js),m.types[g]['batteries'])",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,227,100,"for trial_seed in range(seed*100,seed*100+optimization_parameters()['route_search']['initial_seed_attempts']):",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,251,2,"candidates.append(dict(method='existing_baseline',seed=None,metrics=metrics(m,base),solver={'status':'archived_verified','origin':'prior hill-climbing seed 1 under stricter all-due",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,252,0,feasible=[x for x in candidates if x['validation']['pass_'] and x['metrics']['hard_violations']==0 and x['metrics']['delivered']==80],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,252,80,feasible=[x for x in candidates if x['validation']['pass_'] and x['metrics']['hard_violations']==0 and x['metrics']['delivered']==80],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,57,2,return p['hard_violation_weight']*z[0]+p['soft_tardiness_weight']*z[1]+z[2]/p['makespan_divisor']+z[3]/p['arrival_divisor']+z[4],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,78,2,if len(a)<2:continue,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,84,3,elif kind==3:  # 更换机型或调整服务区访问顺序,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,113,10000,"fresh=construct(m,seed*10000+iterations,multi=True)",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,126,0,elif iterations%optimization_parameters()['route_search']['hill_restart_interval']==0:curr_plan=list(best_plan);curr_score=best_score,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,146,3,"history.append({'iteration':iterations,'elapsed_s':round(time.monotonic()-start,3),'score':best_score})",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,213,1,r['unit']=m.units[g][ui];r['battery']=f'{g}B{bi+1:02}',solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,102,0,if kind==0 and n>1:  # 调整架次执行顺序,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,102,1,if kind==0 and n>1:  # 调整架次执行顺序,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,103,2,"i,j=rng.sample(range(n),2);q[i],q[j]=q[j],q[i]",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,224,100000000.0,if box['deadline']<1e8:model.add(start<=math.floor(box['deadline']-t)),solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,225,0,"delay=model.new_int_var(0,horizon*1000,f'late{j}_{b}')",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,240,3,"solver.parameters.max_time_in_seconds=max(1.0,seconds/3)",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,254,0.0,units=[0.]*len(m.units[g]);batteries=[0.]*m.types[g]['batteries'],solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,254,0.0,units=[0.]*len(m.units[g]);batteries=[0.]*m.types[g]['batteries'],solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,259,0,ui=available_units[0];bi=available_batteries[0],solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,259,0,ui=available_units[0];bi=available_batteries[0],solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,274,100,"for trial_seed in range(seed*100,seed*100+optimization_parameters()['route_search']['initial_seed_attempts']):",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,56,100,return min(r['soc']-m.types[r['g']]['rho']/100 for r in routes),solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,90,1.0,"return (new-old)/max(1.0, abs(old))",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,104,1,elif kind==1 and n>1:  # 将整箱货物移至另一架次,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,104,1,elif kind==1 and n>1:  # 将整箱货物移至另一架次,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,105,2,"i,j=rng.sample(range(n),2);g,a,o=q[i];h,b,p=q[j]",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,110,2,elif kind==2:  # 将一个货箱拆为单独直送架次,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,168,1,z=rank(routes);evaluated+=1,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,225,1000,"delay=model.new_int_var(0,horizon*1000,f'late{j}_{b}')",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,226,0,"model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,231,1,"model.add_cumulative([intervals[j] for j in js],[1]*len(js),len(m.units[g]))",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,232,1,"model.add_cumulative([battery_intervals[j] for j in js],[1]*len(js),m.types[g]['batteries'])",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,274,100,"for trial_seed in range(seed*100,seed*100+optimization_parameters()['route_search']['initial_seed_attempts']):",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,298,2,"candidates.append(dict(method='existing_baseline',seed=None,metrics=metrics(m,base),solver={'status':'archived_verified','origin':'prior hill-climbing seed 1 under stricter all-due",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,299,0,feasible=[x for x in candidates if x['validation']['pass_'] and x['metrics']['hard_violations']==0 and x['metrics']['delivered']==80],solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,299,80,feasible=[x for x in candidates if x['validation']['pass_'] and x['metrics']['hard_violations']==0 and x['metrics']['delivered']==80],solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,112,2,if len(a)<2:continue,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,118,3,elif kind==3:  # 更换机型或调整服务区访问顺序,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,149,10000,"fresh=construct(m,seed*10000+iterations,multi=True)",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,160,1,"candidates.append((rank(routes),q));evaluated+=1",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,164,0,elif iterations%optimization_parameters()['route_search']['hill_restart_interval']==0:curr_plan=list(best_plan);curr_score=best_score,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,188,3,"history.append({'iteration':iterations,'elapsed_s':round(time.monotonic()-start,3),'score':best_score})",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,260,1,r['unit']=m.units[g][ui];r['battery']=f'{g}B{bi+1:02}',solver/physics/index; inspect context
 code/mountain_flood/problem2/search.py,45,1,"r.update(id=f'T{index+1:03}',start=start,end=start+r['duration'],unit=m.units[g][ui],battery=f'{g}B{bi+1:02}')",solver/physics/index; inspect context
 code/mountain_flood/problem2/search.py,45,1,"r.update(id=f'T{index+1:03}',start=start,end=start+r['duration'],unit=m.units[g][ui],battery=f'{g}B{bi+1:02}')",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,57,0,return p['hard_violation_weight']*z[0]+p['soft_tardiness_weight']*z[1]+z[2]/p['makespan_divisor']+z[3]/p['arrival_divisor']+z[4],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,57,1,return p['hard_violation_weight']*z[0]+p['soft_tardiness_weight']*z[1]+z[2]/p['makespan_divisor']+z[3]/p['arrival_divisor']+z[4],solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,86,0.5,if rng.random()<.5:,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,130,1,"z=score(m,routes);temp=max(optimization_parameters()['route_search']['anneal_min_temperature'],1-(time.monotonic()-start)/budget)",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,132,0,"if delta<=0 or rng.random()<math.exp(-min(700,delta/(optimization_parameters()['route_search']['anneal_acceptance_scale']*temp))):",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,181,1000,arrival_terms.append(box['priority']*(1000*start+round(t*1000))),solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,209,1e-06,"available_units=[k for k,t in enumerate(units) if t<=r['start']+1e-6]",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,210,1e-06,"available_batteries=[k for k,t in enumerate(batteries) if t<=r['start']+1e-6]",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,83,1,"q.insert(rng.randrange(len(q)+1),direct)",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,89,2,if len(o)<2:continue,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,91,4,elif kind==4 and n>1:  # 合并两个架次,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,91,1,elif kind==4 and n>1:  # 合并两个架次,solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,124,0,"z,q=min(candidates,key=lambda x:x[0])",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,179,1000,"model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,179,1000,"model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,181,1000,arrival_terms.append(box['priority']*(1000*start+round(t*1000))),solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,92,2,"i,j=sorted(rng.sample(range(n),2));g,a,o=q[i];h,b,p=q[j]",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,179,1000,"model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,132,700,"if delta<=0 or rng.random()<math.exp(-min(700,delta/(optimization_parameters()['route_search']['anneal_acceptance_scale']*temp))):",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,140,0,"if tabu.get(sig,0)<=iterations or z<best_score:candidates.append((z,q,sig))",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,142,0,"z,q,sig=min(candidates,key=lambda x:x[0]);curr_plan,curr_score=q,z",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,157,1e-07,"if not any(y is not x and all(b<=c+1e-7 for b,c in zip(vector(y),a)) and any(b<c-1e-7 for b,c in zip(vector(y),a)) for y in items):out.append(x)",solver/physics/index; inspect context
-code/mountain_flood/problem2/search.py,157,1e-07,"if not any(y is not x and all(b<=c+1e-7 for b,c in zip(vector(y),a)) and any(b<c-1e-7 for b,c in zip(vector(y),a)) for y in items):out.append(x)",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,120,0.5,if rng.random()<.5:,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,170,1,"temp=max(optimization_parameters()['route_search']['anneal_min_temperature'],1-progress)",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,173,0,"if delta<=0 or rng.random()<math.exp(-min(700,delta/(scale*temp))):",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,181,1,sig=signature(q);z=rank(routes);evaluated+=1,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,228,1000,arrival_terms.append(box['priority']*(1000*start+round(t*1000))),solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,256,1e-06,"available_units=[k for k,t in enumerate(units) if t<=r['start']+1e-6]",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,257,1e-06,"available_batteries=[k for k,t in enumerate(batteries) if t<=r['start']+1e-6]",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,117,1,"q.insert(rng.randrange(len(q)+1),direct)",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,123,2,if len(o)<2:continue,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,125,4,elif kind==4 and n>1:  # 合并两个架次,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,125,1,elif kind==4 and n>1:  # 合并两个架次,solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,162,0,"z,q=min(candidates,key=lambda x:x[0])",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,226,1000,"model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,226,1000,"model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,228,1000,arrival_terms.append(box['priority']*(1000*start+round(t*1000))),solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,126,2,"i,j=sorted(rng.sample(range(n),2));g,a,o=q[i];h,b,p=q[j]",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,226,1000,"model.add_max_equality(delay,[0,1000*start+round(t*1000)-round(box['due']*1000)])",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,173,700,"if delta<=0 or rng.random()<math.exp(-min(700,delta/(scale*temp))):",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,182,0,"if tabu.get(sig,0)<=iterations or z<best_score:candidates.append((z,q,sig))",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,184,0,"z,q,sig=min(candidates,key=lambda x:x[0]);curr_plan,curr_score=q,z",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,204,1e-07,"if not any(y is not x and all(b<=c+1e-7 for b,c in zip(vector(y),a)) and any(b<c-1e-7 for b,c in zip(vector(y),a)) for y in items):out.append(x)",solver/physics/index; inspect context
+code/mountain_flood/problem2/search.py,204,1e-07,"if not any(y is not x and all(b<=c+1e-7 for b,c in zip(vector(y),a)) and any(b<c-1e-7 for b,c in zip(vector(y),a)) for y in items):out.append(x)",solver/physics/index; inspect context
 code/mountain_flood/problem2/transport.py,21,0,"def construct(m,seed,multi=True,earliest=0):",solver/physics/index; inspect context
 code/mountain_flood/problem2/transport.py,67,15,"def improve_schedule(m,rs,seconds=15,earliest=0,start_after=None):",solver/physics/index; inspect context
 code/mountain_flood/problem2/transport.py,67,0,"def improve_schedule(m,rs,seconds=15,earliest=0,start_after=None):",solver/physics/index; inspect context
@@ -1525,24 +2078,25 @@ code/mountain_flood/problem3/schedule.py,68,1000,"model.add_max_equality(late,[0
 code/mountain_flood/problem4/partition.py,35,1,"for node in range(1, 16):",solver/physics/index; inspect context
 code/mountain_flood/problem4/partition.py,35,16,"for node in range(1, 16):",solver/physics/index; inspect context
 code/mountain_flood/problem4/partition.py,105,1,all_mask = (1 << component_count) - 1,solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,107,2,"for group_count in (2, 3):",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,107,3,"for group_count in (2, 3):",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,110,0,evaluated = 0,solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,111,2,"for group_count in (2, 3):",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,111,3,"for group_count in (2, 3):",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,114,0,evaluated = 0,solver/physics/index; inspect context
 code/mountain_flood/problem4/partition.py,21,16,parent = list(range(16)),solver/physics/index; inspect context
 code/mountain_flood/problem4/partition.py,30,0,"first = route[""order""][0]",solver/physics/index; inspect context
 code/mountain_flood/problem4/partition.py,105,1,all_mask = (1 << component_count) - 1,solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,154,0,"visit(0, [])",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,163,0,"visit(0, [])",solver/physics/index; inspect context
 code/mountain_flood/problem4/partition.py,31,1,"for node in route[""order""][1:]:",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,118,1,evaluated += 1,solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,122,1,evaluated += 1,solver/physics/index; inspect context
 code/mountain_flood/problem4/partition.py,48,1,if mask >> index & 1,solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,149,1,next_masks[group_index] |= 1 << index,solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,158,1,next_masks[group_index] |= 1 << index,solver/physics/index; inspect context
 code/mountain_flood/problem4/partition.py,51,0,"tasks = [route for route in routes if route[""order""][0] in nodes]",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,121,0,"deficit = [max(0, target - available) for target, available in zip(total, inventory)]",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,150,1,"visit(index + 1, next_masks)",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,152,1,"visit(index + 1, masks + [1 << index])",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,130,0,"unused=[max(0, available - used) for used, available in zip(total, inventory)],",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,152,1,"visit(index + 1, masks + [1 << index])",solver/physics/index; inspect context
-code/mountain_flood/problem4/partition.py,120,0,"total = np.sum([item[""resources""] for item in groups], axis=0).astype(int).tolist()",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,125,0,"deficit = [max(0, target - available) for target, available in zip(total, inventory)]",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,126,0,"duplicated = [max(0, target - base) for target, base in zip(total, pooled)]",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,127,0,"inventory_idle = [max(0, available - target) for target, available in zip(total, inventory)]",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,159,1,"visit(index + 1, next_masks)",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,161,1,"visit(index + 1, masks + [1 << index])",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,161,1,"visit(index + 1, masks + [1 << index])",solver/physics/index; inspect context
+code/mountain_flood/problem4/partition.py,124,0,"total = np.sum([item[""resources""] for item in groups], axis=0).astype(int).tolist()",solver/physics/index; inspect context
 code/mountain_flood/reporting/export_submission.py,9,0,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
 code/mountain_flood/reporting/export_submission.py,23,2,"for row_index,record in enumerate(records,2):",solver/physics/index; inspect context
 code/mountain_flood/reporting/export_submission.py,32,2,"for i,(row,reference) in enumerate(zip(actual,expected),2):",solver/physics/index; inspect context
@@ -1650,19 +2204,21 @@ code/mountain_flood/workflow/promote_fusion.py,13,2,"sys.path.insert(0, str(_Boo
 code/mountain_flood/workflow/promote_fusion.py,38,1e-05,if abs(recalculated[key]-data['summary'][key])>1e-5:,solver/physics/index; inspect context
 code/mountain_flood/workflow/promote_fusion.py,52,1e-06,if abs(regenerated[key]-archived[key])>1e-6:,solver/physics/index; inspect context
 code/mountain_flood/workflow/reproduce.py,9,0,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
-code/mountain_flood/workflow/reproduce.py,103,8,if len(book.sheetnames)!=8:raise RuntimeError('Submission workbook lacks required sheets'),solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,112,8,if len(book.sheetnames)!=8:raise RuntimeError('Submission workbook lacks required sheets'),solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,135,39,if len(pool_manifest['file_sha256'])!=39 or any(,solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,139,48,if kmax_audit['status']!='PASS' or kmax_audit['passed']!=48:,solver/physics/index; inspect context
 code/mountain_flood/workflow/reproduce.py,9,2,"sys.path.insert(0, str(_BootstrapPath(__file__).resolve().parents[2]))",path/bootstrap
-code/mountain_flood/workflow/reproduce.py,59,1,"name,version=line.split('==',1)",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,125,0,"created_at=datetime.now(timezone.utc).isoformat(),python=sys.version.split()[0],",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,137,2,"json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf8')",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,127,42,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,44,1024,"for chunk in iter(lambda:stream.read(1024*1024),b''):",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,44,1024,"for chunk in iter(lambda:stream.read(1024*1024),b''):",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,96,2,"if not all(validation[str(q)]['pass_'] for q in (2,3)):",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,96,3,"if not all(validation[str(q)]['pass_'] for q in (2,3)):",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,127,0,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,127,1,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,127,2,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,130,0,"commands=[dict(script=s,exit_code=0) for s in STEPS],",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,93,3000,"print(completed.stdout[-3000:],flush=True)",solver/physics/index; inspect context
-code/mountain_flood/workflow/reproduce.py,127,24,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,66,1,"name,version=line.split('==',1)",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,143,0,"created_at=datetime.now(timezone.utc).isoformat(),python=sys.version.split()[0],",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,158,2,"json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf8')",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,145,42,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,51,1024,"for chunk in iter(lambda:stream.read(1024*1024),b''):",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,51,1024,"for chunk in iter(lambda:stream.read(1024*1024),b''):",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,105,2,"if not all(validation[str(q)]['pass_'] for q in (2,3)):",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,105,3,"if not all(validation[str(q)]['pass_'] for q in (2,3)):",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,145,0,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,145,1,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,145,2,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,149,0,"commands=[dict(script=s,exit_code=0) for s in STEPS],",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,102,3000,"print(completed.stdout[-3000:],flush=True)",solver/physics/index; inspect context
+code/mountain_flood/workflow/reproduce.py,145,24,"random_seeds=dict(route_construction=list(range(24)),method_comparison=[0,1,2],cp_sat=42),",solver/physics/index; inspect context

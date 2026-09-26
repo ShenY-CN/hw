@@ -8,7 +8,17 @@ q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E^g_{0i}(q)+E^g_{i0}(0)\le(1-\rho_g)E_g^{\r
 \end{equation}
 左端随$q$单调不减，故用二分法求解，并再受额定质量与体积约束。若空载往返已经超出能量上限，定义安全载荷为0且该机型对该区不可用。图~\ref{fig:capacity}展示20\%安全余量下的45个机型—服务区载荷上限，差异主要来自水平距离、沿线最高地形和各机型满载航程。
 
-\begin{figure}[H]\centering\includegraphics[width=.95\textwidth]{../figures/audit_verified_20260925/q1_safe_capacity.pdf}\caption{20\%返航安全余量下的逐区最大安全载荷}\label{fig:capacity}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.95\textwidth]{../figures/paper_full_20260926/q1_safe_capacity.pdf}\caption{20\%返航安全余量下的逐区最大安全载荷}\label{fig:capacity}\end{figure}
+
+将机型和服务区同时展开后，安全载荷差异更易比较；图~\ref{fig:capacity_heatmap}以矩阵色阶呈现同一组45个机型—服务区组合结果。
+\begin{figure}[H]\centering\includegraphics[width=.92\textwidth]{../figures/paper_full_20260926/q1_capacity_heatmap.pdf}\caption{不同机型与服务区组合的最大安全载荷热力图}\label{fig:capacity_heatmap}\end{figure}
+
+表~\ref{tab:q1_capacity_batches}列出全部45个安全载荷数值，并汇总20\%余量下各区实际组批数与耗电；额定载荷截断的数值仍须满足体积上限。
+\input{tables/q1_capacity_batches}
+
+安全载荷上限同时受地形爬升和载荷相关等效航程影响。图~\ref{fig:elevation_profile}展示代表性航段沿线地形与巡航高度，图~\ref{fig:payload_energy}展示载荷增加时航程和能耗的变化。
+\begin{figure}[H]\centering\includegraphics[width=.90\textwidth]{../figures/paper_full_20260926/q1_typical_elevation_profile.pdf}\caption{代表性往返航段的DEM高程剖面与巡航高度}\label{fig:elevation_profile}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.92\textwidth]{../figures/paper_full_20260926/q1_payload_energy.pdf}\caption{典型服务区不同载荷下的等效航程与飞行能耗}\label{fig:payload_energy}\end{figure}
 
 \subsection{不可拆货箱组批}
 
@@ -16,7 +26,15 @@ q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E^g_{0i}(q)+E^g_{i0}(0)\le(1-\rho_g)E_g^{\r
 
 由于同服务区同种物资的货箱具有相同质量、体积和飞行代价，用各物资类型的剩余箱数构成动态规划状态。转移枚举所有可行装载计数组合及机型；终止状态为零箱。恢复最优转移后按原始货箱编号分配，因此没有把整箱货物拆开。这个有限状态递推覆盖了全部可行分组，给出第一问所述字典序下的全局最优值。
 
-\begin{table}[H]\centering\small\caption{返航安全余量改变时的组批结果}\label{tab:q1}
+具体地，令$\boldsymbol n_i$为服务区$i$的箱型计数，$\mathcal A_i$为满足载重、容积和能源约束的全部非零机型--批次模式。定义$F_i(\boldsymbol r)$为完成剩余计数$\boldsymbol r$的最优（架次，能耗），则
+\begin{equation}
+F_i(\boldsymbol0)=(0,0),\qquad
+F_i(\boldsymbol r)=\min_{\rm lex}\left\{F_i(\boldsymbol r-\boldsymbol a)+(1,E_{gi}(\boldsymbol a)):(g,\boldsymbol a)\in\mathcal A_i,\ \boldsymbol a\le\boldsymbol r\right\}.
+\label{eq:q1-dp}
+\end{equation}
+无可行转移时取$(+\infty,+\infty)$。对$\sum_kr_k$作归纳即可得到Bellman最优性；因此结论只在单点直送、固定轨迹和本文能耗模型内成立，不外推到多站实体排程。
+
+\begin{table}[H]\centering\normalsize\caption{返航安全余量改变时的组批结果}\label{tab:q1}
 \begin{tabular}{ccccc}\toprule
 安全余量 & 最少架次 & 能耗/kWh & 累计作业时间/s & 状态\\\midrule
 10\% & 18 & 59.1313 & 32776.02 & 可行\\
@@ -26,3 +44,7 @@ q_{ig}^{\max}=\max\left\{q\in[0,Q_g]:E^g_{0i}(q)+E^g_{i0}(0)\le(1-\rho_g)E_g^{\r
 \bottomrule\end{tabular}\end{table}
 
 20\%余量下，主方案为18架次、59.1313~kWh。若放弃最少架次而只优化能耗，则为19架次、59.0339~kWh，仅节省0.0974~kWh，却增加1架次及1663.96~s。故在应急任务中先压缩架次更合理。安全余量升至30\%时最少架次增为20；40\%时S004的B型最大安全载荷仅8.6665~kg，其余机型无法完成安全空载往返，14~kg整箱饮用水无可行机型。图~\ref{fig:sens}给出可行区间内的变化。
+
+最少架次方案与最少能耗方案的时间—能耗取舍如图~\ref{fig:q1_objective}所示；主方案逐架次的返航电量及安全储备线见图~\ref{fig:q1_return_soc}。
+\begin{figure}[H]\centering\includegraphics[width=.86\textwidth]{../figures/paper_full_20260926/q1_objective_solutions.pdf}\caption{问题一时间与能耗单目标方案比较}\label{fig:q1_objective}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=.92\textwidth]{../figures/paper_full_20260926/q1_return_soc.pdf}\caption{问题一主方案逐架次返航剩余电量}\label{fig:q1_return_soc}\end{figure}

@@ -115,7 +115,7 @@ xticks(ax,1:numel(r)); xticklabels(ax,{r.id}); xtickangle(ax,55); xlabel(ax,'运
 end
 function q2Search(root,p,out,C)
 d=json(fullfile(root,'results','method_comparison.json')); methods={'grasp','hill','anneal','tabu','existing_baseline'};
-labels={'随机化构造','局部爬山','模拟退火','禁忌搜索','历史可行解基线'}; cols=[C.A;C.orange;C.C;C.W;C.gray]; priority=sum([p.boxes.priority]);
+labels={'随机化构造','局部爬山','模拟退火','禁忌搜索','局部爬山（前轮归档）'}; cols=[C.A;C.orange;C.C;C.W;C.gray]; priority=sum([p.boxes.priority]);
 f=fig(1450,470); tiledlayout(f,1,3,'TileSpacing','compact'); axs=gobjects(1,3); for j=1:3, axs(j)=nexttile; hold(axs(j),'on'); grid(axs(j),'on'); axs(j).GridAlpha=.18; end
 for m=1:numel(methods)
     ix=find(string({d.candidates.method})==methods{m});

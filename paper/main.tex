@@ -16,11 +16,20 @@
 \usepackage[a4paper, top=30mm, bottom=25mm, left=22.5mm, right=22.5mm]{geometry}
 
 % ---------- 数学 ----------
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+% 图、表、公式均按章编号；每章重新计数。
+\numberwithin{equation}{section}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+\renewcommand{\thetable}{\thesection-\arabic{table}}
 
 % ---------- 图片 ----------
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{caption}
+\captionsetup{labelsep=space}
 \usepackage[hidelinks]{hyperref}
 
 % ---------- 多行表格合并 ----------
@@ -71,8 +80,18 @@
 
 % ---------- 目录（tocloft 点线引导） ----------
 \usepackage{tocloft}
-\renewcommand{\cftsecfont}{\heiti\bfseries}
-\renewcommand{\cftsecpagefont}{\heiti\bfseries}
+% 目录条目按 2026 官方格式使用正文小四宋体（12pt），一级标题编号后加圆点，
+% 与正文“1.”一致；页码用常规西文数字，不再加粗。
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\cftsecaftersnum}{.}
+\setlength{\cftsecnumwidth}{1.6em}
+% 分级缩进：一级顶格，二级/三级编号与标题依次右移，使目录大、小标题错开。
+\setlength{\cftsecindent}{0em}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsecnumwidth}{2.3em}
+\setlength{\cftsubsubsecindent}{3.8em}
+\setlength{\cftsubsubsecnumwidth}{3.2em}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
@@ -139,22 +158,21 @@
     }\\[0.45cm]
     {\fontsize{14pt}{16.8pt}\heiti\bfseries 摘\quad\quad 要：}\\[0.45cm]
   \end{center}
-  本文研究山区洪涝后15个服务区、80个不可拆货箱的无人机应急投送，建立地形航段、载荷能耗、共享电池和连续双向通信的统一模型。货箱必须在原始服务区交付；16箱医疗物资按附件期望时刻、30箱首批保障货箱按首批截止验收，两类重合后共31箱有硬时限，64箱非医疗物资的期望时刻用于衡量及时性。问题一用计数状态动态规划求单点组批，20\%返航储备下需18架次、59.1313~kWh。问题二修订时限后同预算比较随机化构造、局部爬山、模拟退火和禁忌搜索，并复核前轮局部爬山生成的历史可行解；入选24架次方案最后返航104.61~min、优先加权平均交付45.69~min、耗电71.9169~kWh，硬时限全部满足，其他物资加权迟到为0。问题三联合运输与中继调度，26个运输及3个中继架次于112.82~min全部返航，总耗电78.8732~kWh，4061个通信区间无盲区；历史方案中4箱普通水晚于期望时刻在新口径下可行，但及时性、收尾和能耗均较差。问题四固定所选任务后穷举两组、三组独立资源配置，二者均有库存缺口。所选解为有限候选中的相对最优；最小链路证明裕量0.09378~dB和最紧航次0.5441\%的水平能耗扰动阈值提示现场须重新认证。附件未给排放因子，故不推算碳减排。\par
+
+  针对山区洪涝灾害中道路中断、地形起伏、能源受限与通信设施受损并存的应急救援场景，本文研究面向 15 个服务区、80 个不可拆货箱的无人机运输—通信协同优化问题，统一考虑地形净空、载荷相关能耗、物资时限、实体无人机与共享电池周转，以及飞行全过程连续双向通信约束，并按照“单点组批—异构运输—通信协同—任务分区”的递进思路建立模型。
+
+  针对问题一，首先依据 DEM 与机型参数计算不同服务区的最大安全载荷，并枚举单点直送条件下的可行组批模式；进一步以各类货箱剩余数量为状态，建立计数状态动态规划模型，对架次数、能耗和累计作业时间进行词典序优化。在 20\%返航安全余量下，完成全部配送至少需要 18 架次，总能耗为 59.1313 kWh；该结果在单点直送、固定航迹及本文能耗模型下为精确最优解。
+  
+  针对问题二，建立考虑货箱分配、访问顺序、机型选择、实体机与共享电池调度及硬时限约束的异构多航次车辆路径模型，并采用“路线列启发式 + 固定路线 CP-SAT”的两层求解框架。随机化构造、局部爬山、模拟退火和禁忌搜索从匹配的独立初始方案出发，在最多30次有效评估及90 s墙钟保护下比较返航时间、能耗和架次，四法均10/10可行；另将历史24架次方案作为基线，其返航时间为104.61 min、总能耗71.9169 kWh，31箱硬时限货物全部按时送达，非医疗物资加权迟到为0。
+
+  针对问题三，为避免离散采样遗漏瞬时通信中断，利用链路距离上界与地形遮挡上界构造连续区间通信证书，并要求同一中继在整个区间内同时满足运输机接入链路与中继回程链路约束；在三类运输方案及 32 个中继窗口候选上实施有限分解协调审计。最终方案包含 26 个运输架次和 3 个中继架次，全部设备于 112.82 min 收尾，总能耗为 78.8732 kWh，共 4061 个通信区间全部通过连续可行性认证。其最小链路裕度为 0.093780 dB，而最大裕度候选仅提高至 0.094145 dB，说明有限候选内的裕度改善较小。
+
+  针对问题四，在保持问题三货箱组批、运输顺序、任务时刻及通信关系不变的条件下，将联合任务转化为不可拆任务组件，对两组和三组划分分别进行穷举，并从重复配置、库存闲置、库存缺口及工作量均衡性四方面评价独立执行代价。结果表明，两组和三组方案分别存在 3 件和 7 件资源缺口，说明任务分区虽有利于组织独立执行，却会削弱共享资源的复用效率。进一步的敏感性检验表明，最紧运输架次的水平能耗临界增幅仅为 0.5441\%，现有通信证书在附加链路损耗增加约 0.1 dB 时即出现失效区间。因此，本文所得方案应视为标称参数下经过逐箱、逐航次、逐资源和逐通信区间回放验证的可执行方案，实际救援前仍需结合天气、设备状态和链路实测重新校核。
+
   \vspace{0.65em}
-  {\heiti\bfseries 关键词：}洪涝应急配送 \quad 多算法比较 \quad 救援时效 \quad 能源利用 \quad 连续通信\par
+  {\heiti\bfseries 关键词：}无人机应急配送 \quad 异构车辆路径 \quad CP-SAT调度 \quad 连续通信证书 \quad 资源分区\par
   \newpage
 }
-% \tocpage：目录页，标题"目录"居中 16pt 黑体加粗，点线引导
-\makeatletter
-\newcommand{\tocpage}{%
-  \begin{center}
-    {\fontsize{16pt}{19.2pt}\heiti\bfseries 目录}
-  \end{center}
-  \vspace{1.0cm}
-  \@starttoc{toc}%
-  \newpage
-}
-\makeatother
 % \referencescn：参考文献节，标题"参考文献"居中 14pt 黑体加粗（不带编号但进目录）
 \newcommand{\referencescn}{%
   \phantomsection%
@@ -163,8 +181,17 @@
 }
 % \appendixcn：附录节，标题"附录 A  复现说明"居中 14pt 黑体加粗
 \newcommand{\appendixcn}{%
-  \section*{附录 A\quad 复现说明}%
-  \addcontentsline{toc}{section}{附录 A\quad 复现说明}%
+  \section*{\texorpdfstring{附录 A\quad 复现说明}{附录 A 复现说明}}%
+  \addcontentsline{toc}{section}{附录 A 复现说明}%
+  \setcounter{figure}{0}%
+  \setcounter{table}{0}%
+  \setcounter{equation}{0}%
+  \renewcommand{\thefigure}{A-\arabic{figure}}%
+  \renewcommand{\thetable}{A-\arabic{table}}%
+  \renewcommand{\theequation}{A.\arabic{equation}}%
+  \renewcommand{\theHfigure}{appendixA.\arabic{figure}}%
+  \renewcommand{\theHtable}{appendixA.\arabic{table}}%
+  \renewcommand{\theHequation}{appendixA.\arabic{equation}}%
   \input{sections/A_code}%
 }
 % \threelinetable{标题}{列定义}{表头}{表格内容}：三线表，标题在表格上方居中 10.5pt 黑体加粗
@@ -192,7 +219,7 @@
 \abstractpage
 
 % 目录页
-\tocpage
+\input{sections/0_toc}
 
 \input{sections/1_restatement}
 \input{sections/2_analysis}
