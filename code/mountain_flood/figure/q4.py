@@ -33,7 +33,7 @@ def _plot_partition_map(model, groups, group_count):
 
 def plot_resource_demand(data, inventory):
     labels = ["A型机", "B型机", "C型机", "A型电池", "B型电池", "C型电池",
-              "中继无人机", "中继电池"]
+              "中继无人机", "中继能源组件"]
     x = np.arange(len(labels))
     width = 0.24
     fig, ax = plt.subplots(figsize=(9.0, 4.0))
@@ -70,7 +70,7 @@ def plot_workload(data):
 
 def plot_resource_deficit(data, inventory):
     labels = ["A型机", "B型机", "C型机", "A型电池", "B型电池", "C型电池",
-              "中继无人机", "中继电池"]
+              "中继无人机", "中继能源组件"]
     x = np.arange(len(labels))
     width = 0.34
     fig, ax = plt.subplots(figsize=(8.8, 3.8))
